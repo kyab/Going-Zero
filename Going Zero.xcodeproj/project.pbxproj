@@ -7,13 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7702666535A00EB0E73 /* MiniFader.m */; };
+		EB18F7742669077E00EB0E73 /* WaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7732669077E00EB0E73 /* WaveView.m */; };
+		EB18F777266907B400EB0E73 /* Viewer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F776266907B400EB0E73 /* Viewer.m */; };
+		EB18F77A26697E2900EB0E73 /* Sampler.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F77926697E2900EB0E73 /* Sampler.m */; };
+		EB18F77D266A6E7100EB0E73 /* Looper.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F77C266A6E7100EB0E73 /* Looper.m */; };
+		EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C0F266B9D7A004485FC /* BitCrasher.m */; };
+		EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C12266B9F69004485FC /* BitCrasherController.m */; };
+		EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB274C13266B9F69004485FC /* BitCrasherController.xib */; };
+		EB652ED6266DB90E00089E3E /* ShooterController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652ED4266DB90E00089E3E /* ShooterController.m */; };
+		EB652ED7266DB90E00089E3E /* ShooterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB652ED5266DB90E00089E3E /* ShooterController.xib */; };
+		EB652EDA266DB93C00089E3E /* Shooter.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652ED9266DB93C00089E3E /* Shooter.m */; };
+		EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652EDC266E00D000089E3E /* TapeReverseController.m */; };
+		EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB652EDD266E00D000089E3E /* TapeReverseController.xib */; };
+		EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652EE1266E00E300089E3E /* TapeReverse.m */; };
 		EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E386226623E4A002AADCA /* AppDelegate.m */; };
 		EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB6E386426623E4B002AADCA /* Assets.xcassets */; };
 		EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6E386626623E4B002AADCA /* MainMenu.xib */; };
 		EB6E386B26623E4B002AADCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E386A26623E4B002AADCA /* main.m */; };
+		EB6E387426623F2F002AADCA /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB6E387326623F2F002AADCA /* AppController.mm */; };
+		EB6E387726623F83002AADCA /* AudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E387626623F83002AADCA /* AudioEngine.m */; };
+		EB6E387A26624089002AADCA /* RingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E387926624089002AADCA /* RingBuffer.m */; };
+		EB6E387F266240C1002AADCA /* TurnTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E387B266240BF002AADCA /* TurnTableView.m */; };
+		EB6E3880266240C1002AADCA /* RingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E387C266240BF002AADCA /* RingView.m */; };
+		EB6E388326627C90002AADCA /* TrillReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E388226627C90002AADCA /* TrillReverse.m */; };
+		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
+		EBEC8C72266313C400257694 /* Bender.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEC8C71266313C400257694 /* Bender.m */; };
+		EBF93D0E266AA076001B13F3 /* DJFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF93D0D266AA076001B13F3 /* DJFilterView.xib */; };
+		EBF93D11266AA184001B13F3 /* DJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D10266AA184001B13F3 /* DJViewController.m */; };
+		EBF93D1A266AE709001B13F3 /* MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D19266AE709001B13F3 /* MyButton.m */; };
+		EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF93D1B266B164F001B13F3 /* RefrainView.xib */; };
+		EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D1E266B168D001B13F3 /* RefrainController.m */; };
+		EBF93D22266B215E001B13F3 /* Refrain.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D21266B215E001B13F3 /* Refrain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB18F76F2666535A00EB0E73 /* MiniFader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniFader.h; sourceTree = "<group>"; };
+		EB18F7702666535A00EB0E73 /* MiniFader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiniFader.m; sourceTree = "<group>"; };
+		EB18F7722669077E00EB0E73 /* WaveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaveView.h; sourceTree = "<group>"; };
+		EB18F7732669077E00EB0E73 /* WaveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaveView.m; sourceTree = "<group>"; };
+		EB18F775266907B400EB0E73 /* Viewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Viewer.h; sourceTree = "<group>"; };
+		EB18F776266907B400EB0E73 /* Viewer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Viewer.m; sourceTree = "<group>"; };
+		EB18F77826697E2900EB0E73 /* Sampler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sampler.h; sourceTree = "<group>"; };
+		EB18F77926697E2900EB0E73 /* Sampler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sampler.m; sourceTree = "<group>"; };
+		EB18F77B266A6E7100EB0E73 /* Looper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Looper.h; sourceTree = "<group>"; };
+		EB18F77C266A6E7100EB0E73 /* Looper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Looper.m; sourceTree = "<group>"; };
+		EB274C0E266B9D7A004485FC /* BitCrasher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrasher.h; sourceTree = "<group>"; };
+		EB274C0F266B9D7A004485FC /* BitCrasher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BitCrasher.m; sourceTree = "<group>"; };
+		EB274C11266B9F69004485FC /* BitCrasherController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrasherController.h; sourceTree = "<group>"; };
+		EB274C12266B9F69004485FC /* BitCrasherController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BitCrasherController.m; sourceTree = "<group>"; };
+		EB274C13266B9F69004485FC /* BitCrasherController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BitCrasherController.xib; sourceTree = "<group>"; };
+		EB652ED3266DB90E00089E3E /* ShooterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShooterController.h; sourceTree = "<group>"; };
+		EB652ED4266DB90E00089E3E /* ShooterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShooterController.m; sourceTree = "<group>"; };
+		EB652ED5266DB90E00089E3E /* ShooterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShooterController.xib; sourceTree = "<group>"; };
+		EB652ED8266DB93C00089E3E /* Shooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shooter.h; sourceTree = "<group>"; };
+		EB652ED9266DB93C00089E3E /* Shooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Shooter.m; sourceTree = "<group>"; };
+		EB652EDB266E00D000089E3E /* TapeReverseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapeReverseController.h; sourceTree = "<group>"; };
+		EB652EDC266E00D000089E3E /* TapeReverseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapeReverseController.m; sourceTree = "<group>"; };
+		EB652EDD266E00D000089E3E /* TapeReverseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TapeReverseController.xib; sourceTree = "<group>"; };
+		EB652EE0266E00E300089E3E /* TapeReverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapeReverse.h; sourceTree = "<group>"; };
+		EB652EE1266E00E300089E3E /* TapeReverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapeReverse.m; sourceTree = "<group>"; };
 		EB6E385E26623E4A002AADCA /* Going Zero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Going Zero.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6E386126623E4A002AADCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EB6E386226623E4A002AADCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -22,6 +75,32 @@
 		EB6E386926623E4B002AADCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB6E386A26623E4B002AADCA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EB6E386C26623E4B002AADCA /* Going_Zero.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Going_Zero.entitlements; sourceTree = "<group>"; };
+		EB6E387226623F2F002AADCA /* AppController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		EB6E387326623F2F002AADCA /* AppController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
+		EB6E387526623F83002AADCA /* AudioEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioEngine.h; sourceTree = "<group>"; };
+		EB6E387626623F83002AADCA /* AudioEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioEngine.m; sourceTree = "<group>"; };
+		EB6E387826624088002AADCA /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
+		EB6E387926624089002AADCA /* RingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RingBuffer.m; sourceTree = "<group>"; };
+		EB6E387B266240BF002AADCA /* TurnTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnTableView.m; sourceTree = "<group>"; };
+		EB6E387C266240BF002AADCA /* RingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RingView.m; sourceTree = "<group>"; };
+		EB6E387D266240C0002AADCA /* TurnTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnTableView.h; sourceTree = "<group>"; };
+		EB6E387E266240C1002AADCA /* RingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingView.h; sourceTree = "<group>"; };
+		EB6E388126627C90002AADCA /* TrillReverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrillReverse.h; sourceTree = "<group>"; };
+		EB6E388226627C90002AADCA /* TrillReverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrillReverse.m; sourceTree = "<group>"; };
+		EB7372B4266530F600393D58 /* Freezer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Freezer.h; sourceTree = "<group>"; };
+		EB7372B5266530F600393D58 /* Freezer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freezer.m; sourceTree = "<group>"; };
+		EBEC8C70266313C400257694 /* Bender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bender.h; sourceTree = "<group>"; };
+		EBEC8C71266313C400257694 /* Bender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bender.m; sourceTree = "<group>"; };
+		EBF93D0D266AA076001B13F3 /* DJFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJFilterView.xib; sourceTree = "<group>"; };
+		EBF93D0F266AA184001B13F3 /* DJViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJViewController.h; sourceTree = "<group>"; };
+		EBF93D10266AA184001B13F3 /* DJViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJViewController.m; sourceTree = "<group>"; };
+		EBF93D18266AE709001B13F3 /* MyButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyButton.h; sourceTree = "<group>"; };
+		EBF93D19266AE709001B13F3 /* MyButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyButton.m; sourceTree = "<group>"; };
+		EBF93D1B266B164F001B13F3 /* RefrainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefrainView.xib; sourceTree = "<group>"; };
+		EBF93D1D266B168D001B13F3 /* RefrainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefrainController.h; sourceTree = "<group>"; };
+		EBF93D1E266B168D001B13F3 /* RefrainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefrainController.m; sourceTree = "<group>"; };
+		EBF93D20266B215E001B13F3 /* Refrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Refrain.h; sourceTree = "<group>"; };
+		EBF93D21266B215E001B13F3 /* Refrain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Refrain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +114,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB19287A266B9C1D00980F39 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				EB18F77B266A6E7100EB0E73 /* Looper.h */,
+				EB18F77C266A6E7100EB0E73 /* Looper.m */,
+				EB6E388126627C90002AADCA /* TrillReverse.h */,
+				EB6E388226627C90002AADCA /* TrillReverse.m */,
+				EBEC8C70266313C400257694 /* Bender.h */,
+				EBEC8C71266313C400257694 /* Bender.m */,
+				EB7372B4266530F600393D58 /* Freezer.h */,
+				EB7372B5266530F600393D58 /* Freezer.m */,
+				EB18F76F2666535A00EB0E73 /* MiniFader.h */,
+				EB18F7702666535A00EB0E73 /* MiniFader.m */,
+				EB18F775266907B400EB0E73 /* Viewer.h */,
+				EB18F776266907B400EB0E73 /* Viewer.m */,
+				EB18F7722669077E00EB0E73 /* WaveView.h */,
+				EB18F7732669077E00EB0E73 /* WaveView.m */,
+				EB18F77826697E2900EB0E73 /* Sampler.h */,
+				EB18F77926697E2900EB0E73 /* Sampler.m */,
+				EBF93D0F266AA184001B13F3 /* DJViewController.h */,
+				EBF93D10266AA184001B13F3 /* DJViewController.m */,
+				EBF93D0D266AA076001B13F3 /* DJFilterView.xib */,
+				EBF93D1D266B168D001B13F3 /* RefrainController.h */,
+				EBF93D1E266B168D001B13F3 /* RefrainController.m */,
+				EBF93D20266B215E001B13F3 /* Refrain.h */,
+				EBF93D21266B215E001B13F3 /* Refrain.m */,
+				EBF93D1B266B164F001B13F3 /* RefrainView.xib */,
+				EB274C0E266B9D7A004485FC /* BitCrasher.h */,
+				EB274C0F266B9D7A004485FC /* BitCrasher.m */,
+				EB274C11266B9F69004485FC /* BitCrasherController.h */,
+				EB274C12266B9F69004485FC /* BitCrasherController.m */,
+				EB274C13266B9F69004485FC /* BitCrasherController.xib */,
+				EB652ED3266DB90E00089E3E /* ShooterController.h */,
+				EB652ED4266DB90E00089E3E /* ShooterController.m */,
+				EB652ED5266DB90E00089E3E /* ShooterController.xib */,
+				EB652ED8266DB93C00089E3E /* Shooter.h */,
+				EB652ED9266DB93C00089E3E /* Shooter.m */,
+				EB652EDB266E00D000089E3E /* TapeReverseController.h */,
+				EB652EDC266E00D000089E3E /* TapeReverseController.m */,
+				EB652EDD266E00D000089E3E /* TapeReverseController.xib */,
+				EB652EE0266E00E300089E3E /* TapeReverse.h */,
+				EB652EE1266E00E300089E3E /* TapeReverse.m */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
+		EB19287B266B9CAB00980F39 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				EBF93D18266AE709001B13F3 /* MyButton.h */,
+				EBF93D19266AE709001B13F3 /* MyButton.m */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		EB6E385526623E4A002AADCA = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +188,10 @@
 		EB6E386026623E4A002AADCA /* Going Zero */ = {
 			isa = PBXGroup;
 			children = (
+				EB19287B266B9CAB00980F39 /* ui */,
+				EB19287A266B9C1D00980F39 /* filter */,
+				EB6E387226623F2F002AADCA /* AppController.h */,
+				EB6E387326623F2F002AADCA /* AppController.mm */,
 				EB6E386126623E4A002AADCA /* AppDelegate.h */,
 				EB6E386226623E4A002AADCA /* AppDelegate.m */,
 				EB6E386426623E4B002AADCA /* Assets.xcassets */,
@@ -61,6 +199,14 @@
 				EB6E386926623E4B002AADCA /* Info.plist */,
 				EB6E386A26623E4B002AADCA /* main.m */,
 				EB6E386C26623E4B002AADCA /* Going_Zero.entitlements */,
+				EB6E387526623F83002AADCA /* AudioEngine.h */,
+				EB6E387626623F83002AADCA /* AudioEngine.m */,
+				EB6E387826624088002AADCA /* RingBuffer.h */,
+				EB6E387926624089002AADCA /* RingBuffer.m */,
+				EB6E387E266240C1002AADCA /* RingView.h */,
+				EB6E387C266240BF002AADCA /* RingView.m */,
+				EB6E387D266240C0002AADCA /* TurnTableView.h */,
+				EB6E387B266240BF002AADCA /* TurnTableView.m */,
 			);
 			path = "Going Zero";
 			sourceTree = "<group>";
@@ -124,6 +270,11 @@
 			files = (
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
+				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
+				EBF93D0E266AA076001B13F3 /* DJFilterView.xib in Resources */,
+				EB652ED7266DB90E00089E3E /* ShooterController.xib in Resources */,
+				EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */,
+				EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,8 +285,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB6E387726623F83002AADCA /* AudioEngine.m in Sources */,
+				EBF93D1A266AE709001B13F3 /* MyButton.m in Sources */,
+				EB7372B6266530F600393D58 /* Freezer.m in Sources */,
+				EB18F77A26697E2900EB0E73 /* Sampler.m in Sources */,
+				EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */,
+				EB18F777266907B400EB0E73 /* Viewer.m in Sources */,
+				EB18F77D266A6E7100EB0E73 /* Looper.m in Sources */,
 				EB6E386B26623E4B002AADCA /* main.m in Sources */,
+				EB652ED6266DB90E00089E3E /* ShooterController.m in Sources */,
+				EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */,
+				EB6E387426623F2F002AADCA /* AppController.mm in Sources */,
+				EB6E387A26624089002AADCA /* RingBuffer.m in Sources */,
+				EB6E388326627C90002AADCA /* TrillReverse.m in Sources */,
+				EBF93D11266AA184001B13F3 /* DJViewController.m in Sources */,
+				EB6E387F266240C1002AADCA /* TurnTableView.m in Sources */,
+				EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
+				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
+				EBEC8C72266313C400257694 /* Bender.m in Sources */,
+				EBF93D22266B215E001B13F3 /* Refrain.m in Sources */,
+				EB652EDA266DB93C00089E3E /* Shooter.m in Sources */,
+				EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */,
+				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
+				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
+				EB18F7742669077E00EB0E73 /* WaveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +444,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = A386R5WFZ6;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Going Zero/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -289,7 +463,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = A386R5WFZ6;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "Going Zero/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
