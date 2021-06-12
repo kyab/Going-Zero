@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.3"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -30,7 +31,7 @@
                 <outlet property="_ringView" destination="H2e-uq-LqI" id="6nj-kD-lMb"/>
                 <outlet property="_shooterContentView" destination="wat-Av-CNN" id="3Iu-tc-6Fi"/>
                 <outlet property="_sliderBenderRate" destination="kpw-Sr-7nJ" id="wdf-mk-YSn"/>
-                <outlet property="_sliderDryVolume" destination="uez-Pe-yyd" id="ZND-rF-YeN"/>
+                <outlet property="_sliderDryVolume" destination="Jh4-Fq-5r7" id="F7D-7r-9wI"/>
                 <outlet property="_sliderSamplerPan" destination="g3X-vm-4ce" id="Utl-TO-0rO"/>
                 <outlet property="_tapeReverseContentView" destination="76M-wk-6zA" id="ErY-E0-agg"/>
                 <outlet property="_turnTable" destination="duk-ex-cIG" id="mFe-H9-hez"/>
@@ -703,7 +704,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="842" height="583"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="842" height="583"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -712,18 +713,18 @@
                         <rect key="frame" x="10" y="257" width="333" height="306"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uez-Pe-yyd">
-                                <rect key="frame" x="258" y="269" width="75" height="19"/>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jh4-Fq-5r7">
+                                <rect key="frame" x="232" y="271" width="96" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Idk-wv-3Px"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="l0e-nu-MGk"/>
                                 <connections>
-                                    <action selector="dryVolumeChanged:" target="6kO-Fg-JYF" id="R7V-fJ-9If"/>
+                                    <action selector="dryVolumeChanged:" target="6kO-Fg-JYF" id="6yh-2U-ooD"/>
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5VG-fC-PpH">
-                                <rect key="frame" x="285" y="287" width="39" height="16"/>
+                                <rect key="frame" x="261" y="291" width="39" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Dry" id="V6o-g4-Yr6">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Dry" id="V6o-g4-Yr6">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -873,7 +874,7 @@
                         </connections>
                     </button>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ykY-XK-weK" customClass="WaveView">
-                        <rect key="frame" x="20" y="20" width="802" height="77"/>
+                        <rect key="frame" x="20" y="0.0" width="802" height="77"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     </customView>
                     <box fixedFrame="YES" title="Bit Crasher" translatesAutoresizingMaskIntoConstraints="NO" id="mLZ-pc-cFq">
@@ -892,19 +893,19 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
-                    <box fixedFrame="YES" title="Shooter" translatesAutoresizingMaskIntoConstraints="NO" id="BCh-G5-1am">
-                        <rect key="frame" x="369" y="165" width="305" height="56"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <view key="contentView" id="wat-Av-CNN">
-                            <rect key="frame" x="3" y="3" width="299" height="38"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        </view>
-                    </box>
                     <box fixedFrame="YES" title="Tape Reverse" translatesAutoresizingMaskIntoConstraints="NO" id="76M-wk-6zA">
-                        <rect key="frame" x="369" y="103" width="305" height="58"/>
+                        <rect key="frame" x="369" y="81" width="305" height="58"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="Yr8-W7-opo">
                             <rect key="frame" x="3" y="3" width="299" height="40"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
+                    <box fixedFrame="YES" title="Shooter" translatesAutoresizingMaskIntoConstraints="NO" id="BCh-G5-1am">
+                        <rect key="frame" x="370" y="143" width="304" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="wat-Av-CNN">
+                            <rect key="frame" x="3" y="3" width="298" height="62"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>

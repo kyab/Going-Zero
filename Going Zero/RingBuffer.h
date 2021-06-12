@@ -34,6 +34,9 @@
 -(float *)dryPtrRight;
 -(UInt32)advanceDryPtrSample:(SInt32)sample;
 
+-(float *)startPtrLeft;
+-(float *)startPtrRight;
+
 
 -(void)follow;
 

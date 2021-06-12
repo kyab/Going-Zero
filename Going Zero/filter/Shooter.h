@@ -24,14 +24,17 @@ NS_ASSUME_NONNULL_BEGIN
     
     NSMutableArray *_shots;
     
-    float _rate;
+    float _pitch;
+    float _pan;
 }
 
 -(void)recOrExit;
 -(void)shoot;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 -(UInt32)state;
--(void)setRate:(float)rate;
+-(void)setPitch:(float)pitch;
+-(float)pitch;
+-(void)setPan:(float)pan;
 
 @end
 

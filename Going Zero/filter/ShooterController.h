@@ -15,8 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
     Shooter *_shooter;
     __weak IBOutlet NSButton *_btnShoot;
     __weak IBOutlet NSButton *_btnRec;
-    __weak IBOutlet NSSlider *_sliderRate;
+    __weak IBOutlet NSSlider *_sliderPitch;
     
+    __weak IBOutlet NSSlider *_sliderPan;
 }
 
 -(void)setShooter:(Shooter *)shooter;

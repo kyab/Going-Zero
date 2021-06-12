@@ -27,16 +27,27 @@
     [_shooter shoot];
 }
 
-- (IBAction)rateChanged:(id)sender {
-    float val = _sliderRate.floatValue;
-    if (val == 0.0){
-        [_shooter setRate:1.0];
+- (IBAction)pitchChanged:(id)sender {
+    float val = _sliderPitch.floatValue;
+
+    if (val==0.0){
+        [_shooter setPitch:1.0];
     }else if (val > 0.0){
-        [_shooter setRate:1.0 + (val)*2];
-    }else{
-        [_shooter setRate:1.0 + val];
+        [_shooter setPitch:1.0 + val];
+    }else {
+        
+        float pitch = 0.5 + (1.0+val)/2;
+        [_shooter setPitch:pitch];
+        
     }
+    
 }
+
+- (IBAction)panChanged:(id)sender {
+    [_shooter setPan:_sliderPan.floatValue];
+}
+
+
 
 
 - (IBAction)onRecord:(id)sender {

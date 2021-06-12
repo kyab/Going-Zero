@@ -43,8 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
     
     double _speedRate;
     float _dryVolume;
-    __weak IBOutlet NSSlider *_sliderDryVolume;
     float _wetVolume;
+    __weak IBOutlet NSSlider *_sliderDryVolume;
     
     Looper *_looper;
     
