@@ -14,6 +14,8 @@
 #import "TurnTableView.h"
 #import "Looper.h"
 #import "TrillReverse.h"
+#import "Reverse.h"
+#import "ReverseController.h"
 #import "Bender.h"
 #import "Freezer.h"
 #import "Viewer.h"
@@ -29,6 +31,8 @@
 
 #import "DJViewController.h"
 #import "RefrainController.h"
+#import "VocalRefrain.h"
+#import "VocalRefrainController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -57,6 +61,11 @@ NS_ASSUME_NONNULL_BEGIN
     NSTimer *_benderBounceTimer;
     __weak IBOutlet NSButton *_chkBenderBounce;
     
+    
+    ReverseController *_reverseController;
+    Reverse *_reverse;
+    __weak IBOutlet NSView *_reverseContentView;
+    
     Freezer *_freezer;
     __weak IBOutlet NSButton *_chkFreeze;
     
@@ -74,6 +83,10 @@ NS_ASSUME_NONNULL_BEGIN
     Refrain *_refrain;
     __weak IBOutlet NSView *_refrainContentView;
     RefrainController *_refrainController;
+    
+    VocalRefrain *_vocalRefrain;
+    __weak IBOutlet NSView *_vocalRefrainContentView;
+    VocalRefrainController *_vocalRefrainController;
     
     BitCrasher *_crasher;
     __weak IBOutlet NSView *_crasherContentView;

@@ -32,6 +32,25 @@
 		EB6E3880266240C1002AADCA /* RingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E387C266240BF002AADCA /* RingView.m */; };
 		EB6E388326627C90002AADCA /* TrillReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E388226627C90002AADCA /* TrillReverse.m */; };
 		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
+		EBBF46B32674F0E600785BF6 /* VocalRefrainController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */; };
+		EBBF46B42674F0E600785BF6 /* VocalRefrainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */; };
+		EBBF46B72674F11000785BF6 /* VocalRefrain.mm in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46B62674F11000785BF6 /* VocalRefrain.mm */; };
+		EBBF46BC2674F31800785BF6 /* libtensorflow_framework.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */; };
+		EBBF46BD2674F31800785BF6 /* libtensorflow_framework.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		EBBF46C02674F32D00785BF6 /* libtensorflow.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46BF2674F32D00785BF6 /* libtensorflow.1.dylib */; };
+		EBBF46C12674F32D00785BF6 /* libtensorflow.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = EBBF46BF2674F32D00785BF6 /* libtensorflow.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		EBBF46C42674F3DA00785BF6 /* 2stems in Resources */ = {isa = PBXBuildFile; fileRef = EBBF46C32674F3DA00785BF6 /* 2stems */; };
+		EBBF46C52674FCEA00785BF6 /* libwave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46C22674F34D00785BF6 /* libwave.a */; };
+		EBBF46C62674FCEE00785BF6 /* libspleeter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46BA2674F2E600785BF6 /* libspleeter.a */; };
+		EBBF46C72674FCF100785BF6 /* libspleeter_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46B92674F2B100785BF6 /* libspleeter_common.a */; };
+		EBBF46CC267533A200785BF6 /* libspleeter_filter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46CB2675339000785BF6 /* libspleeter_filter.a */; };
+		EBBF46CE2675351300785BF6 /* librtff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46CD267534F000785BF6 /* librtff.a */; };
+		EBBF46D02675355B00785BF6 /* libartff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46CF2675355B00785BF6 /* libartff.a */; };
+		EBBF46D22675365A00785BF6 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46D12675365A00785BF6 /* libfftw3f.a */; };
+		EBBF46D62675D45100785BF6 /* ReverseController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46D42675D45100785BF6 /* ReverseController.m */; };
+		EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBBF46D52675D45100785BF6 /* ReverseController.xib */; };
+		EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46D92675D4AF00785BF6 /* Reverse.m */; };
+		EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46DC2676171D00785BF6 /* ReverseTurntableView.m */; };
 		EBEC8C72266313C400257694 /* Bender.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEC8C71266313C400257694 /* Bender.m */; };
 		EBF93D0E266AA076001B13F3 /* DJFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF93D0D266AA076001B13F3 /* DJFilterView.xib */; };
 		EBF93D11266AA184001B13F3 /* DJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D10266AA184001B13F3 /* DJViewController.m */; };
@@ -40,6 +59,21 @@
 		EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D1E266B168D001B13F3 /* RefrainController.m */; };
 		EBF93D22266B215E001B13F3 /* Refrain.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D21266B215E001B13F3 /* Refrain.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EBBF46BE2674F31800785BF6 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EBBF46C12674F32D00785BF6 /* libtensorflow.1.dylib in Embed Libraries */,
+				EBBF46BD2674F31800785BF6 /* libtensorflow_framework.1.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		EB18F76F2666535A00EB0E73 /* MiniFader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniFader.h; sourceTree = "<group>"; };
@@ -89,6 +123,28 @@
 		EB6E388226627C90002AADCA /* TrillReverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrillReverse.m; sourceTree = "<group>"; };
 		EB7372B4266530F600393D58 /* Freezer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Freezer.h; sourceTree = "<group>"; };
 		EB7372B5266530F600393D58 /* Freezer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freezer.m; sourceTree = "<group>"; };
+		EBBF46B02674F0E600785BF6 /* VocalRefrainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VocalRefrainController.h; sourceTree = "<group>"; };
+		EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VocalRefrainController.m; sourceTree = "<group>"; };
+		EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocalRefrainController.xib; sourceTree = "<group>"; };
+		EBBF46B52674F11000785BF6 /* VocalRefrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VocalRefrain.h; sourceTree = "<group>"; };
+		EBBF46B62674F11000785BF6 /* VocalRefrain.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VocalRefrain.mm; sourceTree = "<group>"; };
+		EBBF46B92674F2B100785BF6 /* libspleeter_common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspleeter_common.a; path = ../PartScratch/spleeterpp/build/src/spleeter_common/libspleeter_common.a; sourceTree = "<group>"; };
+		EBBF46BA2674F2E600785BF6 /* libspleeter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspleeter.a; path = ../PartScratch/spleeterpp/build/src/spleeter/libspleeter.a; sourceTree = "<group>"; };
+		EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow_framework.1.dylib; path = ../PartScratch/spleeterpp/build/tensorflow/lib/libtensorflow_framework.1.dylib; sourceTree = "<group>"; };
+		EBBF46BF2674F32D00785BF6 /* libtensorflow.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow.1.dylib; path = ../PartScratch/spleeterpp/build/tensorflow/lib/libtensorflow.1.dylib; sourceTree = "<group>"; };
+		EBBF46C22674F34D00785BF6 /* libwave.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwave.a; path = "../PartScratch/spleeterpp/build/_deps/wave-build/src/wave/libwave.a"; sourceTree = "<group>"; };
+		EBBF46C32674F3DA00785BF6 /* 2stems */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 2stems; path = ../PartScratch/spleeterpp/build/models/offline/2stems; sourceTree = "<group>"; };
+		EBBF46CB2675339000785BF6 /* libspleeter_filter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspleeter_filter.a; path = ../PartScratch/spleeterpp/build/src/spleeter_filter/libspleeter_filter.a; sourceTree = "<group>"; };
+		EBBF46CD267534F000785BF6 /* librtff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librtff.a; path = "../PartScratch/spleeterpp/build/_deps/rtff-build/src/rtff/librtff.a"; sourceTree = "<group>"; };
+		EBBF46CF2675355B00785BF6 /* libartff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libartff.a; path = ../PartScratch/spleeterpp/build/src/artff/libartff.a; sourceTree = "<group>"; };
+		EBBF46D12675365A00785BF6 /* libfftw3f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3f.a; path = "../PartScratch/spleeterpp/build/_deps/rtff-build/fftw/build/lib/libfftw3f.a"; sourceTree = "<group>"; };
+		EBBF46D32675D45100785BF6 /* ReverseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReverseController.h; sourceTree = "<group>"; };
+		EBBF46D42675D45100785BF6 /* ReverseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReverseController.m; sourceTree = "<group>"; };
+		EBBF46D52675D45100785BF6 /* ReverseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReverseController.xib; sourceTree = "<group>"; };
+		EBBF46D82675D4AF00785BF6 /* Reverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reverse.h; sourceTree = "<group>"; };
+		EBBF46D92675D4AF00785BF6 /* Reverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reverse.m; sourceTree = "<group>"; };
+		EBBF46DB2676171D00785BF6 /* ReverseTurntableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReverseTurntableView.h; sourceTree = "<group>"; };
+		EBBF46DC2676171D00785BF6 /* ReverseTurntableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReverseTurntableView.m; sourceTree = "<group>"; };
 		EBEC8C70266313C400257694 /* Bender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bender.h; sourceTree = "<group>"; };
 		EBEC8C71266313C400257694 /* Bender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bender.m; sourceTree = "<group>"; };
 		EBF93D0D266AA076001B13F3 /* DJFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJFilterView.xib; sourceTree = "<group>"; };
@@ -108,6 +164,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBBF46D22675365A00785BF6 /* libfftw3f.a in Frameworks */,
+				EBBF46D02675355B00785BF6 /* libartff.a in Frameworks */,
+				EBBF46C72674FCF100785BF6 /* libspleeter_common.a in Frameworks */,
+				EBBF46C62674FCEE00785BF6 /* libspleeter.a in Frameworks */,
+				EBBF46C02674F32D00785BF6 /* libtensorflow.1.dylib in Frameworks */,
+				EBBF46BC2674F31800785BF6 /* libtensorflow_framework.1.dylib in Frameworks */,
+				EBBF46C52674FCEA00785BF6 /* libwave.a in Frameworks */,
+				EBBF46CC267533A200785BF6 /* libspleeter_filter.a in Frameworks */,
+				EBBF46CE2675351300785BF6 /* librtff.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +206,11 @@
 				EBF93D20266B215E001B13F3 /* Refrain.h */,
 				EBF93D21266B215E001B13F3 /* Refrain.m */,
 				EBF93D1B266B164F001B13F3 /* RefrainView.xib */,
+				EBBF46B02674F0E600785BF6 /* VocalRefrainController.h */,
+				EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */,
+				EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */,
+				EBBF46B52674F11000785BF6 /* VocalRefrain.h */,
+				EBBF46B62674F11000785BF6 /* VocalRefrain.mm */,
 				EB274C0E266B9D7A004485FC /* BitCrasher.h */,
 				EB274C0F266B9D7A004485FC /* BitCrasher.m */,
 				EB274C11266B9F69004485FC /* BitCrasherController.h */,
@@ -156,6 +226,13 @@
 				EB652EDD266E00D000089E3E /* TapeReverseController.xib */,
 				EB652EE0266E00E300089E3E /* TapeReverse.h */,
 				EB652EE1266E00E300089E3E /* TapeReverse.m */,
+				EBBF46D32675D45100785BF6 /* ReverseController.h */,
+				EBBF46D42675D45100785BF6 /* ReverseController.m */,
+				EBBF46D52675D45100785BF6 /* ReverseController.xib */,
+				EBBF46DB2676171D00785BF6 /* ReverseTurntableView.h */,
+				EBBF46DC2676171D00785BF6 /* ReverseTurntableView.m */,
+				EBBF46D82675D4AF00785BF6 /* Reverse.h */,
+				EBBF46D92675D4AF00785BF6 /* Reverse.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -172,8 +249,10 @@
 		EB6E385526623E4A002AADCA = {
 			isa = PBXGroup;
 			children = (
+				EBBF46C32674F3DA00785BF6 /* 2stems */,
 				EB6E386026623E4A002AADCA /* Going Zero */,
 				EB6E385F26623E4A002AADCA /* Products */,
+				EBBF46B82674F2B100785BF6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -211,6 +290,22 @@
 			path = "Going Zero";
 			sourceTree = "<group>";
 		};
+		EBBF46B82674F2B100785BF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBBF46D12675365A00785BF6 /* libfftw3f.a */,
+				EBBF46CF2675355B00785BF6 /* libartff.a */,
+				EBBF46CD267534F000785BF6 /* librtff.a */,
+				EBBF46CB2675339000785BF6 /* libspleeter_filter.a */,
+				EBBF46C22674F34D00785BF6 /* libwave.a */,
+				EBBF46BF2674F32D00785BF6 /* libtensorflow.1.dylib */,
+				EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */,
+				EBBF46BA2674F2E600785BF6 /* libspleeter.a */,
+				EBBF46B92674F2B100785BF6 /* libspleeter_common.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,6 +316,7 @@
 				EB6E385A26623E4A002AADCA /* Sources */,
 				EB6E385B26623E4A002AADCA /* Frameworks */,
 				EB6E385C26623E4A002AADCA /* Resources */,
+				EBBF46BE2674F31800785BF6 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -268,9 +364,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBBF46C42674F3DA00785BF6 /* 2stems in Resources */,
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
+				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
+				EBBF46B42674F0E600785BF6 /* VocalRefrainController.xib in Resources */,
 				EBF93D0E266AA076001B13F3 /* DJFilterView.xib in Resources */,
 				EB652ED7266DB90E00089E3E /* ShooterController.xib in Resources */,
 				EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */,
@@ -286,8 +385,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB6E387726623F83002AADCA /* AudioEngine.m in Sources */,
+				EBBF46B32674F0E600785BF6 /* VocalRefrainController.m in Sources */,
+				EBBF46D62675D45100785BF6 /* ReverseController.m in Sources */,
 				EBF93D1A266AE709001B13F3 /* MyButton.m in Sources */,
 				EB7372B6266530F600393D58 /* Freezer.m in Sources */,
+				EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */,
 				EB18F77A26697E2900EB0E73 /* Sampler.m in Sources */,
 				EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */,
 				EB18F777266907B400EB0E73 /* Viewer.m in Sources */,
@@ -301,6 +403,7 @@
 				EBF93D11266AA184001B13F3 /* DJViewController.m in Sources */,
 				EB6E387F266240C1002AADCA /* TurnTableView.m in Sources */,
 				EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */,
+				EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
 				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
 				EBEC8C72266313C400257694 /* Bender.m in Sources */,
@@ -309,6 +412,7 @@
 				EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */,
 				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
 				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
+				EBBF46B72674F11000785BF6 /* VocalRefrain.mm in Sources */,
 				EB18F7742669077E00EB0E73 /* WaveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,10 +549,25 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = A386R5WFZ6;
 				ENABLE_HARDENED_RUNTIME = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/koji/work/PartScratch/spleeterpp/src,
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/eigen3-src",
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-src/src",
+				);
 				INFOPLIST_FILE = "Going Zero/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/wave-build/src/wave",
+					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter,
+					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter_common,
+					/Users/koji/work/PartScratch/spleeterpp/build/tensorflow/lib,
+					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter_filter,
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-build/src/rtff",
+					/Users/koji/work/PartScratch/spleeterpp/build/src/artff,
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-build/fftw/build/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kyab.Going-Zero";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -464,10 +583,25 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = A386R5WFZ6;
 				ENABLE_HARDENED_RUNTIME = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/koji/work/PartScratch/spleeterpp/src,
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/eigen3-src",
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-src/src",
+				);
 				INFOPLIST_FILE = "Going Zero/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/wave-build/src/wave",
+					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter,
+					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter_common,
+					/Users/koji/work/PartScratch/spleeterpp/build/tensorflow/lib,
+					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter_filter,
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-build/src/rtff",
+					/Users/koji/work/PartScratch/spleeterpp/build/src/artff,
+					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-build/fftw/build/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kyab.Going-Zero";
 				PRODUCT_NAME = "$(TARGET_NAME)";

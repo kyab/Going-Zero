@@ -31,6 +31,12 @@
     _trillReverse = [[TrillReverse alloc] init];
     _bender = [[Bender alloc] init];
     
+    _reverse = [[Reverse alloc] init];
+    _reverseController = [[ReverseController alloc] initWithNibName:@"ReverseController" bundle:nil];
+    [_reverseContentView addSubview:[_reverseController view]];
+    [_reverseController setReverse:_reverse];
+    
+    
     _freezer = [[Freezer alloc] init];
     
     
@@ -47,6 +53,11 @@
     _refrainController = [[RefrainController alloc] initWithNibName:@"RefrainView" bundle:nil];
     [_refrainContentView addSubview:[_refrainController view]];
     [_refrainController setRefrain:_refrain];
+    
+    _vocalRefrain = [[VocalRefrain alloc] init];
+    _vocalRefrainController = [[VocalRefrainController alloc] initWithNibName:@"VocalRefrainController" bundle:nil];
+    [_vocalRefrainContentView addSubview:[_vocalRefrainController view]];
+    [_vocalRefrainController setVocalRefrain:_vocalRefrain];
     
     _crasher = [[BitCrasher alloc] init];
     _crasherController = [[BitCrasherController alloc] initWithNibName:@"BitCrasherController" bundle:nil];
@@ -221,6 +232,11 @@
     //bender
     [_bender processLeft:(float*)ioData->mBuffers[0].mData
                          right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+  
+    //reverse
+    [_reverse processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     
     //Freezer
     [_freezer processLeft:(float*)ioData->mBuffers[0].mData
@@ -234,7 +250,12 @@
     //refrain
     [_refrain processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-  
+ 
+    //vocal refrain
+    [_vocalRefrain processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    
     //bit crasher
     [_crasher processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];

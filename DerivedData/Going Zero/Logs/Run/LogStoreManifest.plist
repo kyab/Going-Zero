@@ -5,6 +5,857 @@
 	<key>logFormatVersion</key>
 	<integer>10</integer>
 	<key>logs</key>
-	<dict/>
+	<dict>
+		<key>07F4B0FE-E63D-45E9-A4C0-0145A17E7399</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>07F4B0FE-E63D-45E9-A4C0-0145A17E7399.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645217620.11254001</real>
+			<key>timeStoppedRecording</key>
+			<real>645218169.24908698</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>07F4B0FE-E63D-45E9-A4C0-0145A17E7399</string>
+		</dict>
+		<key>0C8B44F7-3A87-4783-B751-DB5F623BC554</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>0C8B44F7-3A87-4783-B751-DB5F623BC554.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645277437.28975403</real>
+			<key>timeStoppedRecording</key>
+			<real>645277457.21842694</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>0C8B44F7-3A87-4783-B751-DB5F623BC554</string>
+		</dict>
+		<key>0DE8C6DA-6BB8-4FE8-A56F-028C6EF70EC2</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>0DE8C6DA-6BB8-4FE8-A56F-028C6EF70EC2.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645259228.74311697</real>
+			<key>timeStoppedRecording</key>
+			<real>645259321.95061505</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>0DE8C6DA-6BB8-4FE8-A56F-028C6EF70EC2</string>
+		</dict>
+		<key>15799B06-18A6-470E-8579-BE34FEC200C3</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>15799B06-18A6-470E-8579-BE34FEC200C3.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645274053.57251406</real>
+			<key>timeStoppedRecording</key>
+			<real>645274062.142048</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>15799B06-18A6-470E-8579-BE34FEC200C3</string>
+		</dict>
+		<key>1B69306F-6D8F-4E6D-AF13-855DD7A900EF</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>1B69306F-6D8F-4E6D-AF13-855DD7A900EF.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645276989.94934297</real>
+			<key>timeStoppedRecording</key>
+			<real>645277001.60054505</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>1B69306F-6D8F-4E6D-AF13-855DD7A900EF</string>
+		</dict>
+		<key>3959BD58-19EC-484E-977C-C2580817B76E</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>3959BD58-19EC-484E-977C-C2580817B76E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645272862.68230796</real>
+			<key>timeStoppedRecording</key>
+			<real>645272880.57793295</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>3959BD58-19EC-484E-977C-C2580817B76E</string>
+		</dict>
+		<key>47DE99AA-D308-4C1B-85EA-1962398BE67C</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>47DE99AA-D308-4C1B-85EA-1962398BE67C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645257857.21874106</real>
+			<key>timeStoppedRecording</key>
+			<real>645257878.72957301</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>47DE99AA-D308-4C1B-85EA-1962398BE67C</string>
+		</dict>
+		<key>4C47B51F-8995-43DB-BB4B-C26FEE60308B</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>4C47B51F-8995-43DB-BB4B-C26FEE60308B.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645272532.50671804</real>
+			<key>timeStoppedRecording</key>
+			<real>645272545.22597301</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>4C47B51F-8995-43DB-BB4B-C26FEE60308B</string>
+		</dict>
+		<key>5AB402FF-F6DE-411A-AE0B-AC334CAF2BC9</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>5AB402FF-F6DE-411A-AE0B-AC334CAF2BC9.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645274092.38206005</real>
+			<key>timeStoppedRecording</key>
+			<real>645274100.81896996</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>5AB402FF-F6DE-411A-AE0B-AC334CAF2BC9</string>
+		</dict>
+		<key>62E62F81-292F-4E0D-AEC8-CAEC39E1B329</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>62E62F81-292F-4E0D-AEC8-CAEC39E1B329.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645271850.87349403</real>
+			<key>timeStoppedRecording</key>
+			<real>645271871.83644795</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>62E62F81-292F-4E0D-AEC8-CAEC39E1B329</string>
+		</dict>
+		<key>644BBEDB-4CD9-4790-9882-574BC4FF9027</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>644BBEDB-4CD9-4790-9882-574BC4FF9027.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645277496.52382398</real>
+			<key>timeStoppedRecording</key>
+			<real>645277569.48566997</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>644BBEDB-4CD9-4790-9882-574BC4FF9027</string>
+		</dict>
+		<key>65D0DBE4-86AE-4C68-82E2-F584963F5213</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>65D0DBE4-86AE-4C68-82E2-F584963F5213.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645276746.10699797</real>
+			<key>timeStoppedRecording</key>
+			<real>645276762.52394605</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>65D0DBE4-86AE-4C68-82E2-F584963F5213</string>
+		</dict>
+		<key>67CB2BCA-3281-4EE7-A827-F6AADBE1F79A</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>67CB2BCA-3281-4EE7-A827-F6AADBE1F79A.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645277679.45222104</real>
+			<key>timeStoppedRecording</key>
+			<real>645277847.38787699</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>67CB2BCA-3281-4EE7-A827-F6AADBE1F79A</string>
+		</dict>
+		<key>6F490AF2-3E8F-4AC2-A824-84401B1CCE6A</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>6F490AF2-3E8F-4AC2-A824-84401B1CCE6A.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645276932.04655898</real>
+			<key>timeStoppedRecording</key>
+			<real>645276955.02176499</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>6F490AF2-3E8F-4AC2-A824-84401B1CCE6A</string>
+		</dict>
+		<key>772E6437-3FD1-45A5-BA00-5E3C26153C24</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>772E6437-3FD1-45A5-BA00-5E3C26153C24.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645272550.86607206</real>
+			<key>timeStoppedRecording</key>
+			<real>645272611.14012599</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>772E6437-3FD1-45A5-BA00-5E3C26153C24</string>
+		</dict>
+		<key>7F98E10C-CBD6-4600-BB33-F41634437294</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>7F98E10C-CBD6-4600-BB33-F41634437294.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645259400.87231302</real>
+			<key>timeStoppedRecording</key>
+			<real>645259421.32735598</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>7F98E10C-CBD6-4600-BB33-F41634437294</string>
+		</dict>
+		<key>8396E33E-AACC-4D6F-8001-60675883AEE8</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>8396E33E-AACC-4D6F-8001-60675883AEE8.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645259332.00956798</real>
+			<key>timeStoppedRecording</key>
+			<real>645259365.72472894</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>8396E33E-AACC-4D6F-8001-60675883AEE8</string>
+		</dict>
+		<key>852740B3-A5B3-4139-858C-72091E495E17</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>852740B3-A5B3-4139-858C-72091E495E17.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645277397.44556296</real>
+			<key>timeStoppedRecording</key>
+			<real>645277421.36218095</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>852740B3-A5B3-4139-858C-72091E495E17</string>
+		</dict>
+		<key>9AE3E63A-C724-4D74-9DD9-F0E408984075</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>9AE3E63A-C724-4D74-9DD9-F0E408984075.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645275968.77654099</real>
+			<key>timeStoppedRecording</key>
+			<real>645275976.37479305</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>9AE3E63A-C724-4D74-9DD9-F0E408984075</string>
+		</dict>
+		<key>9E6C7C72-75FA-4C46-8299-41AFDED4A2B8</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>9E6C7C72-75FA-4C46-8299-41AFDED4A2B8.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645277095.57181394</real>
+			<key>timeStoppedRecording</key>
+			<real>645277102.99447799</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>9E6C7C72-75FA-4C46-8299-41AFDED4A2B8</string>
+		</dict>
+		<key>ACBFAB67-FBE2-48C1-B759-CD10C971EA29</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>ACBFAB67-FBE2-48C1-B759-CD10C971EA29.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645274065.00661004</real>
+			<key>timeStoppedRecording</key>
+			<real>645274073.688133</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>ACBFAB67-FBE2-48C1-B759-CD10C971EA29</string>
+		</dict>
+		<key>AEABFEAC-A13B-4AF2-8955-6225A3EAC2F3</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>AEABFEAC-A13B-4AF2-8955-6225A3EAC2F3.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645271881.99644601</real>
+			<key>timeStoppedRecording</key>
+			<real>645271895.46816599</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>AEABFEAC-A13B-4AF2-8955-6225A3EAC2F3</string>
+		</dict>
+		<key>C9DD9DC0-0FE7-411B-A840-63547905B2A1</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>C9DD9DC0-0FE7-411B-A840-63547905B2A1.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645257971.60390794</real>
+			<key>timeStoppedRecording</key>
+			<real>645257996.29997301</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>C9DD9DC0-0FE7-411B-A840-63547905B2A1</string>
+		</dict>
+		<key>E20960E4-8843-4722-AB8A-100DE8C896B0</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>E20960E4-8843-4722-AB8A-100DE8C896B0.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645257786.66023302</real>
+			<key>timeStoppedRecording</key>
+			<real>645257832.19117701</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>E20960E4-8843-4722-AB8A-100DE8C896B0</string>
+		</dict>
+		<key>FE75F4D9-C351-420E-9314-23824B84EA8C</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>FE75F4D9-C351-420E-9314-23824B84EA8C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Going Zero project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Going Zero</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Going Zero</string>
+			<key>timeStartedRecording</key>
+			<real>645276764.11233306</real>
+			<key>timeStoppedRecording</key>
+			<real>645276781.34588397</real>
+			<key>title</key>
+			<string>Run Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>FE75F4D9-C351-420E-9314-23824B84EA8C</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

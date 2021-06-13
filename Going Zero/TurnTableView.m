@@ -119,8 +119,6 @@ double rad2deg(double rad){
     [linePlay stroke];
     
     
-
-    
 }
 
 -(NSPoint)eventLocation:(NSEvent *) theEvent{
