@@ -69,9 +69,6 @@
     [line setLineWidth:2.0];
     [line stroke];
     
-    
-
-    
 }
 
 @end

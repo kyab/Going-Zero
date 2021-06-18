@@ -28,6 +28,8 @@
 #import "ShooterController.h"
 #import "TapeReverse.h"
 #import "TapeReverseController.h"
+#import "QuickCue.h"
+#import "QuickCueController.h"
 
 #import "DJViewController.h"
 #import "RefrainController.h"
@@ -99,6 +101,11 @@ NS_ASSUME_NONNULL_BEGIN
     TapeReverse *_tapeReverse;
     __weak IBOutlet NSBox *_tapeReverseContentView;
     TapeReverseController *_tapeReverseController;
+    
+    QuickCue *_quickCue;
+    __weak IBOutlet NSView *_quickCueContentView;
+    QuickCueController *_quickCueController;
+    
     
     
 }

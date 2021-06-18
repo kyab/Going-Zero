@@ -12,7 +12,7 @@
 #include <vector>
 
 #define SPLEET_SAMPLE_NUM 44100
-#define SPLEET_PREFIX_SAMPLE_NUM 44100
+#define SPLEET_PREFIX_SAMPLE_NUM 0
 
 static spleeter::Filter g_filter(spleeter::TwoStems);
 
@@ -24,7 +24,8 @@ static spleeter::Filter g_filter(spleeter::TwoStems);
     _ring = [[RingBuffer alloc] init];
     [_ring setMinOffset:0];
     
-    _volume = 2.0;
+    _volume = 4.0
+    ;
     _pan = 0.0;
     
     _vocalRing = [[RingBuffer alloc] init];
@@ -112,7 +113,6 @@ static spleeter::Filter g_filter(spleeter::TwoStems);
             [_ring advanceWritePtrSample:numSamples];
             
             [self spleetRing];
-            
             
             float *srcL = [_vocalRing readPtrLeft];
             float *srcR = [_vocalRing readPtrRight];

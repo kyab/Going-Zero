@@ -11,6 +11,7 @@
 
 #define OUTPUT_DEVICE @"Built-in Output"
 //#define OUTPUT_DEVICE @"Soundflower (2ch)"
+#define LOOPBACK_DEVICE @"Going Zero Device"
 
 
 @implementation AudioEngine
@@ -229,7 +230,7 @@ OSStatus MyRenderIn(void *inRefCon,
      Some devices support volume control only via each channel.  (Built-In Output)
      Some devices support both of master or channels.
      */
-    AudioDeviceID bgm = [self getDeviceForName:@"Background Music"];
+    AudioDeviceID bgm = [self getDeviceForName:LOOPBACK_DEVICE];
 
     Float32 scalar = 0;
     UInt32 size = sizeof(Float32);
@@ -276,7 +277,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
 }
 
 -(BOOL)syncVolume{
-    AudioDeviceID bgm = [self getDeviceForName:@"Background Music"];
+    AudioDeviceID bgm = [self getDeviceForName:LOOPBACK_DEVICE];
 
     Float32 scalar = 0;
     UInt32 size = sizeof(Float32);
@@ -378,7 +379,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
         }
     }
     
-    AudioDeviceID inDevID = [self getDeviceForName:@"Background Music"];
+    AudioDeviceID inDevID = [self getDeviceForName:LOOPBACK_DEVICE];
 
     ret = AudioUnitSetProperty(_inputUnit,
                                kAudioOutputUnitProperty_CurrentDevice,
@@ -603,7 +604,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
     propAddress.mElement = kAudioObjectPropertyElementMaster;
     
-    AudioDeviceID bgmOut = [self getDeviceForName:@"Background Music"];
+    AudioDeviceID bgmOut = [self getDeviceForName:LOOPBACK_DEVICE];
     
     OSStatus ret = AudioObjectSetPropertyData(kAudioObjectSystemObject,
                                               &propAddress,

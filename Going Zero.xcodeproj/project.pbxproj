@@ -32,6 +32,9 @@
 		EB6E3880266240C1002AADCA /* RingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E387C266240BF002AADCA /* RingView.m */; };
 		EB6E388326627C90002AADCA /* TrillReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E388226627C90002AADCA /* TrillReverse.m */; };
 		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
+		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
+		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
+		EBAA80982678E00D00809C1D /* QuickCue.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80972678E00D00809C1D /* QuickCue.m */; };
 		EBBF46B32674F0E600785BF6 /* VocalRefrainController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */; };
 		EBBF46B42674F0E600785BF6 /* VocalRefrainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */; };
 		EBBF46B72674F11000785BF6 /* VocalRefrain.mm in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46B62674F11000785BF6 /* VocalRefrain.mm */; };
@@ -123,6 +126,11 @@
 		EB6E388226627C90002AADCA /* TrillReverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrillReverse.m; sourceTree = "<group>"; };
 		EB7372B4266530F600393D58 /* Freezer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Freezer.h; sourceTree = "<group>"; };
 		EB7372B5266530F600393D58 /* Freezer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freezer.m; sourceTree = "<group>"; };
+		EBAA80912678DF3000809C1D /* QuickCueController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCueController.h; sourceTree = "<group>"; };
+		EBAA80922678DF3000809C1D /* QuickCueController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickCueController.m; sourceTree = "<group>"; };
+		EBAA80932678DF3000809C1D /* QuickCueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuickCueController.xib; sourceTree = "<group>"; };
+		EBAA80962678E00D00809C1D /* QuickCue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCue.h; sourceTree = "<group>"; };
+		EBAA80972678E00D00809C1D /* QuickCue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickCue.m; sourceTree = "<group>"; };
 		EBBF46B02674F0E600785BF6 /* VocalRefrainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VocalRefrainController.h; sourceTree = "<group>"; };
 		EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VocalRefrainController.m; sourceTree = "<group>"; };
 		EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocalRefrainController.xib; sourceTree = "<group>"; };
@@ -233,6 +241,11 @@
 				EBBF46DC2676171D00785BF6 /* ReverseTurntableView.m */,
 				EBBF46D82675D4AF00785BF6 /* Reverse.h */,
 				EBBF46D92675D4AF00785BF6 /* Reverse.m */,
+				EBAA80912678DF3000809C1D /* QuickCueController.h */,
+				EBAA80922678DF3000809C1D /* QuickCueController.m */,
+				EBAA80932678DF3000809C1D /* QuickCueController.xib */,
+				EBAA80962678E00D00809C1D /* QuickCue.h */,
+				EBAA80972678E00D00809C1D /* QuickCue.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -371,6 +384,7 @@
 				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
 				EBBF46B42674F0E600785BF6 /* VocalRefrainController.xib in Resources */,
 				EBF93D0E266AA076001B13F3 /* DJFilterView.xib in Resources */,
+				EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */,
 				EB652ED7266DB90E00089E3E /* ShooterController.xib in Resources */,
 				EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */,
 				EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */,
@@ -393,6 +407,7 @@
 				EB18F77A26697E2900EB0E73 /* Sampler.m in Sources */,
 				EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */,
 				EB18F777266907B400EB0E73 /* Viewer.m in Sources */,
+				EBAA80982678E00D00809C1D /* QuickCue.m in Sources */,
 				EB18F77D266A6E7100EB0E73 /* Looper.m in Sources */,
 				EB6E386B26623E4B002AADCA /* main.m in Sources */,
 				EB652ED6266DB90E00089E3E /* ShooterController.m in Sources */,
@@ -410,6 +425,7 @@
 				EBF93D22266B215E001B13F3 /* Refrain.m in Sources */,
 				EB652EDA266DB93C00089E3E /* Shooter.m in Sources */,
 				EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */,
+				EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */,
 				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
 				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
 				EBBF46B72674F11000785BF6 /* VocalRefrain.mm in Sources */,

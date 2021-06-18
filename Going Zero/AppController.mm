@@ -77,6 +77,10 @@
     [_tapeReverseContentView addSubview:[_tapeReverseController view]];
     [_tapeReverseController setTapeReverse:_tapeReverse];
     
+    _quickCue = [[QuickCue alloc] init];
+    _quickCueController = [[QuickCueController alloc] initWithNibName:@"QuickCueController" bundle:nil];
+    [_quickCueContentView addSubview:[_quickCueController view]];
+    [_quickCueController setQuickCue:_quickCue];
     
     _ae = [[AudioEngine alloc] init];
     if ([_ae initialize]){
@@ -267,6 +271,10 @@
     
     //tape reverse
     [_tapeReverse processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //quick cue
+    [_quickCue processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //viewer
