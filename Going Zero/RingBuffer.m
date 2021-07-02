@@ -11,6 +11,7 @@
 
 @implementation RingBuffer
 - (id)init{
+    NSLog(@"RingBuffer initialize");
     self = [super init];
     
     [self initBuffers];

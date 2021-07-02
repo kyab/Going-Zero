@@ -12,6 +12,10 @@
 #import "RingBuffer.h"
 #import "RingView.h"
 #import "TurnTableView.h"
+
+#import "TurnTableEx.h"
+#import "TurnTableController.h"
+
 #import "Looper.h"
 #import "TrillReverse.h"
 #import "Reverse.h"
@@ -51,6 +55,12 @@ NS_ASSUME_NONNULL_BEGIN
     float _dryVolume;
     float _wetVolume;
     __weak IBOutlet NSSlider *_sliderDryVolume;
+    
+    TurnTableEx *_turnTableEx;
+    TurnTableController *_turnTableController;
+    __weak IBOutlet NSView *_turnTableExContentView;
+    
+    
     
     Looper *_looper;
     

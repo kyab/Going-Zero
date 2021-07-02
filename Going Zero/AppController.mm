@@ -25,6 +25,10 @@
     _dryVolume = 0.0;
     _wetVolume = 1.0;
     
+    _turnTableEx = [[TurnTableEx alloc] init];
+    _turnTableController = [[TurnTableController alloc] initWithNibName:@"TurnTableController" bundle:nil];
+    [_turnTableController setTurnTableEx:_turnTableEx];
+    [_turnTableExContentView addSubview:[_turnTableController view]];
     
     _looper = [[Looper alloc] init];
     
@@ -87,6 +91,7 @@
         NSLog(@"AudioEngine all OK");
     }
     [_ae setRenderDelegate:(id<AudioEngineDelegate>)self];
+    
     [_ae startInput];
     [_ae startOutput];
     [_ae changeSystemOutputDeviceToBGM];
@@ -167,19 +172,20 @@
         float *pRight = (float *)ioData->mBuffers[1].mData;
         bzero(pLeft,sizeof(float)*sampleNum );
         bzero(pRight,sizeof(float)*sampleNum );
-//        NSLog(@"shortage in out thread");
+        NSLog(@"shortage in out thread");
         return noErr;
     }
 
     
     if (![_ring dryPtrLeft] || ![_ring dryPtrRight]){
          //not enough buffer
-         UInt32 sampleNum = inNumberFrames;
-         float *pLeft = (float *)ioData->mBuffers[0].mData;
-         float *pRight = (float *)ioData->mBuffers[1].mData;
-         bzero(pLeft, sizeof(float)*sampleNum );
-         bzero(pRight, sizeof(float)*sampleNum );
-         return noErr;
+        NSLog(@"no enogh buffer on dry");
+        UInt32 sampleNum = inNumberFrames;
+        float *pLeft = (float *)ioData->mBuffers[0].mData;
+        float *pRight = (float *)ioData->mBuffers[1].mData;
+        bzero(pLeft, sizeof(float)*sampleNum );
+        bzero(pRight, sizeof(float)*sampleNum );
+        return noErr;
      }
     
     if(_speedRate == 1.0){
@@ -224,6 +230,11 @@
             [_ring advanceReadPtrSample:consumed];
         }
     }
+    
+    //Turn Table Ex
+    [_turnTableEx processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     
     //looper
     [_looper processLeft:(float*)ioData->mBuffers[0].mData

@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>48853D00-A428-4D3C-8670-B544D6A0FBD7</key>
+		<key>7A100926-D18E-44A0-B035-79396F34A92A</key>
 		<dict>
 			<key>className</key>
 			<string>DBGConsoleLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
 			<key>fileName</key>
-			<string>48853D00-A428-4D3C-8670-B544D6A0FBD7.xcactivitylog</string>
+			<string>7A100926-D18E-44A0-B035-79396F34A92A.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -32,47 +32,13 @@
 			<key>signature</key>
 			<string>Run Going Zero</string>
 			<key>timeStartedRecording</key>
-			<real>645608296.06857598</real>
+			<real>646959015.86673498</real>
 			<key>timeStoppedRecording</key>
-			<real>645608453.34189606</real>
+			<real>646959028.35340905</real>
 			<key>title</key>
 			<string>Run Going Zero</string>
 			<key>uniqueIdentifier</key>
-			<string>48853D00-A428-4D3C-8670-B544D6A0FBD7</string>
-		</dict>
-		<key>B51A009A-C50A-442E-84DD-49827E983BE7</key>
-		<dict>
-			<key>className</key>
-			<string>DBGConsoleLog</string>
-			<key>documentTypeString</key>
-			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
-			<key>fileName</key>
-			<string>B51A009A-C50A-442E-84DD-49827E983BE7.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>Going Zero project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>Going Zero</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Run Going Zero</string>
-			<key>timeStartedRecording</key>
-			<real>645702333.91806901</real>
-			<key>timeStoppedRecording</key>
-			<real>645702390.98676002</real>
-			<key>title</key>
-			<string>Run Going Zero</string>
-			<key>uniqueIdentifier</key>
-			<string>B51A009A-C50A-442E-84DD-49827E983BE7</string>
+			<string>7A100926-D18E-44A0-B035-79396F34A92A</string>
 		</dict>
 	</dict>
 </dict>

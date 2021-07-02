@@ -35,6 +35,9 @@
 		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
 		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
 		EBAA80982678E00D00809C1D /* QuickCue.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80972678E00D00809C1D /* QuickCue.m */; };
+		EBB7EF29267CBFCD0094DDB2 /* TurnTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB7EF27267CBFCD0094DDB2 /* TurnTableController.m */; };
+		EBB7EF2A267CBFCD0094DDB2 /* TurnTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB7EF28267CBFCD0094DDB2 /* TurnTableController.xib */; };
+		EBB7EF2D267CBFF60094DDB2 /* TurnTableEx.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB7EF2C267CBFF60094DDB2 /* TurnTableEx.m */; };
 		EBBF46B32674F0E600785BF6 /* VocalRefrainController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */; };
 		EBBF46B42674F0E600785BF6 /* VocalRefrainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */; };
 		EBBF46B72674F11000785BF6 /* VocalRefrain.mm in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46B62674F11000785BF6 /* VocalRefrain.mm */; };
@@ -131,6 +134,11 @@
 		EBAA80932678DF3000809C1D /* QuickCueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuickCueController.xib; sourceTree = "<group>"; };
 		EBAA80962678E00D00809C1D /* QuickCue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCue.h; sourceTree = "<group>"; };
 		EBAA80972678E00D00809C1D /* QuickCue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickCue.m; sourceTree = "<group>"; };
+		EBB7EF26267CBFCD0094DDB2 /* TurnTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurnTableController.h; sourceTree = "<group>"; };
+		EBB7EF27267CBFCD0094DDB2 /* TurnTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurnTableController.m; sourceTree = "<group>"; };
+		EBB7EF28267CBFCD0094DDB2 /* TurnTableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TurnTableController.xib; sourceTree = "<group>"; };
+		EBB7EF2B267CBFF60094DDB2 /* TurnTableEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurnTableEx.h; sourceTree = "<group>"; };
+		EBB7EF2C267CBFF60094DDB2 /* TurnTableEx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurnTableEx.m; sourceTree = "<group>"; };
 		EBBF46B02674F0E600785BF6 /* VocalRefrainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VocalRefrainController.h; sourceTree = "<group>"; };
 		EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VocalRefrainController.m; sourceTree = "<group>"; };
 		EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocalRefrainController.xib; sourceTree = "<group>"; };
@@ -246,6 +254,11 @@
 				EBAA80932678DF3000809C1D /* QuickCueController.xib */,
 				EBAA80962678E00D00809C1D /* QuickCue.h */,
 				EBAA80972678E00D00809C1D /* QuickCue.m */,
+				EBB7EF26267CBFCD0094DDB2 /* TurnTableController.h */,
+				EBB7EF27267CBFCD0094DDB2 /* TurnTableController.m */,
+				EBB7EF28267CBFCD0094DDB2 /* TurnTableController.xib */,
+				EBB7EF2B267CBFF60094DDB2 /* TurnTableEx.h */,
+				EBB7EF2C267CBFF60094DDB2 /* TurnTableEx.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -378,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBBF46C42674F3DA00785BF6 /* 2stems in Resources */,
+				EBB7EF2A267CBFCD0094DDB2 /* TurnTableController.xib in Resources */,
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
@@ -398,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBB7EF2D267CBFF60094DDB2 /* TurnTableEx.m in Sources */,
 				EB6E387726623F83002AADCA /* AudioEngine.m in Sources */,
 				EBBF46B32674F0E600785BF6 /* VocalRefrainController.m in Sources */,
 				EBBF46D62675D45100785BF6 /* ReverseController.m in Sources */,
@@ -425,6 +440,7 @@
 				EBF93D22266B215E001B13F3 /* Refrain.m in Sources */,
 				EB652EDA266DB93C00089E3E /* Shooter.m in Sources */,
 				EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */,
+				EBB7EF29267CBFCD0094DDB2 /* TurnTableController.m in Sources */,
 				EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */,
 				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
 				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
