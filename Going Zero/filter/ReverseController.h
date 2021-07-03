@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     __weak IBOutlet NSButton *_btnReverse;
     __weak IBOutlet ReverseTurntableView *_ttView;
+    __weak IBOutlet NSSlider *_sliderDryVolume;
 }
 
 -(void)setReverse:(Reverse *)reverse;

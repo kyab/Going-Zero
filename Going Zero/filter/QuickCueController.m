@@ -19,6 +19,7 @@
     
     _btnCues[0] = _btnCue1;
     _btnCues[1] = _btnCue2;
+    _btnCues[2] = _btnCue3;
 }
 
 -(void)setQuickCue:(QuickCue *)quickCue{
@@ -31,6 +32,8 @@
         return 0;
     }else if (sender == _btnCue2 || sender == _btnClear2){
         return 1;
+    }else if (sender == _btnCue3 || sender == _btnClear3){
+        return 2;
     }
     return 0;
 }

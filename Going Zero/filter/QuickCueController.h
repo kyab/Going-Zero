@@ -15,11 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
     QuickCue *_quickCue;
     __weak IBOutlet NSButton *_btnCue1;
     __weak IBOutlet NSButton *_btnCue2;
+    __weak IBOutlet NSButton *_btnCue3;
     __weak IBOutlet NSButton *_btnClear1;
     __weak IBOutlet NSButton *_btnClear2;
+    __weak IBOutlet NSButton *_btnClear3;
     __weak IBOutlet NSButton *_btnExit;
     
-    NSButton *_btnCues[2];
+    NSButton *_btnCues[3];
 }
 
 -(void)setQuickCue:(QuickCue *)quickCue;

@@ -34,6 +34,7 @@
     _reverse = [[Reverse alloc] init];
     _reverseController = [[ReverseController alloc] initWithNibName:@"ReverseController" bundle:nil];
     [_reverseContentView addSubview:[_reverseController view]];
+    [self centerize:[_reverseController view]];
     [_reverseController setReverse:_reverse];
     
     
@@ -69,6 +70,7 @@
     _quickCue = [[QuickCue alloc] init];
     _quickCueController = [[QuickCueController alloc] initWithNibName:@"QuickCueController" bundle:nil];
     [_quickCueContentView addSubview:[_quickCueController view]];
+    [self centerize:[_quickCueController view]];
     [_quickCueController setQuickCue:_quickCue];
     
     _ae = [[AudioEngine alloc] init];

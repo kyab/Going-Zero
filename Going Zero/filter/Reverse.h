@@ -20,11 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
     UInt32 _state;
     MiniFaderIn *_faderIn;
     
+    float _dryVolume;
+    
 }
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 
 -(void)startReverse;
 -(void)stopReverse;
+-(void)setDryVolume:(float)dryVolume;
 @end
 
 NS_ASSUME_NONNULL_END

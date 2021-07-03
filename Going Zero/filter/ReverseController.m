@@ -23,6 +23,11 @@
     _btnPressing = NO;
 }
 
+- (IBAction)dryVolumeChanged:(id)sender {
+    [_reverse setDryVolume:_sliderDryVolume.floatValue];
+    
+}
+
 -(void)setReverse:(Reverse *)reverse{
     _reverse = reverse;
 }

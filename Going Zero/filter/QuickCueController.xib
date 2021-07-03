@@ -10,8 +10,10 @@
             <connections>
                 <outlet property="_btnClear1" destination="eqf-B9-A4w" id="9Di-O3-qLO"/>
                 <outlet property="_btnClear2" destination="yyr-Ml-bAT" id="AzT-3P-aJy"/>
+                <outlet property="_btnClear3" destination="uFt-lz-U7X" id="8n4-Gg-n0B"/>
                 <outlet property="_btnCue1" destination="zJI-oh-aBU" id="ZFz-Aa-LUh"/>
                 <outlet property="_btnCue2" destination="a2b-Wo-IIZ" id="n9e-DL-gMf"/>
+                <outlet property="_btnCue3" destination="Wsu-cJ-mWQ" id="XGi-rj-TRD"/>
                 <outlet property="_btnExit" destination="gwk-6e-N9j" id="rEs-hI-qdU"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -19,11 +21,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="254" height="67"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="67"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zJI-oh-aBU" customClass="MyButton">
-                    <rect key="frame" x="10" y="32" width="77" height="32"/>
+                    <rect key="frame" x="2" y="32" width="77" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RHS-mR-bez">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -34,7 +36,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eqf-B9-A4w" customClass="MyButton">
-                    <rect key="frame" x="10" y="0.0" width="77" height="32"/>
+                    <rect key="frame" x="2" y="0.0" width="77" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vTY-FJ-tl2">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -45,7 +47,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yyr-Ml-bAT" customClass="MyButton">
-                    <rect key="frame" x="85" y="0.0" width="77" height="32"/>
+                    <rect key="frame" x="77" y="0.0" width="77" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jqR-WN-EO1">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -55,19 +57,8 @@
                         <action selector="clearClicked:" target="-2" id="50R-70-qVs"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gwk-6e-N9j" customClass="MyButton">
-                    <rect key="frame" x="169" y="32" width="81" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Exit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6pM-hB-qiH">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="exitClicked:" target="-2" id="T9y-cW-Oc7"/>
-                    </connections>
-                </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2b-Wo-IIZ" customClass="MyButton">
-                    <rect key="frame" x="85" y="32" width="77" height="32"/>
+                    <rect key="frame" x="77" y="32" width="77" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZyQ-rN-STV">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -77,8 +68,41 @@
                         <action selector="cueClicked:" target="-2" id="xGI-MP-9lM"/>
                     </connections>
                 </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uFt-lz-U7X" customClass="MyButton">
+                    <rect key="frame" x="152" y="0.0" width="77" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aWS-xD-HXR">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="clearClicked:" target="-2" id="jtx-tV-sNh"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wsu-cJ-mWQ" customClass="MyButton">
+                    <rect key="frame" x="152" y="32" width="77" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l2U-0l-Ee4">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="cueClicked:" target="-2" id="soA-3c-uPM"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gwk-6e-N9j" customClass="MyButton">
+                    <rect key="frame" x="234" y="7" width="60" height="52"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" title="Exit" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6pM-hB-qiH">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="exitClicked:" target="-2" id="T9y-cW-Oc7"/>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="-27" y="202"/>
+            <point key="canvasLocation" x="-4" y="201.5"/>
         </customView>
         <button verticalHuggingPriority="750" id="ftv-hk-gqG">
             <rect key="frame" x="0.0" y="0.0" width="77" height="32"/>

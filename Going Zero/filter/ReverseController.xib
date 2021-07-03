@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ReverseController">
             <connections>
                 <outlet property="_btnReverse" destination="cla-rB-h1w" id="6SD-cR-QZM"/>
+                <outlet property="_sliderDryVolume" destination="gj2-of-hFS" id="LUu-8b-aRH"/>
                 <outlet property="_ttView" destination="SIi-eU-bpW" id="FU5-cy-R28"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -16,11 +17,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="276" height="46"/>
+            <rect key="frame" x="0.0" y="0.0" width="276" height="53"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cla-rB-h1w">
-                    <rect key="frame" x="9" y="6" width="93" height="32"/>
+                    <rect key="frame" x="9" y="10" width="93" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Reverse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c2F-95-rlN">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -30,12 +31,29 @@
                         <action selector="reverseClicked:" target="-2" id="Di3-8g-82g"/>
                     </connections>
                 </button>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gj2-of-hFS">
+                    <rect key="frame" x="149" y="11" width="109" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Ws0-Ar-hV9"/>
+                    <connections>
+                        <action selector="dryVolumeChanged:" target="-2" id="rqc-Eo-JgB"/>
+                    </connections>
+                </slider>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jp6-30-3Q3">
+                    <rect key="frame" x="192" y="37" width="23" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Dry" id="Rd1-4v-qpr">
+                        <font key="font" metaFont="system" size="11"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SIi-eU-bpW" customClass="ReverseTurntableView">
-                    <rect key="frame" x="103" y="13" width="20" height="20"/>
+                    <rect key="frame" x="111" y="17" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
             </subviews>
-            <point key="canvasLocation" x="-12" y="226"/>
+            <point key="canvasLocation" x="-12" y="229.5"/>
         </customView>
     </objects>
 </document>

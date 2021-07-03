@@ -20,6 +20,8 @@
     
     _faderIn = [[MiniFaderIn alloc] init];
     
+    _dryVolume = 0.0f;
+    
     return self;
 }
 
@@ -32,8 +34,12 @@
 -(void)stopReverse{
     _state = REVERSE_STATE_NORMAL;
     [_faderIn startFadeIn];
-    
 }
+
+-(void)setDryVolume:(float)dryVolume{
+    _dryVolume = dryVolume;
+}
+
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     
     switch (_state){
@@ -55,12 +61,17 @@
         
         case REVERSE_STATE_REVERSE:
         {
+            for(int i = 0; i < numSamples; i++){
+                leftBuf[i] *= _dryVolume;
+                rightBuf[i] *= _dryVolume;
+            }
+            
             float *srcL = [_ring readPtrLeft];
             float *srcR = [_ring readPtrRight];
             
             for(int i = 0; i < numSamples; i++){
-                leftBuf[i] = srcL[-i];
-                rightBuf[i] = srcR[-i];
+                leftBuf[i] += srcL[-i];
+                rightBuf[i] += srcR[-i];
             }
             [_ring advanceReadPtrSample:-numSamples];
             
