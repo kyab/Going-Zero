@@ -43,6 +43,9 @@
         [_btnMark setTitle:@"Mark"];
 //    }
 }
+- (IBAction)panChanged:(id)sender {
+    [_refrain setPan:[_sliderPan floatValue]];
+}
 
 
 @end

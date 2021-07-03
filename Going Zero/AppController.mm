@@ -25,10 +25,6 @@
     _dryVolume = 0.0;
     _wetVolume = 1.0;
     
-    _turnTableEx = [[TurnTableEx alloc] init];
-    _turnTableController = [[TurnTableController alloc] initWithNibName:@"TurnTableController" bundle:nil];
-    [_turnTableController setTurnTableEx:_turnTableEx];
-    [_turnTableExContentView addSubview:[_turnTableController view]];
     
     _looper = [[Looper alloc] init];
     
@@ -47,7 +43,6 @@
     _viewer = [[Viewer alloc] init];
     [_waveView setRingBuffer:[_viewer ring]];
     
-    _sampler = [[Sampler alloc] init];
     
     _djViewController = [[DJViewController alloc] initWithNibName:@"DJFilterView" bundle:nil];
     [_djContentView addSubview:[_djViewController view]];
@@ -56,12 +51,8 @@
     _refrain = [[Refrain alloc] init];
     _refrainController = [[RefrainController alloc] initWithNibName:@"RefrainView" bundle:nil];
     [_refrainContentView addSubview:[_refrainController view]];
+    [self centerize:[_refrainController view]];
     [_refrainController setRefrain:_refrain];
-    
-    _vocalRefrain = [[VocalRefrain alloc] init];
-    _vocalRefrainController = [[VocalRefrainController alloc] initWithNibName:@"VocalRefrainController" bundle:nil];
-    [_vocalRefrainContentView addSubview:[_vocalRefrainController view]];
-    [_vocalRefrainController setVocalRefrain:_vocalRefrain];
     
     _crasher = [[BitCrasher alloc] init];
     _crasherController = [[BitCrasherController alloc] initWithNibName:@"BitCrasherController" bundle:nil];
@@ -69,16 +60,10 @@
     [_crasherController setBitCrasher:_crasher];
     
     
-    _shooter = [[Shooter alloc] init];
-    _shooterController = [[ShooterController alloc]
-                          initWithNibName:@"ShooterController" bundle:nil];
-    [_shooterContentView addSubview:[_shooterController view]];
-    [_shooterController setShooter:_shooter];
-    
-    
     _tapeReverse = [[TapeReverse alloc] init];
     _tapeReverseController = [[TapeReverseController alloc] initWithNibName:@"TapeReverseController" bundle: nil];
     [_tapeReverseContentView addSubview:[_tapeReverseController view]];
+    [self centerize:[_tapeReverseController view]];
     [_tapeReverseController setTapeReverse:_tapeReverse];
     
     _quickCue = [[QuickCue alloc] init];
@@ -111,6 +96,16 @@
     }
 }
 
+-(void)centerize:(NSView *)view{
+    NSView *superView = view.superview;
+    NSPoint origin = NSMakePoint(
+        (superView.frame.size.width - view.frame.size.width)/2,
+        (superView.frame.size.height - view.frame.size.height)/2);
+    [view setFrameOrigin:origin];
+    
+    [view setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
+    
+}
 
 
 - (OSStatus) inCallback:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
@@ -231,9 +226,7 @@
         }
     }
     
-    //Turn Table Ex
-    [_turnTableEx processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+ 
     
     
     //looper
@@ -255,19 +248,12 @@
     
     //Freezer
     [_freezer processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //sampler
-    [_sampler processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
     
     
     //refrain
     [_refrain processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
- 
-    //vocal refrain
-    [_vocalRefrain processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     
@@ -275,10 +261,6 @@
     [_crasher processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
   
-    
-    //shooter
-    [_shooter processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //tape reverse
     [_tapeReverse processLeft:(float*)ioData->mBuffers[0].mData
@@ -428,54 +410,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 }
 
 
-- (IBAction)samplerClicked:(id)sender {
-    [_sampler gotoNextState];
-    UInt32 state = [_sampler state];
-    switch (state){
-        case SAMPLER_STATE_READYRECORD:
-            [_btnSampler setTitle:@"O"];
-            break;
-        case SAMPLER_STATE_RECORDING:
-            [_btnSampler setTitle:@"|"];
-            break;
-        case SAMPLER_STATE_READYPLAY:
-            [_btnSampler setTitle:@">"];
-            break;
-        case SAMPLER_STATE_PLAYING:
-            [_btnSampler setTitle:@"-"];
-            break;
-        default:
-            break;
-    }
-}
 
-- (IBAction)samplerClearClicked:(id)sender {
-    [_sampler clear];
-    UInt32 state = [_sampler state];
-    switch (state){
-        case SAMPLER_STATE_READYRECORD:
-            [_btnSampler setTitle:@"O"];
-            break;
-        case SAMPLER_STATE_RECORDING:
-            [_btnSampler setTitle:@"|"];
-            break;
-        case SAMPLER_STATE_READYPLAY:
-            [_btnSampler setTitle:@">"];
-            break;
-        case SAMPLER_STATE_PLAYING:
-            [_btnSampler setTitle:@"-"];
-            break;
-        default:
-            break;
-    }
-    
-    
-}
-
-- (IBAction)samplerPanChanged:(id)sender {
-    [_sampler setPan:[_sliderSamplerPan floatValue]];
-
-}
 
 
 @end

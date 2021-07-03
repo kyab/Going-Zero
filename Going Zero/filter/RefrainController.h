@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RefrainController : NSViewController{
     Refrain *_refrain;
     __weak IBOutlet NSButton *_btnMark;
+    __weak IBOutlet NSSlider *_sliderPan;
 }
 
 

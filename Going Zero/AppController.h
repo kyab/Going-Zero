@@ -13,9 +13,6 @@
 #import "RingView.h"
 #import "TurnTableView.h"
 
-#import "TurnTableEx.h"
-#import "TurnTableController.h"
-
 #import "Looper.h"
 #import "TrillReverse.h"
 #import "Reverse.h"
@@ -24,12 +21,9 @@
 #import "Freezer.h"
 #import "Viewer.h"
 #import "WaveView.h"
-#import "Sampler.h"
 #import "Refrain.h"
 #import "BitCrasher.h"
 #import "BitCrasherController.h"
-#import "Shooter.h"
-#import "ShooterController.h"
 #import "TapeReverse.h"
 #import "TapeReverseController.h"
 #import "QuickCue.h"
@@ -37,8 +31,7 @@
 
 #import "DJViewController.h"
 #import "RefrainController.h"
-#import "VocalRefrain.h"
-#import "VocalRefrainController.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -55,10 +48,6 @@ NS_ASSUME_NONNULL_BEGIN
     float _dryVolume;
     float _wetVolume;
     __weak IBOutlet NSSlider *_sliderDryVolume;
-    
-    TurnTableEx *_turnTableEx;
-    TurnTableController *_turnTableController;
-    __weak IBOutlet NSView *_turnTableExContentView;
     
     
     
@@ -84,10 +73,6 @@ NS_ASSUME_NONNULL_BEGIN
     Viewer *_viewer;
     __weak IBOutlet WaveView *_waveView;
     
-    Sampler *_sampler;
-    __weak IBOutlet NSButton *_btnSampler;
-    __weak IBOutlet NSSlider *_sliderSamplerPan;
-    
     
     __weak IBOutlet NSView *_djContentView;
     DJViewController *_djViewController;
@@ -96,17 +81,10 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSView *_refrainContentView;
     RefrainController *_refrainController;
     
-    VocalRefrain *_vocalRefrain;
-    __weak IBOutlet NSView *_vocalRefrainContentView;
-    VocalRefrainController *_vocalRefrainController;
-    
     BitCrasher *_crasher;
     __weak IBOutlet NSView *_crasherContentView;
     BitCrasherController *_crasherController;
     
-    Shooter *_shooter;
-    __weak IBOutlet NSView *_shooterContentView;
-    ShooterController *_shooterController;
     
     TapeReverse *_tapeReverse;
     __weak IBOutlet NSBox *_tapeReverseContentView;

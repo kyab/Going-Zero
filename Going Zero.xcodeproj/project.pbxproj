@@ -10,14 +10,10 @@
 		EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7702666535A00EB0E73 /* MiniFader.m */; };
 		EB18F7742669077E00EB0E73 /* WaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7732669077E00EB0E73 /* WaveView.m */; };
 		EB18F777266907B400EB0E73 /* Viewer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F776266907B400EB0E73 /* Viewer.m */; };
-		EB18F77A26697E2900EB0E73 /* Sampler.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F77926697E2900EB0E73 /* Sampler.m */; };
 		EB18F77D266A6E7100EB0E73 /* Looper.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F77C266A6E7100EB0E73 /* Looper.m */; };
 		EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C0F266B9D7A004485FC /* BitCrasher.m */; };
 		EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C12266B9F69004485FC /* BitCrasherController.m */; };
 		EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB274C13266B9F69004485FC /* BitCrasherController.xib */; };
-		EB652ED6266DB90E00089E3E /* ShooterController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652ED4266DB90E00089E3E /* ShooterController.m */; };
-		EB652ED7266DB90E00089E3E /* ShooterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB652ED5266DB90E00089E3E /* ShooterController.xib */; };
-		EB652EDA266DB93C00089E3E /* Shooter.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652ED9266DB93C00089E3E /* Shooter.m */; };
 		EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652EDC266E00D000089E3E /* TapeReverseController.m */; };
 		EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB652EDD266E00D000089E3E /* TapeReverseController.xib */; };
 		EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652EE1266E00E300089E3E /* TapeReverse.m */; };
@@ -35,17 +31,10 @@
 		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
 		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
 		EBAA80982678E00D00809C1D /* QuickCue.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80972678E00D00809C1D /* QuickCue.m */; };
-		EBB7EF29267CBFCD0094DDB2 /* TurnTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB7EF27267CBFCD0094DDB2 /* TurnTableController.m */; };
-		EBB7EF2A267CBFCD0094DDB2 /* TurnTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB7EF28267CBFCD0094DDB2 /* TurnTableController.xib */; };
-		EBB7EF2D267CBFF60094DDB2 /* TurnTableEx.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB7EF2C267CBFF60094DDB2 /* TurnTableEx.m */; };
-		EBBF46B32674F0E600785BF6 /* VocalRefrainController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */; };
-		EBBF46B42674F0E600785BF6 /* VocalRefrainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */; };
-		EBBF46B72674F11000785BF6 /* VocalRefrain.mm in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46B62674F11000785BF6 /* VocalRefrain.mm */; };
 		EBBF46BC2674F31800785BF6 /* libtensorflow_framework.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */; };
 		EBBF46BD2674F31800785BF6 /* libtensorflow_framework.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		EBBF46C02674F32D00785BF6 /* libtensorflow.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46BF2674F32D00785BF6 /* libtensorflow.1.dylib */; };
 		EBBF46C12674F32D00785BF6 /* libtensorflow.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = EBBF46BF2674F32D00785BF6 /* libtensorflow.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		EBBF46C42674F3DA00785BF6 /* 2stems in Resources */ = {isa = PBXBuildFile; fileRef = EBBF46C32674F3DA00785BF6 /* 2stems */; };
 		EBBF46C52674FCEA00785BF6 /* libwave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46C22674F34D00785BF6 /* libwave.a */; };
 		EBBF46C62674FCEE00785BF6 /* libspleeter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46BA2674F2E600785BF6 /* libspleeter.a */; };
 		EBBF46C72674FCF100785BF6 /* libspleeter_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46B92674F2B100785BF6 /* libspleeter_common.a */; };
@@ -88,8 +77,6 @@
 		EB18F7732669077E00EB0E73 /* WaveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaveView.m; sourceTree = "<group>"; };
 		EB18F775266907B400EB0E73 /* Viewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Viewer.h; sourceTree = "<group>"; };
 		EB18F776266907B400EB0E73 /* Viewer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Viewer.m; sourceTree = "<group>"; };
-		EB18F77826697E2900EB0E73 /* Sampler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sampler.h; sourceTree = "<group>"; };
-		EB18F77926697E2900EB0E73 /* Sampler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sampler.m; sourceTree = "<group>"; };
 		EB18F77B266A6E7100EB0E73 /* Looper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Looper.h; sourceTree = "<group>"; };
 		EB18F77C266A6E7100EB0E73 /* Looper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Looper.m; sourceTree = "<group>"; };
 		EB274C0E266B9D7A004485FC /* BitCrasher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrasher.h; sourceTree = "<group>"; };
@@ -97,11 +84,6 @@
 		EB274C11266B9F69004485FC /* BitCrasherController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrasherController.h; sourceTree = "<group>"; };
 		EB274C12266B9F69004485FC /* BitCrasherController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BitCrasherController.m; sourceTree = "<group>"; };
 		EB274C13266B9F69004485FC /* BitCrasherController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BitCrasherController.xib; sourceTree = "<group>"; };
-		EB652ED3266DB90E00089E3E /* ShooterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShooterController.h; sourceTree = "<group>"; };
-		EB652ED4266DB90E00089E3E /* ShooterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShooterController.m; sourceTree = "<group>"; };
-		EB652ED5266DB90E00089E3E /* ShooterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShooterController.xib; sourceTree = "<group>"; };
-		EB652ED8266DB93C00089E3E /* Shooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shooter.h; sourceTree = "<group>"; };
-		EB652ED9266DB93C00089E3E /* Shooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Shooter.m; sourceTree = "<group>"; };
 		EB652EDB266E00D000089E3E /* TapeReverseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapeReverseController.h; sourceTree = "<group>"; };
 		EB652EDC266E00D000089E3E /* TapeReverseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapeReverseController.m; sourceTree = "<group>"; };
 		EB652EDD266E00D000089E3E /* TapeReverseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TapeReverseController.xib; sourceTree = "<group>"; };
@@ -134,22 +116,11 @@
 		EBAA80932678DF3000809C1D /* QuickCueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuickCueController.xib; sourceTree = "<group>"; };
 		EBAA80962678E00D00809C1D /* QuickCue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCue.h; sourceTree = "<group>"; };
 		EBAA80972678E00D00809C1D /* QuickCue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickCue.m; sourceTree = "<group>"; };
-		EBB7EF26267CBFCD0094DDB2 /* TurnTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurnTableController.h; sourceTree = "<group>"; };
-		EBB7EF27267CBFCD0094DDB2 /* TurnTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurnTableController.m; sourceTree = "<group>"; };
-		EBB7EF28267CBFCD0094DDB2 /* TurnTableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TurnTableController.xib; sourceTree = "<group>"; };
-		EBB7EF2B267CBFF60094DDB2 /* TurnTableEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurnTableEx.h; sourceTree = "<group>"; };
-		EBB7EF2C267CBFF60094DDB2 /* TurnTableEx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurnTableEx.m; sourceTree = "<group>"; };
-		EBBF46B02674F0E600785BF6 /* VocalRefrainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VocalRefrainController.h; sourceTree = "<group>"; };
-		EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VocalRefrainController.m; sourceTree = "<group>"; };
-		EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocalRefrainController.xib; sourceTree = "<group>"; };
-		EBBF46B52674F11000785BF6 /* VocalRefrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VocalRefrain.h; sourceTree = "<group>"; };
-		EBBF46B62674F11000785BF6 /* VocalRefrain.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VocalRefrain.mm; sourceTree = "<group>"; };
 		EBBF46B92674F2B100785BF6 /* libspleeter_common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspleeter_common.a; path = ../PartScratch/spleeterpp/build/src/spleeter_common/libspleeter_common.a; sourceTree = "<group>"; };
 		EBBF46BA2674F2E600785BF6 /* libspleeter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspleeter.a; path = ../PartScratch/spleeterpp/build/src/spleeter/libspleeter.a; sourceTree = "<group>"; };
 		EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow_framework.1.dylib; path = ../PartScratch/spleeterpp/build/tensorflow/lib/libtensorflow_framework.1.dylib; sourceTree = "<group>"; };
 		EBBF46BF2674F32D00785BF6 /* libtensorflow.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow.1.dylib; path = ../PartScratch/spleeterpp/build/tensorflow/lib/libtensorflow.1.dylib; sourceTree = "<group>"; };
 		EBBF46C22674F34D00785BF6 /* libwave.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwave.a; path = "../PartScratch/spleeterpp/build/_deps/wave-build/src/wave/libwave.a"; sourceTree = "<group>"; };
-		EBBF46C32674F3DA00785BF6 /* 2stems */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 2stems; path = ../PartScratch/spleeterpp/build/models/offline/2stems; sourceTree = "<group>"; };
 		EBBF46CB2675339000785BF6 /* libspleeter_filter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspleeter_filter.a; path = ../PartScratch/spleeterpp/build/src/spleeter_filter/libspleeter_filter.a; sourceTree = "<group>"; };
 		EBBF46CD267534F000785BF6 /* librtff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librtff.a; path = "../PartScratch/spleeterpp/build/_deps/rtff-build/src/rtff/librtff.a"; sourceTree = "<group>"; };
 		EBBF46CF2675355B00785BF6 /* libartff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libartff.a; path = ../PartScratch/spleeterpp/build/src/artff/libartff.a; sourceTree = "<group>"; };
@@ -212,8 +183,6 @@
 				EB18F776266907B400EB0E73 /* Viewer.m */,
 				EB18F7722669077E00EB0E73 /* WaveView.h */,
 				EB18F7732669077E00EB0E73 /* WaveView.m */,
-				EB18F77826697E2900EB0E73 /* Sampler.h */,
-				EB18F77926697E2900EB0E73 /* Sampler.m */,
 				EBF93D0F266AA184001B13F3 /* DJViewController.h */,
 				EBF93D10266AA184001B13F3 /* DJViewController.m */,
 				EBF93D0D266AA076001B13F3 /* DJFilterView.xib */,
@@ -222,21 +191,11 @@
 				EBF93D20266B215E001B13F3 /* Refrain.h */,
 				EBF93D21266B215E001B13F3 /* Refrain.m */,
 				EBF93D1B266B164F001B13F3 /* RefrainView.xib */,
-				EBBF46B02674F0E600785BF6 /* VocalRefrainController.h */,
-				EBBF46B12674F0E600785BF6 /* VocalRefrainController.m */,
-				EBBF46B22674F0E600785BF6 /* VocalRefrainController.xib */,
-				EBBF46B52674F11000785BF6 /* VocalRefrain.h */,
-				EBBF46B62674F11000785BF6 /* VocalRefrain.mm */,
 				EB274C0E266B9D7A004485FC /* BitCrasher.h */,
 				EB274C0F266B9D7A004485FC /* BitCrasher.m */,
 				EB274C11266B9F69004485FC /* BitCrasherController.h */,
 				EB274C12266B9F69004485FC /* BitCrasherController.m */,
 				EB274C13266B9F69004485FC /* BitCrasherController.xib */,
-				EB652ED3266DB90E00089E3E /* ShooterController.h */,
-				EB652ED4266DB90E00089E3E /* ShooterController.m */,
-				EB652ED5266DB90E00089E3E /* ShooterController.xib */,
-				EB652ED8266DB93C00089E3E /* Shooter.h */,
-				EB652ED9266DB93C00089E3E /* Shooter.m */,
 				EB652EDB266E00D000089E3E /* TapeReverseController.h */,
 				EB652EDC266E00D000089E3E /* TapeReverseController.m */,
 				EB652EDD266E00D000089E3E /* TapeReverseController.xib */,
@@ -254,11 +213,6 @@
 				EBAA80932678DF3000809C1D /* QuickCueController.xib */,
 				EBAA80962678E00D00809C1D /* QuickCue.h */,
 				EBAA80972678E00D00809C1D /* QuickCue.m */,
-				EBB7EF26267CBFCD0094DDB2 /* TurnTableController.h */,
-				EBB7EF27267CBFCD0094DDB2 /* TurnTableController.m */,
-				EBB7EF28267CBFCD0094DDB2 /* TurnTableController.xib */,
-				EBB7EF2B267CBFF60094DDB2 /* TurnTableEx.h */,
-				EBB7EF2C267CBFF60094DDB2 /* TurnTableEx.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -275,7 +229,6 @@
 		EB6E385526623E4A002AADCA = {
 			isa = PBXGroup;
 			children = (
-				EBBF46C32674F3DA00785BF6 /* 2stems */,
 				EB6E386026623E4A002AADCA /* Going Zero */,
 				EB6E385F26623E4A002AADCA /* Products */,
 				EBBF46B82674F2B100785BF6 /* Frameworks */,
@@ -390,16 +343,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBBF46C42674F3DA00785BF6 /* 2stems in Resources */,
-				EBB7EF2A267CBFCD0094DDB2 /* TurnTableController.xib in Resources */,
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
 				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
-				EBBF46B42674F0E600785BF6 /* VocalRefrainController.xib in Resources */,
 				EBF93D0E266AA076001B13F3 /* DJFilterView.xib in Resources */,
 				EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */,
-				EB652ED7266DB90E00089E3E /* ShooterController.xib in Resources */,
 				EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */,
 				EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */,
 			);
@@ -412,20 +361,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBB7EF2D267CBFF60094DDB2 /* TurnTableEx.m in Sources */,
 				EB6E387726623F83002AADCA /* AudioEngine.m in Sources */,
-				EBBF46B32674F0E600785BF6 /* VocalRefrainController.m in Sources */,
 				EBBF46D62675D45100785BF6 /* ReverseController.m in Sources */,
 				EBF93D1A266AE709001B13F3 /* MyButton.m in Sources */,
 				EB7372B6266530F600393D58 /* Freezer.m in Sources */,
 				EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */,
-				EB18F77A26697E2900EB0E73 /* Sampler.m in Sources */,
 				EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */,
 				EB18F777266907B400EB0E73 /* Viewer.m in Sources */,
 				EBAA80982678E00D00809C1D /* QuickCue.m in Sources */,
 				EB18F77D266A6E7100EB0E73 /* Looper.m in Sources */,
 				EB6E386B26623E4B002AADCA /* main.m in Sources */,
-				EB652ED6266DB90E00089E3E /* ShooterController.m in Sources */,
 				EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */,
 				EB6E387426623F2F002AADCA /* AppController.mm in Sources */,
 				EB6E387A26624089002AADCA /* RingBuffer.m in Sources */,
@@ -438,13 +383,10 @@
 				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
 				EBEC8C72266313C400257694 /* Bender.m in Sources */,
 				EBF93D22266B215E001B13F3 /* Refrain.m in Sources */,
-				EB652EDA266DB93C00089E3E /* Shooter.m in Sources */,
 				EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */,
-				EBB7EF29267CBFCD0094DDB2 /* TurnTableController.m in Sources */,
 				EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */,
 				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
 				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
-				EBBF46B72674F11000785BF6 /* VocalRefrain.mm in Sources */,
 				EB18F7742669077E00EB0E73 /* WaveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

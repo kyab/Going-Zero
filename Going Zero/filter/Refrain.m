@@ -16,6 +16,8 @@
     [_ring setMinOffset:0];
     _state = REFRAIN_STATE_NONE;
     
+    _pan = 0.0;
+    
     return self;
 }
 
@@ -38,6 +40,10 @@
     [_ring reset];
 }
 
+-(void)setPan:(float)pan{
+    _pan = pan;
+}
+
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     switch(_state){
         case REFRAIN_STATE_NONE:
@@ -53,6 +59,7 @@
             break;
         case REFRAIN_STATE_REFRAINING:
         {
+            //dry
             float *dstL = [_ring writePtrLeft];
             float *dstR = [_ring writePtrRight];
             memcpy(dstL, leftBuf, numSamples * sizeof(float));
@@ -63,9 +70,17 @@
             float *srcL = [_ring readPtrLeft];
             float *srcR = [_ring readPtrRight];
             
+            float volL = 1.0f;
+            float volR = 1.0f;
+            if (_pan > 0){
+                volL = 1.0 - _pan;
+            }else{
+                volR = 1.0 + _pan;
+            }
+            
             for(int i = 0; i < numSamples; i++){
-                leftBuf[i] += srcL[i];
-                rightBuf[i] += srcR[i];
+                leftBuf[i] += srcL[i] * volL;
+                rightBuf[i] += srcR[i] * volR;
             }
             
             [_ring advanceReadPtrSample:numSamples];
