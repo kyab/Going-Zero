@@ -15,6 +15,9 @@
     
     _state = QUICKCUE_STATE_NONE;
     _cueFrame = 0;
+    
+    _faderIn = [[MiniFaderIn alloc] init];
+    
     return self;
 }
 
@@ -32,6 +35,8 @@
     _state = QUICKCUE_STATE_PLAYING;
     [_ring advanceReadPtrSample:-[_ring playFrame]];     //back
     [_ring advanceReadPtrSample:_cueFrame];
+    
+    [_faderIn startFadeIn];
 }
 
 -(void)clear{
@@ -84,6 +89,7 @@
             memcpy(leftBuf, srcL, numSamples * sizeof(float));
             memcpy(rightBuf, srcR, numSamples * sizeof(float));
             [_ring advanceReadPtrSample:numSamples];
+            [_faderIn processLeft:leftBuf right:rightBuf samples:numSamples];
             
         }
             break;

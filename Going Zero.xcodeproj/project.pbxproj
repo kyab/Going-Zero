@@ -27,6 +27,9 @@
 		EB6E387F266240C1002AADCA /* TurnTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E387B266240BF002AADCA /* TurnTableView.m */; };
 		EB6E3880266240C1002AADCA /* RingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E387C266240BF002AADCA /* RingView.m */; };
 		EB6E388326627C90002AADCA /* TrillReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E388226627C90002AADCA /* TrillReverse.m */; };
+		EB70011C2691D022007F88EE /* FlangerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB70011A2691D022007F88EE /* FlangerController.m */; };
+		EB70011D2691D022007F88EE /* FlangerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB70011B2691D022007F88EE /* FlangerController.xib */; };
+		EB7001202691D038007F88EE /* Flanger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB70011F2691D038007F88EE /* Flanger.m */; };
 		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
 		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
 		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
@@ -109,6 +112,11 @@
 		EB6E387E266240C1002AADCA /* RingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingView.h; sourceTree = "<group>"; };
 		EB6E388126627C90002AADCA /* TrillReverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrillReverse.h; sourceTree = "<group>"; };
 		EB6E388226627C90002AADCA /* TrillReverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrillReverse.m; sourceTree = "<group>"; };
+		EB7001192691D022007F88EE /* FlangerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlangerController.h; sourceTree = "<group>"; };
+		EB70011A2691D022007F88EE /* FlangerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlangerController.m; sourceTree = "<group>"; };
+		EB70011B2691D022007F88EE /* FlangerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlangerController.xib; sourceTree = "<group>"; };
+		EB70011E2691D038007F88EE /* Flanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flanger.h; sourceTree = "<group>"; };
+		EB70011F2691D038007F88EE /* Flanger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flanger.m; sourceTree = "<group>"; };
 		EB7372B4266530F600393D58 /* Freezer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Freezer.h; sourceTree = "<group>"; };
 		EB7372B5266530F600393D58 /* Freezer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freezer.m; sourceTree = "<group>"; };
 		EBAA80912678DF3000809C1D /* QuickCueController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCueController.h; sourceTree = "<group>"; };
@@ -213,6 +221,11 @@
 				EBAA80932678DF3000809C1D /* QuickCueController.xib */,
 				EBAA80962678E00D00809C1D /* QuickCue.h */,
 				EBAA80972678E00D00809C1D /* QuickCue.m */,
+				EB7001192691D022007F88EE /* FlangerController.h */,
+				EB70011A2691D022007F88EE /* FlangerController.m */,
+				EB70011B2691D022007F88EE /* FlangerController.xib */,
+				EB70011E2691D038007F88EE /* Flanger.h */,
+				EB70011F2691D038007F88EE /* Flanger.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -347,6 +360,7 @@
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
 				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
+				EB70011D2691D022007F88EE /* FlangerController.xib in Resources */,
 				EBF93D0E266AA076001B13F3 /* DJFilterView.xib in Resources */,
 				EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */,
 				EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */,
@@ -378,6 +392,7 @@
 				EBF93D11266AA184001B13F3 /* DJViewController.m in Sources */,
 				EB6E387F266240C1002AADCA /* TurnTableView.m in Sources */,
 				EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */,
+				EB70011C2691D022007F88EE /* FlangerController.m in Sources */,
 				EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
 				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
@@ -387,6 +402,7 @@
 				EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */,
 				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
 				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
+				EB7001202691D038007F88EE /* Flanger.m in Sources */,
 				EB18F7742669077E00EB0E73 /* WaveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

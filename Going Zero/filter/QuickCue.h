@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RingBuffer.h"
+#import "MiniFader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
     RingBuffer *_ring;
     UInt32 _state;
     UInt32 _cueFrame;
+    MiniFaderIn *_faderIn;
 }
 
 -(void)mark;

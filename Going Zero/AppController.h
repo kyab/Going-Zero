@@ -12,6 +12,7 @@
 #import "RingBuffer.h"
 #import "RingView.h"
 #import "TurnTableView.h"
+#import "MiniFader.h"
 
 #import "Looper.h"
 #import "TrillReverse.h"
@@ -28,6 +29,8 @@
 #import "TapeReverseController.h"
 #import "QuickCue.h"
 #import "QuickCueController.h"
+#import "Flanger.h"
+#import "FlangerController.h"
 
 #import "DJViewController.h"
 #import "RefrainController.h"
@@ -48,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
     float _dryVolume;
     float _wetVolume;
     __weak IBOutlet NSSlider *_sliderDryVolume;
+    MiniFaderIn *_faderIn;
     
     
     
@@ -94,7 +98,9 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSView *_quickCueContentView;
     QuickCueController *_quickCueController;
     
-    
+    Flanger *_flanger;
+    __weak IBOutlet NSView *_flangerContentView;
+    FlangerController *_flangerController;
     
 }
 -(void)terminate;

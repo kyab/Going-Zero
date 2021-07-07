@@ -24,6 +24,7 @@
     [_turnTable start];
     _dryVolume = 0.0;
     _wetVolume = 1.0;
+    _faderIn = [[MiniFaderIn alloc] init];
     
     
     _looper = [[Looper alloc] init];
@@ -73,6 +74,14 @@
     [self centerize:[_quickCueController view]];
     [_quickCueController setQuickCue:_quickCue];
     
+    _flanger = [[Flanger alloc] init];
+    _flangerController = [[FlangerController alloc] initWithNibName:@"FlangerController" bundle:nil];
+    [_flangerContentView addSubview:[_flangerController view]];
+    [self centerize:[_flangerController view]];
+    [_flangerController setFlanger:_flanger];
+    
+    
+    
     _ae = [[AudioEngine alloc] init];
     if ([_ae initialize]){
         NSLog(@"AudioEngine all OK");
@@ -92,9 +101,16 @@
 }
 
 -(void)turnTableSpeedRateChanged{
+    float preValue = _speedRate;
     _speedRate = [_turnTable speedRate];
     if (_speedRate == 1.0){
         [_ring follow];
+        [_faderIn startFadeIn];
+        return;
+    }
+    
+    if (preValue == 1.0){
+        [_faderIn startFadeIn];
     }
 }
 
@@ -187,12 +203,19 @@
     
     if(_speedRate == 1.0){
 
-        memcpy(ioData->mBuffers[0].mData,
+        float *dstL = (float *)ioData->mBuffers[0].mData;
+        float *dstR = (float *)ioData->mBuffers[1].mData;
+        
+        memcpy(dstL,
                [_ring dryPtrLeft], sizeof(float) * inNumberFrames);
-        memcpy(ioData->mBuffers[1].mData,
+        memcpy(dstR,
                [_ring dryPtrRight], sizeof(float) * inNumberFrames);
         [_ring advanceDryPtrSample:inNumberFrames];
         [_ring advanceReadPtrSample:inNumberFrames];
+        
+        [_faderIn processLeft:dstL right:dstR samples:inNumberFrames];
+        
+        
         
     }else{
         
@@ -225,6 +248,8 @@
             }
 
             [_ring advanceReadPtrSample:consumed];
+            
+            [_faderIn processLeft:pDstLeft right:pDstRight samples:inNumberFrames];
         }
     }
     
@@ -271,6 +296,11 @@
     //quick cue
     [_quickCue processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //flanger
+    [_flanger processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     
     //viewer
     [_viewer processLeft:(float*)ioData->mBuffers[0].mData
