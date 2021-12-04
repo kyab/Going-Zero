@@ -14,7 +14,10 @@
 - (void)awakeFromNib{
     _currentRad = 28 * (M_PI / 180);
     _speedRate = 1.0f;
-    
+    _accel = 0.0;
+    for (int i = 0; i < 10; i++){
+        _history[i] = 1.0;
+    }
     _timer2 = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTimerScratch:) userInfo:nil repeats:YES];
 
     [[NSRunLoop currentRunLoop] addTimer:_timer2 forMode:NSRunLoopCommonModes];
@@ -147,7 +150,14 @@ double rad2deg(double rad){
         [self setNeedsDisplay:YES];
         [[NSCursor openHandCursor] set];
         _prevRadValid = NO;
-    
+        _prevSec = theEvent.timestamp;//[[NSDate date] timeIntervalSince1970];
+//        _prevSpeedRate = _speedRate;
+        _speedRate = 0.0;
+        for (int i = 0; i < 10; i++){
+            _history[i] = 0.0;
+        }
+        
+        [_delegate turnTableSpeedRateChanged];
     }else{
         _pressing = NO;
     }
@@ -156,8 +166,8 @@ double rad2deg(double rad){
 }
 
 -(void)mouseDragged:(NSEvent *)theEvent{
-//    if (_pressing == NO) return;
-//    if (_pressing == YES) return;
+    if (_pressing == NO) return;
+    if (_pressing == YES) return;
 //
 //    CGFloat x1 = [self eventLocation:theEvent].x;
 //    CGFloat y1 = [self eventLocation:theEvent].y;
@@ -184,23 +194,32 @@ double rad2deg(double rad){
 //        }
 //    }
 //
-//    double speed = delta / ([theEvent timestamp] - _prevSec);
-//    _speedRate = speed / [self baseRadS];
+//    if(_prevRadValid){
 //
-//    [_delegate turnTableSpeedRateChanged];
+//        double speed = delta / ([theEvent timestamp] - _prevSec);
+//        _prevSpeedRate = _speedRate;
+//        _speedRate = speed / [self baseRadS];
+//        _lastUpdateSec = [[NSDate date] timeIntervalSince1970];
+//
+//        _accel = (_speedRate - _prevSpeedRate)/([theEvent timestamp] - _prevSec);
+//        NSLog(@"speed = %f", _speedRate);
+//        [_delegate turnTableSpeedRateChanged];
+//    }
 //
 //    _prevRad = _currentRad;
 //    _prevSec = [theEvent timestamp];
 //    _prevX = x1;
 //    _prevY = y1;
+//    _prevRadValid = YES;
 //
 //    [self setNeedsDisplay:YES];
-//
+
 }
 
 -(void)mouseUp:(NSEvent *)theEvent{
     _pressing = NO;
     _speedRate = 1.0f;
+    _accel = 0.0;
     [_delegate turnTableSpeedRateChanged];
     
     [[NSCursor arrowCursor] set];
@@ -208,16 +227,20 @@ double rad2deg(double rad){
 }
 
 -(void)onTimerScratch:(NSTimer *)t{
+
     if (!_pressing) return;
+
+    double currentSec = [[NSDate date] timeIntervalSince1970];
+
 
     //get mouse location
     NSPoint loc = [self.window mouseLocationOutsideOfEventStream];
     CGFloat x = [self convertPoint:loc fromView:nil].x;
     CGFloat y = [self convertPoint:loc fromView:nil].y;
-    
+
     x = x - self.bounds.size.width/2;
     y = y - self.bounds.size.height/2;
-    
+
     double theta = x/sqrt(x*x + y*y);
     theta = acos(theta);
     if (y < 0) theta = 2*M_PI-theta;
@@ -228,7 +251,7 @@ double rad2deg(double rad){
     if (_currentRad < 0 ){
         _currentRad = 2*M_PI + _currentRad;
     }
-    
+
     if (_prevRadValid){
         double delta = _currentRad - _prevRad;
         if (fabs(rad2deg(delta)) > 340){
@@ -238,18 +261,36 @@ double rad2deg(double rad){
                 delta = (2*M_PI-_prevRad) + _currentRad;
             }
         }
-        
-        double speed = delta / 0.01;
-        _speedRate = speed / [self baseRadS];
 
+        double speed = delta / (currentSec - _prevSec);
+        double speedRate = speed / [self baseRadS];
+        
+        _history[0] = _history[1];
+        _history[1] = _history[2];
+        _history[2] = _history[3];
+        _history[3] = _history[4];
+        _history[4] = _history[5];
+        _history[5] = _history[6];
+        _history[6] = _history[7];
+        _history[7] = _history[8];
+        _history[8] = _history[9];
+        _history[9] = speedRate;
+        double sum = 0;
+        for(int i = 0; i < 10; i++){
+            sum += _history[i];
+        }
+        _speedRate = sum/10.0;
+        
         [_delegate turnTableSpeedRateChanged];
     }
-    
+
     _prevRad = _currentRad;
     _prevX = x;
     _prevY = y;
     _prevRadValid = YES;
-    
+
+    _prevSec = currentSec;
+
     [self setNeedsDisplay:YES];
     
 }

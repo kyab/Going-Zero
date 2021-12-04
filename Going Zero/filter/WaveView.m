@@ -12,13 +12,14 @@
 
 - (void)awakeFromNib{
     
+    _viewer = nil;
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     
 }
 
-- (void)setRingBuffer:(RingBuffer *)ring{
-    _ring = ring;
+- (void)setViewer:(Viewer *)viewer{
+    _viewer = viewer;
 }
 
 -(void)onTimer:(NSTimer *)timer{
@@ -28,14 +29,13 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
-    if (!_ring) return;
-    
-    
+
     [[NSGraphicsContext currentContext] setShouldAntialias:NO];
-    
-    // Drawing code here.
     [[NSColor blackColor] set];
     NSRectFill(dirtyRect);
+    
+    if (!_viewer) return;
+    if (![_viewer isEnabled]) return;
     
     
     //view latest
@@ -49,13 +49,15 @@
     [line lineToPoint:NSMakePoint(w,h/2)];
     [line stroke];
     
-    float *bufL = [_ring writePtrLeft] - 4410;
-    float *bufR = [_ring writePtrRight] - 4410;
+    RingBuffer *ring = [_viewer ring];
+    
+    float *bufL = [ring writePtrLeft] - 4410 - (ptrdiff_t)(ceil(4410/w));
+    float *bufR = [ring writePtrRight] - 4410 - (ptrdiff_t)(ceil(4410/w));
     
     
     for(int i = 0; i < w; i++){
         float max = 0;
-        for (int j = (int)i*round(4410/w); j < (int)i*round(4410/w) + (int)round(4410/w); j++){
+        for (int j = (int)i*floor(4410/w); j < (int)i*floor(4410/w) + (int)floor(4410/w); j++){
             
             float val = fabs(bufL[j]);
             if (val < fabs(bufR[j])){

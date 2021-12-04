@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define FADE_SAMPLE_NUM 1000
+#define FADE_SAMPLE_NUM 500
 
 @interface MiniFaderIn : NSObject{
     UInt32 _count;

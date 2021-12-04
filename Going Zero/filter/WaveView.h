@@ -7,17 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Viewer.h"
 #import "RingBuffer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WaveView : NSView{
-    RingBuffer *_ring;
-    
+    Viewer *_viewer;
     NSTimer *_timer;
 }
 
-- (void)setRingBuffer:(RingBuffer *)ring;
+- (void)setViewer:(Viewer *)viewer;
 
 
 

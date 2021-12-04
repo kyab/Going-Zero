@@ -14,9 +14,9 @@
 @implementation AppController
 
 -(void)awakeFromNib{
+        
     _ring = [[RingBuffer alloc] init];
     [_ringView setRingBuffer:_ring];
-    
     
     _speedRate = 1.0;
     [_turnTable setDelegate:(id<TurnTableDelegate>)self];
@@ -24,6 +24,11 @@
     [_turnTable start];
     _dryVolume = 0.0;
     _wetVolume = 1.0;
+    [self addObserver:self forKeyPath:@"dryVolume" options:NSKeyValueObservingOptionNew context:nil];
+    [self addObserver:self forKeyPath:@"wetVolume" options:NSKeyValueObservingOptionNew context:nil];
+    
+    
+    
     _faderIn = [[MiniFaderIn alloc] init];
     
     
@@ -38,16 +43,10 @@
     [self centerize:[_reverseController view]];
     [_reverseController setReverse:_reverse];
     
-    
     _freezer = [[Freezer alloc] init];
     
-    
     _viewer = [[Viewer alloc] init];
-    [_waveView setRingBuffer:[_viewer ring]];
-    
-    
-    _djViewController = [[DJViewController alloc] initWithNibName:@"DJFilterView" bundle:nil];
-    [_djContentView addSubview:[_djViewController view]];
+    [_waveView setViewer: _viewer];
     
     
     _refrain = [[Refrain alloc] init];
@@ -80,6 +79,25 @@
     [self centerize:[_flangerController view]];
     [_flangerController setFlanger:_flanger];
     
+
+    _sampler = [[Sampler alloc] init];
+    _samplerController = [[SamplerController alloc]
+                           initWithNibName:@"SamplerController" bundle:nil];
+    [_samplerContentView addSubview:[_samplerController view]];
+    [self centerize:[_samplerController view]];
+    [_samplerController setSampler:_sampler];
+
+
+    _djFilter = [[DJFilter alloc] init];
+    _djFilterController = [[DJFilterController alloc]
+                           initWithNibName:@"DJFilterController" bundle:nil];
+    [_djFilterContentView addSubview:[_djFilterController view]];
+    [self centerize:[_djFilterController view]];
+    [_djFilterController setDJFilter:_djFilter];
+    
+    
+    [self startBonjour];
+    
     
     
     _ae = [[AudioEngine alloc] init];
@@ -91,6 +109,10 @@
     [_ae startInput];
     [_ae startOutput];
     [_ae changeSystemOutputDeviceToBGM];
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onGlobalTimer:) userInfo:nil repeats:YES];
+
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
 }
 
@@ -108,10 +130,10 @@
         [_faderIn startFadeIn];
         return;
     }
-    
-    if (preValue == 1.0){
-        [_faderIn startFadeIn];
-    }
+//    
+//    if (preValue == 1.0){
+//        [_faderIn startFadeIn];
+//    }
 }
 
 -(void)centerize:(NSView *)view{
@@ -215,8 +237,6 @@
         
         [_faderIn processLeft:dstL right:dstR samples:inNumberFrames];
         
-        
-        
     }else{
         
         //dry
@@ -252,9 +272,6 @@
             [_faderIn processLeft:pDstLeft right:pDstRight samples:inNumberFrames];
         }
     }
-    
- 
-    
     
     //looper
     [_looper processLeft:(float*)ioData->mBuffers[0].mData
@@ -301,6 +318,14 @@
     [_flanger processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
+    //Sampler
+    [_sampler processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    
+    //DJ filter
+    [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //viewer
     [_viewer processLeft:(float*)ioData->mBuffers[0].mData
@@ -355,6 +380,9 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     _dryVolume = [_sliderDryVolume floatValue];
 }
 
+- (IBAction)wetVolumeChanged:(id)sender {
+    _wetVolume = [_sliderWetVolume floatValue];
+}
 
 - (IBAction)looperMarkStart:(id)sender {
     [_looper markStart];
@@ -442,7 +470,118 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 }
 
 
+- (IBAction)freezeGrainsizeChanged:(id)sender {
+    [_freezer setGrainSize:[_sliderGrainSize intValue]];
+}
 
+- (IBAction)monitorEnableChanged:(id)sender {
+    if ([_chkWaveViewEnabled state] == NSControlStateValueOn){
+        [_viewer setEnabled:YES];
+    }else{
+        [_viewer setEnabled:NO];
+    }
+}
+
+-(void)onGlobalTimer:(NSTimer *)timer{
+    if([_mainViewController isUpKeyPressed]){
+        _wetVolume += 0.002;
+        if (_wetVolume > 1.0f){
+            _wetVolume = 1.0;
+        }
+        [_sliderWetVolume setFloatValue:_wetVolume];
+        return;
+    }
+    
+    if([_mainViewController isDownKeyPressed]){
+        _wetVolume -= 0.002;
+        if (_wetVolume < 0.0f){
+            _wetVolume = 0.0;
+        }
+        [_sliderWetVolume setFloatValue:_wetVolume];
+        return;
+    }
+}
+
+
+-(void)startBonjour{
+    
+    _netService = [[NSNetService alloc] initWithDomain:@"local" type:@"_osc._udp" name:@"" port:9999];
+
+    [_netService scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    [_netService publish];
+//    [_netService setDelagete:self];
+    
+    _oscServer = [[F53OSCServer alloc] init];
+
+    [_oscServer setPort:9999];
+    [_oscServer setDelegate:(id<F53OSCServerDelegate>)self];
+    [_oscServer startListening];
+    
+    
+}
+
+- (void)takeMessage:(F53OSCMessage *)message {
+//    NSLog(@"Received");
+    // This method is called whenever the oscServer receives a message.
+    NSString *addressPattern = message.addressPattern;
+    NSArray *arguments = message.arguments;
+//    NSLog(@"%@", addressPattern);
+    
+    NSObject *arg1 = [arguments objectAtIndex:0];
+    
+    if ([addressPattern isEqualToString:@"/filter/"]){
+        if ([arg1 isKindOfClass:[NSNumber class]]){
+            NSNumber *number = (NSNumber *)arg1;
+            float f = [number floatValue];
+            _djFilter.filterValue = f;
+        }
+    }else if([addressPattern isEqualToString:@"/loop/"]){
+        if ([arg1 isKindOfClass:[NSString class]]){
+            NSString *str  = (NSString *)arg1;
+//            NSLog(@"loop:%@",str);
+            if([str isEqualToString:@"start"]){
+                [_btnLooperStart performClick:_btnLooperStart];
+            }else if ([str isEqualToString:@"end"]){
+                [_btnLooperEnd performClick:_btnLooperEnd];
+            }else if ([str isEqualToString:@"exit"]){
+                [_btnLooperExit performClick:_btnLooperExit];
+            }else if ([str isEqualToString:@"half"]){
+                [_btnLoopHalf performClick:_btnLoopHalf];
+            }else if ([str isEqualToString:@"quarter"]){
+                [_btnLoopQuarter performClick:_btnLoopQuarter];
+            }
+        }
+    }else if ([addressPattern isEqualToString:@"/turntable/speed"]){
+        if ([arg1 isKindOfClass:[NSNumber class]]){
+            NSNumber *number = (NSNumber *)arg1;
+            float f = [number floatValue];
+            NSLog(@"new speed rate = %f", f);
+            _speedRate = f;
+            if (_speedRate == 1.0){
+                [_ring follow];
+            }
+        }
+    }else if ([addressPattern isEqualToString:@"/turntable/wet"]){
+        if ([arg1 isKindOfClass:[NSNumber class]]){
+            NSNumber *number = (NSNumber *)arg1;
+            self.wetVolume = [number floatValue];
+        }
+    }else if ([addressPattern isEqualToString:@"/turntable/dry"]){
+        if ([arg1 isKindOfClass:[NSNumber class]]){
+            NSNumber *number = (NSNumber *)arg1;
+            self.dryVolume = [number floatValue];
+        }
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqual:@"dryVolume"]) {
+        [_sliderDryVolume setFloatValue:self.dryVolume];
+    }else if ([keyPath isEqual:@"wetVolume"]){
+        [_sliderWetVolume setFloatValue:self.wetVolume];
+    }
+}
 
 
 @end

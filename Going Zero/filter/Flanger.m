@@ -69,10 +69,11 @@
         leftBuf[i] += srcL[i - (int)tau];
         rightBuf[i] += srcR[i - (int)tau];
     }
+    [_ring advanceReadPtrSample:numSamples];
     
     [_faderIn processLeft:leftBuf right:rightBuf samples:numSamples];
     
-    [_ring advanceReadPtrSample:numSamples];
+
 }
 
 

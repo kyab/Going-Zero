@@ -16,17 +16,19 @@ NS_ASSUME_NONNULL_BEGIN
     RingBuffer *_ring;
     Boolean _bypass;
     
-    float *_loopEndL;
-    float *_loopEndR;
+    float *_startL;
+    float *_startR;
     float *_currentL;
     float *_currentR;
     
+    unsigned int _grainSize;
     
     MiniFaderIn *_miniFadeIn;
     MiniFaderOut *_miniFadeOut;
 }
 
 -(void)setActive:(Boolean)active;
+-(void)setGrainSize:(unsigned int)grainSize;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 
 

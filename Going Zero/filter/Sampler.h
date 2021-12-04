@@ -8,29 +8,69 @@
 
 #import <Foundation/Foundation.h>
 #import "RingBuffer.h"
-
-#define SAMPLER_STATE_READYRECORD 0
-#define SAMPLER_STATE_RECORDING   1
-#define SAMPLER_STATE_READYPLAY   2
-#define SAMPLER_STATE_PLAYING     3
+#import "MiniFader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Sampler : NSObject{
+#define SAMPLER_STATE_EMPTY 1
+#define SAMPLER_STATE_RECORDING 2
+#define SAMPLER_STATE_READYPLAY 3
+#define SAMPLER_STATE_PLAYING 4
+
+
+@class SamplerUnit;
+
+@protocol SamplerUnitDelegate <NSObject>
+@optional
+-(void)samplerUnitStateChanged:(SamplerUnit *)samplerUnit;
+@end
+
+
+@interface SamplerUnit : NSObject{
     RingBuffer *_ring;
     UInt32 _state;
-    UInt32 _startFrame;
-    UInt32 _frames;     //loop length
-    
-    float _pan;
+    UInt32 _sampleLen;
+    MiniFaderIn *_faderIn;
+    id<SamplerUnitDelegate> _delegate;
 }
 
--(UInt32)state;
--(void)gotoNextState;
+-(void)startRecord;
+-(void)stopRecord;
+-(void)play;
+-(void)stop;
 -(void)clear;
+-(UInt32)state;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
--(void)setPan:(float)pan;
+-(void)setDelagate:(id<SamplerUnitDelegate>)delegate;
 
 @end
+
+@protocol SamplerDelegate <NSObject>
+@optional
+- (void) samplerStateChanged:(UInt32)index;
+@end
+
+@interface Sampler : NSObject<SamplerUnitDelegate>{
+    SamplerUnit *_samplerUnits[4];
+    float *_tempBuffersL[4];
+    float *_tempBuffersR[4];
+    id<SamplerDelegate> _delegate;
+    
+    float _dryVolume;
+}
+
+-(void)startRecord:(UInt32) index;
+-(void)stopRecord:(UInt32) index;
+-(void)play:(UInt32) index;
+-(void)stop:(UInt32) index;
+-(void)clear:(UInt32) index;
+-(UInt32)state:(UInt32) index;
+-(void)exit;
+-(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
+-(void)setDelegate:(id<SamplerDelegate>)delegate;
+-(void)samplerUnitStateChanged:(id)samplerUnit;
+-(void)setDryVolume:(float)dryVolume;
+@end
+
 
 NS_ASSUME_NONNULL_END

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,22 +22,38 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="6kO-Fg-JYF" customClass="AppController">
             <connections>
+                <outlet property="_btnLoopHalf" destination="BFz-jy-2am" id="gAq-fa-yJr"/>
+                <outlet property="_btnLoopQuarter" destination="x7z-Pf-vnl" id="Wkz-U7-838"/>
+                <outlet property="_btnLooperEnd" destination="vMK-LO-d7Z" id="G6I-2K-vf2"/>
+                <outlet property="_btnLooperExit" destination="VHT-YU-Imc" id="fQN-C3-Aw7"/>
+                <outlet property="_btnLooperStart" destination="gD0-kg-R6K" id="j3e-4N-ifr"/>
                 <outlet property="_chkBenderBounce" destination="q6X-Z3-Agn" id="r3Z-uJ-w63"/>
                 <outlet property="_chkFreeze" destination="GYu-Ez-3ka" id="fN1-1h-8iC"/>
                 <outlet property="_chkTrillReverse" destination="jul-TK-CBk" id="kBk-4G-cJx"/>
+                <outlet property="_chkWaveViewEnabled" destination="Grp-zO-WAk" id="lel-Q0-aFg"/>
                 <outlet property="_crasherContentView" destination="BMM-8J-Wip" id="sf8-fg-M8L"/>
+                <outlet property="_djFilterContentView" destination="3GI-kj-rir" id="vae-Vl-axf"/>
                 <outlet property="_flangerContentView" destination="U0I-oN-F0V" id="NFA-xa-Xuf"/>
+                <outlet property="_mainViewController" destination="WXr-ag-sep" id="Vfx-qV-5QP"/>
                 <outlet property="_quickCueContentView" destination="Xpc-6C-0KP" id="cXT-OA-VIa"/>
                 <outlet property="_refrainContentView" destination="BZp-y9-ksX" id="US1-fM-xRX"/>
                 <outlet property="_reverseContentView" destination="cPA-9c-HiA" id="QxQ-sN-APp"/>
                 <outlet property="_ringView" destination="H2e-uq-LqI" id="6nj-kD-lMb"/>
+                <outlet property="_samplerContentView" destination="j19-oC-rXs" id="CPj-Gv-xTH"/>
                 <outlet property="_sliderBenderRate" destination="kpw-Sr-7nJ" id="wdf-mk-YSn"/>
                 <outlet property="_sliderDryVolume" destination="Jh4-Fq-5r7" id="F7D-7r-9wI"/>
+                <outlet property="_sliderGrainSize" destination="zBb-gF-eP6" id="Vg5-xa-cKz"/>
+                <outlet property="_sliderWetVolume" destination="9IM-d8-Rbj" id="LVi-ih-61k"/>
                 <outlet property="_tapeReverseContentView" destination="76M-wk-6zA" id="ErY-E0-agg"/>
                 <outlet property="_turnTable" destination="duk-ex-cIG" id="mFe-H9-hez"/>
                 <outlet property="_waveView" destination="ykY-XK-weK" id="sgL-Cx-Jqm"/>
             </connections>
         </customObject>
+        <viewController id="WXr-ag-sep" customClass="MainViewController">
+            <connections>
+                <outlet property="view" destination="EiT-Mj-1SZ" id="bCV-nJ-P7R"/>
+            </connections>
+        </viewController>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="Going Zero" id="1Xt-HY-uBw">
@@ -703,10 +719,10 @@
         <window title="Going Zero" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="842" height="761"/>
+            <rect key="contentRect" x="335" y="390" width="691" height="761"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="842" height="761"/>
+                <rect key="frame" x="0.0" y="0.0" width="691" height="761"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="duk-ex-cIG" customClass="TurnTableView">
@@ -721,10 +737,27 @@
                                     <action selector="dryVolumeChanged:" target="6kO-Fg-JYF" id="6yh-2U-ooD"/>
                                 </connections>
                             </slider>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9IM-d8-Rbj">
+                                <rect key="frame" x="6" y="271" width="96" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="l0s-99-UST"/>
+                                <connections>
+                                    <action selector="wetVolumeChanged:" target="6kO-Fg-JYF" id="EvZ-vF-MQc"/>
+                                </connections>
+                            </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5VG-fC-PpH">
                                 <rect key="frame" x="261" y="291" width="39" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Dry" id="V6o-g4-Yr6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJE-Np-4fC">
+                                <rect key="frame" x="36" y="291" width="39" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Wet" id="bCK-cG-mMF">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -844,22 +877,22 @@
                         </connections>
                     </button>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ykY-XK-weK" customClass="WaveView">
-                        <rect key="frame" x="20" y="0.0" width="802" height="98"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="369" y="20" width="302" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
                     <box fixedFrame="YES" title="Refrain" translatesAutoresizingMaskIntoConstraints="NO" id="jns-DQ-07F">
-                        <rect key="frame" x="368" y="342" width="303" height="73"/>
+                        <rect key="frame" x="366" y="342" width="305" height="73"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="BZp-y9-ksX">
-                            <rect key="frame" x="3" y="3" width="297" height="55"/>
+                            <rect key="frame" x="3" y="3" width="299" height="55"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Reverse" translatesAutoresizingMaskIntoConstraints="NO" id="BwG-aY-TBH">
-                        <rect key="frame" x="368" y="419" width="303" height="71"/>
+                        <rect key="frame" x="366" y="419" width="305" height="71"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="cPA-9c-HiA">
-                            <rect key="frame" x="3" y="3" width="297" height="53"/>
+                            <rect key="frame" x="3" y="3" width="299" height="53"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
@@ -880,24 +913,59 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Flanger" translatesAutoresizingMaskIntoConstraints="NO" id="fPj-k2-5J6">
-                        <rect key="frame" x="368" y="113" width="303" height="103"/>
+                        <rect key="frame" x="368" y="109" width="303" height="103"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="U0I-oN-F0V">
                             <rect key="frame" x="3" y="3" width="297" height="85"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
-                    <box fixedFrame="YES" title="Tape Reverse" translatesAutoresizingMaskIntoConstraints="NO" id="76M-wk-6zA">
-                        <rect key="frame" x="366" y="224" width="305" height="58"/>
+                    <box fixedFrame="YES" title="DJFilter" translatesAutoresizingMaskIntoConstraints="NO" id="qAu-lG-Vhv">
+                        <rect key="frame" x="7" y="132" width="357" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <view key="contentView" id="Yr8-W7-opo">
-                            <rect key="frame" x="3" y="3" width="299" height="40"/>
+                        <view key="contentView" id="3GI-kj-rir">
+                            <rect key="frame" x="3" y="3" width="351" height="62"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
+                    <box fixedFrame="YES" title="Tape Reverse" translatesAutoresizingMaskIntoConstraints="NO" id="76M-wk-6zA">
+                        <rect key="frame" x="366" y="216" width="305" height="66"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="Yr8-W7-opo">
+                            <rect key="frame" x="3" y="3" width="299" height="48"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
+                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zBb-gF-eP6">
+                        <rect key="frame" x="562" y="490" width="103" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1000" maxValue="5000" doubleValue="3000" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="mRy-XU-x7H"/>
+                        <connections>
+                            <action selector="freezeGrainsizeChanged:" target="6kO-Fg-JYF" id="nbU-Fg-RG3"/>
+                        </connections>
+                    </slider>
+                    <box fixedFrame="YES" title="Sampler" translatesAutoresizingMaskIntoConstraints="NO" id="4aO-4j-UwL">
+                        <rect key="frame" x="7" y="216" width="357" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="j19-oC-rXs">
+                            <rect key="frame" x="3" y="3" width="351" height="72"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grp-zO-WAk">
+                        <rect key="frame" x="595" y="77" width="73" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Monitor" bezelStyle="regularSquare" imagePosition="left" inset="2" id="iox-4C-629">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="monitorEnableChanged:" target="6kO-Fg-JYF" id="4cG-YV-VHA"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="61" y="105.5"/>
+            <point key="canvasLocation" x="-14.5" y="105.5"/>
         </window>
     </objects>
 </document>

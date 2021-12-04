@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F2A68783F694758E77448F7 /* Pods_Going_Zero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2017B09BB2A156BC043EB499 /* Pods_Going_Zero.framework */; };
 		EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7702666535A00EB0E73 /* MiniFader.m */; };
 		EB18F7742669077E00EB0E73 /* WaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7732669077E00EB0E73 /* WaveView.m */; };
 		EB18F777266907B400EB0E73 /* Viewer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F776266907B400EB0E73 /* Viewer.m */; };
@@ -34,46 +35,32 @@
 		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
 		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
 		EBAA80982678E00D00809C1D /* QuickCue.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80972678E00D00809C1D /* QuickCue.m */; };
-		EBBF46BC2674F31800785BF6 /* libtensorflow_framework.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */; };
-		EBBF46BD2674F31800785BF6 /* libtensorflow_framework.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		EBBF46C02674F32D00785BF6 /* libtensorflow.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46BF2674F32D00785BF6 /* libtensorflow.1.dylib */; };
-		EBBF46C12674F32D00785BF6 /* libtensorflow.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = EBBF46BF2674F32D00785BF6 /* libtensorflow.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		EBBF46C52674FCEA00785BF6 /* libwave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46C22674F34D00785BF6 /* libwave.a */; };
-		EBBF46C62674FCEE00785BF6 /* libspleeter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46BA2674F2E600785BF6 /* libspleeter.a */; };
-		EBBF46C72674FCF100785BF6 /* libspleeter_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46B92674F2B100785BF6 /* libspleeter_common.a */; };
-		EBBF46CC267533A200785BF6 /* libspleeter_filter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46CB2675339000785BF6 /* libspleeter_filter.a */; };
-		EBBF46CE2675351300785BF6 /* librtff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46CD267534F000785BF6 /* librtff.a */; };
-		EBBF46D02675355B00785BF6 /* libartff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46CF2675355B00785BF6 /* libartff.a */; };
-		EBBF46D22675365A00785BF6 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBF46D12675365A00785BF6 /* libfftw3f.a */; };
 		EBBF46D62675D45100785BF6 /* ReverseController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46D42675D45100785BF6 /* ReverseController.m */; };
 		EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBBF46D52675D45100785BF6 /* ReverseController.xib */; };
 		EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46D92675D4AF00785BF6 /* Reverse.m */; };
 		EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46DC2676171D00785BF6 /* ReverseTurntableView.m */; };
+		EBDA9A3C273D4BA700836273 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A3B273D4BA700836273 /* MainViewController.m */; };
+		EBDA9A43273F867E00836273 /* LPF_IIR.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A3E273F867A00836273 /* LPF_IIR.m */; };
+		EBDA9A44273F867E00836273 /* DJFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A40273F867C00836273 /* DJFilter.m */; };
+		EBDA9A45273F867E00836273 /* HPF_IIR.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A42273F867E00836273 /* HPF_IIR.m */; };
+		EBDA9A492740A9E500836273 /* SamplerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A472740A9E500836273 /* SamplerController.m */; };
+		EBDA9A4A2740A9E500836273 /* SamplerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBDA9A482740A9E500836273 /* SamplerController.xib */; };
+		EBDA9A4D2740AA8600836273 /* Sampler.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A4C2740AA8600836273 /* Sampler.m */; };
+		EBDA9A7127488DA400836273 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDA9A7027488DA400836273 /* CFNetwork.framework */; };
+		EBDA9A7327488DC600836273 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDA9A7227488DC600836273 /* Security.framework */; };
 		EBEC8C72266313C400257694 /* Bender.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEC8C71266313C400257694 /* Bender.m */; };
-		EBF93D0E266AA076001B13F3 /* DJFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF93D0D266AA076001B13F3 /* DJFilterView.xib */; };
-		EBF93D11266AA184001B13F3 /* DJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D10266AA184001B13F3 /* DJViewController.m */; };
+		EBF93D0E266AA076001B13F3 /* DJFilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF93D0D266AA076001B13F3 /* DJFilterController.xib */; };
+		EBF93D11266AA184001B13F3 /* DJFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D10266AA184001B13F3 /* DJFilterController.m */; };
 		EBF93D1A266AE709001B13F3 /* MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D19266AE709001B13F3 /* MyButton.m */; };
 		EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF93D1B266B164F001B13F3 /* RefrainView.xib */; };
 		EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D1E266B168D001B13F3 /* RefrainController.m */; };
 		EBF93D22266B215E001B13F3 /* Refrain.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D21266B215E001B13F3 /* Refrain.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		EBBF46BE2674F31800785BF6 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				EBBF46C12674F32D00785BF6 /* libtensorflow.1.dylib in Embed Libraries */,
-				EBBF46BD2674F31800785BF6 /* libtensorflow_framework.1.dylib in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		2017B09BB2A156BC043EB499 /* Pods_Going_Zero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Going_Zero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0523DD59877303FFEBADD98 /* Pods-Going Zero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Going Zero.release.xcconfig"; path = "Target Support Files/Pods-Going Zero/Pods-Going Zero.release.xcconfig"; sourceTree = "<group>"; };
+		DCC024A01306748B17241DA0 /* Pods-Going Zero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Going Zero.debug.xcconfig"; path = "Target Support Files/Pods-Going Zero/Pods-Going Zero.debug.xcconfig"; sourceTree = "<group>"; };
 		EB18F76F2666535A00EB0E73 /* MiniFader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniFader.h; sourceTree = "<group>"; };
 		EB18F7702666535A00EB0E73 /* MiniFader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiniFader.m; sourceTree = "<group>"; };
 		EB18F7722669077E00EB0E73 /* WaveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaveView.h; sourceTree = "<group>"; };
@@ -140,11 +127,26 @@
 		EBBF46D92675D4AF00785BF6 /* Reverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reverse.m; sourceTree = "<group>"; };
 		EBBF46DB2676171D00785BF6 /* ReverseTurntableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReverseTurntableView.h; sourceTree = "<group>"; };
 		EBBF46DC2676171D00785BF6 /* ReverseTurntableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReverseTurntableView.m; sourceTree = "<group>"; };
+		EBDA9A3A273D4BA700836273 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		EBDA9A3B273D4BA700836273 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		EBDA9A3D273F867A00836273 /* LPF_IIR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPF_IIR.h; sourceTree = "<group>"; };
+		EBDA9A3E273F867A00836273 /* LPF_IIR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPF_IIR.m; sourceTree = "<group>"; };
+		EBDA9A3F273F867B00836273 /* DJFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJFilter.h; sourceTree = "<group>"; };
+		EBDA9A40273F867C00836273 /* DJFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJFilter.m; sourceTree = "<group>"; };
+		EBDA9A41273F867D00836273 /* HPF_IIR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPF_IIR.h; sourceTree = "<group>"; };
+		EBDA9A42273F867E00836273 /* HPF_IIR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPF_IIR.m; sourceTree = "<group>"; };
+		EBDA9A462740A9E500836273 /* SamplerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SamplerController.h; sourceTree = "<group>"; };
+		EBDA9A472740A9E500836273 /* SamplerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SamplerController.m; sourceTree = "<group>"; };
+		EBDA9A482740A9E500836273 /* SamplerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SamplerController.xib; sourceTree = "<group>"; };
+		EBDA9A4B2740AA8600836273 /* Sampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sampler.h; sourceTree = "<group>"; };
+		EBDA9A4C2740AA8600836273 /* Sampler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sampler.m; sourceTree = "<group>"; };
+		EBDA9A7027488DA400836273 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		EBDA9A7227488DC600836273 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EBEC8C70266313C400257694 /* Bender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bender.h; sourceTree = "<group>"; };
 		EBEC8C71266313C400257694 /* Bender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bender.m; sourceTree = "<group>"; };
-		EBF93D0D266AA076001B13F3 /* DJFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJFilterView.xib; sourceTree = "<group>"; };
-		EBF93D0F266AA184001B13F3 /* DJViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJViewController.h; sourceTree = "<group>"; };
-		EBF93D10266AA184001B13F3 /* DJViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJViewController.m; sourceTree = "<group>"; };
+		EBF93D0D266AA076001B13F3 /* DJFilterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJFilterController.xib; sourceTree = "<group>"; };
+		EBF93D0F266AA184001B13F3 /* DJFilterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJFilterController.h; sourceTree = "<group>"; };
+		EBF93D10266AA184001B13F3 /* DJFilterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJFilterController.m; sourceTree = "<group>"; };
 		EBF93D18266AE709001B13F3 /* MyButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyButton.h; sourceTree = "<group>"; };
 		EBF93D19266AE709001B13F3 /* MyButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyButton.m; sourceTree = "<group>"; };
 		EBF93D1B266B164F001B13F3 /* RefrainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefrainView.xib; sourceTree = "<group>"; };
@@ -159,21 +161,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBBF46D22675365A00785BF6 /* libfftw3f.a in Frameworks */,
-				EBBF46D02675355B00785BF6 /* libartff.a in Frameworks */,
-				EBBF46C72674FCF100785BF6 /* libspleeter_common.a in Frameworks */,
-				EBBF46C62674FCEE00785BF6 /* libspleeter.a in Frameworks */,
-				EBBF46C02674F32D00785BF6 /* libtensorflow.1.dylib in Frameworks */,
-				EBBF46BC2674F31800785BF6 /* libtensorflow_framework.1.dylib in Frameworks */,
-				EBBF46C52674FCEA00785BF6 /* libwave.a in Frameworks */,
-				EBBF46CC267533A200785BF6 /* libspleeter_filter.a in Frameworks */,
-				EBBF46CE2675351300785BF6 /* librtff.a in Frameworks */,
+				EBDA9A7327488DC600836273 /* Security.framework in Frameworks */,
+				EBDA9A7127488DA400836273 /* CFNetwork.framework in Frameworks */,
+				8F2A68783F694758E77448F7 /* Pods_Going_Zero.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16E25C5BEBF500F1E6A171C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DCC024A01306748B17241DA0 /* Pods-Going Zero.debug.xcconfig */,
+				D0523DD59877303FFEBADD98 /* Pods-Going Zero.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EB19287A266B9C1D00980F39 /* filter */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,9 +196,15 @@
 				EB18F776266907B400EB0E73 /* Viewer.m */,
 				EB18F7722669077E00EB0E73 /* WaveView.h */,
 				EB18F7732669077E00EB0E73 /* WaveView.m */,
-				EBF93D0F266AA184001B13F3 /* DJViewController.h */,
-				EBF93D10266AA184001B13F3 /* DJViewController.m */,
-				EBF93D0D266AA076001B13F3 /* DJFilterView.xib */,
+				EBDA9A3F273F867B00836273 /* DJFilter.h */,
+				EBDA9A40273F867C00836273 /* DJFilter.m */,
+				EBDA9A41273F867D00836273 /* HPF_IIR.h */,
+				EBDA9A42273F867E00836273 /* HPF_IIR.m */,
+				EBDA9A3D273F867A00836273 /* LPF_IIR.h */,
+				EBDA9A3E273F867A00836273 /* LPF_IIR.m */,
+				EBF93D0F266AA184001B13F3 /* DJFilterController.h */,
+				EBF93D10266AA184001B13F3 /* DJFilterController.m */,
+				EBF93D0D266AA076001B13F3 /* DJFilterController.xib */,
 				EBF93D1D266B168D001B13F3 /* RefrainController.h */,
 				EBF93D1E266B168D001B13F3 /* RefrainController.m */,
 				EBF93D20266B215E001B13F3 /* Refrain.h */,
@@ -226,6 +237,11 @@
 				EB70011B2691D022007F88EE /* FlangerController.xib */,
 				EB70011E2691D038007F88EE /* Flanger.h */,
 				EB70011F2691D038007F88EE /* Flanger.m */,
+				EBDA9A462740A9E500836273 /* SamplerController.h */,
+				EBDA9A472740A9E500836273 /* SamplerController.m */,
+				EBDA9A482740A9E500836273 /* SamplerController.xib */,
+				EBDA9A4B2740AA8600836273 /* Sampler.h */,
+				EBDA9A4C2740AA8600836273 /* Sampler.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -245,6 +261,7 @@
 				EB6E386026623E4A002AADCA /* Going Zero */,
 				EB6E385F26623E4A002AADCA /* Products */,
 				EBBF46B82674F2B100785BF6 /* Frameworks */,
+				16E25C5BEBF500F1E6A171C4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -278,6 +295,8 @@
 				EB6E387C266240BF002AADCA /* RingView.m */,
 				EB6E387D266240C0002AADCA /* TurnTableView.h */,
 				EB6E387B266240BF002AADCA /* TurnTableView.m */,
+				EBDA9A3A273D4BA700836273 /* MainViewController.h */,
+				EBDA9A3B273D4BA700836273 /* MainViewController.m */,
 			);
 			path = "Going Zero";
 			sourceTree = "<group>";
@@ -285,6 +304,8 @@
 		EBBF46B82674F2B100785BF6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EBDA9A7227488DC600836273 /* Security.framework */,
+				EBDA9A7027488DA400836273 /* CFNetwork.framework */,
 				EBBF46D12675365A00785BF6 /* libfftw3f.a */,
 				EBBF46CF2675355B00785BF6 /* libartff.a */,
 				EBBF46CD267534F000785BF6 /* librtff.a */,
@@ -294,6 +315,7 @@
 				EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */,
 				EBBF46BA2674F2E600785BF6 /* libspleeter.a */,
 				EBBF46B92674F2B100785BF6 /* libspleeter_common.a */,
+				2017B09BB2A156BC043EB499 /* Pods_Going_Zero.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -305,10 +327,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB6E386F26623E4B002AADCA /* Build configuration list for PBXNativeTarget "Going Zero" */;
 			buildPhases = (
+				3817B4C39E21835C72A86147 /* [CP] Check Pods Manifest.lock */,
 				EB6E385A26623E4A002AADCA /* Sources */,
 				EB6E385B26623E4A002AADCA /* Frameworks */,
 				EB6E385C26623E4A002AADCA /* Resources */,
-				EBBF46BE2674F31800785BF6 /* Embed Libraries */,
+				D42879D8033EFD53BE88F600 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -325,7 +348,7 @@
 		EB6E385626623E4A002AADCA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = kyab;
 				TargetAttributes = {
 					EB6E385D26623E4A002AADCA = {
@@ -358,10 +381,11 @@
 			files = (
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
+				EBDA9A4A2740A9E500836273 /* SamplerController.xib in Resources */,
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
 				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
 				EB70011D2691D022007F88EE /* FlangerController.xib in Resources */,
-				EBF93D0E266AA076001B13F3 /* DJFilterView.xib in Resources */,
+				EBF93D0E266AA076001B13F3 /* DJFilterController.xib in Resources */,
 				EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */,
 				EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */,
 				EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */,
@@ -369,6 +393,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3817B4C39E21835C72A86147 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Going Zero-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D42879D8033EFD53BE88F600 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Going Zero/Pods-Going Zero-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Going Zero/Pods-Going Zero-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Going Zero/Pods-Going Zero-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EB6E385A26623E4A002AADCA /* Sources */ = {
@@ -378,26 +444,32 @@
 				EB6E387726623F83002AADCA /* AudioEngine.m in Sources */,
 				EBBF46D62675D45100785BF6 /* ReverseController.m in Sources */,
 				EBF93D1A266AE709001B13F3 /* MyButton.m in Sources */,
+				EBDA9A45273F867E00836273 /* HPF_IIR.m in Sources */,
 				EB7372B6266530F600393D58 /* Freezer.m in Sources */,
 				EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */,
 				EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */,
 				EB18F777266907B400EB0E73 /* Viewer.m in Sources */,
 				EBAA80982678E00D00809C1D /* QuickCue.m in Sources */,
+				EBDA9A4D2740AA8600836273 /* Sampler.m in Sources */,
+				EBDA9A43273F867E00836273 /* LPF_IIR.m in Sources */,
 				EB18F77D266A6E7100EB0E73 /* Looper.m in Sources */,
 				EB6E386B26623E4B002AADCA /* main.m in Sources */,
 				EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */,
 				EB6E387426623F2F002AADCA /* AppController.mm in Sources */,
 				EB6E387A26624089002AADCA /* RingBuffer.m in Sources */,
+				EBDA9A3C273D4BA700836273 /* MainViewController.m in Sources */,
 				EB6E388326627C90002AADCA /* TrillReverse.m in Sources */,
-				EBF93D11266AA184001B13F3 /* DJViewController.m in Sources */,
+				EBF93D11266AA184001B13F3 /* DJFilterController.m in Sources */,
 				EB6E387F266240C1002AADCA /* TurnTableView.m in Sources */,
 				EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */,
 				EB70011C2691D022007F88EE /* FlangerController.m in Sources */,
 				EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */,
+				EBDA9A492740A9E500836273 /* SamplerController.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
 				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
 				EBEC8C72266313C400257694 /* Bender.m in Sources */,
 				EBF93D22266B215E001B13F3 /* Refrain.m in Sources */,
+				EBDA9A44273F867E00836273 /* DJFilter.m in Sources */,
 				EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */,
 				EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */,
 				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
@@ -447,6 +519,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -505,6 +578,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -532,69 +606,55 @@
 		};
 		EB6E387026623E4B002AADCA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCC024A01306748B17241DA0 /* Pods-Going Zero.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Going Zero/Going_Zero.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = A386R5WFZ6;
 				ENABLE_HARDENED_RUNTIME = NO;
-				HEADER_SEARCH_PATHS = (
-					/Users/koji/work/PartScratch/spleeterpp/src,
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/eigen3-src",
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-src/src",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Going Zero/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/wave-build/src/wave",
-					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter,
-					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter_common,
-					/Users/koji/work/PartScratch/spleeterpp/build/tensorflow/lib,
-					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter_filter,
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-build/src/rtff",
-					/Users/koji/work/PartScratch/spleeterpp/build/src/artff,
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-build/fftw/build/lib",
-				);
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CODE_SIGN_FLAGS = "--timestamp --options=runtime";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kyab.Going-Zero";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
 		EB6E387126623E4B002AADCA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0523DD59877303FFEBADD98 /* Pods-Going Zero.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Going Zero/Going_Zero.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = A386R5WFZ6;
 				ENABLE_HARDENED_RUNTIME = NO;
-				HEADER_SEARCH_PATHS = (
-					/Users/koji/work/PartScratch/spleeterpp/src,
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/eigen3-src",
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-src/src",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Going Zero/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/wave-build/src/wave",
-					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter,
-					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter_common,
-					/Users/koji/work/PartScratch/spleeterpp/build/tensorflow/lib,
-					/Users/koji/work/PartScratch/spleeterpp/build/src/spleeter_filter,
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-build/src/rtff",
-					/Users/koji/work/PartScratch/spleeterpp/build/src/artff,
-					"/Users/koji/work/PartScratch/spleeterpp/build/_deps/rtff-build/fftw/build/lib",
-				);
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CODE_SIGN_FLAGS = "--timestamp --options=runtime";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kyab.Going-Zero";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

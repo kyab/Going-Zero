@@ -13,10 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Viewer : NSObject{
     RingBuffer *_ring;
+    Boolean _enabled;
     
 }
 
 -(RingBuffer *)ring;
+-(void)setEnabled:(Boolean)enabled;
+-(Boolean)isEnabled;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 
 

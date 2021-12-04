@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
     TapeReverse *_tapeReverse;
     
     __weak IBOutlet NSSlider *_sliderRate;
+    __weak IBOutlet NSSlider *_sliderDryVolume;
 }
 
 -(void)setTapeReverse:(TapeReverse *)tapeReverse;

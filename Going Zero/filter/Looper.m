@@ -42,18 +42,18 @@
 
 -(void)doHalf{
     _duration /= 2;
-    [_ring advanceReadPtrSample:-[_ring playFrame]];
+//    [_ring advanceReadPtrSample:-[_ring playFrame]];
     
 }
 
 -(void)doQuater{
     _duration /= 4;
-    [_ring advanceReadPtrSample:-[_ring playFrame]];
+//    [_ring advanceReadPtrSample:-[_ring playFrame]];
 }
 
 -(void)divide8{
     _duration /= 8;
-    [_ring advanceReadPtrSample:-[_ring playFrame]];
+//    [_ring advanceReadPtrSample:-[_ring playFrame]];
 }
 
 

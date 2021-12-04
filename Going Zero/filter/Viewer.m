@@ -13,8 +13,16 @@
 -(id)init{
     self = [super init];
     _ring = [[RingBuffer alloc] init];
-    
+    _enabled = NO;
     return self;
+}
+
+-(void)setEnabled:(Boolean)enabled{
+    _enabled = enabled;
+}
+
+-(Boolean)isEnabled{
+    return _enabled;
 }
 
 -(RingBuffer *)ring{

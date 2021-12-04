@@ -14,6 +14,8 @@
 #import "TurnTableView.h"
 #import "MiniFader.h"
 
+#import "MainViewController.h"
+
 #import "Looper.h"
 #import "TrillReverse.h"
 #import "Reverse.h"
@@ -31,14 +33,21 @@
 #import "QuickCueController.h"
 #import "Flanger.h"
 #import "FlangerController.h"
-
-#import "DJViewController.h"
 #import "RefrainController.h"
+#import "DJFilterController.h"
+#import "SamplerController.h"
 
+
+//OSC
+#import "F53OSC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AppController : NSObject{
+    
+    
+    __weak IBOutlet MainViewController *_mainViewController;
+    
     AudioEngine *_ae;
     RingBuffer *_ring;
     __weak IBOutlet TurnTableView *_turnTable;
@@ -48,14 +57,18 @@ NS_ASSUME_NONNULL_BEGIN
     float _tempRightPtr[1024];
     
     double _speedRate;
-    float _dryVolume;
-    float _wetVolume;
+//    float _dryVolume;
+//    float _wetVolume;
     __weak IBOutlet NSSlider *_sliderDryVolume;
+    __weak IBOutlet NSSlider *_sliderWetVolume;
     MiniFaderIn *_faderIn;
     
-    
-    
     Looper *_looper;
+    __weak IBOutlet NSButton *_btnLooperStart;
+    __weak IBOutlet NSButton *_btnLooperEnd;
+    __weak IBOutlet NSButton *_btnLooperExit;
+    __weak IBOutlet NSButton *_btnLoopHalf;
+    __weak IBOutlet NSButton *_btnLoopQuarter;
     
     TrillReverse *_trillReverse;
     __weak IBOutlet NSButton *_chkTrillReverse;
@@ -73,13 +86,15 @@ NS_ASSUME_NONNULL_BEGIN
     
     Freezer *_freezer;
     __weak IBOutlet NSButton *_chkFreeze;
+    __weak IBOutlet NSSlider *_sliderGrainSize;
     
     Viewer *_viewer;
     __weak IBOutlet WaveView *_waveView;
+    __weak IBOutlet NSButton *_chkWaveViewEnabled;
     
-    
-    __weak IBOutlet NSView *_djContentView;
-    DJViewController *_djViewController;
+//    
+//    __weak IBOutlet NSView *_djContentView;
+//    DJViewController *_djViewController;
     
     Refrain *_refrain;
     __weak IBOutlet NSView *_refrainContentView;
@@ -88,7 +103,6 @@ NS_ASSUME_NONNULL_BEGIN
     BitCrasher *_crasher;
     __weak IBOutlet NSView *_crasherContentView;
     BitCrasherController *_crasherController;
-    
     
     TapeReverse *_tapeReverse;
     __weak IBOutlet NSBox *_tapeReverseContentView;
@@ -102,8 +116,24 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSView *_flangerContentView;
     FlangerController *_flangerController;
     
+    DJFilter *_djFilter;
+    __weak IBOutlet NSView *_djFilterContentView;
+    DJFilterController *_djFilterController;
+    
+    Sampler *_sampler;
+    __weak IBOutlet NSView *_samplerContentView;
+    SamplerController *_samplerController;
+    
+    NSNetService *_netService;
+    F53OSCServer *_oscServer;
+    
 }
+
+@property (nonatomic) float wetVolume;
+@property (nonatomic) float dryVolume;
+
 -(void)terminate;
+-(void)startBonjour;
 
 
 @end

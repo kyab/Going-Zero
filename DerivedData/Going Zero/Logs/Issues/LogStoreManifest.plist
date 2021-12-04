@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>B38C9A36-BB6B-42D7-A47D-0414FAAE451A</key>
+		<key>3099D4E7-C048-4C7B-A605-10B2B0325940</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.application</string>
 			<key>fileName</key>
-			<string>B38C9A36-BB6B-42D7-A47D-0414FAAE451A.xcactivitylog</string>
+			<string>3099D4E7-C048-4C7B-A605-10B2B0325940.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -26,13 +26,69 @@
 			<key>signature</key>
 			<string>Going_Zero-hicsokxgpnexcoeytxknqmhxazix</string>
 			<key>timeStartedRecording</key>
-			<real>647354571.608513</real>
+			<real>660310923.15410602</real>
 			<key>timeStoppedRecording</key>
-			<real>647354575.025015</real>
+			<real>660310924.95011997</real>
 			<key>title</key>
 			<string>Build target Going Zero</string>
 			<key>uniqueIdentifier</key>
-			<string>B38C9A36-BB6B-42D7-A47D-0414FAAE451A</string>
+			<string>3099D4E7-C048-4C7B-A605-10B2B0325940</string>
+		</dict>
+		<key>B2F93CDA-24FA-4231-9B2C-DF7BBF039E84</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogMajorGroupSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.framework</string>
+			<key>fileName</key>
+			<string>B2F93CDA-24FA-4231-9B2C-DF7BBF039E84.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>F53OSC-frfhgetiedvueehfeohdmoqmdisx</string>
+			<key>timeStartedRecording</key>
+			<real>660293584.54281795</real>
+			<key>timeStoppedRecording</key>
+			<real>660293588.87694299</real>
+			<key>title</key>
+			<string>Build target F53OSC</string>
+			<key>uniqueIdentifier</key>
+			<string>B2F93CDA-24FA-4231-9B2C-DF7BBF039E84</string>
+		</dict>
+		<key>ECD49B85-04F7-496F-A322-CEFFA88C9A7A</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogMajorGroupSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.framework</string>
+			<key>fileName</key>
+			<string>ECD49B85-04F7-496F-A322-CEFFA88C9A7A.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>Pods-Going_Zero-frfhgetiedvueehfeohdmoqmdisx</string>
+			<key>timeStartedRecording</key>
+			<real>660293584.54193902</real>
+			<key>timeStoppedRecording</key>
+			<real>660293588.91466498</real>
+			<key>title</key>
+			<string>Build target Pods-Going Zero</string>
+			<key>uniqueIdentifier</key>
+			<string>ECD49B85-04F7-496F-A322-CEFFA88C9A7A</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>

@@ -31,6 +31,8 @@
     NSTimer *_timer3;   //scratch monitor(MIDI)
     
     NSTimeInterval _prevSec;
+    NSTimeInterval _lastUpdateSec;
+    double _prevSpeedRate;
     double _prevRad;
     BOOL _prevRadValid;
     
@@ -38,10 +40,14 @@
     CGFloat _prevY;
     
     double _speedRate;
+    double _history[10];
+    double _accel;
     
     BOOL _reverse;
     
     id<TurnTableDelegate> _delegate;
+    
+    
 }
 
 -(void)setDelegate:(id<TurnTableDelegate>)delegate;

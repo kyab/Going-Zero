@@ -15,7 +15,7 @@
     _ring = [[RingBuffer alloc] init];
     [_ring setMinOffset:0];
     _rate = 0.0;        //means normal forward play
-    
+    _dryVolume = 0.0;
     return self;
 }
 
@@ -24,6 +24,10 @@
     if (_rate == 0.0){
         [_ring follow];
     }
+}
+
+-(void)setDryVolume:(float)volume{
+    _dryVolume = volume;
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
@@ -50,8 +54,10 @@
                        leftDest:tempL rightDest:tempR
                       ToSamples:numSamples rate:_rate consumedFrames:&consumed];
     
-    memcpy(leftBuf, tempL, numSamples * sizeof(float));
-    memcpy(rightBuf, tempR, numSamples * sizeof(float));
+    for (int i = 0; i < numSamples; i++) {
+        leftBuf[i] = leftBuf[i] * _dryVolume + tempL[i];
+        rightBuf[i] = rightBuf[i] * _dryVolume + tempR[i];
+    }
     
     [_ring advanceReadPtrSample:consumed];
     

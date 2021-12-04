@@ -22,6 +22,9 @@
 -(void)setTapeReverse:(TapeReverse *)tapeReverse{
     _tapeReverse = tapeReverse;
 }
+- (IBAction)dryVolumeChanged:(id)sender {
+    [_tapeReverse setDryVolume:[_sliderDryVolume floatValue]];
+}
 
 - (IBAction)rateChanged:(id)sender {
     

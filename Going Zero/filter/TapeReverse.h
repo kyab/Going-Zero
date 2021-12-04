@@ -13,9 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TapeReverse : NSObject{
     RingBuffer *_ring;
     float _rate;
+    float _dryVolume;
 }
 
 -(void)setRate:(float)rate;
+-(void)setDryVolume:(float)volume;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 
 
