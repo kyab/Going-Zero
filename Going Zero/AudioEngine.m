@@ -101,6 +101,8 @@ OSStatus MyRenderIn(void *inRefCon,
         return NO;
     }
     
+    [self reverseSyncVolume];
+    
     if (![self initializeOutput]){
         return NO;
     }
@@ -113,10 +115,7 @@ OSStatus MyRenderIn(void *inRefCon,
         return NO;
     }
     
-    if (![self setupVolumeSync]){
-        //some device could not get device volume
-        return YES;
-    }
+    [self setupVolumeSync];
     
     
     return YES;
@@ -291,22 +290,47 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
         NSLog(@"failed to get volume");
         return NO;
     }
-
     
-    AudioDeviceID builtInOutput = [self getDeviceForName:OUTPUT_DEVICE];
     propAddress.mElement = 1;
-    if (0!=(AudioObjectSetPropertyData(builtInOutput, &propAddress, 0, NULL, size, &scalar))){
+    if (0!=(AudioObjectSetPropertyData(_preOutputDeviceID, &propAddress, 0, NULL, size, &scalar))){
         NSLog(@"failed to sync volume");
         return NO;
     }
     
     propAddress.mElement = 2;
-    if (0!=(AudioObjectSetPropertyData(builtInOutput, &propAddress, 0, NULL, size, &scalar))){
+    if (0!=(AudioObjectSetPropertyData(_preOutputDeviceID, &propAddress, 0, NULL, size, &scalar))){
         NSLog(@"failed to sync volume");
         return NO;
     }
     
     NSLog(@"Sync vol OK");
+    return YES;
+
+}
+
+-(BOOL)reverseSyncVolume{
+    AudioDeviceID bgm = [self getDeviceForName:LOOPBACK_DEVICE];
+
+    Float32 scalar = 0;
+    UInt32 size = sizeof(Float32);
+
+    AudioObjectPropertyAddress propAddress;
+    propAddress.mSelector = kAudioDevicePropertyVolumeScalar;
+    propAddress.mScope = kAudioObjectPropertyScopeOutput;
+    propAddress.mElement = 1; //use 1 and 2 for build in output
+
+    if (0!=(AudioObjectGetPropertyData(_preOutputDeviceID, &propAddress, 0, NULL, &size, &scalar))){
+        NSLog(@"failed to get volume");
+        return NO;
+    }
+    
+    propAddress.mElement = 0;
+    if (0!=(AudioObjectSetPropertyData(bgm, &propAddress, 0, NULL, size, &scalar))){
+        NSLog(@"failed to sync volume(reverse)");
+        return NO;
+    }
+    
+    NSLog(@"reverse Sync vol OK");
     return YES;
 
 }
@@ -341,9 +365,6 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
         return NO;
     }
     
-    
-    
-
     return YES;
 }
 
@@ -641,6 +662,22 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
         NSLog(@"Failed to restore Default output for BGM = %d(%@)", ret, [err description]);
         return NO;
     }
+    
+//    propAddress.mSelector = kAudioHardwarePropertyDefaultSystemOutputDevice;
+//    propAddress.mScope = kAudioObjectPropertyScopeGlobal;
+//    propAddress.mElement = kAudioObjectPropertyElementMaster;
+//
+//    ret = AudioObjectSetPropertyData(kAudioObjectSystemObject,
+//                                     &propAddress,
+//                                     0,
+//                                     NULL,
+//                                     sizeof(AudioObjectID),
+//                                     &_preOutputDeviceID);
+//    if(0 < ret){
+//        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+//        NSLog(@"Failed to restore Default system output for BGM = %d(%@)", ret, [err description]);
+//        return NO;
+//    }
     
     return YES;
 }
