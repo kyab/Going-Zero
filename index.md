@@ -38,4 +38,4 @@ Available in from AppStore.
 
 ### Support or Contact
 
-Having trouble with Gong Zero ? Please let me know via [Email](kyossi212@gmail.com) or [Twitter](https://twitter.com/kyab212)
+Having trouble with Gong Zero ? Please let me know via [Email](mailto:kyossi212@gmail.com) or [Twitter](https://twitter.com/kyab212)
