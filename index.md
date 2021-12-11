@@ -1,4 +1,19 @@
-## Welcome to GitHub Pages
+## Going Zero for Mac
+
+Going Zero for Mac is a Mac application which enable you to do some DJ tricks like scratch, loop ,, on any streaming service like Apple Music/Spotify/Youtube
+
+trick list:
+- Scratch
+- Loop
+- Reverse
+- Cue
+- Refrain
+- DJ Filter
+- Flanger
+- Random
+
+### Download Going Zero for Mac
+https://github.com/kyab/Going-Zero/releases
 
 You can use the [editor on GitHub](https://github.com/kyab/Going-Zero/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
