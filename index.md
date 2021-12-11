@@ -29,7 +29,7 @@ https://github.com/kyab/Going-Zero/releases
 <p align＝"center"><img src="./GoingZero_iPad.png" alt="Going Zero Controller" width="250"/></p>
 
 ### Download Going Zero Controller
-To be here.
+Available in from AppStore.
 
 ### Demo
 [![](https://img.youtube.com/vi/KmAr8PCVP08/0.jpg)](https://www.youtube.com/watch?v=KmAr8PCVP08)
