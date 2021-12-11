@@ -2,7 +2,7 @@
 
 "Going Zero for Mac" is a Mac application which enable you to do some DJ tricks like scratch, loop ,, on any streaming service like Apple Music/Spotify/Youtube
 
-<p align＝"center"><img src="./GoingZero_forMac.png" alt="Going Zero for Mac" width="400"/></p>
+<img src="./GoingZero_forMac.png" alt="Going Zero for Mac" width="400"/>
 
 trick list:
 - Scratch
@@ -26,7 +26,7 @@ https://github.com/kyab/Going-Zero/releases
 
 ## Going Zero Controller(iOS)
 "Going Zero Controller" is an iOS app to control "Going Zero for Mac" running on same Wi-Fi network from your iPhone/iPad.
-<p align＝"center"><img src="./GoingZero_iPad.png" alt="Going Zero Controller" width="250"/></p>
+<img src="./GoingZero_iPad.png" alt="Going Zero Controller" width="250"/>
 
 ### Download Going Zero Controller
 Available in from AppStore.
