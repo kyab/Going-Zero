@@ -21,7 +21,7 @@ trick list:
 [https://github.com/kyab/Going-Zero/releases](https://github.com/kyab/Going-Zero/releases)
 
 ### Demo
-[![](https://img.youtube.com/vi/wMbHxi1-s9s/0.jpg)](https://www.youtube.com/watch?v=wMbHxi1-s9s)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wMbHxi1-s9s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## Going Zero Controller (iOS)
@@ -34,11 +34,10 @@ Available in AppStore.
 
 
 ### Demo
-[![](https://img.youtube.com/vi/KmAr8PCVP08/0.jpg)](https://www.youtube.com/watch?v=KmAr8PCVP08)
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KmAr8PCVP08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
-### Support or Contact
 
+## Support or Contact
 Having trouble with Gong Zero ? Please let me know via [Email](mailto:kyossi212@gmail.com) or [Twitter](https://twitter.com/kyab212)
