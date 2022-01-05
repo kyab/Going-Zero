@@ -30,7 +30,7 @@ trick list:
 <img src="./GoingZero_iPad.png" alt="Going Zero Controller" width="250"/>
 
 ### Download Going Zero Controller
-Available in AppStore.
+<a href="https://apps.apple.com/us/app/going-zero-controller/id1599751780?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-top-left-radius: 13px; border-top-right-radius: 13px; border-bottom-right-radius: 13px; border-bottom-left-radius: 13px; width: 250px; height: 83px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1641254400&h=ddfff0c3bd61d9f88f53494b401881d3" alt="Download on the App Store" style="border-top-left-radius: 13px; border-top-right-radius: 13px; border-bottom-right-radius: 13px; border-bottom-left-radius: 13px; width: 250px; height: 83px;"></a>
 
 
 ### Demo
