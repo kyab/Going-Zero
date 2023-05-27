@@ -22,12 +22,14 @@ NS_ASSUME_NONNULL_BEGIN
     UInt32 _frames;
     
     float _pan;
+    float _volume;
 }
 
 -(void)startMark;
 -(void)startRefrain;
 -(UInt32)state;
 -(void)setPan:(float)pan;
+-(void)setVolume:(float)volume;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 -(void)exit;
 

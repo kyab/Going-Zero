@@ -39,6 +39,7 @@
             _downPressed = YES;
             break;
         default:
+            [super keyDown:event];
             break;
     }
 }
@@ -52,6 +53,7 @@
             _downPressed = NO;
             break;
         default:
+            [super keyUp:event];
             break;
     }
 }

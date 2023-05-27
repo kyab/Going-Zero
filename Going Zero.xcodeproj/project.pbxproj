@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F2A68783F694758E77448F7 /* Pods_Going_Zero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2017B09BB2A156BC043EB499 /* Pods_Going_Zero.framework */; };
+		30D150BBE4D286CC7E0FB130 /* Pods_Going_Zero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8F06F4F560999564F14CDB /* Pods_Going_Zero.framework */; };
 		EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7702666535A00EB0E73 /* MiniFader.m */; };
 		EB18F7742669077E00EB0E73 /* WaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7732669077E00EB0E73 /* WaveView.m */; };
 		EB18F777266907B400EB0E73 /* Viewer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F776266907B400EB0E73 /* Viewer.m */; };
@@ -15,6 +15,14 @@
 		EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C0F266B9D7A004485FC /* BitCrasher.m */; };
 		EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C12266B9F69004485FC /* BitCrasherController.m */; };
 		EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB274C13266B9F69004485FC /* BitCrasherController.xib */; };
+		EB37910B2768D66100AC37D0 /* SimpleReverb.m in Sources */ = {isa = PBXBuildFile; fileRef = EB37910A2768D66100AC37D0 /* SimpleReverb.m */; };
+		EB37910F2768D68100AC37D0 /* SimpleReverbController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB37910D2768D68100AC37D0 /* SimpleReverbController.m */; };
+		EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB37910E2768D68100AC37D0 /* SimpleReverbController.xib */; };
+		EB379113276F491400AC37D0 /* ConvolutionReverb.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB379112276F491400AC37D0 /* ConvolutionReverb.mm */; };
+		EB379115276F4B9F00AC37D0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB379114276F4B9F00AC37D0 /* AudioToolbox.framework */; platformFilter = maccatalyst; };
+		EB379119276F5A8B00AC37D0 /* ConvolutionReverbController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB379117276F5A8B00AC37D0 /* ConvolutionReverbController.m */; };
+		EB37911A276F5A8B00AC37D0 /* ConvolutionReverbController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB379118276F5A8B00AC37D0 /* ConvolutionReverbController.xib */; };
+		EB37911D2771CD8800AC37D0 /* RateConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = EB37911C2771CD8800AC37D0 /* RateConverter.m */; };
 		EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652EDC266E00D000089E3E /* TapeReverseController.m */; };
 		EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB652EDD266E00D000089E3E /* TapeReverseController.xib */; };
 		EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652EE1266E00E300089E3E /* TapeReverse.m */; };
@@ -32,6 +40,7 @@
 		EB70011D2691D022007F88EE /* FlangerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB70011B2691D022007F88EE /* FlangerController.xib */; };
 		EB7001202691D038007F88EE /* Flanger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB70011F2691D038007F88EE /* Flanger.m */; };
 		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
+		EB822D572A1D657E00FAA9B5 /* LookUp.m in Sources */ = {isa = PBXBuildFile; fileRef = EB822D562A1D657E00FAA9B5 /* LookUp.m */; };
 		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
 		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
 		EBAA80982678E00D00809C1D /* QuickCue.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80972678E00D00809C1D /* QuickCue.m */; };
@@ -39,6 +48,11 @@
 		EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBBF46D52675D45100785BF6 /* ReverseController.xib */; };
 		EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46D92675D4AF00785BF6 /* Reverse.m */; };
 		EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46DC2676171D00785BF6 /* ReverseTurntableView.m */; };
+		EBC1916B2A21AC3700E13D95 /* LookUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBC191692A21AC3700E13D95 /* LookUpController.m */; };
+		EBC1916C2A21AC3700E13D95 /* LookUpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBC1916A2A21AC3700E13D95 /* LookUpController.xib */; };
+		EBD7C6FE275E54D8009A61DA /* RandomController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD7C6FC275E54D8009A61DA /* RandomController.m */; };
+		EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBD7C6FD275E54D8009A61DA /* RandomController.xib */; };
+		EBD7C702275E54F2009A61DA /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD7C701275E54F2009A61DA /* Random.m */; };
 		EBDA9A3C273D4BA700836273 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A3B273D4BA700836273 /* MainViewController.m */; };
 		EBDA9A43273F867E00836273 /* LPF_IIR.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A3E273F867A00836273 /* LPF_IIR.m */; };
 		EBDA9A44273F867E00836273 /* DJFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A40273F867C00836273 /* DJFilter.m */; };
@@ -58,9 +72,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2017B09BB2A156BC043EB499 /* Pods_Going_Zero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Going_Zero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0523DD59877303FFEBADD98 /* Pods-Going Zero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Going Zero.release.xcconfig"; path = "Target Support Files/Pods-Going Zero/Pods-Going Zero.release.xcconfig"; sourceTree = "<group>"; };
-		DCC024A01306748B17241DA0 /* Pods-Going Zero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Going Zero.debug.xcconfig"; path = "Target Support Files/Pods-Going Zero/Pods-Going Zero.debug.xcconfig"; sourceTree = "<group>"; };
+		3636DE1F11DA5B51B887C549 /* Pods-Going Zero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Going Zero.release.xcconfig"; path = "Target Support Files/Pods-Going Zero/Pods-Going Zero.release.xcconfig"; sourceTree = "<group>"; };
+		60C2A1564451012BB2F274A6 /* Pods-Going Zero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Going Zero.debug.xcconfig"; path = "Target Support Files/Pods-Going Zero/Pods-Going Zero.debug.xcconfig"; sourceTree = "<group>"; };
+		BF8F06F4F560999564F14CDB /* Pods_Going_Zero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Going_Zero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB18F76F2666535A00EB0E73 /* MiniFader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniFader.h; sourceTree = "<group>"; };
 		EB18F7702666535A00EB0E73 /* MiniFader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiniFader.m; sourceTree = "<group>"; };
 		EB18F7722669077E00EB0E73 /* WaveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaveView.h; sourceTree = "<group>"; };
@@ -74,6 +88,19 @@
 		EB274C11266B9F69004485FC /* BitCrasherController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrasherController.h; sourceTree = "<group>"; };
 		EB274C12266B9F69004485FC /* BitCrasherController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BitCrasherController.m; sourceTree = "<group>"; };
 		EB274C13266B9F69004485FC /* BitCrasherController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BitCrasherController.xib; sourceTree = "<group>"; };
+		EB3791092768D66100AC37D0 /* SimpleReverb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleReverb.h; sourceTree = "<group>"; };
+		EB37910A2768D66100AC37D0 /* SimpleReverb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleReverb.m; sourceTree = "<group>"; };
+		EB37910C2768D68100AC37D0 /* SimpleReverbController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleReverbController.h; sourceTree = "<group>"; };
+		EB37910D2768D68100AC37D0 /* SimpleReverbController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleReverbController.m; sourceTree = "<group>"; };
+		EB37910E2768D68100AC37D0 /* SimpleReverbController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleReverbController.xib; sourceTree = "<group>"; };
+		EB379111276F491400AC37D0 /* ConvolutionReverb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvolutionReverb.h; sourceTree = "<group>"; };
+		EB379112276F491400AC37D0 /* ConvolutionReverb.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ConvolutionReverb.mm; sourceTree = "<group>"; };
+		EB379114276F4B9F00AC37D0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EB379116276F5A8B00AC37D0 /* ConvolutionReverbController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvolutionReverbController.h; sourceTree = "<group>"; };
+		EB379117276F5A8B00AC37D0 /* ConvolutionReverbController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvolutionReverbController.m; sourceTree = "<group>"; };
+		EB379118276F5A8B00AC37D0 /* ConvolutionReverbController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConvolutionReverbController.xib; sourceTree = "<group>"; };
+		EB37911B2771CD8800AC37D0 /* RateConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RateConverter.h; path = "Going Zero/RateConverter.h"; sourceTree = SOURCE_ROOT; };
+		EB37911C2771CD8800AC37D0 /* RateConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RateConverter.m; path = "Going Zero/RateConverter.m"; sourceTree = SOURCE_ROOT; };
 		EB652EDB266E00D000089E3E /* TapeReverseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapeReverseController.h; sourceTree = "<group>"; };
 		EB652EDC266E00D000089E3E /* TapeReverseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapeReverseController.m; sourceTree = "<group>"; };
 		EB652EDD266E00D000089E3E /* TapeReverseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TapeReverseController.xib; sourceTree = "<group>"; };
@@ -106,6 +133,8 @@
 		EB70011F2691D038007F88EE /* Flanger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flanger.m; sourceTree = "<group>"; };
 		EB7372B4266530F600393D58 /* Freezer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Freezer.h; sourceTree = "<group>"; };
 		EB7372B5266530F600393D58 /* Freezer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freezer.m; sourceTree = "<group>"; };
+		EB822D552A1D657E00FAA9B5 /* LookUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookUp.h; sourceTree = "<group>"; };
+		EB822D562A1D657E00FAA9B5 /* LookUp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookUp.m; sourceTree = "<group>"; };
 		EBAA80912678DF3000809C1D /* QuickCueController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCueController.h; sourceTree = "<group>"; };
 		EBAA80922678DF3000809C1D /* QuickCueController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickCueController.m; sourceTree = "<group>"; };
 		EBAA80932678DF3000809C1D /* QuickCueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuickCueController.xib; sourceTree = "<group>"; };
@@ -127,6 +156,14 @@
 		EBBF46D92675D4AF00785BF6 /* Reverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reverse.m; sourceTree = "<group>"; };
 		EBBF46DB2676171D00785BF6 /* ReverseTurntableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReverseTurntableView.h; sourceTree = "<group>"; };
 		EBBF46DC2676171D00785BF6 /* ReverseTurntableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReverseTurntableView.m; sourceTree = "<group>"; };
+		EBC191682A21AC3700E13D95 /* LookUpController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookUpController.h; sourceTree = "<group>"; };
+		EBC191692A21AC3700E13D95 /* LookUpController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookUpController.m; sourceTree = "<group>"; };
+		EBC1916A2A21AC3700E13D95 /* LookUpController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LookUpController.xib; sourceTree = "<group>"; };
+		EBD7C6FB275E54D8009A61DA /* RandomController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomController.h; sourceTree = "<group>"; };
+		EBD7C6FC275E54D8009A61DA /* RandomController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RandomController.m; sourceTree = "<group>"; };
+		EBD7C6FD275E54D8009A61DA /* RandomController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RandomController.xib; sourceTree = "<group>"; };
+		EBD7C700275E54F2009A61DA /* Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		EBD7C701275E54F2009A61DA /* Random.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Random.m; sourceTree = "<group>"; };
 		EBDA9A3A273D4BA700836273 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		EBDA9A3B273D4BA700836273 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		EBDA9A3D273F867A00836273 /* LPF_IIR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPF_IIR.h; sourceTree = "<group>"; };
@@ -163,7 +200,8 @@
 			files = (
 				EBDA9A7327488DC600836273 /* Security.framework in Frameworks */,
 				EBDA9A7127488DA400836273 /* CFNetwork.framework in Frameworks */,
-				8F2A68783F694758E77448F7 /* Pods_Going_Zero.framework in Frameworks */,
+				EB379115276F4B9F00AC37D0 /* AudioToolbox.framework in Frameworks */,
+				30D150BBE4D286CC7E0FB130 /* Pods_Going_Zero.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,8 +211,8 @@
 		16E25C5BEBF500F1E6A171C4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DCC024A01306748B17241DA0 /* Pods-Going Zero.debug.xcconfig */,
-				D0523DD59877303FFEBADD98 /* Pods-Going Zero.release.xcconfig */,
+				60C2A1564451012BB2F274A6 /* Pods-Going Zero.debug.xcconfig */,
+				3636DE1F11DA5B51B887C549 /* Pods-Going Zero.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -205,6 +243,11 @@
 				EBF93D0F266AA184001B13F3 /* DJFilterController.h */,
 				EBF93D10266AA184001B13F3 /* DJFilterController.m */,
 				EBF93D0D266AA076001B13F3 /* DJFilterController.xib */,
+				EB822D552A1D657E00FAA9B5 /* LookUp.h */,
+				EB822D562A1D657E00FAA9B5 /* LookUp.m */,
+				EBC191682A21AC3700E13D95 /* LookUpController.h */,
+				EBC191692A21AC3700E13D95 /* LookUpController.m */,
+				EBC1916A2A21AC3700E13D95 /* LookUpController.xib */,
 				EBF93D1D266B168D001B13F3 /* RefrainController.h */,
 				EBF93D1E266B168D001B13F3 /* RefrainController.m */,
 				EBF93D20266B215E001B13F3 /* Refrain.h */,
@@ -242,6 +285,21 @@
 				EBDA9A482740A9E500836273 /* SamplerController.xib */,
 				EBDA9A4B2740AA8600836273 /* Sampler.h */,
 				EBDA9A4C2740AA8600836273 /* Sampler.m */,
+				EBD7C6FB275E54D8009A61DA /* RandomController.h */,
+				EBD7C6FC275E54D8009A61DA /* RandomController.m */,
+				EBD7C6FD275E54D8009A61DA /* RandomController.xib */,
+				EBD7C700275E54F2009A61DA /* Random.h */,
+				EBD7C701275E54F2009A61DA /* Random.m */,
+				EB3791092768D66100AC37D0 /* SimpleReverb.h */,
+				EB37910A2768D66100AC37D0 /* SimpleReverb.m */,
+				EB37910C2768D68100AC37D0 /* SimpleReverbController.h */,
+				EB37910D2768D68100AC37D0 /* SimpleReverbController.m */,
+				EB37910E2768D68100AC37D0 /* SimpleReverbController.xib */,
+				EB379111276F491400AC37D0 /* ConvolutionReverb.h */,
+				EB379112276F491400AC37D0 /* ConvolutionReverb.mm */,
+				EB379116276F5A8B00AC37D0 /* ConvolutionReverbController.h */,
+				EB379117276F5A8B00AC37D0 /* ConvolutionReverbController.m */,
+				EB379118276F5A8B00AC37D0 /* ConvolutionReverbController.xib */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -291,6 +349,8 @@
 				EB6E387626623F83002AADCA /* AudioEngine.m */,
 				EB6E387826624088002AADCA /* RingBuffer.h */,
 				EB6E387926624089002AADCA /* RingBuffer.m */,
+				EB37911B2771CD8800AC37D0 /* RateConverter.h */,
+				EB37911C2771CD8800AC37D0 /* RateConverter.m */,
 				EB6E387E266240C1002AADCA /* RingView.h */,
 				EB6E387C266240BF002AADCA /* RingView.m */,
 				EB6E387D266240C0002AADCA /* TurnTableView.h */,
@@ -304,6 +364,7 @@
 		EBBF46B82674F2B100785BF6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB379114276F4B9F00AC37D0 /* AudioToolbox.framework */,
 				EBDA9A7227488DC600836273 /* Security.framework */,
 				EBDA9A7027488DA400836273 /* CFNetwork.framework */,
 				EBBF46D12675365A00785BF6 /* libfftw3f.a */,
@@ -315,7 +376,7 @@
 				EBBF46BB2674F31800785BF6 /* libtensorflow_framework.1.dylib */,
 				EBBF46BA2674F2E600785BF6 /* libspleeter.a */,
 				EBBF46B92674F2B100785BF6 /* libspleeter_common.a */,
-				2017B09BB2A156BC043EB499 /* Pods_Going_Zero.framework */,
+				BF8F06F4F560999564F14CDB /* Pods_Going_Zero.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -327,11 +388,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB6E386F26623E4B002AADCA /* Build configuration list for PBXNativeTarget "Going Zero" */;
 			buildPhases = (
-				3817B4C39E21835C72A86147 /* [CP] Check Pods Manifest.lock */,
+				1339E3F1C41C3E40FD19EE1B /* [CP] Check Pods Manifest.lock */,
 				EB6E385A26623E4A002AADCA /* Sources */,
 				EB6E385B26623E4A002AADCA /* Frameworks */,
 				EB6E385C26623E4A002AADCA /* Resources */,
-				D42879D8033EFD53BE88F600 /* [CP] Embed Pods Frameworks */,
+				6D6DCF6105D05D4565D3779B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -348,7 +409,8 @@
 		EB6E385626623E4A002AADCA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1310;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = kyab;
 				TargetAttributes = {
 					EB6E385D26623E4A002AADCA = {
@@ -380,13 +442,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
+				EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
+				EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */,
 				EBDA9A4A2740A9E500836273 /* SamplerController.xib in Resources */,
+				EBC1916C2A21AC3700E13D95 /* LookUpController.xib in Resources */,
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
 				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
 				EB70011D2691D022007F88EE /* FlangerController.xib in Resources */,
 				EBF93D0E266AA076001B13F3 /* DJFilterController.xib in Resources */,
 				EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */,
+				EB37911A276F5A8B00AC37D0 /* ConvolutionReverbController.xib in Resources */,
 				EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */,
 				EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */,
 			);
@@ -395,7 +461,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3817B4C39E21835C72A86147 /* [CP] Check Pods Manifest.lock */ = {
+		1339E3F1C41C3E40FD19EE1B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -417,7 +483,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D42879D8033EFD53BE88F600 /* [CP] Embed Pods Frameworks */ = {
+		6D6DCF6105D05D4565D3779B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -448,8 +514,10 @@
 				EB7372B6266530F600393D58 /* Freezer.m in Sources */,
 				EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */,
 				EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */,
+				EB37910B2768D66100AC37D0 /* SimpleReverb.m in Sources */,
 				EB18F777266907B400EB0E73 /* Viewer.m in Sources */,
 				EBAA80982678E00D00809C1D /* QuickCue.m in Sources */,
+				EB37910F2768D68100AC37D0 /* SimpleReverbController.m in Sources */,
 				EBDA9A4D2740AA8600836273 /* Sampler.m in Sources */,
 				EBDA9A43273F867E00836273 /* LPF_IIR.m in Sources */,
 				EB18F77D266A6E7100EB0E73 /* Looper.m in Sources */,
@@ -465,17 +533,24 @@
 				EB70011C2691D022007F88EE /* FlangerController.m in Sources */,
 				EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */,
 				EBDA9A492740A9E500836273 /* SamplerController.m in Sources */,
+				EB37911D2771CD8800AC37D0 /* RateConverter.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
 				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
 				EBEC8C72266313C400257694 /* Bender.m in Sources */,
 				EBF93D22266B215E001B13F3 /* Refrain.m in Sources */,
+				EB379119276F5A8B00AC37D0 /* ConvolutionReverbController.m in Sources */,
 				EBDA9A44273F867E00836273 /* DJFilter.m in Sources */,
 				EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */,
+				EBD7C6FE275E54D8009A61DA /* RandomController.m in Sources */,
 				EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */,
 				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
 				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
+				EB379113276F491400AC37D0 /* ConvolutionReverb.mm in Sources */,
+				EB822D572A1D657E00FAA9B5 /* LookUp.m in Sources */,
+				EBD7C702275E54F2009A61DA /* Random.m in Sources */,
 				EB7001202691D038007F88EE /* Flanger.m in Sources */,
 				EB18F7742669077E00EB0E73 /* WaveView.m in Sources */,
+				EBC1916B2A21AC3700E13D95 /* LookUpController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +602,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -544,7 +620,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -586,6 +662,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -597,7 +674,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -606,26 +683,42 @@
 		};
 		EB6E387026623E4B002AADCA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCC024A01306748B17241DA0 /* Pods-Going Zero.debug.xcconfig */;
+			baseConfigurationReference = 60C2A1564451012BB2F274A6 /* Pods-Going Zero.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Going Zero/Going_Zero.entitlements";
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = A386R5WFZ6;
 				ENABLE_HARDENED_RUNTIME = NO;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "Going Zero/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MARKETING_VERSION = 1.0.1;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp --options=runtime";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"F53OSC\"",
+					"-framework",
+					"\"Security\"",
+					"-lfftw3",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kyab.Going-Zero";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -634,26 +727,43 @@
 		};
 		EB6E387126623E4B002AADCA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0523DD59877303FFEBADD98 /* Pods-Going Zero.release.xcconfig */;
+			baseConfigurationReference = 3636DE1F11DA5B51B887C549 /* Pods-Going Zero.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Going Zero/Going_Zero.entitlements";
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A386R5WFZ6;
-				ENABLE_HARDENED_RUNTIME = NO;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = A386R5WFZ6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "Going Zero/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MARKETING_VERSION = 1.0.1;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp --options=runtime";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"F53OSC\"",
+					"-framework",
+					"\"Security\"",
+					"-lfftw3",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kyab.Going-Zero";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

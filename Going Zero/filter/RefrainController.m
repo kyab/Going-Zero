@@ -38,14 +38,15 @@
 }
 
 - (IBAction)exitClicked:(id)sender {
-//    if ([_refrain state] == REFRAIN_STATE_REFRAINING){
-        [_refrain exit];
-        [_btnMark setTitle:@"Mark"];
-//    }
+    [_refrain exit];
+    [_btnMark setTitle:@"Mark"];
 }
 - (IBAction)panChanged:(id)sender {
     [_refrain setPan:[_sliderPan floatValue]];
 }
 
+- (IBAction)volumeChanged:(id)sender {
+    [_refrain setVolume:[_sliderVolume floatValue]];
+}
 
 @end

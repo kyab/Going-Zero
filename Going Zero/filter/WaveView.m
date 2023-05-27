@@ -12,7 +12,6 @@
 
 - (void)awakeFromNib{
     
-    _viewer = nil;
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     
@@ -34,7 +33,9 @@
     [[NSColor blackColor] set];
     NSRectFill(dirtyRect);
     
-    if (!_viewer) return;
+    if (!_viewer) {
+        return;
+    }
     if (![_viewer isEnabled]) return;
     
     

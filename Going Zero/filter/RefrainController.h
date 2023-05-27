@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
     Refrain *_refrain;
     __weak IBOutlet NSButton *_btnMark;
     __weak IBOutlet NSSlider *_sliderPan;
+    __weak IBOutlet NSSlider *_sliderVolume;
 }
 
 

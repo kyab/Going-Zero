@@ -27,7 +27,9 @@
     [self addObserver:self forKeyPath:@"dryVolume" options:NSKeyValueObservingOptionNew context:nil];
     [self addObserver:self forKeyPath:@"wetVolume" options:NSKeyValueObservingOptionNew context:nil];
     
-    
+    [_btnTap setKeyEquivalent:@"\t"];
+    _tapHistory = [[NSMutableArray alloc] init];
+    _bpm = 120.0;
     
     _faderIn = [[MiniFaderIn alloc] init];
     
@@ -86,7 +88,29 @@
     [_samplerContentView addSubview:[_samplerController view]];
     [self centerize:[_samplerController view]];
     [_samplerController setSampler:_sampler];
+    
+    _random = [[Random alloc] init];
+    _randomController = [[RandomController alloc]
+                         initWithNibName:@"RandomController" bundle:nil];
+    [_randomContentView addSubview:[_randomController view]];
+    [self centerize:[_randomController view]];
+    [_randomController setRandom:_random];
+    
+    _simpleReverb = [[SimpleReverb alloc] init];
+    _simpleReverbController = [[SimpleReverbController alloc]
+                         initWithNibName:@"SimpleReverbController" bundle:nil];
+    [_simpleReverbContentView addSubview:[_simpleReverbController view]];
+    [self centerize:[_simpleReverbController view]];
+    [_simpleReverbController setSimpleReverb:_simpleReverb];
 
+    
+//    _convolutionReverb = [[ConvolutionReverb alloc] init];
+//    _convolutionReverbController = [[ConvolutionReverbController alloc]
+//                         initWithNibName:@"ConvolutionReverbController" bundle:nil];
+//    [_convolutionReverbContentView addSubview:[_convolutionReverbController view]];
+//    [self centerize:[_convolutionReverbController view]];
+//    [_convolutionReverbController setConvolutionReverb:_convolutionReverb];
+    
 
     _djFilter = [[DJFilter alloc] init];
     _djFilterController = [[DJFilterController alloc]
@@ -95,10 +119,7 @@
     [self centerize:[_djFilterController view]];
     [_djFilterController setDJFilter:_djFilter];
     
-    
     [self startBonjour];
-    
-    
     
     _ae = [[AudioEngine alloc] init];
     if ([_ae initialize]){
@@ -114,6 +135,10 @@
 
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
+    //wake up
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(didWakenUp:) name:NSWorkspaceDidWakeNotification object:nil];
+    
+    
 }
 
 -(void)terminate{
@@ -123,17 +148,12 @@
 }
 
 -(void)turnTableSpeedRateChanged{
-    float preValue = _speedRate;
     _speedRate = [_turnTable speedRate];
     if (_speedRate == 1.0){
         [_ring follow];
         [_faderIn startFadeIn];
         return;
     }
-//    
-//    if (preValue == 1.0){
-//        [_faderIn startFadeIn];
-//    }
 }
 
 -(void)centerize:(NSView *)view{
@@ -321,11 +341,24 @@
     //Sampler
     [_sampler processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+        
+    //Random
+    [_random processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    
+
     //DJ filter
     [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Simple Reverb
+    [_simpleReverb processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
+    //Convolution Reverb
+//    [_convolutionReverb processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     
     //viewer
     [_viewer processLeft:(float*)ioData->mBuffers[0].mData
@@ -408,13 +441,9 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     [_looper divide8];
 }
 
-
-
 - (IBAction)_trillReverseChange:(id)sender {
     [_trillReverse setActive:([_chkTrillReverse state] == NSControlStateValueOn)];
-
 }
-
 
 - (IBAction)_benderBounceChanged:(id)sender {
     [_bender setBounce:(_chkBenderBounce.state == NSControlStateValueOn)];
@@ -433,13 +462,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         }
     }
 }
-
-//- (IBAction)_benderChange:(id)sender {
-//    NSLog(@"active : %d", [_chkBender state] == NSControlStateValueOn);
-//    [_bender setActive:([_chkBender state] == NSControlStateValueOn)];
-//    
-//
-//}
 
 -(void)startBounce{
     _benderBounceTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onBounceTimer:) userInfo:nil repeats:YES];
@@ -581,6 +603,32 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     }else if ([keyPath isEqual:@"wetVolume"]){
         [_sliderWetVolume setFloatValue:self.wetVolume];
     }
+}
+
+- (IBAction)tapClicked:(id)sender {
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    
+    if (_tapHistory.count >= 8){
+        [_tapHistory removeObjectAtIndex:0];
+    }
+    
+    [_tapHistory addObject:[NSNumber numberWithDouble:now]];
+    if (_tapHistory.count >=4){
+        double from = [[_tapHistory objectAtIndex:0] doubleValue];
+        double to = [[_tapHistory lastObject] doubleValue];
+        double bpm = 60.0/((to-from)/(_tapHistory.count-1));
+        
+        if (bpm > 60.0){
+            _bpm = bpm;
+            [_lblBPM setStringValue:[NSString stringWithFormat:@"%.02f",_bpm]];
+            [_random setBPM:bpm];
+        }
+    }
+}
+
+-(void)didWakenUp:(NSNotification *)notification{
+    NSLog(@"didWakenUp");
+//    [_ring follow];
 }
 
 

@@ -17,6 +17,7 @@
     _state = REFRAIN_STATE_NONE;
     
     _pan = 0.0;
+    _volume = 1.0;
     
     return self;
 }
@@ -42,6 +43,10 @@
 
 -(void)setPan:(float)pan{
     _pan = pan;
+}
+
+-(void)setVolume:(float)volume{
+    _volume = volume;
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
@@ -79,8 +84,8 @@
             }
             
             for(int i = 0; i < numSamples; i++){
-                leftBuf[i] += srcL[i] * volL;
-                rightBuf[i] += srcR[i] * volR;
+                leftBuf[i] += srcL[i] * volL * _volume;
+                rightBuf[i] += srcR[i] * volR * _volume;
             }
             
             [_ring advanceReadPtrSample:numSamples];

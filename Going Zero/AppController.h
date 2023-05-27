@@ -14,6 +14,7 @@
 #import "TurnTableView.h"
 #import "MiniFader.h"
 
+#import "MyButton.h"
 #import "MainViewController.h"
 
 #import "Looper.h"
@@ -36,7 +37,9 @@
 #import "RefrainController.h"
 #import "DJFilterController.h"
 #import "SamplerController.h"
-
+#import "RandomController.h"
+#import "SimpleReverbController.h"
+#import "ConvolutionReverbController.h"
 
 //OSC
 #import "F53OSC.h"
@@ -52,6 +55,11 @@ NS_ASSUME_NONNULL_BEGIN
     RingBuffer *_ring;
     __weak IBOutlet TurnTableView *_turnTable;
     __weak IBOutlet RingView *_ringView;
+    __weak IBOutlet NSTextField *_lblBPM;
+    __weak IBOutlet MyButton *_btnTap;
+    
+    NSMutableArray *_tapHistory;
+    float _bpm;
     
     float _tempLeftPtr[1024];
     float _tempRightPtr[1024];
@@ -124,6 +132,19 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSView *_samplerContentView;
     SamplerController *_samplerController;
     
+    Random *_random;
+    __weak IBOutlet NSView *_randomContentView;
+    RandomController *_randomController;
+    
+    SimpleReverb *_simpleReverb;
+    __weak IBOutlet NSView *_simpleReverbContentView;
+    SimpleReverbController *_simpleReverbController;
+    
+//    ConvolutionReverb *_convolutionReverb;
+//    __weak IBOutlet NSView *_convolutionReverbContentView;
+//    ConvolutionReverbController *_convolutionReverbController;
+
+    
     NSNetService *_netService;
     F53OSCServer *_oscServer;
     
@@ -134,6 +155,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)terminate;
 -(void)startBonjour;
+-(void)didWakenUp:(NSNotification *)notification;
 
 
 @end

@@ -11,7 +11,7 @@
 
 @implementation RingBuffer
 - (id)init{
-    NSLog(@"RingBuffer initialize");
+//    NSLog(@"RingBuffer initialize");
     self = [super init];
     
     [self initBuffers];
@@ -32,7 +32,7 @@
         return NO;
     }
     
-    NSLog(@"Buffer allocation OK, left=%p, right=%p", _leftBuf, _rightBuf);
+//    NSLog(@"Buffer allocation OK, left=%p, right=%p", _leftBuf, _rightBuf);
     return YES;
 }
 
