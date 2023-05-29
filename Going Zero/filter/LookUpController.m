@@ -23,4 +23,12 @@
     _lookUp = lookUp;
 }
 
+- (IBAction)startMarkClicked:(id)sender {
+    [_lookUp startMark];
+}
+
+- (IBAction)loopingClicked:(id)sender {
+    [_lookUp startLooping];
+}
+
 @end

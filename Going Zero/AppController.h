@@ -38,6 +38,7 @@
 #import "DJFilterController.h"
 #import "SamplerController.h"
 #import "RandomController.h"
+#import "LookUpController.h"
 #import "SimpleReverbController.h"
 #import "ConvolutionReverbController.h"
 
@@ -135,6 +136,10 @@ NS_ASSUME_NONNULL_BEGIN
     Random *_random;
     __weak IBOutlet NSView *_randomContentView;
     RandomController *_randomController;
+    
+    LookUp *_lookUp;
+    __weak IBOutlet NSView *_lookUpContentView;
+    LookUpController *_lookUpController;
     
     SimpleReverb *_simpleReverb;
     __weak IBOutlet NSView *_simpleReverbContentView;

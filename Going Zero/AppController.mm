@@ -96,6 +96,14 @@
     [self centerize:[_randomController view]];
     [_randomController setRandom:_random];
     
+    _lookUp = [[LookUp alloc] init];
+    _lookUpController = [[LookUpController alloc]
+                         initWithNibName:@"LookUpController" bundle:nil];
+    [_lookUpContentView addSubview:[_lookUpController view]];
+    [self centerize:[_lookUpController view]];
+    [_lookUpController setLookUp:_lookUp];
+    
+    
     _simpleReverb = [[SimpleReverb alloc] init];
     _simpleReverbController = [[SimpleReverbController alloc]
                          initWithNibName:@"SimpleReverbController" bundle:nil];
@@ -346,7 +354,10 @@
     [_random processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-
+    //LookUp
+    [_lookUp processLeft:(float*)ioData->mBuffers[0].mData
+                   right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     //DJ filter
     [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
