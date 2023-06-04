@@ -12,6 +12,7 @@
 #define LOOKUP_STATE_NONE 0
 #define LOOKUP_STATE_MARKING 1
 #define LOOKUP_STATE_LOOPING 2
+#define LOOKUP_STATE_LOOKUPPING 3
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)startMark;
 -(void)startLooping;
+-(void)startLookUpping;
+-(void)stopLookUpping;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSample;
 
 @end

@@ -50,6 +50,7 @@
 		EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBF46DC2676171D00785BF6 /* ReverseTurntableView.m */; };
 		EBC1916B2A21AC3700E13D95 /* LookUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBC191692A21AC3700E13D95 /* LookUpController.m */; };
 		EBC1916C2A21AC3700E13D95 /* LookUpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBC1916A2A21AC3700E13D95 /* LookUpController.xib */; };
+		EBC22F542A2CDD3D001CB3DA /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBC22F532A2CDD3D001CB3DA /* TouchView.m */; };
 		EBD7C6FE275E54D8009A61DA /* RandomController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD7C6FC275E54D8009A61DA /* RandomController.m */; };
 		EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBD7C6FD275E54D8009A61DA /* RandomController.xib */; };
 		EBD7C702275E54F2009A61DA /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD7C701275E54F2009A61DA /* Random.m */; };
@@ -159,6 +160,8 @@
 		EBC191682A21AC3700E13D95 /* LookUpController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookUpController.h; sourceTree = "<group>"; };
 		EBC191692A21AC3700E13D95 /* LookUpController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookUpController.m; sourceTree = "<group>"; };
 		EBC1916A2A21AC3700E13D95 /* LookUpController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LookUpController.xib; sourceTree = "<group>"; };
+		EBC22F522A2CDD3D001CB3DA /* TouchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
+		EBC22F532A2CDD3D001CB3DA /* TouchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
 		EBD7C6FB275E54D8009A61DA /* RandomController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomController.h; sourceTree = "<group>"; };
 		EBD7C6FC275E54D8009A61DA /* RandomController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RandomController.m; sourceTree = "<group>"; };
 		EBD7C6FD275E54D8009A61DA /* RandomController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RandomController.xib; sourceTree = "<group>"; };
@@ -245,6 +248,8 @@
 				EBF93D0D266AA076001B13F3 /* DJFilterController.xib */,
 				EB822D552A1D657E00FAA9B5 /* LookUp.h */,
 				EB822D562A1D657E00FAA9B5 /* LookUp.m */,
+				EBC22F522A2CDD3D001CB3DA /* TouchView.h */,
+				EBC22F532A2CDD3D001CB3DA /* TouchView.m */,
 				EBC191682A21AC3700E13D95 /* LookUpController.h */,
 				EBC191692A21AC3700E13D95 /* LookUpController.m */,
 				EBC1916A2A21AC3700E13D95 /* LookUpController.xib */,
@@ -537,6 +542,7 @@
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
 				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
 				EBEC8C72266313C400257694 /* Bender.m in Sources */,
+				EBC22F542A2CDD3D001CB3DA /* TouchView.m in Sources */,
 				EBF93D22266B215E001B13F3 /* Refrain.m in Sources */,
 				EB379119276F5A8B00AC37D0 /* ConvolutionReverbController.m in Sources */,
 				EBDA9A44273F867E00836273 /* DJFilter.m in Sources */,

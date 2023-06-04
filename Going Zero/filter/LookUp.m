@@ -30,6 +30,25 @@
     NSLog(@"LOOKUP_STATE_LOOPING");
 }
 
+-(void)startLookUpping{
+    
+    SInt32 targetFrame = (SInt32)[_ring recordFrame] - (SInt32)_duration;
+    if (targetFrame < 0){
+        targetFrame = [_ring frames] - (_duration - [_ring recordFrame]);
+    }
+    [_ring setPlayFrame:(UInt32)targetFrame];
+    
+    _state = LOOKUP_STATE_LOOKUPPING;
+    NSLog(@"LOOKUP_STATE_LOOKUPPING");
+}
+
+-(void)stopLookUpping{
+    _state = LOOKUP_STATE_LOOPING;
+    NSLog(@"back to LOOKUP_STATE_LOOPING");
+}
+
+
+
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSample{
     switch(_state){
         case LOOKUP_STATE_NONE:
@@ -50,6 +69,22 @@
             memcpy(dstL, leftBuf, numSample * sizeof(float));
             memcpy(dstR, rightBuf, numSample * sizeof(float));
             [_ring advanceWritePtrSample:numSample];
+        }
+            break;
+            
+        case LOOKUP_STATE_LOOKUPPING:
+        {
+            float *dstL = [_ring writePtrLeft];
+            float *dstR = [_ring writePtrRight];
+            memcpy(dstL, leftBuf, numSample * sizeof(float));
+            memcpy(dstR, rightBuf, numSample * sizeof(float));
+            [_ring advanceWritePtrSample:numSample];
+            
+            float *srcL = [_ring readPtrLeft];
+            float *srcR = [_ring readPtrRight];
+            memcpy(leftBuf, srcL, numSample * sizeof(float));
+            memcpy(rightBuf, srcR, numSample * sizeof(float));
+            [_ring advanceReadPtrSample:numSample];
         }
             break;
         default:

@@ -51,6 +51,7 @@
 -(UInt32)readWriteOffset;
 
 -(void)setMinOffset:(UInt32) offset;
+-(void)setPlayFrame:(UInt32) frame;
 
 -(void)reset;
 

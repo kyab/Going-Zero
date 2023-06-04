@@ -546,7 +546,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     
     _oscServer = [[F53OSCServer alloc] init];
 
-    [_oscServer setPort:9999];
+    [_oscServer setPort:17171];
     [_oscServer setDelegate:(id<F53OSCServerDelegate>)self];
     [_oscServer startListening];
     

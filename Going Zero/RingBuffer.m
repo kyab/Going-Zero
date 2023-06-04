@@ -413,6 +413,10 @@
     _minOffsetFrame = offset;
 }
 
+-(void)setPlayFrame:(UInt32)frame{
+    _playFrame = frame;
+}
+
 -(UInt32)readWriteOffset{
     UInt32 w = _recordFrame;
     UInt32 r = _playFrame;

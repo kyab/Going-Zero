@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LookUpController : NSViewController{
     LookUp *_lookUp;
+    __weak IBOutlet NSButton *_btnLookUp;
+    Boolean _btnLookUpPressing;
 }
 
 -(void)setLookUp:(LookUp *)lookUp;

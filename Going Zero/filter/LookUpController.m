@@ -17,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+    
+    [_btnLookUp sendActionOn:NSEventMaskLeftMouseDown | NSEventMaskLeftMouseUp];
+    
+    _btnLookUpPressing = NO;
 }
 
 - (void)setLookUp:(LookUp *)lookUp{
@@ -29,6 +33,19 @@
 
 - (IBAction)loopingClicked:(id)sender {
     [_lookUp startLooping];
+}
+- (IBAction)lookUpClicked:(id)sender {
+    
+    
+    if(_btnLookUpPressing){
+        [_btnLookUp setState:NSControlStateValueOff];
+        _btnLookUpPressing = NO;
+        [_lookUp stopLookUpping];
+    }else{
+        [_btnLookUp setState:NSControlStateValueOn];
+        _btnLookUpPressing = YES;
+        [_lookUp startLookUpping];
+    }
 }
 
 @end
