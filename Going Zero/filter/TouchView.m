@@ -10,12 +10,23 @@
 
 @implementation TouchView
 
+-(void)setDelegate:(id<TouchViewDelegate>)delegate{
+    _delegate = delegate;
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
+    CGFloat h = self.frame.size.height;
+    CGFloat w = self.frame.size.width;
+    
+    NSRect upperRect = NSMakeRect(0, h/2+5, w, h/2-5);
     [NSColor.blackColor set];
-    NSRectFill(dirtyRect);
-
+    NSRectFill(upperRect);
+    
+    NSRect lowerRect = NSMakeRect(0, 0, w, h/2-5);
+    [NSColor.purpleColor set];
+    NSRectFill(lowerRect);
 }
 
 
@@ -23,11 +34,17 @@
     //get location on this view
     NSPoint l = [event locationInWindow];
     NSPoint location = [self convertPoint:l fromView:nil];
-    NSLog(@"x = %f",location.x);
+    double ratio = location.x / self.frame.size.width;
+    NSLog(@"ratio = %f", ratio);
+    
+    [_delegate touchViewMouseDown: ratio];
 }
 
 -(void)mouseUp:(NSEvent *)event{
     NSLog(@"mouse up");
+    
+    [_delegate touchViewMouseUp];
+
 }
 
 @end

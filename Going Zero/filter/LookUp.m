@@ -14,6 +14,8 @@
     self = [super init];
     _ring = [[RingBuffer alloc] init];
     _duration = 0;
+    _baseFrame = 0;
+    _recordBaseFrame = 0;
     _state = LOOKUP_STATE_NONE;
     return self;
 }
@@ -25,18 +27,43 @@
 }
 
 -(void)startLooping{
-    _state = LOOKUP_STATE_LOOPING;
     _duration = [_ring recordFrame];
+    _baseFrame = 0;
+    _recordBaseFrame = _duration;
+    _state = LOOKUP_STATE_LOOPING;
     NSLog(@"LOOKUP_STATE_LOOPING");
 }
 
--(void)startLookUpping{
-    
-    SInt32 targetFrame = (SInt32)[_ring recordFrame] - (SInt32)_duration;
-    if (targetFrame < 0){
-        targetFrame = [_ring frames] - (_duration - [_ring recordFrame]);
+-(void)updateBaseIfNeeded{
+    UInt32 recordFrame = [_ring recordFrame];
+    if (recordFrame >= _recordBaseFrame){
+        if (recordFrame >= (_recordBaseFrame + _duration)){
+            _recordBaseFrame = recordFrame;
+            _baseFrame = _recordBaseFrame - _duration;
+        }
+    }else{
+        if (recordFrame + [_ring frames] - _recordBaseFrame >= _duration){
+            _recordBaseFrame = recordFrame;
+            SInt32 tmpBaseFrame = _recordBaseFrame - _duration;
+            if (tmpBaseFrame < 0){
+                _baseFrame = [_ring frames] + tmpBaseFrame;
+            }else{
+                _baseFrame = tmpBaseFrame;
+            }
+        }
     }
-    [_ring setPlayFrame:(UInt32)targetFrame];
+}
+
+-(void)startLookUpping:(double)ratio{
+    _playStartRatio = ratio;
+    
+    UInt32 offset = (UInt32)(_playStartRatio*_duration);
+    
+    _playStartFrame = _baseFrame + offset;
+    if (_playStartFrame > [_ring frames]){
+        _playStartFrame -= [_ring frames];
+    }
+    [_ring setPlayFrame: _playStartFrame];
     
     _state = LOOKUP_STATE_LOOKUPPING;
     NSLog(@"LOOKUP_STATE_LOOKUPPING");
@@ -47,7 +74,21 @@
     NSLog(@"back to LOOKUP_STATE_LOOPING");
 }
 
-
+-(void)manageLoop{
+    SInt32 playedFramesInThisLoop = [_ring playFrame] - _playStartFrame;
+    if (playedFramesInThisLoop < 0) {
+        playedFramesInThisLoop += [_ring frames];
+    }
+    if (playedFramesInThisLoop >= _duration / 8){
+        UInt32 offset = (UInt32)(_playStartRatio*_duration);
+        
+        _playStartFrame = _baseFrame + offset;
+        if (_playStartFrame > [_ring frames]){
+            _playStartFrame -= [_ring frames];
+        }
+        [_ring setPlayFrame: _playStartFrame];
+    }
+}
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSample{
     switch(_state){
@@ -69,6 +110,8 @@
             memcpy(dstL, leftBuf, numSample * sizeof(float));
             memcpy(dstR, rightBuf, numSample * sizeof(float));
             [_ring advanceWritePtrSample:numSample];
+            
+            [self updateBaseIfNeeded];
         }
             break;
             
@@ -85,11 +128,16 @@
             memcpy(leftBuf, srcL, numSample * sizeof(float));
             memcpy(rightBuf, srcR, numSample * sizeof(float));
             [_ring advanceReadPtrSample:numSample];
+            
+            [self updateBaseIfNeeded];
+            [self manageLoop];
         }
             break;
         default:
             break;
     }
 }
+
+//https://www.switch-science.com/products/283
 
 @end

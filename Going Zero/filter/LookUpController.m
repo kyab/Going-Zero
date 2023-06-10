@@ -19,6 +19,7 @@
     // Do view setup here.
     
     [_btnLookUp sendActionOn:NSEventMaskLeftMouseDown | NSEventMaskLeftMouseUp];
+    [_touchView setDelegate:self];
     
     _btnLookUpPressing = NO;
 }
@@ -44,8 +45,16 @@
     }else{
         [_btnLookUp setState:NSControlStateValueOn];
         _btnLookUpPressing = YES;
-        [_lookUp startLookUpping];
+        [_lookUp startLookUpping:0.0];
     }
+}
+
+-(void)touchViewMouseDown:(double)xRatio{
+    [_lookUp startLookUpping:xRatio];
+}
+
+-(void)touchViewMouseUp{
+    [_lookUp stopLookUpping];
 }
 
 @end

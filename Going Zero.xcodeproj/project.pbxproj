@@ -723,7 +723,6 @@
 					"\"F53OSC\"",
 					"-framework",
 					"\"Security\"",
-					"-lfftw3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kyab.Going-Zero";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -768,7 +767,6 @@
 					"\"F53OSC\"",
 					"-framework",
 					"\"Security\"",
-					"-lfftw3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kyab.Going-Zero";
 				PRODUCT_NAME = "$(TARGET_NAME)";

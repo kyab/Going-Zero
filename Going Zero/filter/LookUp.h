@@ -20,14 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
     RingBuffer *_ring;
     
     UInt32 _duration;
+    UInt32 _baseFrame;
+    UInt32 _recordBaseFrame;
+    double _playStartRatio;
+    UInt32 _playStartFrame;
     UInt32 _state;
 }
 
 -(void)startMark;
 -(void)startLooping;
--(void)startLookUpping;
+-(void)startLookUpping:(double)ratio;
 -(void)stopLookUpping;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSample;
+//private -(Boolean)updateBaseIfNeeded;
 
 @end
 

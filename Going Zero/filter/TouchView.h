@@ -10,7 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TouchView : NSView
+@protocol TouchViewDelegate <NSObject>
+@optional
+-(void)touchViewMouseDown:(double) xRatio;
+-(void)touchViewMouseUp;
+@end
+
+@interface TouchView : NSView{
+    
+    id<TouchViewDelegate> _delegate;
+}
+
+
+-(void)setDelegate:(id<TouchViewDelegate>)delegate;
 
 @end
 
