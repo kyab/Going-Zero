@@ -14,6 +14,10 @@
     _delegate = delegate;
 }
 
+-(void)setLookup:(Lookup *)lookup{
+    _lookup = lookup;
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     

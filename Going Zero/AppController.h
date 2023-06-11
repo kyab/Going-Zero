@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSView *_randomContentView;
     RandomController *_randomController;
     
-    LookUp *_lookUp;
+    Lookup *_lookUp;
     __weak IBOutlet NSView *_lookUpContentView;
     LookUpController *_lookUpController;
     

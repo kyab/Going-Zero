@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Lookup.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,10 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TouchView : NSView{
     
     id<TouchViewDelegate> _delegate;
+    Lookup *_lookup;
 }
 
 
 -(void)setDelegate:(id<TouchViewDelegate>)delegate;
+-(void)setLookup:(Lookup *)lookup;
+
 
 @end
 

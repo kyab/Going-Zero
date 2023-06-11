@@ -7,19 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "LookUp.h"
+#import "Lookup.h"
 #import "TouchView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LookUpController : NSViewController<TouchViewDelegate>{
-    LookUp *_lookUp;
-    __weak IBOutlet NSButton *_btnLookUp;
+    Lookup *_lookup;
+    __weak IBOutlet NSButton *_btnLookup;
     __weak IBOutlet TouchView *_touchView;
-    Boolean _btnLookUpPressing;
+    Boolean _btnLookupPressing;
 }
 
--(void)setLookUp:(LookUp *)lookUp;
+-(void)setLookUp:(Lookup *)lookup;
 
 
 @end

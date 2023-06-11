@@ -18,43 +18,44 @@
     [super viewDidLoad];
     // Do view setup here.
     
-    [_btnLookUp sendActionOn:NSEventMaskLeftMouseDown | NSEventMaskLeftMouseUp];
+    [_btnLookup sendActionOn:NSEventMaskLeftMouseDown | NSEventMaskLeftMouseUp];
     [_touchView setDelegate:self];
     
-    _btnLookUpPressing = NO;
+    _btnLookupPressing = NO;
 }
 
-- (void)setLookUp:(LookUp *)lookUp{
-    _lookUp = lookUp;
+- (void)setLookUp:(Lookup *)lookup{
+    _lookup = lookup;
+    [_touchView setLookup:_lookup];
 }
 
 - (IBAction)startMarkClicked:(id)sender {
-    [_lookUp startMark];
+    [_lookup startMark];
 }
 
 - (IBAction)loopingClicked:(id)sender {
-    [_lookUp startLooping];
+    [_lookup startLooping];
 }
 - (IBAction)lookUpClicked:(id)sender {
     
     
-    if(_btnLookUpPressing){
-        [_btnLookUp setState:NSControlStateValueOff];
-        _btnLookUpPressing = NO;
-        [_lookUp stopLookUpping];
+    if(_btnLookupPressing){
+        [_btnLookup setState:NSControlStateValueOff];
+        _btnLookupPressing = NO;
+        [_lookup stopLookupping];
     }else{
-        [_btnLookUp setState:NSControlStateValueOn];
-        _btnLookUpPressing = YES;
-        [_lookUp startLookUpping:0.0];
+        [_btnLookup setState:NSControlStateValueOn];
+        _btnLookupPressing = YES;
+        [_lookup startLookupping:0.0];
     }
 }
 
 -(void)touchViewMouseDown:(double)xRatio{
-    [_lookUp startLookUpping:xRatio];
+    [_lookup startLookupping:xRatio];
 }
 
 -(void)touchViewMouseUp{
-    [_lookUp stopLookUpping];
+    [_lookup stopLookupping];
 }
 
 @end

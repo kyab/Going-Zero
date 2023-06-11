@@ -96,7 +96,7 @@
     [self centerize:[_randomController view]];
     [_randomController setRandom:_random];
     
-    _lookUp = [[LookUp alloc] init];
+    _lookUp = [[Lookup alloc] init];
     _lookUpController = [[LookUpController alloc]
                          initWithNibName:@"LookUpController" bundle:nil];
     [_lookUpContentView addSubview:[_lookUpController view]];

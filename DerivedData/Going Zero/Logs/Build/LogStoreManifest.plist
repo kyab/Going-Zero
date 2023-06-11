@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>33C7B050-A0C0-45AF-845D-ADFB3ED8B3B9</key>
+		<key>272B474C-191A-4563-AA97-7BB7EAE91934</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -15,41 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>33C7B050-A0C0-45AF-845D-ADFB3ED8B3B9.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>E</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>Going Zero project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>Going Zero</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Build Going Zero</string>
-			<key>timeStartedRecording</key>
-			<real>708100614.90950501</real>
-			<key>timeStoppedRecording</key>
-			<real>708100615.73599601</real>
-			<key>title</key>
-			<string>Build Going Zero</string>
-			<key>uniqueIdentifier</key>
-			<string>33C7B050-A0C0-45AF-845D-ADFB3ED8B3B9</string>
-		</dict>
-		<key>BBB90BFD-9C4D-4DEA-B20C-D8A4DE9EA828</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>BBB90BFD-9C4D-4DEA-B20C-D8A4DE9EA828.xcactivitylog</string>
+			<string>272B474C-191A-4563-AA97-7BB7EAE91934.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -66,15 +32,15 @@
 			<key>signature</key>
 			<string>Build Going Zero</string>
 			<key>timeStartedRecording</key>
-			<real>708006944.73440003</real>
+			<real>708140739.73386598</real>
 			<key>timeStoppedRecording</key>
-			<real>708006945.52758205</real>
+			<real>708140741.17954504</real>
 			<key>title</key>
 			<string>Build Going Zero</string>
 			<key>uniqueIdentifier</key>
-			<string>BBB90BFD-9C4D-4DEA-B20C-D8A4DE9EA828</string>
+			<string>272B474C-191A-4563-AA97-7BB7EAE91934</string>
 		</dict>
-		<key>CBF51865-FC87-408D-AC54-464E9AD0C1F9</key>
+		<key>BF69FC72-CB66-4C11-940A-D2D9AC085DAE</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -83,7 +49,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>CBF51865-FC87-408D-AC54-464E9AD0C1F9.xcactivitylog</string>
+			<string>BF69FC72-CB66-4C11-940A-D2D9AC085DAE.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -100,15 +66,15 @@
 			<key>signature</key>
 			<string>Build Going Zero</string>
 			<key>timeStartedRecording</key>
-			<real>708100804.02684796</real>
+			<real>708137552.95052898</real>
 			<key>timeStoppedRecording</key>
-			<real>708100806.37481201</real>
+			<real>708137554.98453104</real>
 			<key>title</key>
 			<string>Build Going Zero</string>
 			<key>uniqueIdentifier</key>
-			<string>CBF51865-FC87-408D-AC54-464E9AD0C1F9</string>
+			<string>BF69FC72-CB66-4C11-940A-D2D9AC085DAE</string>
 		</dict>
-		<key>D3CFEF80-3E8D-4CE1-9CDF-9DFD305C2923</key>
+		<key>E7C1B465-98F7-47AA-8717-B919389C6334</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -117,13 +83,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>D3CFEF80-3E8D-4CE1-9CDF-9DFD305C2923.xcactivitylog</string>
+			<string>E7C1B465-98F7-47AA-8717-B919389C6334.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>E</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>Going Zero project</string>
@@ -134,15 +100,15 @@
 			<key>signature</key>
 			<string>Build Going Zero</string>
 			<key>timeStartedRecording</key>
-			<real>708100473.68954301</real>
+			<real>708140759.77780402</real>
 			<key>timeStoppedRecording</key>
-			<real>708100474.71264195</real>
+			<real>708140759.88074398</real>
 			<key>title</key>
 			<string>Build Going Zero</string>
 			<key>uniqueIdentifier</key>
-			<string>D3CFEF80-3E8D-4CE1-9CDF-9DFD305C2923</string>
+			<string>E7C1B465-98F7-47AA-8717-B919389C6334</string>
 		</dict>
-		<key>DBAAE7A1-D6A5-4E3F-97C1-8FB7E8B99CB5</key>
+		<key>F0CA6CA0-6704-4CD9-BB29-D119443058B2</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -151,13 +117,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>DBAAE7A1-D6A5-4E3F-97C1-8FB7E8B99CB5.xcactivitylog</string>
+			<string>F0CA6CA0-6704-4CD9-BB29-D119443058B2.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>E</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>Going Zero project</string>
@@ -168,13 +134,13 @@
 			<key>signature</key>
 			<string>Build Going Zero</string>
 			<key>timeStartedRecording</key>
-			<real>708100660.18869698</real>
+			<real>708140562.56310594</real>
 			<key>timeStoppedRecording</key>
-			<real>708100660.348647</real>
+			<real>708140564.77925503</real>
 			<key>title</key>
 			<string>Build Going Zero</string>
 			<key>uniqueIdentifier</key>
-			<string>DBAAE7A1-D6A5-4E3F-97C1-8FB7E8B99CB5</string>
+			<string>F0CA6CA0-6704-4CD9-BB29-D119443058B2</string>
 		</dict>
 	</dict>
 </dict>

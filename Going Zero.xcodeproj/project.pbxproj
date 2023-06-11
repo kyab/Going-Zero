@@ -40,7 +40,7 @@
 		EB70011D2691D022007F88EE /* FlangerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB70011B2691D022007F88EE /* FlangerController.xib */; };
 		EB7001202691D038007F88EE /* Flanger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB70011F2691D038007F88EE /* Flanger.m */; };
 		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
-		EB822D572A1D657E00FAA9B5 /* LookUp.m in Sources */ = {isa = PBXBuildFile; fileRef = EB822D562A1D657E00FAA9B5 /* LookUp.m */; };
+		EB822D572A1D657E00FAA9B5 /* Lookup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB822D562A1D657E00FAA9B5 /* Lookup.m */; };
 		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
 		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
 		EBAA80982678E00D00809C1D /* QuickCue.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80972678E00D00809C1D /* QuickCue.m */; };
@@ -134,8 +134,8 @@
 		EB70011F2691D038007F88EE /* Flanger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flanger.m; sourceTree = "<group>"; };
 		EB7372B4266530F600393D58 /* Freezer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Freezer.h; sourceTree = "<group>"; };
 		EB7372B5266530F600393D58 /* Freezer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freezer.m; sourceTree = "<group>"; };
-		EB822D552A1D657E00FAA9B5 /* LookUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookUp.h; sourceTree = "<group>"; };
-		EB822D562A1D657E00FAA9B5 /* LookUp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookUp.m; sourceTree = "<group>"; };
+		EB822D552A1D657E00FAA9B5 /* Lookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lookup.h; sourceTree = "<group>"; };
+		EB822D562A1D657E00FAA9B5 /* Lookup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lookup.m; sourceTree = "<group>"; };
 		EBAA80912678DF3000809C1D /* QuickCueController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCueController.h; sourceTree = "<group>"; };
 		EBAA80922678DF3000809C1D /* QuickCueController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickCueController.m; sourceTree = "<group>"; };
 		EBAA80932678DF3000809C1D /* QuickCueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuickCueController.xib; sourceTree = "<group>"; };
@@ -246,8 +246,8 @@
 				EBF93D0F266AA184001B13F3 /* DJFilterController.h */,
 				EBF93D10266AA184001B13F3 /* DJFilterController.m */,
 				EBF93D0D266AA076001B13F3 /* DJFilterController.xib */,
-				EB822D552A1D657E00FAA9B5 /* LookUp.h */,
-				EB822D562A1D657E00FAA9B5 /* LookUp.m */,
+				EB822D552A1D657E00FAA9B5 /* Lookup.h */,
+				EB822D562A1D657E00FAA9B5 /* Lookup.m */,
 				EBC22F522A2CDD3D001CB3DA /* TouchView.h */,
 				EBC22F532A2CDD3D001CB3DA /* TouchView.m */,
 				EBC191682A21AC3700E13D95 /* LookUpController.h */,
@@ -552,7 +552,7 @@
 				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
 				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
 				EB379113276F491400AC37D0 /* ConvolutionReverb.mm in Sources */,
-				EB822D572A1D657E00FAA9B5 /* LookUp.m in Sources */,
+				EB822D572A1D657E00FAA9B5 /* Lookup.m in Sources */,
 				EBD7C702275E54F2009A61DA /* Random.m in Sources */,
 				EB7001202691D038007F88EE /* Flanger.m in Sources */,
 				EB18F7742669077E00EB0E73 /* WaveView.m in Sources */,
