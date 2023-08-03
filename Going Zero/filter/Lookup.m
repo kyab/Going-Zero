@@ -22,6 +22,9 @@
 
 -(void)startMark{
     [_ring reset];
+    _duration = 0;
+    _baseFrame = 0;
+    _recordBaseFrame = 0;
     _state = LOOKUP_STATE_MARKING;
     NSLog(@"LOOKUP_STATE_MARKING");
 }
@@ -79,7 +82,7 @@
     if (playedFrames < 0) {
         playedFrames += [_ring frames];
     }
-    if (playedFrames >= _duration / 8){
+    if (playedFrames >= (_duration / 16.0)){
         UInt32 offset = (UInt32)(_playStartRatio*_duration);
         
         _playStartFrame = _baseFrame + offset;

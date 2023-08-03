@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
     
     id<TouchViewDelegate> _delegate;
     Lookup *_lookup;
+    NSTimer *_timer;
+
 }
 
 

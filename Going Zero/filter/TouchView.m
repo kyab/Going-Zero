@@ -10,6 +10,16 @@
 
 @implementation TouchView
 
+- (void)awakeFromNib{
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+-(void)onTimer:(NSTimer *)timer{
+    [self setNeedsDisplay:YES];
+}
+
+
 -(void)setDelegate:(id<TouchViewDelegate>)delegate{
     _delegate = delegate;
 }
@@ -31,6 +41,27 @@
     NSRect lowerRect = NSMakeRect(0, 0, w, h/2-5);
     [NSColor.purpleColor set];
     NSRectFill(lowerRect);
+    
+    if (!_lookup) return;
+    UInt32 barDuration = [_lookup barDuration];
+    if (barDuration > 0 ){
+        double xRatio = [_lookup playFrameInBar] / (double)barDuration;
+        double x = w * xRatio;
+        NSBezierPath *line = [NSBezierPath bezierPath];
+        [line moveToPoint:NSMakePoint(x, h/2+5)];
+        [line lineToPoint:NSMakePoint(x, h)];
+        [[NSColor yellowColor] set];
+        [line stroke];
+        
+        xRatio = [_lookup recordFrameInBar] / (double)barDuration;
+        x = w * xRatio;
+        line = [NSBezierPath bezierPath];
+        [line moveToPoint:NSMakePoint(x, 0)];
+        [line lineToPoint:NSMakePoint(x, h/2-5)];
+        [[NSColor redColor] set];
+        [line stroke];
+    }
+        
 }
 
 

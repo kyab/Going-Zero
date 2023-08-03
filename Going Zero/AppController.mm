@@ -9,6 +9,12 @@
 #import "AppController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
+#include <essentia/algorithmfactory.h>
+#include <essentia/streaming/algorithms/poolstorage.h>
+#include <essentia/streaming/algorithms/vectorinput.h>
+#include <essentia/scheduler/network.h>
+#include <essentia/pool.h>
+
 #include <cmath>
 
 @implementation AppController
@@ -634,6 +640,13 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
             [_lblBPM setStringValue:[NSString stringWithFormat:@"%.02f",_bpm]];
             [_random setBPM:bpm];
         }
+    }
+    
+    
+    {
+        
+        essentia::init();
+        
     }
 }
 

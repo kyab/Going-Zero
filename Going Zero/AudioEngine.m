@@ -291,17 +291,17 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
         return NO;
     }
     
-    propAddress.mElement = 1;
+//    propAddress.mElement = 1;
     if (0!=(AudioObjectSetPropertyData(_preOutputDeviceID, &propAddress, 0, NULL, size, &scalar))){
-        NSLog(@"failed to sync volume");
+        NSLog(@"failed to sync volume 1");
         return NO;
     }
     
-    propAddress.mElement = 2;
-    if (0!=(AudioObjectSetPropertyData(_preOutputDeviceID, &propAddress, 0, NULL, size, &scalar))){
-        NSLog(@"failed to sync volume");
-        return NO;
-    }
+//    propAddress.mElement = 2;
+//    if (0!=(AudioObjectSetPropertyData(_preOutputDeviceID, &propAddress, 0, NULL, size, &scalar))){
+//        NSLog(@"failed to sync volume 2");
+//        return NO;
+//    }
     
     NSLog(@"Sync vol OK");
     return YES;
@@ -317,7 +317,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     AudioObjectPropertyAddress propAddress;
     propAddress.mSelector = kAudioDevicePropertyVolumeScalar;
     propAddress.mScope = kAudioObjectPropertyScopeOutput;
-    propAddress.mElement = 1; //use 1 and 2 for build in output
+    propAddress.mElement = 0; //??use 1 and 2 for build in output
 
     if (0!=(AudioObjectGetPropertyData(_preOutputDeviceID, &propAddress, 0, NULL, &size, &scalar))){
         NSLog(@"failed to get volume");
