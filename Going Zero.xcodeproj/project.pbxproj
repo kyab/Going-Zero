@@ -19,6 +19,7 @@
 		EB3673A12A7BFD9D006A2955 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3673A02A7BFD97006A2955 /* libfftw3f.a */; };
 		EB3673A32A7C062C006A2955 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3673A22A7C062C006A2955 /* CoreMedia.framework */; };
 		EB3673A52A7C063B006A2955 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3673A42A7C063B006A2955 /* VideoToolbox.framework */; };
+		EB3673A82A7D3CA0006A2955 /* BeatTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB3673A72A7D3CA0006A2955 /* BeatTracker.mm */; };
 		EB37910B2768D66100AC37D0 /* SimpleReverb.m in Sources */ = {isa = PBXBuildFile; fileRef = EB37910A2768D66100AC37D0 /* SimpleReverb.m */; };
 		EB37910F2768D68100AC37D0 /* SimpleReverbController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB37910D2768D68100AC37D0 /* SimpleReverbController.m */; };
 		EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB37910E2768D68100AC37D0 /* SimpleReverbController.xib */; };
@@ -74,6 +75,9 @@
 		EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF93D1B266B164F001B13F3 /* RefrainView.xib */; };
 		EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D1E266B168D001B13F3 /* RefrainController.m */; };
 		EBF93D22266B215E001B13F3 /* Refrain.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D21266B215E001B13F3 /* Refrain.m */; };
+		EBFE0A4C2A7FD5B300F88A78 /* BeatTrackerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFE0A4A2A7FD5B300F88A78 /* BeatTrackerController.m */; };
+		EBFE0A4D2A7FD5B300F88A78 /* BeatTrackerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBFE0A4B2A7FD5B300F88A78 /* BeatTrackerController.xib */; };
+		EBFE0A502A7FD76700F88A78 /* FlickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFE0A4F2A7FD76700F88A78 /* FlickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +101,8 @@
 		EB3673A02A7BFD97006A2955 /* libfftw3f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3f.a; path = ../../../../opt/homebrew/lib/libfftw3f.a; sourceTree = "<group>"; };
 		EB3673A22A7C062C006A2955 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		EB3673A42A7C063B006A2955 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		EB3673A62A7D3CA0006A2955 /* BeatTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeatTracker.h; sourceTree = "<group>"; };
+		EB3673A72A7D3CA0006A2955 /* BeatTracker.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BeatTracker.mm; sourceTree = "<group>"; };
 		EB3791092768D66100AC37D0 /* SimpleReverb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleReverb.h; sourceTree = "<group>"; };
 		EB37910A2768D66100AC37D0 /* SimpleReverb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleReverb.m; sourceTree = "<group>"; };
 		EB37910C2768D68100AC37D0 /* SimpleReverbController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleReverbController.h; sourceTree = "<group>"; };
@@ -202,6 +208,11 @@
 		EBF93D1E266B168D001B13F3 /* RefrainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefrainController.m; sourceTree = "<group>"; };
 		EBF93D20266B215E001B13F3 /* Refrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Refrain.h; sourceTree = "<group>"; };
 		EBF93D21266B215E001B13F3 /* Refrain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Refrain.m; sourceTree = "<group>"; };
+		EBFE0A492A7FD5B300F88A78 /* BeatTrackerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeatTrackerController.h; sourceTree = "<group>"; };
+		EBFE0A4A2A7FD5B300F88A78 /* BeatTrackerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeatTrackerController.m; sourceTree = "<group>"; };
+		EBFE0A4B2A7FD5B300F88A78 /* BeatTrackerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeatTrackerController.xib; sourceTree = "<group>"; };
+		EBFE0A4E2A7FD76700F88A78 /* FlickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlickerView.h; sourceTree = "<group>"; };
+		EBFE0A4F2A7FD76700F88A78 /* FlickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +328,13 @@
 				EB379116276F5A8B00AC37D0 /* ConvolutionReverbController.h */,
 				EB379117276F5A8B00AC37D0 /* ConvolutionReverbController.m */,
 				EB379118276F5A8B00AC37D0 /* ConvolutionReverbController.xib */,
+				EB3673A62A7D3CA0006A2955 /* BeatTracker.h */,
+				EB3673A72A7D3CA0006A2955 /* BeatTracker.mm */,
+				EBFE0A492A7FD5B300F88A78 /* BeatTrackerController.h */,
+				EBFE0A4A2A7FD5B300F88A78 /* BeatTrackerController.m */,
+				EBFE0A4B2A7FD5B300F88A78 /* BeatTrackerController.xib */,
+				EBFE0A4E2A7FD76700F88A78 /* FlickerView.h */,
+				EBFE0A4F2A7FD76700F88A78 /* FlickerView.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -464,6 +482,7 @@
 			files = (
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
 				EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */,
+				EBFE0A4D2A7FD5B300F88A78 /* BeatTrackerController.xib in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */,
 				EBDA9A4A2740A9E500836273 /* SamplerController.xib in Resources */,
@@ -531,6 +550,7 @@
 				EB6E387726623F83002AADCA /* AudioEngine.m in Sources */,
 				EBBF46D62675D45100785BF6 /* ReverseController.m in Sources */,
 				EBF93D1A266AE709001B13F3 /* MyButton.m in Sources */,
+				EBFE0A502A7FD76700F88A78 /* FlickerView.m in Sources */,
 				EBDA9A45273F867E00836273 /* HPF_IIR.m in Sources */,
 				EB7372B6266530F600393D58 /* Freezer.m in Sources */,
 				EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */,
@@ -550,6 +570,7 @@
 				EB6E388326627C90002AADCA /* TrillReverse.m in Sources */,
 				EBF93D11266AA184001B13F3 /* DJFilterController.m in Sources */,
 				EB6E387F266240C1002AADCA /* TurnTableView.m in Sources */,
+				EB3673A82A7D3CA0006A2955 /* BeatTracker.mm in Sources */,
 				EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */,
 				EB70011C2691D022007F88EE /* FlangerController.m in Sources */,
 				EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */,
@@ -557,6 +578,7 @@
 				EB37911D2771CD8800AC37D0 /* RateConverter.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
 				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
+				EBFE0A4C2A7FD5B300F88A78 /* BeatTrackerController.m in Sources */,
 				EBEC8C72266313C400257694 /* Bender.m in Sources */,
 				EBC22F542A2CDD3D001CB3DA /* TouchView.m in Sources */,
 				EBF93D22266B215E001B13F3 /* Refrain.m in Sources */,
@@ -735,6 +757,7 @@
 					/opt/homebrew/Cellar/taglib/1.13.1/lib,
 					/opt/homebrew/Cellar/bzip2/1.0.8/lib/,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0.1;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp --options=runtime";
 				OTHER_LDFLAGS = (
@@ -799,6 +822,7 @@
 					/opt/homebrew/Cellar/taglib/1.13.1/lib,
 					/opt/homebrew/Cellar/bzip2/1.0.8/lib/,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0.1;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp --options=runtime";
 				OTHER_LDFLAGS = (

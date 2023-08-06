@@ -9,12 +9,6 @@
 #import "AppController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
-#include <essentia/algorithmfactory.h>
-#include <essentia/streaming/algorithms/poolstorage.h>
-#include <essentia/streaming/algorithms/vectorinput.h>
-#include <essentia/scheduler/network.h>
-#include <essentia/pool.h>
-
 #include <cmath>
 
 @implementation AppController
@@ -108,6 +102,14 @@
     [_lookUpContentView addSubview:[_lookUpController view]];
     [self centerize:[_lookUpController view]];
     [_lookUpController setLookUp:_lookUp];
+    
+    _beatTracker = [[BeatTracker alloc] init];
+    _beatTrackerController = [[BeatTrackerController alloc]
+                         initWithNibName:@"BeatTrackerController" bundle:nil];
+    [_beatTrackerContentView addSubview:[_beatTrackerController view]];
+    [self centerize:[_beatTrackerController view]];
+    [_beatTrackerController setBeatTracker:_beatTracker];
+    
     
     
     _simpleReverb = [[SimpleReverb alloc] init];
@@ -306,6 +308,11 @@
             [_faderIn processLeft:pDstLeft right:pDstRight samples:inNumberFrames];
         }
     }
+    
+    //beat tracker
+    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     
     //looper
     [_looper processLeft:(float*)ioData->mBuffers[0].mData
@@ -641,13 +648,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
             [_random setBPM:bpm];
         }
     }
-    
-    
-    {
-        
-        essentia::init();
-        
-    }
+
 }
 
 -(void)didWakenUp:(NSNotification *)notification{

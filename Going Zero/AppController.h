@@ -39,6 +39,7 @@
 #import "SamplerController.h"
 #import "RandomController.h"
 #import "LookUpController.h"
+#import "BeatTrackerController.h"
 #import "SimpleReverbController.h"
 #import "ConvolutionReverbController.h"
 
@@ -140,6 +141,10 @@ NS_ASSUME_NONNULL_BEGIN
     Lookup *_lookUp;
     __weak IBOutlet NSView *_lookUpContentView;
     LookUpController *_lookUpController;
+    
+    BeatTracker *_beatTracker;
+    __weak IBOutlet NSView *_beatTrackerContentView;
+    BeatTrackerController *_beatTrackerController;
     
     SimpleReverb *_simpleReverb;
     __weak IBOutlet NSView *_simpleReverbContentView;
