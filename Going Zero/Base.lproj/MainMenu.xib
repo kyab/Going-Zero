@@ -32,7 +32,6 @@
                 <outlet property="_chkFreeze" destination="GYu-Ez-3ka" id="fN1-1h-8iC"/>
                 <outlet property="_chkTrillReverse" destination="jul-TK-CBk" id="kBk-4G-cJx"/>
                 <outlet property="_chkWaveViewEnabled" destination="Grp-zO-WAk" id="lel-Q0-aFg"/>
-                <outlet property="_convolutionReverbContentView" destination="VYz-mB-YKD" id="pJZ-Z7-uc8"/>
                 <outlet property="_crasherContentView" destination="BMM-8J-Wip" id="sf8-fg-M8L"/>
                 <outlet property="_djFilterContentView" destination="3GI-kj-rir" id="vae-Vl-axf"/>
                 <outlet property="_flangerContentView" destination="U0I-oN-F0V" id="NFA-xa-Xuf"/>

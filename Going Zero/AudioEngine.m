@@ -355,7 +355,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     AudioObjectPropertyAddress propAddress;
     propAddress.mSelector = kAudioDevicePropertyBufferFrameSize;
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
-    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    propAddress.mElement = kAudioObjectPropertyElementMain;
     UInt32 frameSize = 32;
     ret = AudioObjectSetPropertyData(builtInOutput,
                                      &propAddress,0, NULL, sizeof(UInt32), &frameSize);
@@ -417,7 +417,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     AudioObjectPropertyAddress propAddress;
     propAddress.mSelector = kAudioDevicePropertyBufferFrameSize;
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
-    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    propAddress.mElement = kAudioObjectPropertyElementMain;
     UInt32 frameSize = 32;
     ret = AudioObjectSetPropertyData(inDevID,
                                      &propAddress,0, NULL, sizeof(UInt32), &frameSize);
@@ -488,7 +488,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     AudioObjectPropertyAddress propAddress;
     propAddress.mSelector = kAudioHardwarePropertyDevices;
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
-    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    propAddress.mElement = kAudioObjectPropertyElementMain;
     
     ret = AudioObjectGetPropertyDataSize(kAudioObjectSystemObject, &propAddress, 0, NULL, &propertySize);
     
@@ -602,7 +602,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     AudioObjectPropertyAddress propAddress;
     propAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
-    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    propAddress.mElement = kAudioObjectPropertyElementMain;
     
     UInt32 size = sizeof(_preOutputDeviceID);
     OSStatus ret = AudioObjectGetPropertyData(kAudioObjectSystemObject,&propAddress,
@@ -623,7 +623,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     AudioObjectPropertyAddress propAddress;
     propAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
-    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    propAddress.mElement = kAudioObjectPropertyElementMain;
     
     AudioDeviceID bgmOut = [self getDeviceForName:LOOPBACK_DEVICE];
     
@@ -649,7 +649,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     AudioObjectPropertyAddress propAddress;
     propAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
-    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    propAddress.mElement = kAudioObjectPropertyElementMain;
 
     OSStatus ret = AudioObjectSetPropertyData(kAudioObjectSystemObject,
                                      &propAddress,
@@ -692,7 +692,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     AudioObjectPropertyAddress propAddress;
     propAddress.mSelector = kAudioHardwarePropertyDevices;
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
-    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    propAddress.mElement = kAudioObjectPropertyElementMain;
     
     ret = AudioObjectGetPropertyDataSize(kAudioObjectSystemObject, &propAddress, 0, NULL, &propertySize);
     
@@ -733,7 +733,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
         }else{
             propAddress.mScope = kAudioObjectPropertyScopeInput;
         }
-        propAddress.mElement = kAudioObjectPropertyElementMaster;
+        propAddress.mElement = kAudioObjectPropertyElementMain;
         ret = AudioObjectGetPropertyDataSize(objects[i], &propAddress, 0, NULL, &propertySize);
         int num2 = propertySize / sizeof(AudioStreamID);
         if (num2 > 0 ){
@@ -771,7 +771,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     AudioObjectPropertyAddress propAddress;
     propAddress.mSelector = kAudioDevicePropertyBufferFrameSize;
     propAddress.mScope = kAudioObjectPropertyScopeGlobal;
-    propAddress.mElement = kAudioObjectPropertyElementMaster;
+    propAddress.mElement = kAudioObjectPropertyElementMain;
     UInt32 frameSize = 32;
     ret = AudioObjectSetPropertyData(devID,
                                      &propAddress,0, NULL, sizeof(UInt32), &frameSize);
