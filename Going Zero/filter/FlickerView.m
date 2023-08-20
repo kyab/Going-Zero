@@ -10,12 +10,38 @@
 
 @implementation FlickerView
 
+- (void)awakeFromNib{
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    
+}
+
+-(void)onTimer:(NSTimer *)timer{
+    [self setNeedsDisplay:YES];
+}
+
+- (void)setBeatTracker:(BeatTracker *)beatTracker{
+    _beatTracker = beatTracker;
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
+    if (!_beatTracker) return;
+    
     [[NSColor blueColor] set];
     NSRectFill(dirtyRect);
-    // Drawing code here.
+    
+    float beatDuration = [_beatTracker beatDurationSec];
+    float sec = [_beatTracker estimatedNextBeatRelativeSec];
+
+    if (beatDuration < 0.1) return;
+    
+    NSRect rect = self.bounds;
+    [[NSColor orangeColor] set];
+    rect.size.width *= sec/beatDuration;
+    NSRectFill(rect);
 }
 
 @end

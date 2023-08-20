@@ -21,6 +21,7 @@
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker{
     _beatTracker = beatTracker;
+    [_flickerView setBeatTracker:_beatTracker];
 }
 
 @end

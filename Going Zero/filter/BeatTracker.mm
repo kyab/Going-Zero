@@ -71,57 +71,61 @@ using namespace essentia;
     return self;
 }
 
--(float)pastBeatRelativeSec{
-    
+-(void)update{
     if (_finalTicks.size() < 4){
-        return 0;
+        _beatDuration = 2.0;
     }
     Real sum = 0.0f;
     for (size_t i = _finalTicks.size()-4; i < _finalTicks.size()-1 ; i++){
         sum += _finalTicks[i+1] - _finalTicks[i];
     }
-    Real average = sum/3.0f;
+    _beatDuration = sum/3.0f;
     
+    NSLog(@"updated. %lu beats. BPM = %.2f, duration = %f[sec]", _finalTicks.size(), 60.0f/_beatDuration, _beatDuration);
+//    Real delta = 0.0f;
+//    for (size_t i = 0 ; i < _finalTicks.size() ; i++){
+//        if (i > 0){
+//            delta = _finalTicks[i] - _finalTicks[i-1];
+//        }
+//        NSLog(@"beat[%lu] : %f[sec]. delta = %f[sec]", i, _finalTicks[i], delta);
+//    }
+    
+}
+
+-(float)beatDurationSec{
+    return _beatDuration;
+}
+
+-(float)BPM{
+    return 60.0f/_beatDuration;
+}
+
+-(float)pastBeatRelativeSec{
+    if (_finalTicks.empty()){
+        return 0.0f;
+    }
+
     Real lastBeatSec = _finalTicks[_finalTicks.size()-1];
     Real previousBeatSec = lastBeatSec;
-    while(previousBeatSec + average < _currentSample*(Real)44100.0){
-        previousBeatSec += average;
+    while(previousBeatSec + _beatDuration < _currentSample/(Real)44100.0){
+        previousBeatSec += _beatDuration;
     }
     
-    return -1.0*(_currentSample * 44100.0f - previousBeatSec);
-    
-    
+    return -1.0*(_currentSample / 44100.0f - previousBeatSec);
 }
 
 -(float)estimatedNextBeatRelativeSec{
-    if (_finalTicks.size() < 4){
-        return 1.0f;
+    if (_finalTicks.empty()){
+        return 0.0f;
     }
-    Real sum = 0.0f;
-    for (size_t i = _finalTicks.size()-4; i < _finalTicks.size()-1 ; i++){
-        sum += _finalTicks[i+1] - _finalTicks[i];
-    }
-    Real average = sum/3.0f;
     
     Real lastBeatSec = _finalTicks[_finalTicks.size()-1];
     Real nextBeatSec = lastBeatSec;
-    while(nextBeatSec  < _currentSample*(Real)44100.0){
-        nextBeatSec += average;
+    while(nextBeatSec  < _currentSample/(Real)44100.0){
+        nextBeatSec += _beatDuration;
     }
     
-    return nextBeatSec - _currentSample * 44100.0f;
-    
-}
-
--(void)printBeats{
-    NSLog(@"print %lu beats", _finalTicks.size());
-    Real delta = 0.0f;
-    for (size_t i = 0 ; i < _finalTicks.size() ; i++){
-        if (i > 0){
-            delta = _finalTicks[i] - _finalTicks[i-1];
-        }
-        NSLog(@"beat[%lu] : %f[sec]. delta = %f[sec]", i, _finalTicks[i], delta);
-    }
+    return nextBeatSec - _currentSample / 44100.0f;
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
@@ -156,7 +160,7 @@ using namespace essentia;
                     std::copy(_audioPool.cbegin(), _audioPool.cend(), std::back_inserter(_audioFragment));
                     _audioPool.clear();
                     _async_in_progress = false;
-                    [self printBeats];
+                    [self update];
                 });
                 _async_in_progress = true;
                 NSLog(@"dispatched first %f[sec]", _currentSample/44100.0f );
@@ -193,7 +197,7 @@ using namespace essentia;
                     _processedSample += 44100*5;
                     _async_in_progress = false;
 
-                    [self printBeats];
+                    [self update];
                     
                 });
                 _async_in_progress = true;

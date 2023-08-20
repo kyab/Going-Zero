@@ -7,10 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "BeatTracker.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FlickerView : NSView
+@interface FlickerView : NSView{
+    BeatTracker *_beatTracker;
+    NSTimer *_timer;
+}
+
+-(void)setBeatTracker:(BeatTracker *)beatTracker;
 
 @end
 

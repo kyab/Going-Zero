@@ -10,11 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BeatTracker : NSObject;
+@interface BeatTracker : NSObject{
+    float _beatDuration;
+}
 
--(float)pastBeatSample;         // in sampleNum
--(float)estimatedNextBeatSample;    // in sampleNum
+-(float)pastBeatRelativeSec;
+-(float)estimatedNextBeatRelativeSec;
+-(float)beatDurationSec;
+-(float)BPM;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 @end
+
 
 NS_ASSUME_NONNULL_END
