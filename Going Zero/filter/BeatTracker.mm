@@ -129,6 +129,7 @@ using namespace essentia;
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    static Boolean earlyBird = NO;
 
     if (!_async_in_progress){
         
@@ -137,7 +138,7 @@ using namespace essentia;
         }
                 
         if (_processedSample == 0){
-            if (_audioFragment.size() >= 5 * 44100){
+            if (_audioFragment.size() >= 3 * 44100){
                 
                 dispatch_async(_beatTrackerQueue, ^{
                     while(_network->runStep()){
@@ -156,25 +157,58 @@ using namespace essentia;
                     _intBeatTracker->reset();
                     _pool.remove("rhythm.ticks");
                     
-                    _processedSample += _audioFragment.size();
+                    _processedSample = _audioFragment.size();
+                    earlyBird = YES;
                     std::copy(_audioPool.cbegin(), _audioPool.cend(), std::back_inserter(_audioFragment));
                     _audioPool.clear();
                     _async_in_progress = false;
                     [self update];
                 });
                 _async_in_progress = true;
-                NSLog(@"dispatched first %f[sec]", _currentSample/44100.0f );
+                NSLog(@"dispatched early %f[sec]", _currentSample/44100.0f );
                 
             }
             
-        }else{
-            if (_audioFragment.size() >= 12 * 44100){
+        } else if (earlyBird){
+            if (_audioFragment.size() >= 5 * 44100){
                 
                 dispatch_async(_beatTrackerQueue, ^{
                     while(_network->runStep()){
                         ;
                     }
-                    NSLog(@"runStep done 12 %f[sec]", _currentSample/44100.0f);
+                    
+                    NSLog(@"runStep done %f[sec]", _currentSample/44100.0f);
+                    _finalTicks.clear();
+                    if(_pool.contains<std::vector<Real>>("rhythm.ticks")){
+                        std::vector<Real> ticks = _pool.value<std::vector<Real>>("rhythm.ticks");
+                        for (int i = 0 ; i < ticks.size() ; i++){
+                            _finalTicks.push_back(ticks[i]);
+                        }
+                    }
+                    
+                    _vecInput.reset();
+                    _intBeatTracker->reset();
+                    _pool.remove("rhythm.ticks");
+                    
+                    _processedSample = _audioFragment.size();
+                    earlyBird = NO;
+                    std::copy(_audioPool.cbegin(), _audioPool.cend(), std::back_inserter(_audioFragment));
+                    _audioPool.clear();
+                    _async_in_progress = false;
+                    [self update];
+                });
+                _async_in_progress = true;
+                NSLog(@"dispatched 5sec %f[sec]", _currentSample/44100.0f );
+                
+            }
+        }else{
+            if (_audioFragment.size() >= 11 * 44100){
+                
+                dispatch_async(_beatTrackerQueue, ^{
+                    while(_network->runStep()){
+                        ;
+                    }
+                    NSLog(@"runStep done 11 %f[sec]", _currentSample/44100.0f);
                     if(_pool.contains<std::vector<Real>>("rhythm.ticks")){
                         std::vector<Real> ticks = _pool.value<std::vector<Real>>("rhythm.ticks");
                         for (int i = 0 ; i < ticks.size() ; i++){
@@ -190,7 +224,7 @@ using namespace essentia;
                     _pool.remove("rhythm.ticks");
                     
                     std::shift_left(_audioFragment.begin(), _audioFragment.end() ,44100 * 5);
-                    _audioFragment.erase(_audioFragment.cbegin()+44100*7, _audioFragment.cend());
+                    _audioFragment.erase(_audioFragment.cbegin()+44100*6, _audioFragment.cend());
                     std::copy(_audioPool.cbegin(), _audioPool.cend(), std::back_inserter(_audioFragment));
                     _audioPool.clear();
                     

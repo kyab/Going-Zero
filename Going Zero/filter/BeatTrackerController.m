@@ -16,12 +16,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
+
+- (void)onTimer:(NSTimer *)timer{
+    if (_beatTracker){
+        float ratio = [_beatTracker estimatedNextBeatRelativeSec] / [_beatTracker beatDurationSec];
+        
+        [_flickerView setRatio:ratio];
+        [_flickerView setNeedsDisplay:YES];
+        
+    }
+}
+
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker{
     _beatTracker = beatTracker;
-    [_flickerView setBeatTracker:_beatTracker];
+//    [_flickerView setBeatTracker:_beatTracker];
 }
 
 @end
