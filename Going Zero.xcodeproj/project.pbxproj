@@ -77,7 +77,7 @@
 		EBF93D22266B215E001B13F3 /* Refrain.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D21266B215E001B13F3 /* Refrain.m */; };
 		EBFE0A4C2A7FD5B300F88A78 /* BeatTrackerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFE0A4A2A7FD5B300F88A78 /* BeatTrackerController.m */; };
 		EBFE0A4D2A7FD5B300F88A78 /* BeatTrackerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBFE0A4B2A7FD5B300F88A78 /* BeatTrackerController.xib */; };
-		EBFE0A502A7FD76700F88A78 /* FlickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFE0A4F2A7FD76700F88A78 /* FlickerView.m */; };
+		EBFE0A502A7FD76700F88A78 /* BeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFE0A4F2A7FD76700F88A78 /* BeatView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,8 +211,8 @@
 		EBFE0A492A7FD5B300F88A78 /* BeatTrackerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeatTrackerController.h; sourceTree = "<group>"; };
 		EBFE0A4A2A7FD5B300F88A78 /* BeatTrackerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeatTrackerController.m; sourceTree = "<group>"; };
 		EBFE0A4B2A7FD5B300F88A78 /* BeatTrackerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeatTrackerController.xib; sourceTree = "<group>"; };
-		EBFE0A4E2A7FD76700F88A78 /* FlickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlickerView.h; sourceTree = "<group>"; };
-		EBFE0A4F2A7FD76700F88A78 /* FlickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlickerView.m; sourceTree = "<group>"; };
+		EBFE0A4E2A7FD76700F88A78 /* BeatView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeatView.h; sourceTree = "<group>"; };
+		EBFE0A4F2A7FD76700F88A78 /* BeatView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeatView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,8 +333,8 @@
 				EBFE0A492A7FD5B300F88A78 /* BeatTrackerController.h */,
 				EBFE0A4A2A7FD5B300F88A78 /* BeatTrackerController.m */,
 				EBFE0A4B2A7FD5B300F88A78 /* BeatTrackerController.xib */,
-				EBFE0A4E2A7FD76700F88A78 /* FlickerView.h */,
-				EBFE0A4F2A7FD76700F88A78 /* FlickerView.m */,
+				EBFE0A4E2A7FD76700F88A78 /* BeatView.h */,
+				EBFE0A4F2A7FD76700F88A78 /* BeatView.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -550,7 +550,7 @@
 				EB6E387726623F83002AADCA /* AudioEngine.m in Sources */,
 				EBBF46D62675D45100785BF6 /* ReverseController.m in Sources */,
 				EBF93D1A266AE709001B13F3 /* MyButton.m in Sources */,
-				EBFE0A502A7FD76700F88A78 /* FlickerView.m in Sources */,
+				EBFE0A502A7FD76700F88A78 /* BeatView.m in Sources */,
 				EBDA9A45273F867E00836273 /* HPF_IIR.m in Sources */,
 				EB7372B6266530F600393D58 /* Freezer.m in Sources */,
 				EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */,

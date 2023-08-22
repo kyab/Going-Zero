@@ -7,8 +7,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BeatTrackerController">
             <connections>
-                <outlet property="_flickerView" destination="QYw-yd-zqQ" id="g0E-1c-ANu"/>
-                <outlet property="_lblBPM" destination="g55-lF-ch7" id="gfP-Xr-uoa"/>
+                <outlet property="_beatView" destination="QYw-yd-zqQ" id="g0E-1c-ANu"/>
+                <outlet property="_lblBPM" destination="g55-lF-ch7" id="8v4-XN-4BV"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -27,8 +27,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYw-yd-zqQ" customClass="FlickerView">
-                    <rect key="frame" x="99" y="4" width="105" height="32"/>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYw-yd-zqQ" customClass="BeatView">
+                    <rect key="frame" x="99" y="4" width="123" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
             </subviews>

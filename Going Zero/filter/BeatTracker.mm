@@ -40,6 +40,9 @@ using namespace essentia;
     dispatch_queue_t _beatTrackerQueue;
     
     Boolean _async_in_progress;
+    
+    float _beatDuration;
+
 }
 
 -(id)init{
@@ -67,6 +70,8 @@ using namespace essentia;
     _beatTrackerQueue = dispatch_queue_create("beatTrackerQueue", DISPATCH_QUEUE_SERIAL);
     
     _async_in_progress = false;
+    
+    _beatDuration = 0.5f;
     
     return self;
 }

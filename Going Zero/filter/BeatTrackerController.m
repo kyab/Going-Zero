@@ -24,16 +24,17 @@
     if (_beatTracker){
         float ratio = [_beatTracker estimatedNextBeatRelativeSec] / [_beatTracker beatDurationSec];
         
-        [_flickerView setRatio:ratio];
-        [_flickerView setNeedsDisplay:YES];
+        [_beatView setRatio:ratio];
+        [_beatView setNeedsDisplay:YES];
         
+        float bpm = [_beatTracker BPM];
+        [_lblBPM setStringValue:[NSString stringWithFormat:@"%.02f", bpm]];
     }
 }
 
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker{
     _beatTracker = beatTracker;
-//    [_flickerView setBeatTracker:_beatTracker];
 }
 
 @end

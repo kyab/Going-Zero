@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BeatTracker.h"
-#import "FlickerView.h"
+#import "BeatView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,8 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
     
     __weak IBOutlet NSTextField *_lblBPM;
     BeatTracker *_beatTracker;
-    __weak IBOutlet FlickerView *_flickerView;
+    __weak IBOutlet BeatView *_beatView;
     NSTimer *_timer;
+//    __weak IBOutlet NSTextField *_lblBPM;
 }
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker;

@@ -11,7 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BeatTracker : NSObject{
-    float _beatDuration;
 }
 
 -(float)pastBeatRelativeSec;
