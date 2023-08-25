@@ -24,7 +24,7 @@
     if (_beatTracker){
         float ratio = [_beatTracker estimatedNextBeatRelativeSec] / [_beatTracker beatDurationSec];
         
-        [_beatView setRatio:ratio];
+        [_beatView setRatio:ratio offBeat:[_beatTracker offBeat]];
         [_beatView setNeedsDisplay:YES];
         
         float bpm = [_beatTracker BPM];

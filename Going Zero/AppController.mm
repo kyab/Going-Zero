@@ -143,9 +143,13 @@
     }
     [_ae setRenderDelegate:(id<AudioEngineDelegate>)self];
     
-    [_ae startInput];
-    [_ae startOutput];
     [_ae changeSystemOutputDeviceToBGM];
+    usleep(1000*500);
+    [_ae startOutput];
+    usleep(1000*500);
+    [_ae startInput];
+
+
     
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onGlobalTimer:) userInfo:nil repeats:YES];
 

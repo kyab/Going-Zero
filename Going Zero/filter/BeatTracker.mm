@@ -39,10 +39,11 @@ using namespace essentia;
     
     dispatch_queue_t _beatTrackerQueue;
     
-    Boolean _async_in_progress;
-    
+    Boolean _asyncInProgress;
     float _beatDuration;
-
+    float _prevBeatDuration;
+    float _prevLastTick;    // [sec]
+    Boolean _offBeat;    //拍子がひっくり返っているか
 }
 
 -(id)init{
@@ -68,18 +69,24 @@ using namespace essentia;
     
     
     _beatTrackerQueue = dispatch_queue_create("beatTrackerQueue", DISPATCH_QUEUE_SERIAL);
-    
-    _async_in_progress = false;
-    
+    _asyncInProgress = false;
     _beatDuration = 0.5f;
+    _prevBeatDuration = 0.0f;
+    _prevLastTick = 0.0f;
+     
+    _offBeat = false;
     
     return self;
 }
 
 -(void)update{
     if (_finalTicks.size() < 4){
-        _beatDuration = 2.0;
+        _beatDuration = 0.5f;
+        return;
     }
+    
+    _prevBeatDuration = _beatDuration;
+    
     Real sum = 0.0f;
     for (size_t i = _finalTicks.size()-4; i < _finalTicks.size()-1 ; i++){
         sum += _finalTicks[i+1] - _finalTicks[i];
@@ -95,6 +102,25 @@ using namespace essentia;
 //        NSLog(@"beat[%lu] : %f[sec]. delta = %f[sec]", i, _finalTicks[i], delta);
 //    }
     
+    // off-beat detection
+    if (_prevBeatDuration >= 0.1){
+        float durationChange = fabs(_beatDuration - _prevBeatDuration);
+        if ( durationChange <= 0.05){
+            Real lastTick = _finalTicks[_finalTicks.size() - 1];
+            Real nextBeatCandidate = _prevLastTick;
+            while( nextBeatCandidate < lastTick){
+                nextBeatCandidate += _beatDuration;
+            }
+            float delta = nextBeatCandidate - lastTick;
+            if (0.4 <= delta/_beatDuration && delta/_beatDuration <= 0.6 ){
+                _offBeat = !_offBeat;
+            }
+        }
+    }
+    
+    //
+    _prevLastTick = _finalTicks[_finalTicks.size()-1];
+    
 }
 
 -(float)beatDurationSec{
@@ -103,6 +129,10 @@ using namespace essentia;
 
 -(float)BPM{
     return 60.0f/_beatDuration;
+}
+
+-(Boolean)offBeat{
+    return _offBeat;
 }
 
 -(float)pastBeatRelativeSec{
@@ -136,7 +166,7 @@ using namespace essentia;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     static Boolean earlyBird = NO;
 
-    if (!_async_in_progress){
+    if (!_asyncInProgress){
         
         for (UInt32 i = 0 ; i < numSamples ; i++){
             _audioFragment.push_back((leftBuf[i] + rightBuf[i])/2.0);
@@ -166,10 +196,10 @@ using namespace essentia;
                     earlyBird = YES;
                     std::copy(_audioPool.cbegin(), _audioPool.cend(), std::back_inserter(_audioFragment));
                     _audioPool.clear();
-                    _async_in_progress = false;
+                    _asyncInProgress = false;
                     [self update];
                 });
-                _async_in_progress = true;
+                _asyncInProgress = true;
                 NSLog(@"dispatched early %f[sec]", _currentSample/44100.0f );
                 
             }
@@ -199,10 +229,10 @@ using namespace essentia;
                     earlyBird = NO;
                     std::copy(_audioPool.cbegin(), _audioPool.cend(), std::back_inserter(_audioFragment));
                     _audioPool.clear();
-                    _async_in_progress = false;
+                    _asyncInProgress = false;
                     [self update];
                 });
-                _async_in_progress = true;
+                _asyncInProgress = true;
                 NSLog(@"dispatched 5sec %f[sec]", _currentSample/44100.0f );
                 
             }
@@ -234,12 +264,12 @@ using namespace essentia;
                     _audioPool.clear();
                     
                     _processedSample += 44100*5;
-                    _async_in_progress = false;
+                    _asyncInProgress = false;
 
                     [self update];
                     
                 });
-                _async_in_progress = true;
+                _asyncInProgress = true;
                 NSLog(@"dispatched %f[sec]", _currentSample/44100.0f );
             }
             

@@ -6,8 +6,9 @@
     _ratio = 0.0f;
 }
 
--(void)setRatio:(float)ratio{
+-(void)setRatio:(float)ratio offBeat:(Boolean)offBeat{
     _ratio = ratio;
+    _offBeat = offBeat;
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -17,7 +18,11 @@
     NSRectFill(dirtyRect);
     
     NSRect rect = self.bounds;
-    [[NSColor orangeColor] set];
+    if (_offBeat){
+        [[NSColor cyanColor] set];
+    }else{
+        [[NSColor orangeColor] set];
+    }
     rect.size.width *= _ratio;
     NSRectFill(rect);
 }
