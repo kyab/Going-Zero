@@ -37,4 +37,8 @@
     _beatTracker = beatTracker;
 }
 
+- (IBAction)flipOffsetClicked:(id)sender {
+    [_beatTracker flipOffBeat];
+}
+
 @end

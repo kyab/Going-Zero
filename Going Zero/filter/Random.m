@@ -143,17 +143,16 @@
     _ring = [[RingBuffer alloc] init];
     [_ring setMinOffset:0];
     _bypass = YES;
-    _bpm = 120.0;
+//    _bpm = 120.0;
     
     _filter = nil;
-    
     srand((unsigned int)time(NULL));
-    
     return self;
 }
 
 -(void)start{
-    _totalLength = (UInt32)(44100.0*(60.0/_bpm * 4.0));
+    float bpm = [_beatTracker BPM];
+    _totalLength = (UInt32)(44100.0*(60.0/bpm * 4.0));
     _sectionLength = ceil(_totalLength/4.0);
     _currentSection = 0;
     _currentFrame = 0;
@@ -162,8 +161,8 @@
     
 }
 
--(void)setBPM:(float)bpm{
-    _bpm = bpm;
+-(void)setBeatTracker:(BeatTracker *)beatTracker{
+    _beatTracker = beatTracker;
 }
 
 -(void)newFilterLeft:(float *)leftPtr right:(float *)rightPtr samples:(UInt32)numSamples{

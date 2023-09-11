@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RingBuffer.h"
+#import "BeatTracker.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -64,19 +65,19 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Random : NSObject{
     Boolean _bypass;
     RingBuffer *_ring;
-    float _bpm;
+//    float _bpm;
     id<RandomProtocol> _filter;
     UInt32 _totalLength;
     UInt32 _sectionLength;
     UInt32 _currentSection;
     UInt32 _currentFrame;
+    BeatTracker *_beatTracker;
 }
 
 -(void)start;
--(void)setBPM:(float)bpm;
+-(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
     
-
 @end
 
 NS_ASSUME_NONNULL_END

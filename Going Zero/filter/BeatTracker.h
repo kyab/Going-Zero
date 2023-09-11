@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(float)beatDurationSec;
 -(Boolean)offBeat;
 -(float)BPM;
+-(void)flipOffBeat;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 @end
 

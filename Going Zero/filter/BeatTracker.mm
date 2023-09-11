@@ -80,7 +80,7 @@ using namespace essentia;
 }
 
 -(void)update{
-    if (_finalTicks.size() < 4){
+    if (_finalTicks.size() < 9){
         _beatDuration = 0.5f;
         return;
     }
@@ -88,24 +88,17 @@ using namespace essentia;
     _prevBeatDuration = _beatDuration;
     
     Real sum = 0.0f;
-    for (size_t i = _finalTicks.size()-4; i < _finalTicks.size()-1 ; i++){
+    for (size_t i = _finalTicks.size()-9; i < _finalTicks.size()-1 ; i++){
         sum += _finalTicks[i+1] - _finalTicks[i];
     }
-    _beatDuration = sum/3.0f;
+    _beatDuration = sum/8.0f;
     
     NSLog(@"updated. %lu beats. BPM = %.2f, duration = %f[sec]", _finalTicks.size(), 60.0f/_beatDuration, _beatDuration);
-//    Real delta = 0.0f;
-//    for (size_t i = 0 ; i < _finalTicks.size() ; i++){
-//        if (i > 0){
-//            delta = _finalTicks[i] - _finalTicks[i-1];
-//        }
-//        NSLog(@"beat[%lu] : %f[sec]. delta = %f[sec]", i, _finalTicks[i], delta);
-//    }
     
     // off-beat detection
     if (_prevBeatDuration >= 0.1){
         float durationChange = fabs(_beatDuration - _prevBeatDuration);
-        if ( durationChange <= 0.05){
+        if ( durationChange <= 0.1){
             Real lastTick = _finalTicks[_finalTicks.size() - 1];
             Real nextBeatCandidate = _prevLastTick;
             while( nextBeatCandidate < lastTick){
@@ -113,12 +106,18 @@ using namespace essentia;
             }
             float delta = nextBeatCandidate - lastTick;
             if (0.4 <= delta/_beatDuration && delta/_beatDuration <= 0.6 ){
+                NSLog(@"Flipped");
                 _offBeat = !_offBeat;
+            }else{
+                NSLog(@"Just Fixed");
+                _offBeat = false;
             }
+        }else{
+            NSLog(@"Jumped");
+            _offBeat = false;
         }
     }
     
-    //
     _prevLastTick = _finalTicks[_finalTicks.size()-1];
     
 }
@@ -135,12 +134,19 @@ using namespace essentia;
     return _offBeat;
 }
 
+-(void)flipOffBeat{
+    _offBeat = !_offBeat;
+}
+
 -(float)pastBeatRelativeSec{
     if (_finalTicks.empty()){
         return 0.0f;
     }
 
     Real lastBeatSec = _finalTicks[_finalTicks.size()-1];
+    if (_offBeat){
+        lastBeatSec -= _beatDuration/2.0f;
+    }
     Real previousBeatSec = lastBeatSec;
     while(previousBeatSec + _beatDuration < _currentSample/(Real)44100.0){
         previousBeatSec += _beatDuration;
@@ -155,6 +161,9 @@ using namespace essentia;
     }
     
     Real lastBeatSec = _finalTicks[_finalTicks.size()-1];
+    if (_offBeat){
+        lastBeatSec -= _beatDuration/2.0f;
+    }
     Real nextBeatSec = lastBeatSec;
     while(nextBeatSec  < _currentSample/(Real)44100.0){
         nextBeatSec += _beatDuration;

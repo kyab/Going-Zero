@@ -33,6 +33,12 @@
     
     _faderIn = [[MiniFaderIn alloc] init];
     
+    _beatTracker = [[BeatTracker alloc] init];
+    _beatTrackerController = [[BeatTrackerController alloc]
+                         initWithNibName:@"BeatTrackerController" bundle:nil];
+    [_beatTrackerContentView addSubview:[_beatTrackerController view]];
+    [self centerize:[_beatTrackerController view]];
+    [_beatTrackerController setBeatTracker:_beatTracker];
     
     _looper = [[Looper alloc] init];
     
@@ -50,7 +56,6 @@
     _viewer = [[Viewer alloc] init];
     [_waveView setViewer: _viewer];
     
-    
     _refrain = [[Refrain alloc] init];
     _refrainController = [[RefrainController alloc] initWithNibName:@"RefrainView" bundle:nil];
     [_refrainContentView addSubview:[_refrainController view]];
@@ -61,7 +66,6 @@
     _crasherController = [[BitCrasherController alloc] initWithNibName:@"BitCrasherController" bundle:nil];
     [_crasherContentView addSubview:[_crasherController view]];
     [_crasherController setBitCrasher:_crasher];
-    
     
     _tapeReverse = [[TapeReverse alloc] init];
     _tapeReverseController = [[TapeReverseController alloc] initWithNibName:@"TapeReverseController" bundle: nil];
@@ -81,7 +85,6 @@
     [self centerize:[_flangerController view]];
     [_flangerController setFlanger:_flanger];
     
-
     _sampler = [[Sampler alloc] init];
     _samplerController = [[SamplerController alloc]
                            initWithNibName:@"SamplerController" bundle:nil];
@@ -94,6 +97,7 @@
                          initWithNibName:@"RandomController" bundle:nil];
     [_randomContentView addSubview:[_randomController view]];
     [self centerize:[_randomController view]];
+    [_random setBeatTracker:_beatTracker];
     [_randomController setRandom:_random];
     
     _lookUp = [[Lookup alloc] init];
@@ -102,15 +106,6 @@
     [_lookUpContentView addSubview:[_lookUpController view]];
     [self centerize:[_lookUpController view]];
     [_lookUpController setLookUp:_lookUp];
-    
-    _beatTracker = [[BeatTracker alloc] init];
-    _beatTrackerController = [[BeatTrackerController alloc]
-                         initWithNibName:@"BeatTrackerController" bundle:nil];
-    [_beatTrackerContentView addSubview:[_beatTrackerController view]];
-    [self centerize:[_beatTrackerController view]];
-    [_beatTrackerController setBeatTracker:_beatTracker];
-    
-    
     
     _simpleReverb = [[SimpleReverb alloc] init];
     _simpleReverbController = [[SimpleReverbController alloc]
@@ -649,7 +644,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         if (bpm > 60.0){
             _bpm = bpm;
             [_lblBPM setStringValue:[NSString stringWithFormat:@"%.02f",_bpm]];
-            [_random setBPM:bpm];
+//            [_random setBPM:bpm];
         }
     }
 
