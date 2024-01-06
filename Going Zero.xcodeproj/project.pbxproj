@@ -44,6 +44,7 @@
 		EB70011D2691D022007F88EE /* FlangerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB70011B2691D022007F88EE /* FlangerController.xib */; };
 		EB7001202691D038007F88EE /* Flanger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB70011F2691D038007F88EE /* Flanger.m */; };
 		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
+		EB7DDCC22B4955AD00D72E9A /* MainMenu2.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */; };
 		EB822D572A1D657E00FAA9B5 /* Lookup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB822D562A1D657E00FAA9B5 /* Lookup.m */; };
 		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
 		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
@@ -147,6 +148,7 @@
 		EB70011F2691D038007F88EE /* Flanger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flanger.m; sourceTree = "<group>"; };
 		EB7372B4266530F600393D58 /* Freezer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Freezer.h; sourceTree = "<group>"; };
 		EB7372B5266530F600393D58 /* Freezer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freezer.m; sourceTree = "<group>"; };
+		EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu2.xib; sourceTree = "<group>"; };
 		EB822D552A1D657E00FAA9B5 /* Lookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lookup.h; sourceTree = "<group>"; };
 		EB822D562A1D657E00FAA9B5 /* Lookup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lookup.m; sourceTree = "<group>"; };
 		EBAA80912678DF3000809C1D /* QuickCueController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCueController.h; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				EB6E387B266240BF002AADCA /* TurnTableView.m */,
 				EBDA9A3A273D4BA700836273 /* MainViewController.h */,
 				EBDA9A3B273D4BA700836273 /* MainViewController.m */,
+				EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */,
 			);
 			path = "Going Zero";
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
 				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
 				EB70011D2691D022007F88EE /* FlangerController.xib in Resources */,
+				EB7DDCC22B4955AD00D72E9A /* MainMenu2.xib in Resources */,
 				EBF93D0E266AA076001B13F3 /* DJFilterController.xib in Resources */,
 				EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */,
 				EB37911A276F5A8B00AC37D0 /* ConvolutionReverbController.xib in Resources */,

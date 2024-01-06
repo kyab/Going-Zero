@@ -34,7 +34,6 @@
                 <outlet property="_chkTrillReverse" destination="jul-TK-CBk" id="kBk-4G-cJx"/>
                 <outlet property="_chkWaveViewEnabled" destination="Grp-zO-WAk" id="lel-Q0-aFg"/>
                 <outlet property="_crasherContentView" destination="BMM-8J-Wip" id="sf8-fg-M8L"/>
-                <outlet property="_djFilterContentView" destination="3GI-kj-rir" id="vae-Vl-axf"/>
                 <outlet property="_flangerContentView" destination="U0I-oN-F0V" id="NFA-xa-Xuf"/>
                 <outlet property="_lblBPM" destination="Oqj-ub-orN" id="FVW-Z2-XEf"/>
                 <outlet property="_lookUpContentView" destination="egr-oC-n3Y" id="EDA-01-0Kn"/>
@@ -750,7 +749,7 @@
                                     <action selector="wetVolumeChanged:" target="6kO-Fg-JYF" id="EvZ-vF-MQc"/>
                                 </connections>
                             </slider>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5VG-fC-PpH">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5VG-fC-PpH">
                                 <rect key="frame" x="261" y="291" width="39" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Dry" id="V6o-g4-Yr6">
@@ -759,7 +758,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJE-Np-4fC">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJE-Np-4fC">
                                 <rect key="frame" x="36" y="291" width="39" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Wet" id="bCK-cG-mMF">
@@ -963,7 +962,7 @@
                             <action selector="monitorEnableChanged:" target="6kO-Fg-JYF" id="4cG-YV-VHA"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oqj-ub-orN">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oqj-ub-orN">
                         <rect key="frame" x="88" y="457" width="83" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="120.0" id="i25-9b-lDr">
                             <font key="font" metaFont="system"/>
