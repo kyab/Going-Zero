@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,6 @@
 		EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C12266B9F69004485FC /* BitCrasherController.m */; };
 		EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB274C13266B9F69004485FC /* BitCrasherController.xib */; };
 		EB36739F2A7BFD73006A2955 /* libessentia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB36739E2A7BF7F1006A2955 /* libessentia.a */; };
-		EB3673A12A7BFD9D006A2955 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3673A02A7BFD97006A2955 /* libfftw3f.a */; };
 		EB3673A32A7C062C006A2955 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3673A22A7C062C006A2955 /* CoreMedia.framework */; };
 		EB3673A52A7C063B006A2955 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3673A42A7C063B006A2955 /* VideoToolbox.framework */; };
 		EB3673A82A7D3CA0006A2955 /* BeatTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB3673A72A7D3CA0006A2955 /* BeatTracker.mm */; };
@@ -226,7 +225,6 @@
 				EB379115276F4B9F00AC37D0 /* AudioToolbox.framework in Frameworks */,
 				EB36739F2A7BFD73006A2955 /* libessentia.a in Frameworks */,
 				30D150BBE4D286CC7E0FB130 /* Pods_Going_Zero.framework in Frameworks */,
-				EB3673A12A7BFD9D006A2955 /* libfftw3f.a in Frameworks */,
 				EB3673A32A7C062C006A2955 /* CoreMedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,7 +447,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1510;
 				ORGANIZATIONNAME = kyab;
 				TargetAttributes = {
 					EB6E385D26623E4A002AADCA = {
@@ -650,6 +648,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -710,6 +709,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -742,6 +742,12 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = A386R5WFZ6;
 				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/include,
@@ -772,8 +778,6 @@
 					"\"Security\"",
 					"-lyaml",
 					"-lswresample",
-					"-ltag",
-					"-lsamplerate",
 					"-ltag",
 					"-lsamplerate",
 					"-lavutil",
@@ -809,6 +813,12 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = A386R5WFZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/include,
@@ -839,8 +849,6 @@
 					"\"Security\"",
 					"-lyaml",
 					"-lswresample",
-					"-ltag",
-					"-lsamplerate",
 					"-ltag",
 					"-lsamplerate",
 					"-lavutil",
