@@ -134,7 +134,7 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSView *_samplerContentView;
     SamplerController *_samplerController;
     
-    Random *_random;
+    Random *_random;    
     __weak IBOutlet NSView *_randomContentView;
     RandomController *_randomController;
     

@@ -252,7 +252,7 @@ using namespace essentia;
                     while(_network->runStep()){
                         ;
                     }
-                    NSLog(@"runStep done 11 %f[sec]", _currentSample/44100.0f);
+//                    NSLog(@"runStep done 11 %f[sec]", _currentSample/44100.0f);
                     if(_pool.contains<std::vector<Real>>("rhythm.ticks")){
                         std::vector<Real> ticks = _pool.value<std::vector<Real>>("rhythm.ticks");
                         for (int i = 0 ; i < ticks.size() ; i++){
@@ -279,7 +279,7 @@ using namespace essentia;
                     
                 });
                 _asyncInProgress = true;
-                NSLog(@"dispatched %f[sec]", _currentSample/44100.0f );
+//                NSLog(@"dispatched %f[sec]", _currentSample/44100.0f );
             }
             
         }

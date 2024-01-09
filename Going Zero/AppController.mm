@@ -259,8 +259,8 @@
      }
     
     //beat tracker
-    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     if(_speedRate == 1.0){
 

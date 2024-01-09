@@ -39,7 +39,6 @@
                 <outlet property="_lookUpContentView" destination="egr-oC-n3Y" id="EDA-01-0Kn"/>
                 <outlet property="_mainViewController" destination="WXr-ag-sep" id="Vfx-qV-5QP"/>
                 <outlet property="_quickCueContentView" destination="Xpc-6C-0KP" id="cXT-OA-VIa"/>
-                <outlet property="_randomContentView" destination="lAe-oT-3zs" id="Ted-Td-5AQ"/>
                 <outlet property="_refrainContentView" destination="BZp-y9-ksX" id="US1-fM-xRX"/>
                 <outlet property="_reverseContentView" destination="cPA-9c-HiA" id="QxQ-sN-APp"/>
                 <outlet property="_ringView" destination="H2e-uq-LqI" id="6nj-kD-lMb"/>
@@ -998,10 +997,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
-                    <box title="LookUp" translatesAutoresizingMaskIntoConstraints="NO" id="Rhz-oy-gr0">
-                        <rect key="frame" x="7" y="117" width="357" height="20"/>
+                    <box misplaced="YES" title="LookUp" translatesAutoresizingMaskIntoConstraints="NO" id="Rhz-oy-gr0">
+                        <rect key="frame" x="7" y="37" width="357" height="100"/>
                         <view key="contentView" id="egr-oC-n3Y">
-                            <rect key="frame" x="4" y="5" width="349" height="0.0"/>
+                            <rect key="frame" x="4" y="5" width="349" height="80"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
