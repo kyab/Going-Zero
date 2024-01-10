@@ -22,6 +22,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="Cna-gC-1o3" customClass="AppController">
             <connections>
+                <outlet property="_beatTrackerContentView" destination="bLL-Sz-3R4" id="2eP-Wn-8ox"/>
                 <outlet property="_djFilterContentView" destination="SNs-4h-V0S" id="ru5-Dz-CaJ"/>
                 <outlet property="_randomContentView" destination="bVd-RS-55F" id="yDZ-mn-fpp"/>
             </connections>
@@ -697,56 +698,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="597" height="416"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="292" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cY9-AS-kgQ">
-                        <rect key="frame" x="146" y="10" width="300" height="396"/>
-                        <subviews>
-                            <box title="DJ Filter" translatesAutoresizingMaskIntoConstraints="NO" id="3gx-CB-avD">
-                                <rect key="frame" x="-3" y="376" width="306" height="20"/>
-                                <view key="contentView" id="SNs-4h-V0S">
-                                    <rect key="frame" x="4" y="5" width="298" height="0.0"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </box>
-                            <box title="Random" translatesAutoresizingMaskIntoConstraints="NO" id="c2e-xs-3Q1">
-                                <rect key="frame" x="-3" y="-4" width="306" height="20"/>
-                                <view key="contentView" id="bVd-RS-55F">
-                                    <rect key="frame" x="4" y="5" width="298" height="0.0"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </box>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3gx-CB-avD" secondAttribute="trailing" id="9pZ-FU-ZqX"/>
-                            <constraint firstItem="c2e-xs-3Q1" firstAttribute="top" secondItem="3gx-CB-avD" secondAttribute="bottom" id="FdG-QO-HoD"/>
-                            <constraint firstItem="3gx-CB-avD" firstAttribute="top" secondItem="cY9-AS-kgQ" secondAttribute="top" id="Kg7-D7-zZc"/>
-                            <constraint firstItem="c2e-xs-3Q1" firstAttribute="height" secondItem="3gx-CB-avD" secondAttribute="height" id="Vo1-5A-rID"/>
-                            <constraint firstItem="c2e-xs-3Q1" firstAttribute="width" secondItem="3gx-CB-avD" secondAttribute="width" id="axX-3T-2YI"/>
-                            <constraint firstAttribute="bottom" secondItem="c2e-xs-3Q1" secondAttribute="bottom" id="gMg-sN-Bei"/>
-                        </constraints>
-                        <visibilityPriorities>
-                            <integer value="1000"/>
-                            <integer value="1000"/>
-                        </visibilityPriorities>
-                        <customSpacing>
-                            <real value="3.4028234663852886e+38"/>
-                            <real value="3.4028234663852886e+38"/>
-                        </customSpacing>
-                    </stackView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uCx-1E-Itc">
-                        <rect key="frame" x="32" y="30" width="75" height="32"/>
+                    <box fixedFrame="YES" title="Random" translatesAutoresizingMaskIntoConstraints="NO" id="c2e-xs-3Q1">
+                        <rect key="frame" x="17" y="46" width="274" height="72"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="beB-a3-XHb">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
+                        <view key="contentView" id="bVd-RS-55F">
+                            <rect key="frame" x="4" y="5" width="266" height="52"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
+                    <box fixedFrame="YES" title="DJ Filter" translatesAutoresizingMaskIntoConstraints="NO" id="3gx-CB-avD">
+                        <rect key="frame" x="17" y="136" width="274" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="SNs-4h-V0S">
+                            <rect key="frame" x="4" y="5" width="266" height="60"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
+                    <box fixedFrame="YES" title="Beat" translatesAutoresizingMaskIntoConstraints="NO" id="nfl-w9-xkh">
+                        <rect key="frame" x="17" y="289" width="274" height="56"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="bLL-Sz-3R4">
+                            <rect key="frame" x="4" y="5" width="266" height="36"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="cY9-AS-kgQ" firstAttribute="leading" secondItem="WOe-a7-VfY" secondAttribute="leading" constant="146" id="2b4-cQ-A9b"/>
-                    <constraint firstItem="cY9-AS-kgQ" firstAttribute="top" secondItem="WOe-a7-VfY" secondAttribute="top" constant="10" id="Me9-ho-auZ"/>
-                    <constraint firstAttribute="bottom" secondItem="cY9-AS-kgQ" secondAttribute="bottom" constant="10" id="Y1X-sU-QLT"/>
-                    <constraint firstAttribute="trailing" secondItem="cY9-AS-kgQ" secondAttribute="trailing" constant="151" id="sbP-nh-NLo"/>
-                </constraints>
             </view>
             <point key="canvasLocation" x="-28.5" y="-294"/>
         </window>

@@ -15,7 +15,7 @@
     [super drawRect:dirtyRect];
         
     [[NSColor blueColor] set];
-    NSRectFill(dirtyRect);
+    NSRectFill(self.bounds);
     
     NSRect rect = self.bounds;
     if (_offBeat){

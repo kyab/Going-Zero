@@ -22,7 +22,6 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="6kO-Fg-JYF" customClass="AppController">
             <connections>
-                <outlet property="_beatTrackerContentView" destination="vXB-QH-Wfa" id="dfq-fi-ctB"/>
                 <outlet property="_btnLoopHalf" destination="BFz-jy-2am" id="gAq-fa-yJr"/>
                 <outlet property="_btnLoopQuarter" destination="x7z-Pf-vnl" id="Wkz-U7-838"/>
                 <outlet property="_btnLooperEnd" destination="vMK-LO-d7Z" id="G6I-2K-vf2"/>
