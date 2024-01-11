@@ -377,6 +377,7 @@
 				EB6E386226623E4A002AADCA /* AppDelegate.m */,
 				EB6E386426623E4B002AADCA /* Assets.xcassets */,
 				EB6E386626623E4B002AADCA /* MainMenu.xib */,
+				EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */,
 				EB6E386926623E4B002AADCA /* Info.plist */,
 				EB6E386A26623E4B002AADCA /* main.m */,
 				EB6E386C26623E4B002AADCA /* Going_Zero.entitlements */,
@@ -392,7 +393,6 @@
 				EB6E387B266240BF002AADCA /* TurnTableView.m */,
 				EBDA9A3A273D4BA700836273 /* MainViewController.h */,
 				EBDA9A3B273D4BA700836273 /* MainViewController.m */,
-				EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */,
 			);
 			path = "Going Zero";
 			sourceTree = "<group>";
@@ -450,7 +450,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = kyab;
 				TargetAttributes = {
 					EB6E385D26623E4A002AADCA = {

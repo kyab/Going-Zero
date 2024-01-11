@@ -35,13 +35,10 @@
                 <outlet property="_crasherContentView" destination="BMM-8J-Wip" id="sf8-fg-M8L"/>
                 <outlet property="_flangerContentView" destination="U0I-oN-F0V" id="NFA-xa-Xuf"/>
                 <outlet property="_lblBPM" destination="Oqj-ub-orN" id="FVW-Z2-XEf"/>
-                <outlet property="_lookUpContentView" destination="egr-oC-n3Y" id="EDA-01-0Kn"/>
                 <outlet property="_mainViewController" destination="WXr-ag-sep" id="Vfx-qV-5QP"/>
-                <outlet property="_quickCueContentView" destination="Xpc-6C-0KP" id="cXT-OA-VIa"/>
                 <outlet property="_refrainContentView" destination="BZp-y9-ksX" id="US1-fM-xRX"/>
                 <outlet property="_reverseContentView" destination="cPA-9c-HiA" id="QxQ-sN-APp"/>
                 <outlet property="_ringView" destination="H2e-uq-LqI" id="6nj-kD-lMb"/>
-                <outlet property="_samplerContentView" destination="j19-oC-rXs" id="CPj-Gv-xTH"/>
                 <outlet property="_simpleReverbContentView" destination="2gf-nF-b51" id="Kl2-yv-AG3"/>
                 <outlet property="_sliderBenderRate" destination="kpw-Sr-7nJ" id="wdf-mk-YSn"/>
                 <outlet property="_sliderDryVolume" destination="Jh4-Fq-5r7" id="F7D-7r-9wI"/>
@@ -912,17 +909,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
-                    <box title="Bit Crasher" translatesAutoresizingMaskIntoConstraints="NO" id="mLZ-pc-cFq">
-                        <rect key="frame" x="366" y="354" width="305" height="20"/>
-                        <view key="contentView" id="BMM-8J-Wip">
-                            <rect key="frame" x="4" y="5" width="297" height="0.0"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        </view>
-                    </box>
-                    <box title="Flanger" translatesAutoresizingMaskIntoConstraints="NO" id="fPj-k2-5J6">
-                        <rect key="frame" x="368" y="266" width="303" height="20"/>
+                    <box misplaced="YES" title="Flanger" translatesAutoresizingMaskIntoConstraints="NO" id="fPj-k2-5J6">
+                        <rect key="frame" x="368" y="225" width="303" height="61"/>
                         <view key="contentView" id="U0I-oN-F0V">
-                            <rect key="frame" x="4" y="5" width="295" height="0.0"/>
+                            <rect key="frame" x="4" y="5" width="295" height="41"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
@@ -975,10 +965,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
-                    <box title="Reverb" translatesAutoresizingMaskIntoConstraints="NO" id="i0I-n0-l7j">
-                        <rect key="frame" x="368" y="140" width="303" height="20"/>
+                    <box misplaced="YES" title="Reverb" translatesAutoresizingMaskIntoConstraints="NO" id="i0I-n0-l7j">
+                        <rect key="frame" x="368" y="140" width="303" height="63"/>
                         <view key="contentView" id="2gf-nF-b51">
-                            <rect key="frame" x="4" y="5" width="295" height="0.0"/>
+                            <rect key="frame" x="4" y="5" width="295" height="43"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
@@ -1014,6 +1004,13 @@
                         <rect key="frame" x="7" y="390" width="357" height="59"/>
                         <view key="contentView" id="vXB-QH-Wfa">
                             <rect key="frame" x="4" y="5" width="349" height="39"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
+                    <box misplaced="YES" title="Bit Crasher" translatesAutoresizingMaskIntoConstraints="NO" id="mLZ-pc-cFq">
+                        <rect key="frame" x="366" y="351" width="305" height="49"/>
+                        <view key="contentView" id="BMM-8J-Wip">
+                            <rect key="frame" x="4" y="5" width="297" height="29"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
