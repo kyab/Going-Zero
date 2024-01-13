@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
     BitCrasherController *_crasherController;
     
     TapeReverse *_tapeReverse;
-    __weak IBOutlet NSBox *_tapeReverseContentView;
+    __weak IBOutlet NSView *_tapeReverseContentView;
     TapeReverseController *_tapeReverseController;
     
     QuickCue *_quickCue;

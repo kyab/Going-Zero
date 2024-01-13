@@ -32,14 +32,9 @@
                 <outlet property="_chkFreeze" destination="GYu-Ez-3ka" id="fN1-1h-8iC"/>
                 <outlet property="_chkTrillReverse" destination="jul-TK-CBk" id="kBk-4G-cJx"/>
                 <outlet property="_chkWaveViewEnabled" destination="Grp-zO-WAk" id="lel-Q0-aFg"/>
-                <outlet property="_crasherContentView" destination="BMM-8J-Wip" id="sf8-fg-M8L"/>
-                <outlet property="_flangerContentView" destination="U0I-oN-F0V" id="NFA-xa-Xuf"/>
                 <outlet property="_lblBPM" destination="Oqj-ub-orN" id="FVW-Z2-XEf"/>
                 <outlet property="_mainViewController" destination="WXr-ag-sep" id="Vfx-qV-5QP"/>
-                <outlet property="_refrainContentView" destination="BZp-y9-ksX" id="US1-fM-xRX"/>
-                <outlet property="_reverseContentView" destination="cPA-9c-HiA" id="QxQ-sN-APp"/>
                 <outlet property="_ringView" destination="H2e-uq-LqI" id="6nj-kD-lMb"/>
-                <outlet property="_simpleReverbContentView" destination="2gf-nF-b51" id="Kl2-yv-AG3"/>
                 <outlet property="_sliderBenderRate" destination="kpw-Sr-7nJ" id="wdf-mk-YSn"/>
                 <outlet property="_sliderDryVolume" destination="Jh4-Fq-5r7" id="F7D-7r-9wI"/>
                 <outlet property="_sliderGrainSize" destination="zBb-gF-eP6" id="Vg5-xa-cKz"/>
