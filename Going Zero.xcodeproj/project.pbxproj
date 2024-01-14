@@ -46,6 +46,8 @@
 		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
 		EB7DDCC22B4955AD00D72E9A /* MainMenu2.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */; };
 		EB822D572A1D657E00FAA9B5 /* Lookup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB822D562A1D657E00FAA9B5 /* Lookup.m */; };
+		EB83BD432B5427FC007690A5 /* LooperController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB83BD412B5427FC007690A5 /* LooperController.m */; };
+		EB83BD442B5427FC007690A5 /* LooperController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB83BD422B5427FC007690A5 /* LooperController.xib */; };
 		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
 		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
 		EBAA80982678E00D00809C1D /* QuickCue.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80972678E00D00809C1D /* QuickCue.m */; };
@@ -151,6 +153,9 @@
 		EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu2.xib; sourceTree = "<group>"; };
 		EB822D552A1D657E00FAA9B5 /* Lookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lookup.h; sourceTree = "<group>"; };
 		EB822D562A1D657E00FAA9B5 /* Lookup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lookup.m; sourceTree = "<group>"; };
+		EB83BD402B5427FC007690A5 /* LooperController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LooperController.h; sourceTree = "<group>"; };
+		EB83BD412B5427FC007690A5 /* LooperController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LooperController.m; sourceTree = "<group>"; };
+		EB83BD422B5427FC007690A5 /* LooperController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LooperController.xib; sourceTree = "<group>"; };
 		EBAA80912678DF3000809C1D /* QuickCueController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCueController.h; sourceTree = "<group>"; };
 		EBAA80922678DF3000809C1D /* QuickCueController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickCueController.m; sourceTree = "<group>"; };
 		EBAA80932678DF3000809C1D /* QuickCueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuickCueController.xib; sourceTree = "<group>"; };
@@ -248,6 +253,9 @@
 			children = (
 				EB18F77B266A6E7100EB0E73 /* Looper.h */,
 				EB18F77C266A6E7100EB0E73 /* Looper.m */,
+				EB83BD402B5427FC007690A5 /* LooperController.h */,
+				EB83BD412B5427FC007690A5 /* LooperController.m */,
+				EB83BD422B5427FC007690A5 /* LooperController.xib */,
 				EB6E388126627C90002AADCA /* TrillReverse.h */,
 				EB6E388226627C90002AADCA /* TrillReverse.m */,
 				EBEC8C70266313C400257694 /* Bender.h */,
@@ -487,6 +495,7 @@
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */,
 				EBDA9A4A2740A9E500836273 /* SamplerController.xib in Resources */,
+				EB83BD442B5427FC007690A5 /* LooperController.xib in Resources */,
 				EBC1916C2A21AC3700E13D95 /* LookUpController.xib in Resources */,
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
 				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
@@ -575,6 +584,7 @@
 				EB3673A82A7D3CA0006A2955 /* BeatTracker.mm in Sources */,
 				EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */,
 				EB70011C2691D022007F88EE /* FlangerController.m in Sources */,
+				EB83BD432B5427FC007690A5 /* LooperController.m in Sources */,
 				EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */,
 				EBDA9A492740A9E500836273 /* SamplerController.m in Sources */,
 				EB37911D2771CD8800AC37D0 /* RateConverter.m in Sources */,
