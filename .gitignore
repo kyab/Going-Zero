@@ -3,6 +3,8 @@ Podfile.lock
 /Distribution
 /Pods
 
+.DS_Store
+
 
 # Xcode
 #
