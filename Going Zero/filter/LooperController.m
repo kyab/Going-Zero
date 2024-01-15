@@ -23,4 +23,20 @@
     _looper = looper;
 }
 
+- (IBAction)looperMarkStart:(id)sender {
+    [_looper markStart];
+}
+
+- (IBAction)looperMarkEnd:(id)sender {
+    [_looper markEnd];
+}
+
+- (IBAction)looperExit:(id)sender {
+    [_looper exit];
+}
+
+- (IBAction)looperDoHalf:(id)sender {
+    [_looper doHalf];
+}
+
 @end
