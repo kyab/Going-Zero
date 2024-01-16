@@ -41,6 +41,10 @@
     [_beatTrackerController setBeatTracker:_beatTracker];
     
     _looper = [[Looper alloc] init];
+    _looperController = [[LooperController alloc] initWithNibName:@"LooperController" bundle:nil];
+    [_looperContentView addSubview:[_looperController view]];
+    [self centerize:[_looperController view]];
+    [_looperController setLooper:_looper];
     
     _trillReverse = [[TrillReverse alloc] init];
     _bender = [[Bender alloc] init];
@@ -438,30 +442,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 
 - (IBAction)wetVolumeChanged:(id)sender {
     _wetVolume = [_sliderWetVolume floatValue];
-}
-
-- (IBAction)looperMarkStart:(id)sender {
-    [_looper markStart];
-}
-
-- (IBAction)looperMarkEnd:(id)sender {
-    [_looper markEnd];
-}
-
-- (IBAction)looperExit:(id)sender {
-    [_looper exit];
-}
-
-- (IBAction)looperDoHalf:(id)sender {
-    [_looper doHalf];
-}
-
-- (IBAction)looperDoQuater:(id)sender {
-    [_looper doQuater];
-}
-
-- (IBAction)looperDoDivide8:(id)sender {
-    [_looper divide8];
 }
 
 - (IBAction)_trillReverseChange:(id)sender {

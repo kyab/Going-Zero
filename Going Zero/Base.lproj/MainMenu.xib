@@ -22,11 +22,6 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="6kO-Fg-JYF" customClass="AppController">
             <connections>
-                <outlet property="_btnLoopHalf" destination="BFz-jy-2am" id="gAq-fa-yJr"/>
-                <outlet property="_btnLoopQuarter" destination="x7z-Pf-vnl" id="Wkz-U7-838"/>
-                <outlet property="_btnLooperEnd" destination="vMK-LO-d7Z" id="G6I-2K-vf2"/>
-                <outlet property="_btnLooperExit" destination="VHT-YU-Imc" id="fQN-C3-Aw7"/>
-                <outlet property="_btnLooperStart" destination="gD0-kg-R6K" id="j3e-4N-ifr"/>
                 <outlet property="_btnTap" destination="Osx-hQ-BKh" id="Zkn-LX-h7E"/>
                 <outlet property="_chkBenderBounce" destination="q6X-Z3-Agn" id="r3Z-uJ-w63"/>
                 <outlet property="_chkFreeze" destination="GYu-Ez-3ka" id="fN1-1h-8iC"/>
@@ -801,9 +796,6 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="78" id="Zae-dr-0C2"/>
                         </constraints>
-                        <connections>
-                            <action selector="looperMarkStart:" target="6kO-Fg-JYF" id="b4M-Iv-oGG"/>
-                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Osx-hQ-BKh" customClass="MyButton">
                         <rect key="frame" x="3" y="448" width="92" height="32"/>
@@ -825,9 +817,6 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <connections>
-                            <action selector="looperMarkEnd:" target="6kO-Fg-JYF" id="fCP-j9-Yv7"/>
-                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BFz-jy-2am" customClass="MyButton">
                         <rect key="frame" x="364" y="776" width="92" height="32"/>
@@ -835,9 +824,6 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <connections>
-                            <action selector="looperDoHalf:" target="6kO-Fg-JYF" id="YpE-b5-rSa"/>
-                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-Pf-vnl" customClass="MyButton">
                         <rect key="frame" x="448" y="776" width="80" height="32"/>
@@ -846,9 +832,6 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <connections>
-                            <action selector="looperDoQuater:" target="6kO-Fg-JYF" id="tkj-cB-KKa"/>
-                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OU9-P2-Xo0" customClass="MyButton">
                         <rect key="frame" x="521" y="799" width="82" height="32"/>
@@ -859,9 +842,6 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="68" id="55V-5G-cs0"/>
                         </constraints>
-                        <connections>
-                            <action selector="looperDoDivide8:" target="6kO-Fg-JYF" id="xkg-X1-yMv"/>
-                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VHT-YU-Imc" customClass="MyButton">
                         <rect key="frame" x="521" y="776" width="82" height="32"/>
@@ -869,9 +849,6 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <connections>
-                            <action selector="looperExit:" target="6kO-Fg-JYF" id="Gfx-Rd-zxk"/>
-                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q6X-Z3-Agn">
                         <rect key="frame" x="575" y="627" width="68" height="18"/>

@@ -39,4 +39,13 @@
     [_looper doHalf];
 }
 
+- (IBAction)looperDoQuater:(id)sender {
+    [_looper doQuater];
+}
+
+- (IBAction)looperDoDivide8:(id)sender {
+    [_looper divide8];
+}
+
+
 @end

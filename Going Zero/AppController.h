@@ -18,6 +18,7 @@
 #import "MainViewController.h"
 
 #import "Looper.h"
+#import "LooperController.h"
 #import "TrillReverse.h"
 #import "Reverse.h"
 #import "ReverseController.h"
@@ -74,6 +75,8 @@ NS_ASSUME_NONNULL_BEGIN
     MiniFaderIn *_faderIn;
     
     Looper *_looper;
+    __weak IBOutlet NSView *_looperContentView;
+    LooperController *_looperController;
     __weak IBOutlet NSButton *_btnLooperStart;
     __weak IBOutlet NSButton *_btnLooperEnd;
     __weak IBOutlet NSButton *_btnLooperExit;
