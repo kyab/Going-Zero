@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CD1AAB12B578CCF00321B2B /* MiscController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1AAAF2B578CCF00321B2B /* MiscController.m */; };
+		0CD1AAB22B578CCF00321B2B /* MiscController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD1AAB02B578CCF00321B2B /* MiscController.xib */; };
 		30D150BBE4D286CC7E0FB130 /* Pods_Going_Zero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8F06F4F560999564F14CDB /* Pods_Going_Zero.framework */; };
 		EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7702666535A00EB0E73 /* MiniFader.m */; };
 		EB18F7742669077E00EB0E73 /* WaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7732669077E00EB0E73 /* WaveView.m */; };
@@ -83,6 +85,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CD1AAAE2B578CCF00321B2B /* MiscController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiscController.h; sourceTree = "<group>"; };
+		0CD1AAAF2B578CCF00321B2B /* MiscController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiscController.m; sourceTree = "<group>"; };
+		0CD1AAB02B578CCF00321B2B /* MiscController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiscController.xib; sourceTree = "<group>"; };
 		3636DE1F11DA5B51B887C549 /* Pods-Going Zero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Going Zero.release.xcconfig"; path = "Target Support Files/Pods-Going Zero/Pods-Going Zero.release.xcconfig"; sourceTree = "<group>"; };
 		60C2A1564451012BB2F274A6 /* Pods-Going Zero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Going Zero.debug.xcconfig"; path = "Target Support Files/Pods-Going Zero/Pods-Going Zero.debug.xcconfig"; sourceTree = "<group>"; };
 		BF8F06F4F560999564F14CDB /* Pods_Going_Zero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Going_Zero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -263,6 +268,9 @@
 				EB7372B4266530F600393D58 /* Freezer.h */,
 				EB7372B5266530F600393D58 /* Freezer.m */,
 				EB18F76F2666535A00EB0E73 /* MiniFader.h */,
+				0CD1AAAE2B578CCF00321B2B /* MiscController.h */,
+				0CD1AAAF2B578CCF00321B2B /* MiscController.m */,
+				0CD1AAB02B578CCF00321B2B /* MiscController.xib */,
 				EB18F7702666535A00EB0E73 /* MiniFader.m */,
 				EB18F775266907B400EB0E73 /* Viewer.h */,
 				EB18F776266907B400EB0E73 /* Viewer.m */,
@@ -498,6 +506,7 @@
 				EB83BD442B5427FC007690A5 /* LooperController.xib in Resources */,
 				EBC1916C2A21AC3700E13D95 /* LookUpController.xib in Resources */,
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
+				0CD1AAB22B578CCF00321B2B /* MiscController.xib in Resources */,
 				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
 				EB70011D2691D022007F88EE /* FlangerController.xib in Resources */,
 				EB7DDCC22B4955AD00D72E9A /* MainMenu2.xib in Resources */,
@@ -575,6 +584,7 @@
 				EB18F77D266A6E7100EB0E73 /* Looper.m in Sources */,
 				EB6E386B26623E4B002AADCA /* main.m in Sources */,
 				EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */,
+				0CD1AAB12B578CCF00321B2B /* MiscController.m in Sources */,
 				EB6E387426623F2F002AADCA /* AppController.mm in Sources */,
 				EB6E387A26624089002AADCA /* RingBuffer.m in Sources */,
 				EBDA9A3C273D4BA700836273 /* MainViewController.m in Sources */,
