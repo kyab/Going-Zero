@@ -48,6 +48,10 @@
     
     _trillReverse = [[TrillReverse alloc] init];
     _bender = [[Bender alloc] init];
+    _miscController = [[MiscController alloc] initWithNibName:@"MiscController" bundle:nil];
+    [_miscContentView addSubview:[_miscController view]];
+    [self centerize:[_miscController view]];
+    [_miscController setBender:_bender];
     
     _reverse = [[Reverse alloc] init];
     _reverseController = [[ReverseController alloc] initWithNibName:@"ReverseController" bundle:nil];

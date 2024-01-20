@@ -22,4 +22,63 @@
     // Do view setup here.
 }
 
+- (void)setBender:(Bender *)bender{
+    _bender = bender;
+}
+
+- (void)setTrillReverse:(TrillReverse *)trillReverse{
+    _trillReverse = trillReverse;
+}
+
+- (void)setFreezer:(Freezer *)freezer{
+    _freezer = freezer;
+}
+
+- (IBAction)_benderRateChanged:(id)sender {
+    
+    NSLog(@"new bounce");
+    
+    [_bender setRate:[_sliderBenderRate floatValue]];
+    if([[NSApplication sharedApplication] currentEvent].type == NSEventTypeLeftMouseUp){
+        NSLog(@"bounce!");
+        //[_sliderBenderRate setFloatValue:1.0];
+        if(![_bender bounce]){
+            [_bender resetRate];
+            [_sliderBenderRate setFloatValue:1.0];
+        }else{
+            [self startBounce];
+        }
+    }
+}
+
+- (IBAction)_benderBounceChanged:(id)sender {
+    [_bender setBounce:(_chkBenderBounce.state == NSControlStateValueOn)];
+}
+
+-(void)startBounce{
+    _benderBounceTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onBounceTimer:) userInfo:nil repeats:YES];
+    
+}
+
+-(void)onBounceTimer:(NSTimer *)timer{
+    
+    if ([_bender isCatchingUp]){
+        [_benderBounceTimer invalidate];
+        [_sliderBenderRate setFloatValue:1.0];
+        [_bender resetRate];
+        return;
+    }
+
+    float rate = _sliderBenderRate.floatValue;
+    rate += 0.1;
+    if (rate >= 3.0){
+        rate = 3.0;
+    }
+    [_sliderBenderRate setFloatValue:rate];
+    [_bender setRate:rate];
+    
+}
+
+
+
 @end

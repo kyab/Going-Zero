@@ -19,6 +19,7 @@
 
 #import "Looper.h"
 #import "LooperController.h"
+#import "MiscController.h"
 #import "TrillReverse.h"
 #import "Reverse.h"
 #import "ReverseController.h"
@@ -91,7 +92,8 @@ NS_ASSUME_NONNULL_BEGIN
 //    __weak IBOutlet NSButton *_chkBender;
     NSTimer *_benderBounceTimer;
     __weak IBOutlet NSButton *_chkBenderBounce;
-    
+    MiscController *_miscController;
+    __weak IBOutlet NSView *_miscContentView;
     
     ReverseController *_reverseController;
     Reverse *_reverse;

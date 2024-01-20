@@ -7,10 +7,26 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Bender.h"
+#import "TrillReverse.h"
+#import "Freezer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MiscController : NSViewController
+@interface MiscController : NSViewController{
+    __weak IBOutlet NSSlider *_sliderBenderRate;
+    __weak IBOutlet NSButton *_chkBenderBounce;
+
+    NSTimer *_benderBounceTimer;
+    
+    Bender *_bender;
+    TrillReverse *_trillReverse;
+    Freezer *_freezer;
+}
+
+-(void)setBender:(Bender *)bender;
+-(void)setTrillReverse:(TrillReverse *)trillReverse;
+-(void)setFreezer:(Freezer *)freezer;
 
 @end
 
