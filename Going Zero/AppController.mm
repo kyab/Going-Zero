@@ -48,19 +48,22 @@
     
     _trillReverse = [[TrillReverse alloc] init];
     _bender = [[Bender alloc] init];
+    _freezer = [[Freezer alloc] init];
+
     _miscController = [[MiscController alloc] initWithNibName:@"MiscController" bundle:nil];
     [_miscContentView addSubview:[_miscController view]];
     [self centerize:[_miscController view]];
     [_miscController setBender:_bender];
+    [_miscController setTrillReverse:_trillReverse];
+    [_miscController setFreezer:_freezer];
+    
     
     _reverse = [[Reverse alloc] init];
     _reverseController = [[ReverseController alloc] initWithNibName:@"ReverseController" bundle:nil];
     [_reverseContentView addSubview:[_reverseController view]];
     [self centerize:[_reverseController view]];
     [_reverseController setReverse:_reverse];
-    
-    _freezer = [[Freezer alloc] init];
-    
+        
     _viewer = [[Viewer alloc] init];
     [_waveView setViewer: _viewer];
     

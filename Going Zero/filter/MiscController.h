@@ -16,7 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MiscController : NSViewController{
     __weak IBOutlet NSSlider *_sliderBenderRate;
     __weak IBOutlet NSButton *_chkBenderBounce;
-
+    __weak IBOutlet NSButton *_chkTrillReverse;
+    __weak IBOutlet NSButton *_chkFreeze;
+    __weak IBOutlet NSSlider *_sliderGrainSize;
+    
+    
     NSTimer *_benderBounceTimer;
     
     Bender *_bender;

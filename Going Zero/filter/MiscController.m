@@ -79,6 +79,19 @@
     
 }
 
+- (IBAction)_trillReverseChanged:(id)sender {
+    [_trillReverse setActive:([_chkTrillReverse state] == NSControlStateValueOn)];
+}
+
+- (IBAction)freezeChanged:(id)sender {
+    [_freezer setActive:(_chkFreeze.state == NSControlStateValueOn)];
+}
+
+- (IBAction)freezeGrainsizeChanged:(id)sender {
+    [_freezer setGrainSize:[_sliderGrainSize intValue]];
+}
+
+
 
 
 @end
