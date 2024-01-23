@@ -65,11 +65,9 @@
                         <action selector="freezeChanged:" target="-2" id="G1f-kq-k80"/>
                     </connections>
                 </button>
-                <slider verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PRU-0u-tbl">
-                    <rect key="frame" x="190" y="10" width="103" height="28"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="99" id="XxZ-9j-fOE"/>
-                    </constraints>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PRU-0u-tbl">
+                    <rect key="frame" x="196" y="10" width="103" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1000" maxValue="5000" doubleValue="3000" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="Hmg-XQ-VWy"/>
                     <connections>
                         <action selector="freezeGrainsizeChanged:" target="-2" id="bdw-Yt-cV5"/>

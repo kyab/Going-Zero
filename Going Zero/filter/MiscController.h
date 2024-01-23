@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSButton *_chkFreeze;
     __weak IBOutlet NSSlider *_sliderGrainSize;
     
-    
     NSTimer *_benderBounceTimer;
     
     Bender *_bender;

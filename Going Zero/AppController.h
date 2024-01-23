@@ -85,23 +85,14 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSButton *_btnLoopQuarter;
     
     TrillReverse *_trillReverse;
-    __weak IBOutlet NSButton *_chkTrillReverse;
-
     Bender *_bender;
-    __weak IBOutlet NSSlider *_sliderBenderRate;
-//    __weak IBOutlet NSButton *_chkBender;
-    NSTimer *_benderBounceTimer;
-    __weak IBOutlet NSButton *_chkBenderBounce;
+    Freezer *_freezer;
     MiscController *_miscController;
     __weak IBOutlet NSView *_miscContentView;
     
     ReverseController *_reverseController;
     Reverse *_reverse;
     __weak IBOutlet NSView *_reverseContentView;
-    
-    Freezer *_freezer;
-    __weak IBOutlet NSButton *_chkFreeze;
-    __weak IBOutlet NSSlider *_sliderGrainSize;
     
     Viewer *_viewer;
     __weak IBOutlet WaveView *_waveView;

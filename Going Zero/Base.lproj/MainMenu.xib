@@ -23,16 +23,11 @@
         <customObject id="6kO-Fg-JYF" customClass="AppController">
             <connections>
                 <outlet property="_btnTap" destination="Osx-hQ-BKh" id="Zkn-LX-h7E"/>
-                <outlet property="_chkBenderBounce" destination="q6X-Z3-Agn" id="r3Z-uJ-w63"/>
-                <outlet property="_chkFreeze" destination="GYu-Ez-3ka" id="fN1-1h-8iC"/>
-                <outlet property="_chkTrillReverse" destination="jul-TK-CBk" id="kBk-4G-cJx"/>
                 <outlet property="_chkWaveViewEnabled" destination="Grp-zO-WAk" id="lel-Q0-aFg"/>
                 <outlet property="_lblBPM" destination="Oqj-ub-orN" id="FVW-Z2-XEf"/>
                 <outlet property="_mainViewController" destination="WXr-ag-sep" id="Vfx-qV-5QP"/>
                 <outlet property="_ringView" destination="H2e-uq-LqI" id="6nj-kD-lMb"/>
-                <outlet property="_sliderBenderRate" destination="kpw-Sr-7nJ" id="wdf-mk-YSn"/>
                 <outlet property="_sliderDryVolume" destination="Jh4-Fq-5r7" id="F7D-7r-9wI"/>
-                <outlet property="_sliderGrainSize" destination="zBb-gF-eP6" id="Vg5-xa-cKz"/>
                 <outlet property="_sliderWetVolume" destination="9IM-d8-Rbj" id="LVi-ih-61k"/>
                 <outlet property="_tapeReverseContentView" destination="76M-wk-6zA" id="ErY-E0-agg"/>
                 <outlet property="_turnTable" destination="duk-ex-cIG" id="mFe-H9-hez"/>
@@ -766,16 +761,10 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="94" id="s9T-Hr-VGy"/>
                         </constraints>
-                        <connections>
-                            <action selector="_trillReverseChange:" target="6kO-Fg-JYF" id="ErT-os-xEb"/>
-                        </connections>
                     </button>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kpw-Sr-7nJ">
                         <rect key="frame" x="370" y="622" width="191" height="24"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="2" doubleValue="1" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="wJa-oo-Pn9"/>
-                        <connections>
-                            <action selector="_benderRateChanged:" target="6kO-Fg-JYF" id="5WG-h2-S2l"/>
-                        </connections>
                     </slider>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GYu-Ez-3ka">
                         <rect key="frame" x="487" y="583" width="63" height="18"/>
@@ -783,9 +772,6 @@
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <connections>
-                            <action selector="freezeChanged:" target="6kO-Fg-JYF" id="BYE-Gi-5aL"/>
-                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gD0-kg-R6K" customClass="MyButton">
                         <rect key="frame" x="364" y="799" width="92" height="32"/>
@@ -860,9 +846,6 @@
                             <constraint firstAttribute="width" constant="66" id="IvX-ZH-7Jq"/>
                             <constraint firstAttribute="height" constant="16" id="iPj-bh-jnp"/>
                         </constraints>
-                        <connections>
-                            <action selector="_benderBounceChanged:" target="6kO-Fg-JYF" id="FTM-ms-QVG"/>
-                        </connections>
                     </button>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="ykY-XK-weK" customClass="WaveView">
                         <rect key="frame" x="369" y="71" width="301" height="50"/>
@@ -908,9 +891,6 @@
                             <constraint firstAttribute="width" constant="99" id="vld-Zw-hVl"/>
                         </constraints>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1000" maxValue="5000" doubleValue="3000" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="mRy-XU-x7H"/>
-                        <connections>
-                            <action selector="freezeGrainsizeChanged:" target="6kO-Fg-JYF" id="nbU-Fg-RG3"/>
-                        </connections>
                     </slider>
                     <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grp-zO-WAk">
                         <rect key="frame" x="598" y="119" width="73" height="18"/>

@@ -439,7 +439,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         _tempRightPtr[targetSample] = y_r;
         *consumed = x1;
     }
-    
 }
 
 
@@ -449,61 +448,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 
 - (IBAction)wetVolumeChanged:(id)sender {
     _wetVolume = [_sliderWetVolume floatValue];
-}
-
-- (IBAction)_trillReverseChange:(id)sender {
-    [_trillReverse setActive:([_chkTrillReverse state] == NSControlStateValueOn)];
-}
-
-- (IBAction)_benderBounceChanged:(id)sender {
-    [_bender setBounce:(_chkBenderBounce.state == NSControlStateValueOn)];
-}
-
-- (IBAction)_benderRateChanged:(id)sender {
-    [_bender setRate:[_sliderBenderRate floatValue]];
-    if([[NSApplication sharedApplication] currentEvent].type == NSEventTypeLeftMouseUp){
-        NSLog(@"bounce!");
-        //[_sliderBenderRate setFloatValue:1.0];
-        if(![_bender bounce]){
-            [_bender resetRate];
-            [_sliderBenderRate setFloatValue:1.0];
-        }else{
-            [self startBounce];
-        }
-    }
-}
-
--(void)startBounce{
-    _benderBounceTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onBounceTimer:) userInfo:nil repeats:YES];
-    
-}
-
--(void)onBounceTimer:(NSTimer *)timer{
-    
-    if ([_bender isCatchingUp]){
-        [_benderBounceTimer invalidate];
-        [_sliderBenderRate setFloatValue:1.0];
-        [_bender resetRate];
-        return;
-    }
-
-    float rate = _sliderBenderRate.floatValue;
-    rate += 0.1;
-    if (rate >= 3.0){
-        rate = 3.0;
-    }
-    [_sliderBenderRate setFloatValue:rate];
-    [_bender setRate:rate];
-    
-}
-
-- (IBAction)freezeChanged:(id)sender {
-    [_freezer setActive:(_chkFreeze.state == NSControlStateValueOn)];
-}
-
-
-- (IBAction)freezeGrainsizeChanged:(id)sender {
-    [_freezer setGrainSize:[_sliderGrainSize intValue]];
 }
 
 - (IBAction)monitorEnableChanged:(id)sender {

@@ -91,7 +91,4 @@
     [_freezer setGrainSize:[_sliderGrainSize intValue]];
 }
 
-
-
-
 @end
