@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CB34AD62B60B0F300E5C57F /* TurnTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB34AD42B60B0F300E5C57F /* TurnTableController.m */; };
+		0CB34AD72B60B0F300E5C57F /* TurnTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB34AD52B60B0F300E5C57F /* TurnTableController.xib */; };
 		0CD1AAB12B578CCF00321B2B /* MiscController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1AAAF2B578CCF00321B2B /* MiscController.m */; };
 		0CD1AAB22B578CCF00321B2B /* MiscController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD1AAB02B578CCF00321B2B /* MiscController.xib */; };
 		30D150BBE4D286CC7E0FB130 /* Pods_Going_Zero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8F06F4F560999564F14CDB /* Pods_Going_Zero.framework */; };
@@ -85,6 +87,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CB34AD32B60B0F300E5C57F /* TurnTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurnTableController.h; sourceTree = "<group>"; };
+		0CB34AD42B60B0F300E5C57F /* TurnTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurnTableController.m; sourceTree = "<group>"; };
+		0CB34AD52B60B0F300E5C57F /* TurnTableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TurnTableController.xib; sourceTree = "<group>"; };
 		0CD1AAAE2B578CCF00321B2B /* MiscController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiscController.h; sourceTree = "<group>"; };
 		0CD1AAAF2B578CCF00321B2B /* MiscController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiscController.m; sourceTree = "<group>"; };
 		0CD1AAB02B578CCF00321B2B /* MiscController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiscController.xib; sourceTree = "<group>"; };
@@ -351,6 +356,11 @@
 				EBFE0A4B2A7FD5B300F88A78 /* BeatTrackerController.xib */,
 				EBFE0A4E2A7FD76700F88A78 /* BeatView.h */,
 				EBFE0A4F2A7FD76700F88A78 /* BeatView.m */,
+				0CB34AD32B60B0F300E5C57F /* TurnTableController.h */,
+				0CB34AD42B60B0F300E5C57F /* TurnTableController.m */,
+				0CB34AD52B60B0F300E5C57F /* TurnTableController.xib */,
+				EB6E387D266240C0002AADCA /* TurnTableView.h */,
+				EB6E387B266240BF002AADCA /* TurnTableView.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -405,8 +415,6 @@
 				EB37911C2771CD8800AC37D0 /* RateConverter.m */,
 				EB6E387E266240C1002AADCA /* RingView.h */,
 				EB6E387C266240BF002AADCA /* RingView.m */,
-				EB6E387D266240C0002AADCA /* TurnTableView.h */,
-				EB6E387B266240BF002AADCA /* TurnTableView.m */,
 				EBDA9A3A273D4BA700836273 /* MainViewController.h */,
 				EBDA9A3B273D4BA700836273 /* MainViewController.m */,
 			);
@@ -500,6 +508,7 @@
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
 				EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */,
 				EBFE0A4D2A7FD5B300F88A78 /* BeatTrackerController.xib in Resources */,
+				0CB34AD72B60B0F300E5C57F /* TurnTableController.xib in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */,
 				EBDA9A4A2740A9E500836273 /* SamplerController.xib in Resources */,
@@ -570,6 +579,7 @@
 				EB6E387726623F83002AADCA /* AudioEngine.m in Sources */,
 				EBBF46D62675D45100785BF6 /* ReverseController.m in Sources */,
 				EBF93D1A266AE709001B13F3 /* MyButton.m in Sources */,
+				0CB34AD62B60B0F300E5C57F /* TurnTableController.m in Sources */,
 				EBFE0A502A7FD76700F88A78 /* BeatView.m in Sources */,
 				EBDA9A45273F867E00836273 /* HPF_IIR.m in Sources */,
 				EB7372B6266530F600393D58 /* Freezer.m in Sources */,
