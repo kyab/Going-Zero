@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
     MiniFaderIn *_faderIn;
     __weak IBOutlet TurnTableView *_turnTableView;
     
+    __weak IBOutlet NSSlider *_sliderWetVolume;
+    __weak IBOutlet NSSlider *_sliderDryVolume;
+    
+    
     double _speedRate;
 }
 

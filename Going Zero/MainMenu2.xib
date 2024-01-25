@@ -36,6 +36,7 @@
                 <outlet property="_samplerContentView" destination="DgT-sK-EkK" id="4B8-Im-B4o"/>
                 <outlet property="_simpleReverbContentView" destination="yOp-DR-Wkz" id="ZRo-j6-rUU"/>
                 <outlet property="_tapeReverseContentView" destination="p83-aC-hFR" id="QLr-Zr-Qbw"/>
+                <outlet property="_turnTableContentView" destination="0SL-H1-1ci" id="cxS-Sj-RtF"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
@@ -818,6 +819,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="lEJ-Us-oHK">
                             <rect key="frame" x="4" y="5" width="304" height="49"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
+                    <box fixedFrame="YES" title="TurnTable" translatesAutoresizingMaskIntoConstraints="NO" id="ymk-cd-qn4">
+                        <rect key="frame" x="17" y="482" width="337" height="254"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="0SL-H1-1ci">
+                            <rect key="frame" x="4" y="5" width="329" height="234"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>

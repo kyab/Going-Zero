@@ -23,6 +23,8 @@
 
 -(void)setRingBuffer:(RingBuffer *)ring{
     _ring = ring;
+    [_turnTableView setRingBuffer:_ring];
+    [_turnTableView start];
 }
 
 -(void)setMiniFaderIn:(MiniFaderIn *)faderIn{

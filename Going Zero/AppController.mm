@@ -33,6 +33,12 @@
     
     _faderIn = [[MiniFaderIn alloc] init];
     
+    _turnTableController = [[TurnTableController alloc] initWithNibName:@"TurnTableController" bundle:nil];
+    [_turnTableContentView addSubview:[_turnTableController view]];
+    [self centerize:[_turnTableController view]];
+    [_turnTableController setRingBuffer:_ring];
+    [_turnTableController setMiniFaderIn:_faderIn];
+    
     _beatTracker = [[BeatTracker alloc] init];
     _beatTrackerController = [[BeatTrackerController alloc]
                          initWithNibName:@"BeatTrackerController" bundle:nil];
@@ -49,7 +55,6 @@
     _trillReverse = [[TrillReverse alloc] init];
     _bender = [[Bender alloc] init];
     _freezer = [[Freezer alloc] init];
-
     _miscController = [[MiscController alloc] initWithNibName:@"MiscController" bundle:nil];
     [_miscContentView addSubview:[_miscController view]];
     [self centerize:[_miscController view]];

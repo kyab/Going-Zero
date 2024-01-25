@@ -8,6 +8,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TurnTableController">
             <connections>
+                <outlet property="_sliderDryVolume" destination="2WS-oe-FdM" id="75b-YX-Lod"/>
+                <outlet property="_sliderWetVolume" destination="VwS-kd-Wib" id="Chj-kp-DwY"/>
                 <outlet property="_turnTableView" destination="491-Xi-bDD" id="dWe-yv-l68"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>

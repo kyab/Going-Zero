@@ -17,6 +17,7 @@
 #import "MyButton.h"
 #import "MainViewController.h"
 
+#import "TurnTableController.h"
 #import "Looper.h"
 #import "LooperController.h"
 #import "MiscController.h"
@@ -74,6 +75,9 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSSlider *_sliderDryVolume;
     __weak IBOutlet NSSlider *_sliderWetVolume;
     MiniFaderIn *_faderIn;
+    
+    TurnTableController *_turnTableController;
+    __weak IBOutlet NSView *_turnTableContentView;
     
     Looper *_looper;
     __weak IBOutlet NSView *_looperContentView;
