@@ -27,10 +27,7 @@
                 <outlet property="_lblBPM" destination="Oqj-ub-orN" id="FVW-Z2-XEf"/>
                 <outlet property="_mainViewController" destination="WXr-ag-sep" id="Vfx-qV-5QP"/>
                 <outlet property="_ringView" destination="H2e-uq-LqI" id="6nj-kD-lMb"/>
-                <outlet property="_sliderDryVolume" destination="Jh4-Fq-5r7" id="F7D-7r-9wI"/>
-                <outlet property="_sliderWetVolume" destination="9IM-d8-Rbj" id="LVi-ih-61k"/>
                 <outlet property="_tapeReverseContentView" destination="76M-wk-6zA" id="ErY-E0-agg"/>
-                <outlet property="_turnTable" destination="duk-ex-cIG" id="mFe-H9-hez"/>
                 <outlet property="_waveView" destination="ykY-XK-weK" id="sgL-Cx-Jqm"/>
             </connections>
         </customObject>
@@ -717,17 +714,11 @@
                                 <rect key="frame" x="232" y="271" width="96" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="l0e-nu-MGk"/>
-                                <connections>
-                                    <action selector="dryVolumeChanged:" target="6kO-Fg-JYF" id="6yh-2U-ooD"/>
-                                </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9IM-d8-Rbj">
                                 <rect key="frame" x="6" y="271" width="96" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="l0s-99-UST"/>
-                                <connections>
-                                    <action selector="wetVolumeChanged:" target="6kO-Fg-JYF" id="EvZ-vF-MQc"/>
-                                </connections>
                             </slider>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5VG-fC-PpH">
                                 <rect key="frame" x="261" y="291" width="39" height="16"/>

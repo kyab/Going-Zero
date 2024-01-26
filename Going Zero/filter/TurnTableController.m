@@ -18,6 +18,8 @@
     [super viewDidLoad];
     
     [_turnTableView setDelegate:self];
+    _wetVolume = 1.0;
+    _dryVolume = 0.0;
     _speedRate = 1.0;
 }
 
@@ -39,5 +41,26 @@
         return;
     }
 }
+
+- (IBAction)wetVolumeChanged:(id)sender {
+    _wetVolume = [_sliderWetVolume floatValue];
+}
+
+- (IBAction)dryVolumeChanged:(id)sender {
+    _dryVolume = [_sliderDryVolume floatValue];
+}
+
+-(float)wetVolume{
+    return _wetVolume;
+}
+
+-(float)dryVolume{
+    return _dryVolume;
+}
+
+-(double)speedRate{
+    return _speedRate;
+}
+
 
 @end

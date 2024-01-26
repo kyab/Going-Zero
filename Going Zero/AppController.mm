@@ -18,14 +18,9 @@
     _ring = [[RingBuffer alloc] init];
     [_ringView setRingBuffer:_ring];
     
-    _speedRate = 1.0;
     [_turnTable setDelegate:(id<TurnTableDelegate>)self];
     [_turnTable setRingBuffer:_ring];
     [_turnTable start];
-    _dryVolume = 0.0;
-    _wetVolume = 1.0;
-    [self addObserver:self forKeyPath:@"dryVolume" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:self forKeyPath:@"wetVolume" options:NSKeyValueObservingOptionNew context:nil];
     
     [_btnTap setKeyEquivalent:@"\t"];
     _tapHistory = [[NSMutableArray alloc] init];
@@ -159,12 +154,6 @@
     [_ae startOutput];
     usleep(1000*500);
     [_ae startInput];
-
-
-    
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onGlobalTimer:) userInfo:nil repeats:YES];
-
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
     //wake up
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(didWakenUp:) name:NSWorkspaceDidWakeNotification object:nil];
@@ -176,15 +165,6 @@
     [_ae stopOutput];
     [_ae stopInput];
     [_ae restoreSystemOutputDevice];
-}
-
--(void)turnTableSpeedRateChanged{
-    _speedRate = [_turnTable speedRate];
-    if (_speedRate == 1.0){
-        [_ring follow];
-        [_faderIn startFadeIn];
-        return;
-    }
 }
 
 -(void)centerize:(NSView *)view{
@@ -278,7 +258,8 @@
 //    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
 //                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    if(_speedRate == 1.0){
+    double speedRate = [_turnTableController speedRate];
+    if(speedRate == 1.0){
 
         float *dstL = (float *)ioData->mBuffers[0].mData;
         float *dstR = (float *)ioData->mBuffers[1].mData;
@@ -296,30 +277,32 @@
         
         //dry
         {
+            float dryVolume = [_turnTableController dryVolume];
             float *pSrcLeft = [_ring dryPtrLeft];
             float *pSrcRight = [_ring dryPtrRight];
             float *pDstLeft = (float *)ioData->mBuffers[0].mData;
             float *pDstRight = (float *)ioData->mBuffers[1].mData;
             
             for(int i = 0; i < inNumberFrames; i++){
-                pDstLeft[i]  = pSrcLeft[i] * _dryVolume;
-                pDstRight[i] = pSrcRight[i] * _dryVolume;
+                pDstLeft[i]  = pSrcLeft[i] * dryVolume;
+                pDstRight[i] = pSrcRight[i] * dryVolume;
             }
             [_ring advanceDryPtrSample:inNumberFrames];
         }
         
         //wet
         {
+            float wetVolume = [_turnTableController wetVolume];
             SInt32 consumed = 0;
             [self convertAtRateFromLeft:[_ring readPtrLeft] right:[_ring readPtrRight] ToSamples:inNumberFrames
-                                   rate:_speedRate consumedFrames:&consumed];
+                                   rate:speedRate consumedFrames:&consumed];
 
             float *pDstLeft = (float *)ioData->mBuffers[0].mData;
             float *pDstRight = (float *)ioData->mBuffers[1].mData;
             
             for(int i = 0; i < inNumberFrames; i++){
-                pDstLeft[i] += _tempLeftPtr[i] * _wetVolume;
-                pDstRight[i] += _tempRightPtr[i] * _wetVolume;
+                pDstLeft[i] += _tempLeftPtr[i] * wetVolume;
+                pDstRight[i] += _tempRightPtr[i] * wetVolume;
             }
 
             [_ring advanceReadPtrSample:consumed];
@@ -446,15 +429,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     }
 }
 
-
-- (IBAction)dryVolumeChanged:(id)sender {
-    _dryVolume = [_sliderDryVolume floatValue];
-}
-
-- (IBAction)wetVolumeChanged:(id)sender {
-    _wetVolume = [_sliderWetVolume floatValue];
-}
-
 - (IBAction)monitorEnableChanged:(id)sender {
     if ([_chkWaveViewEnabled state] == NSControlStateValueOn){
         [_viewer setEnabled:YES];
@@ -462,27 +436,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         [_viewer setEnabled:NO];
     }
 }
-
--(void)onGlobalTimer:(NSTimer *)timer{
-    if([_mainViewController isUpKeyPressed]){
-        _wetVolume += 0.002;
-        if (_wetVolume > 1.0f){
-            _wetVolume = 1.0;
-        }
-        [_sliderWetVolume setFloatValue:_wetVolume];
-        return;
-    }
-    
-    if([_mainViewController isDownKeyPressed]){
-        _wetVolume -= 0.002;
-        if (_wetVolume < 0.0f){
-            _wetVolume = 0.0;
-        }
-        [_sliderWetVolume setFloatValue:_wetVolume];
-        return;
-    }
-}
-
 
 -(void)startBonjour{
     
@@ -537,30 +490,21 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
             NSNumber *number = (NSNumber *)arg1;
             float f = [number floatValue];
             NSLog(@"new speed rate = %f", f);
-            _speedRate = f;
-            if (_speedRate == 1.0){
-                [_ring follow];
-            }
+//            _speedRate = f;
+//            if (_speedRate == 1.0){
+//                [_ring follow];
+//            }
         }
     }else if ([addressPattern isEqualToString:@"/turntable/wet"]){
         if ([arg1 isKindOfClass:[NSNumber class]]){
-            NSNumber *number = (NSNumber *)arg1;
-            self.wetVolume = [number floatValue];
+//            NSNumber *number = (NSNumber *)arg1;
+//            self.wetVolume = [number floatValue];
         }
     }else if ([addressPattern isEqualToString:@"/turntable/dry"]){
         if ([arg1 isKindOfClass:[NSNumber class]]){
-            NSNumber *number = (NSNumber *)arg1;
-            self.dryVolume = [number floatValue];
+//            NSNumber *number = (NSNumber *)arg1;
+//            self.dryVolume = [number floatValue];
         }
-    }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqual:@"dryVolume"]) {
-        [_sliderDryVolume setFloatValue:self.dryVolume];
-    }else if ([keyPath isEqual:@"wetVolume"]){
-        [_sliderWetVolume setFloatValue:self.wetVolume];
     }
 }
 

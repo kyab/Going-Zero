@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
     MiniFaderIn *_faderIn;
     __weak IBOutlet TurnTableView *_turnTableView;
     
+    float _dryVolume;
+    float _wetVolume;
+    
     __weak IBOutlet NSSlider *_sliderWetVolume;
     __weak IBOutlet NSSlider *_sliderDryVolume;
     
@@ -28,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)setRingBuffer:(RingBuffer *)ring;
 -(void)setMiniFaderIn:(MiniFaderIn *)faderIn;
+-(float)wetVolume;
+-(float)dryVolume;
+-(double)speedRate;
 
 @end
 

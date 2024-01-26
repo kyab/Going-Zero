@@ -69,11 +69,6 @@ NS_ASSUME_NONNULL_BEGIN
     float _tempLeftPtr[1024];
     float _tempRightPtr[1024];
     
-    double _speedRate;
-//    float _dryVolume;
-//    float _wetVolume;
-    __weak IBOutlet NSSlider *_sliderDryVolume;
-    __weak IBOutlet NSSlider *_sliderWetVolume;
     MiniFaderIn *_faderIn;
     
     TurnTableController *_turnTableController;
@@ -159,9 +154,6 @@ NS_ASSUME_NONNULL_BEGIN
     F53OSCServer *_oscServer;
     
 }
-
-@property (nonatomic) float wetVolume;
-@property (nonatomic) float dryVolume;
 
 -(void)terminate;
 -(void)startBonjour;
