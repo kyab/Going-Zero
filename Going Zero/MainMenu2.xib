@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -704,14 +703,14 @@
         <window title="Going Zero" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="HeE-NS-OR5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="180" y="226" width="763" height="756"/>
+            <rect key="contentRect" x="180" y="226" width="763" height="824"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1800" height="1125"/>
             <view key="contentView" id="WOe-a7-VfY">
-                <rect key="frame" x="0.0" y="0.0" width="763" height="756"/>
+                <rect key="frame" x="0.0" y="0.0" width="763" height="824"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <box fixedFrame="YES" title="Random" translatesAutoresizingMaskIntoConstraints="NO" id="c2e-xs-3Q1">
-                        <rect key="frame" x="17" y="124" width="337" height="72"/>
+                        <rect key="frame" x="17" y="134" width="337" height="72"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="bVd-RS-55F">
                             <rect key="frame" x="4" y="5" width="329" height="52"/>
@@ -719,7 +718,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="DJ Filter" translatesAutoresizingMaskIntoConstraints="NO" id="3gx-CB-avD">
-                        <rect key="frame" x="17" y="210" width="337" height="80"/>
+                        <rect key="frame" x="17" y="220" width="337" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="SNs-4h-V0S">
                             <rect key="frame" x="4" y="5" width="329" height="60"/>
@@ -727,7 +726,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Beat" translatesAutoresizingMaskIntoConstraints="NO" id="nfl-w9-xkh">
-                        <rect key="frame" x="17" y="417" width="337" height="61"/>
+                        <rect key="frame" x="17" y="427" width="337" height="61"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="bLL-Sz-3R4">
                             <rect key="frame" x="4" y="5" width="329" height="41"/>
@@ -735,7 +734,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Sampler" translatesAutoresizingMaskIntoConstraints="NO" id="dv8-uU-8Hl">
-                        <rect key="frame" x="17" y="299" width="337" height="114"/>
+                        <rect key="frame" x="17" y="309" width="337" height="114"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="DgT-sK-EkK">
                             <rect key="frame" x="4" y="5" width="329" height="94"/>
@@ -743,7 +742,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="LookUp" translatesAutoresizingMaskIntoConstraints="NO" id="qak-jT-fPW">
-                        <rect key="frame" x="17" y="6" width="337" height="114"/>
+                        <rect key="frame" x="17" y="16" width="337" height="114"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="oHl-kE-Oyv">
                             <rect key="frame" x="4" y="5" width="329" height="94"/>
@@ -751,7 +750,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Quick Cue" translatesAutoresizingMaskIntoConstraints="NO" id="jFC-7R-rco">
-                        <rect key="frame" x="434" y="572" width="312" height="89"/>
+                        <rect key="frame" x="434" y="640" width="312" height="89"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="iFt-d5-XQ7">
                             <rect key="frame" x="4" y="5" width="304" height="69"/>
@@ -759,7 +758,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Refrain" translatesAutoresizingMaskIntoConstraints="NO" id="XC2-Kv-MUQ">
-                        <rect key="frame" x="434" y="291" width="312" height="81"/>
+                        <rect key="frame" x="434" y="359" width="312" height="81"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="vDD-eW-Hsa">
                             <rect key="frame" x="4" y="5" width="304" height="61"/>
@@ -767,7 +766,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Bit Crasher" translatesAutoresizingMaskIntoConstraints="NO" id="d15-N8-WSd">
-                        <rect key="frame" x="434" y="238" width="312" height="49"/>
+                        <rect key="frame" x="434" y="306" width="312" height="49"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="T4s-1S-H1g">
                             <rect key="frame" x="4" y="5" width="304" height="29"/>
@@ -775,7 +774,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Tape Reverse" translatesAutoresizingMaskIntoConstraints="NO" id="qI9-Dz-XXZ">
-                        <rect key="frame" x="434" y="168" width="312" height="65"/>
+                        <rect key="frame" x="434" y="236" width="312" height="65"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="p83-aC-hFR">
                             <rect key="frame" x="4" y="5" width="304" height="45"/>
@@ -783,7 +782,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Flanger" translatesAutoresizingMaskIntoConstraints="NO" id="HH8-Th-tnR">
-                        <rect key="frame" x="434" y="71" width="312" height="93"/>
+                        <rect key="frame" x="434" y="139" width="312" height="93"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="KFA-a1-9oi">
                             <rect key="frame" x="4" y="5" width="304" height="73"/>
@@ -791,7 +790,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Reverb" translatesAutoresizingMaskIntoConstraints="NO" id="VPR-jj-z02">
-                        <rect key="frame" x="434" y="14" width="312" height="59"/>
+                        <rect key="frame" x="434" y="82" width="312" height="59"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="yOp-DR-Wkz">
                             <rect key="frame" x="4" y="5" width="304" height="39"/>
@@ -799,7 +798,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Looper" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-dZ-uxX">
-                        <rect key="frame" x="434" y="665" width="312" height="87"/>
+                        <rect key="frame" x="434" y="733" width="312" height="87"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="Ezh-7q-75L">
                             <rect key="frame" x="4" y="5" width="304" height="67"/>
@@ -807,7 +806,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Misc." translatesAutoresizingMaskIntoConstraints="NO" id="Dhb-3h-zTh">
-                        <rect key="frame" x="434" y="454" width="312" height="114"/>
+                        <rect key="frame" x="434" y="522" width="312" height="114"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="iip-qQ-u5X">
                             <rect key="frame" x="4" y="5" width="304" height="94"/>
@@ -815,7 +814,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Reverse" translatesAutoresizingMaskIntoConstraints="NO" id="vBi-YG-cXR">
-                        <rect key="frame" x="434" y="376" width="312" height="69"/>
+                        <rect key="frame" x="434" y="444" width="312" height="69"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="lEJ-Us-oHK">
                             <rect key="frame" x="4" y="5" width="304" height="49"/>
@@ -823,16 +822,16 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="TurnTable" translatesAutoresizingMaskIntoConstraints="NO" id="ymk-cd-qn4">
-                        <rect key="frame" x="17" y="482" width="337" height="254"/>
+                        <rect key="frame" x="17" y="492" width="337" height="328"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="0SL-H1-1ci">
-                            <rect key="frame" x="4" y="5" width="329" height="234"/>
+                            <rect key="frame" x="4" y="5" width="329" height="308"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="54.5" y="-124"/>
+            <point key="canvasLocation" x="54.5" y="-90"/>
         </window>
     </objects>
 </document>
