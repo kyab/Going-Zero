@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pku-TV-h5Y">
-                    <rect key="frame" x="18" y="49" width="96" height="28"/>
+                    <rect key="frame" x="18" y="49" width="158" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="2" doubleValue="1" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="1Up-kB-iwQ">
                         <font key="font" size="12" name="Helvetica"/>
@@ -32,17 +31,6 @@
                         <action selector="_benderRateChanged:" target="-2" id="DfZ-tL-voO"/>
                     </connections>
                 </slider>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkh-37-87M">
-                    <rect key="frame" x="159" y="54" width="72" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Bounce" bezelStyle="regularSquare" imagePosition="left" inset="2" id="rxc-3P-kDG">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="_benderBounceChanged:" target="-2" id="qaB-xW-hab"/>
-                    </connections>
-                </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9aH-jm-msz">
                     <rect key="frame" x="5" y="19" width="100" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -73,6 +61,17 @@
                         <action selector="freezeGrainsizeChanged:" target="-2" id="bdw-Yt-cV5"/>
                     </connections>
                 </slider>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkh-37-87M">
+                    <rect key="frame" x="225" y="56" width="72" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Bounce" bezelStyle="regularSquare" imagePosition="left" inset="2" id="rxc-3P-kDG">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="_benderBounceChanged:" target="-2" id="qaB-xW-hab"/>
+                    </connections>
+                </button>
             </subviews>
             <point key="canvasLocation" x="21.5" y="1.5"/>
         </customView>

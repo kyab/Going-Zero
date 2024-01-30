@@ -76,6 +76,7 @@
     _crasher = [[BitCrasher alloc] init];
     _crasherController = [[BitCrasherController alloc] initWithNibName:@"BitCrasherController" bundle:nil];
     [_crasherContentView addSubview:[_crasherController view]];
+    [self fitView:[_crasherController view]];
     [_crasherController setBitCrasher:_crasher];
     
     _tapeReverse = [[TapeReverse alloc] init];
@@ -107,7 +108,8 @@
     _randomController = [[RandomController alloc]
                          initWithNibName:@"RandomController" bundle:nil];
     [_randomContentView addSubview:[_randomController view]];
-    [self centerize:[_randomController view]];
+//    [self centerize:[_randomController view]];
+    [self fitView:[_randomController view]];
     [_random setBeatTracker:_beatTracker];
     [_randomController setRandom:_random];
     
@@ -176,6 +178,12 @@
     
     [view setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
     
+}
+
+-(void)fitView:(NSView *)view{
+    NSView *superView = view.superview;
+    [view setFrameSize:superView.frame.size];
+    [view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
 }
 
 
@@ -255,8 +263,8 @@
      }
     
     //beat tracker
-//    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     double speedRate = [_turnTableController speedRate];
     if(speedRate == 1.0){
