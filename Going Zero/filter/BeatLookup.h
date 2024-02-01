@@ -8,13 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "RingBuffer.h"
+#import "BeatTracker.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BeatLookup : NSObject {
     RingBuffer *_ring;
+    BeatTracker *_beatTracker;
+    UInt32 _cycleFrames;
+    UInt32 _state;
 }
 
+-(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)setBarStart;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 

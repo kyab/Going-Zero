@@ -7,10 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "BeatLookup.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BeatLookupController : NSViewController
+@interface BeatLookupController : NSViewController{
+    BeatLookup *_beatLookup;
+}
+
+-(void)setBeatLookup:(BeatLookup *)beatLookup;
 
 @end
 

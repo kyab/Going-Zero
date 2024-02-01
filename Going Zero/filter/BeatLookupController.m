@@ -19,7 +19,12 @@
     // Do view setup here.
 }
 
+-(void)setBeatLookup:(BeatLookup *)beatLookup{
+    _beatLookup = beatLookup;
+}
+
 - (IBAction)setBarStart:(id)sender {
+    [_beatLookup setBarStart];
 }
 
 
