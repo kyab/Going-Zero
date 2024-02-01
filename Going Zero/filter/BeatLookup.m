@@ -10,4 +10,18 @@
 
 @implementation BeatLookup
 
+-(id)init{
+    self = [super init];
+    _ring = [[RingBuffer alloc] init];
+    return self;
+}
+
+-(void)setBarStart{
+    
+}
+
+-(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    
+}
+
 @end

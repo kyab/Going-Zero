@@ -19,4 +19,8 @@
     // Do view setup here.
 }
 
+- (IBAction)setBarStart:(id)sender {
+}
+
+
 @end

@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RingBuffer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BeatLookup : NSObject
+@interface BeatLookup : NSObject {
+    RingBuffer *_ring;
+}
+
+-(void)setBarStart;
+-(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 
 @end
 
