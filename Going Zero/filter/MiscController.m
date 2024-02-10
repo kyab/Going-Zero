@@ -71,8 +71,8 @@
 
     float rate = _sliderBenderRate.floatValue;
     rate += 0.1;
-    if (rate >= 3.0){
-        rate = 3.0;
+    if (rate >= 1.5){
+        rate = 1.5;
     }
     [_sliderBenderRate setFloatValue:rate];
     [_bender setRate:rate];

@@ -53,8 +53,6 @@
 }
 
 -(Boolean)isCatchingUp{
-//    UInt32 offset = [_ring readWriteOffset];
-//    NSLog(@"offset = %lu", (unsigned long)offset);
     if ([_ring readWriteOffset] <= 32){
         return YES;
     }else{

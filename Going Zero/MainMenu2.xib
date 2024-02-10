@@ -21,6 +21,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="Cna-gC-1o3" customClass="AppController">
             <connections>
+                <outlet property="_beatLookupContentView" destination="24M-Ua-fhd" id="Uir-XU-jPs"/>
                 <outlet property="_beatTrackerContentView" destination="bLL-Sz-3R4" id="2eP-Wn-8ox"/>
                 <outlet property="_crasherContentView" destination="T4s-1S-H1g" id="gfk-aY-7yN"/>
                 <outlet property="_djFilterContentView" destination="SNs-4h-V0S" id="ru5-Dz-CaJ"/>

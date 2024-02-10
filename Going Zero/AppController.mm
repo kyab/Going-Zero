@@ -41,6 +41,14 @@
     [self centerize:[_beatTrackerController view]];
     [_beatTrackerController setBeatTracker:_beatTracker];
     
+    _beatLookup = [[BeatLookup alloc] init];
+    _beatLookupController = [[BeatLookupController alloc]
+                         initWithNibName:@"BeatLookupController" bundle:nil];
+    [_beatLookupContentView addSubview:[_beatLookupController view]];
+    [self centerize:[_beatLookupController view]];
+    [_beatLookupController setBeatLookup:_beatLookup];
+    [_beatLookup setBeatTracker:_beatTracker];
+    
     _looper = [[Looper alloc] init];
     _looperController = [[LooperController alloc] initWithNibName:@"LooperController" bundle:nil];
     [_looperContentView addSubview:[_looperController view]];
@@ -319,56 +327,18 @@
         }
     }
     
-    
-    //looper
-    [_looper processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //trill reverse
-    [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //bender
-    [_bender processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-  
-    //reverse
-    [_reverse processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    
-    //Freezer
-    [_freezer processLeft:(float*)ioData->mBuffers[0].mData
-                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-
-    
-    
-    //refrain
-    [_refrain processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    
-    //bit crasher
-    [_crasher processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-  
-    
-    //tape reverse
-    [_tapeReverse processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //quick cue
-    [_quickCue processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //flanger
-    [_flanger processLeft:(float*)ioData->mBuffers[0].mData
+    //Beat Lookup
+    [_beatLookup processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //Sampler
     [_sampler processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-        
+
+    //DJ filter
+    [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     //Random
     [_random processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
@@ -377,18 +347,49 @@
     [_lookUp processLeft:(float*)ioData->mBuffers[0].mData
                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    //DJ filter
-    [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
+    //looper
+    [_looper processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
+    //quick cue
+    [_quickCue processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //bender
+    [_bender processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //trill reverse
+    [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
+    //Freezer
+    [_freezer processLeft:(float*)ioData->mBuffers[0].mData
+                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+  
+    //reverse
+    [_reverse processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //refrain
+    [_refrain processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //bit crasher
+    [_crasher processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+  
+    //tape reverse
+    [_tapeReverse processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //flanger
+    [_flanger processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //Simple Reverb
     [_simpleReverb processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-
-    //Convolution Reverb
-//    [_convolutionReverb processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
     
     //viewer
     [_viewer processLeft:(float*)ioData->mBuffers[0].mData

@@ -27,6 +27,7 @@
 
 -(void)setBarStart{
     _cycleFrames = (UInt32)(44100*[_beatTracker beatDurationSec]*8);
+    NSLog(@"cycleFrames = %d", _cycleFrames);
     
 }
 
