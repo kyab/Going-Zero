@@ -26,12 +26,44 @@
 }
 
 -(void)setBarStart{
-    _cycleFrames = (UInt32)(44100*[_beatTracker beatDurationSec]*8);
-    NSLog(@"cycleFrames = %d", _cycleFrames);
+    _barFrameNum = (UInt32)(44100*[_beatTracker beatDurationSec]*4);
+    NSLog(@"_barFrameNum = %d", _barFrameNum);
+    _barFrameStart = [_ring recordFrame] - _barFrameNum;
+    _state = BL_STATE_STORING;
     
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    
+    switch (_state) {
+        case BL_STATE_FREERUNNING:
+            {
+                float *dstL = [_ring writePtrLeft];
+                float *dstR = [_ring writePtrRight];
+                memcpy(dstL, leftBuf, numSamples * sizeof(float));
+                memcpy(dstR, rightBuf, numSamples * sizeof(float));
+                [_ring advanceWritePtrSample:numSamples];
+            }
+            break;
+        case BL_STATE_STORING:
+            {
+                float *dstL = [_ring writePtrLeft];
+                float *dstR = [_ring writePtrRight];
+                memcpy(dstL, leftBuf, numSamples * sizeof(float));
+                memcpy(dstR, rightBuf, numSamples * sizeof(float));
+                [_ring advanceWritePtrSample:numSamples];
+                if ([_ring offsetToRecordFrameFrom:_barFrameStart] > 2*_barFrameNum){
+                    _barFrameStart += _barFrameNum;
+                    if (_barFrameStart > [_ring frames]){
+                        _barFrameStart -= [_ring frames];
+                    }
+                }
+            }
+            break;
+            
+        default:
+            break;
+    }
     
 }
 

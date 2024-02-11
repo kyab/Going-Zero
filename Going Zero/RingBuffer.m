@@ -430,7 +430,26 @@
 
 -(void)reset{
     _playFrame = _recordFrame = _dryFrame = 0;
-    
-    
 }
+
+-(SInt32)offsetToRecordFrameFrom:(SInt32)frame{
+    if (frame < 0){
+        return -(frame) + _recordFrame;
+    }else if (frame < (SInt32)_recordFrame){
+        return _recordFrame - frame;
+    }else{
+        return _recordFrame + ([self frames] - frame);
+    }
+}
+
+-(SInt32)offsetToPlayFrameFrom:(SInt32)frame{
+    if (frame < 0){
+        return -(frame) + _playFrame;
+    }else if (frame < (SInt32)_playFrame){
+        return _playFrame - frame;
+    }else{
+        return _playFrame + ([self frames] - frame);
+    }
+}
+
 @end

@@ -55,5 +55,8 @@
 
 -(void)reset;
 
+-(SInt32)offsetToRecordFrameFrom:(SInt32)frame;
+-(SInt32)offsetToPlayFrameFrom:(SInt32)frame;
+
 
 @end
