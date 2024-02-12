@@ -21,6 +21,7 @@
 
 -(void)setBeatLookup:(BeatLookup *)beatLookup{
     _beatLookup = beatLookup;
+    [_beatLookupWaveView setBeatLookup:_beatLookup];
 }
 
 - (IBAction)setBarStart:(id)sender {

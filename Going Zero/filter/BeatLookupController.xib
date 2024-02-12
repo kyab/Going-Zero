@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BeatLookupController">
             <connections>
+                <outlet property="_beatLookupWaveView" destination="snQ-gr-e01" id="psl-ql-fPM"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -27,6 +28,10 @@
                         <action selector="setBarStart:" target="-2" id="iNz-VU-aq2"/>
                     </connections>
                 </button>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="snQ-gr-e01" customClass="BeatlookupWaveView">
+                    <rect key="frame" x="59" y="41" width="212" height="57"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
             </subviews>
             <point key="canvasLocation" x="48" y="68"/>
         </customView>

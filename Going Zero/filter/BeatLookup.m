@@ -28,9 +28,26 @@
 -(void)setBarStart{
     _barFrameNum = (UInt32)(44100*[_beatTracker beatDurationSec]*4);
     NSLog(@"_barFrameNum = %d", _barFrameNum);
-    _barFrameStart = [_ring recordFrame] - _barFrameNum;
+    SInt32 temp = [_ring recordFrame] - _barFrameNum;
+    if (temp > 0){
+        _barFrameStart = temp;
+    }else{
+        _barFrameStart = [_ring frames] + temp;
+    }
     _state = BL_STATE_STORING;
     
+}
+
+-(UInt32)barFrameStart{
+    return _barFrameStart;
+}
+
+-(UInt32)barFrameNum{
+    return _barFrameNum;
+}
+
+-(RingBuffer *)ring{
+    return _ring;
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{

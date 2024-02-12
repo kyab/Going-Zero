@@ -7,10 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "BeatLookup.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BeatlookupWaveView : NSView
+@interface BeatlookupWaveView : NSView{
+    BeatLookup *_beatLookup;
+    NSTimer *_timer;
+}
+
+-(void)setBeatLookup:(BeatLookup *)beatLookup;
 
 @end
 

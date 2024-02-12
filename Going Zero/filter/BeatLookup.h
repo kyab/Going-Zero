@@ -16,12 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
     RingBuffer *_ring;
     BeatTracker *_beatTracker;
     UInt32 _barFrameNum;
-    SInt32 _barFrameStart;
+    UInt32 _barFrameStart;
     UInt32 _state;
 }
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)setBarStart;
+-(UInt32)barFrameStart;
+-(UInt32)barFrameNum;
+-(RingBuffer *)ring;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 
 @end
