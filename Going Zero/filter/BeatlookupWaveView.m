@@ -12,7 +12,7 @@
 
 -(void)awakeFromNib{
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
@@ -39,15 +39,14 @@
         return;
     }
     
-    CGFloat w = self.frame.size.width;
-    CGFloat h = self.frame.size.height;
+    CGFloat w = self.bounds.size.width;
+    CGFloat h = self.bounds.size.height;
         
     UInt32 barFrameStart = [_beatLookup barFrameStart];
     RingBuffer *ring = [_beatLookup ring];
-    CGFloat pixelsPerFrame = w / (2 * [_beatLookup barFrameNum]);
+    CGFloat framesPerPixel = (2 * [_beatLookup barFrameNum]) / w;
     NSBezierPath *line = [NSBezierPath bezierPath];
-    [line moveToPoint:NSMakePoint(0,h/2)];
-    [line lineToPoint:NSMakePoint(w,h/2)];
+    [line setLineWidth:1.0];
     [[NSColor orangeColor] set];
 
     SInt32 drawStartFrame = barFrameStart;
@@ -55,14 +54,29 @@
         drawStartFrame -= [ring frames];
     }
     
-    NSLog(@"drawStartFrame = %d, barFrameNum = %u, recordFrame = %u pixelsPerFrame = %f", drawStartFrame, [_beatLookup barFrameNum], [ring recordFrame],pixelsPerFrame);
-    for (SInt32 i = drawStartFrame; i < [ring recordFrame]; i++){
-        float val = [ring startPtrLeft][i];
-        CGFloat x = (i - drawStartFrame) * pixelsPerFrame;
-//        [line moveToPoint:NSMakePoint(x,h/2 - fabs(val)*h/2)];
-//        [line lineToPoint:NSMakePoint(x,h/2 + fabs(val)*h/2)];
+//    NSLog(@"drawStartFrame = %d, barFrameNum = %u, recordFrame = %u framesPerPixel = %f", drawStartFrame, [_beatLookup barFrameNum], [ring recordFrame],framesPerPixel);
+    
+    SInt32 f = drawStartFrame;
+    for (int i = 0; i < w; i++){
+        float max = 0.0f;
+        SInt32 fs = f;
+        Boolean shouldBreak = false;
+        while((f - fs) < (SInt32)framesPerPixel){
+            float val = [ring startPtrLeft][f++];
+            if (fabs(val) > max){
+                max = fabs(val);
+            }
+            if (f >= (SInt32)[ring recordFrame]){
+                shouldBreak = true;
+                break;
+            }
+        }
+        [line moveToPoint:NSMakePoint(i,h/2 - max*h/2)];
+        [line lineToPoint:NSMakePoint(i,h/2 + max*h/2)];
+        if (shouldBreak){
+            break;
+        }
     }
-    NSLog(@"drawRect");
     [line stroke];
 }
 

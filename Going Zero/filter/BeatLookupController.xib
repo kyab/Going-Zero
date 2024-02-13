@@ -17,8 +17,12 @@
             <rect key="frame" x="0.0" y="0.0" width="298" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="snQ-gr-e01" customClass="BeatlookupWaveView">
+                    <rect key="frame" x="66" y="21" width="212" height="57"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="caC-UR-hah">
-                    <rect key="frame" x="3" y="53" width="55" height="32"/>
+                    <rect key="frame" x="4" y="33" width="55" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Set" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tQP-Kp-E2s">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -28,10 +32,6 @@
                         <action selector="setBarStart:" target="-2" id="iNz-VU-aq2"/>
                     </connections>
                 </button>
-                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="snQ-gr-e01" customClass="BeatlookupWaveView">
-                    <rect key="frame" x="59" y="41" width="212" height="57"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                </customView>
             </subviews>
             <point key="canvasLocation" x="48" y="68"/>
         </customView>

@@ -70,7 +70,7 @@
                 memcpy(dstR, rightBuf, numSamples * sizeof(float));
                 [_ring advanceWritePtrSample:numSamples];
                 if ([_ring offsetToRecordFrameFrom:_barFrameStart] > 2*_barFrameNum){
-                    _barFrameStart += _barFrameNum;
+                    _barFrameStart += _barFrameNum * 2;
                     if (_barFrameStart > [_ring frames]){
                         _barFrameStart -= [_ring frames];
                     }
