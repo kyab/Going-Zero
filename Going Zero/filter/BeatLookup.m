@@ -28,7 +28,7 @@
 -(void)setBarStart{
     _barFrameNum = (UInt32)(44100*[_beatTracker beatDurationSec]*4);
     NSLog(@"_barFrameNum = %d", _barFrameNum);
-    SInt32 temp = [_ring recordFrame] - _barFrameNum;
+    SInt32 temp = [_ring recordFrame] - 2*_barFrameNum;
     if (temp > 0){
         _barFrameStart = temp;
     }else{

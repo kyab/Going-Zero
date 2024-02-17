@@ -44,35 +44,36 @@
         
     UInt32 barFrameStart = [_beatLookup barFrameStart];
     RingBuffer *ring = [_beatLookup ring];
-    CGFloat framesPerPixel = (2 * [_beatLookup barFrameNum]) / w;
+    CGFloat framesPer01Pixel = (2 * [_beatLookup barFrameNum]) / w / 10.0;
     NSBezierPath *line = [NSBezierPath bezierPath];
-    [line setLineWidth:1.0];
+    [line setLineWidth:0.1];
     [[NSColor orangeColor] set];
 
     SInt32 drawStartFrame = barFrameStart;
-    if (barFrameStart > [ring recordFrame]){
+    SInt32 recordFrame = (SInt32)[ring recordFrame];
+    if (barFrameStart > recordFrame){
         drawStartFrame -= [ring frames];
     }
     
-//    NSLog(@"drawStartFrame = %d, barFrameNum = %u, recordFrame = %u framesPerPixel = %f", drawStartFrame, [_beatLookup barFrameNum], [ring recordFrame],framesPerPixel);
     
     SInt32 f = drawStartFrame;
-    for (int i = 0; i < w; i++){
+    for (int i = 0; i < w*10; i++){
         float max = 0.0f;
         SInt32 fs = f;
         Boolean shouldBreak = false;
-        while((f - fs) < (SInt32)framesPerPixel){
+        while((f - fs) < (SInt32)framesPer01Pixel){
             float val = [ring startPtrLeft][f++];
             if (fabs(val) > max){
                 max = fabs(val);
             }
-            if (f >= (SInt32)[ring recordFrame]){
+            if (f >= recordFrame ){
                 shouldBreak = true;
                 break;
             }
         }
-        [line moveToPoint:NSMakePoint(i,h/2 - max*h/2)];
-        [line lineToPoint:NSMakePoint(i,h/2 + max*h/2)];
+        max *= 0.95f;
+        [line moveToPoint:NSMakePoint(i/10.0, h/2 - max*h/2)];
+        [line lineToPoint:NSMakePoint(i/10.0, h/2 + max*h/2)];
         if (shouldBreak){
             break;
         }
