@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+    [_jugglingTouchView setDelegate:self];
 }
 
 -(void)setBeatLookup:(BeatLookup *)beatLookup{
@@ -28,5 +28,12 @@
     [_beatLookup setBarStart];
 }
 
+-(void)jugglingTouchtouchViewMouseDown:(UInt32)beatNumDivide8 offsetRatio:(double)offsetRatio{
+    // Do some stuff
+}
+
+-(void)touchViewMouseUp{
+    // Stop some stuff
+}
 
 @end

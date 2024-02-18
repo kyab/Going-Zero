@@ -9,14 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "BeatLookup.h"
 #import "BeatlookupWaveView.h"
+#import "JugglingTouchView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BeatLookupController : NSViewController{
+@interface BeatLookupController : NSViewController <JugglingTouchViewDelegate>{
     BeatLookup *_beatLookup;
     
     __weak IBOutlet BeatlookupWaveView *_beatLookupWaveView;
-    
+    __weak IBOutlet JugglingTouchView *_jugglingTouchView;
 }
 
 -(void)setBeatLookup:(BeatLookup *)beatLookup;

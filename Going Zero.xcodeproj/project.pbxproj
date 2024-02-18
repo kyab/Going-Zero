@@ -35,6 +35,7 @@
 		EB379119276F5A8B00AC37D0 /* ConvolutionReverbController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB379117276F5A8B00AC37D0 /* ConvolutionReverbController.m */; };
 		EB37911A276F5A8B00AC37D0 /* ConvolutionReverbController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB379118276F5A8B00AC37D0 /* ConvolutionReverbController.xib */; };
 		EB37911D2771CD8800AC37D0 /* RateConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = EB37911C2771CD8800AC37D0 /* RateConverter.m */; };
+		EB38846E2B8256B700D8735B /* JugglingTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB38846D2B8256B700D8735B /* JugglingTouchView.m */; };
 		EB652EDE266E00D000089E3E /* TapeReverseController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652EDC266E00D000089E3E /* TapeReverseController.m */; };
 		EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB652EDD266E00D000089E3E /* TapeReverseController.xib */; };
 		EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = EB652EE1266E00E300089E3E /* TapeReverse.m */; };
@@ -139,6 +140,8 @@
 		EB379118276F5A8B00AC37D0 /* ConvolutionReverbController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConvolutionReverbController.xib; sourceTree = "<group>"; };
 		EB37911B2771CD8800AC37D0 /* RateConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RateConverter.h; path = "Going Zero/RateConverter.h"; sourceTree = SOURCE_ROOT; };
 		EB37911C2771CD8800AC37D0 /* RateConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RateConverter.m; path = "Going Zero/RateConverter.m"; sourceTree = SOURCE_ROOT; };
+		EB38846C2B8256B700D8735B /* JugglingTouchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JugglingTouchView.h; sourceTree = "<group>"; };
+		EB38846D2B8256B700D8735B /* JugglingTouchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JugglingTouchView.m; sourceTree = "<group>"; };
 		EB652EDB266E00D000089E3E /* TapeReverseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapeReverseController.h; sourceTree = "<group>"; };
 		EB652EDC266E00D000089E3E /* TapeReverseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapeReverseController.m; sourceTree = "<group>"; };
 		EB652EDD266E00D000089E3E /* TapeReverseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TapeReverseController.xib; sourceTree = "<group>"; };
@@ -376,6 +379,8 @@
 				0C21BC072B69D65B00018937 /* BeatLookup.m */,
 				0C21BC092B69D69000018937 /* BeatlookupWaveView.h */,
 				0C21BC0A2B69D69000018937 /* BeatlookupWaveView.m */,
+				EB38846C2B8256B700D8735B /* JugglingTouchView.h */,
+				EB38846D2B8256B700D8735B /* JugglingTouchView.m */,
 				0C21BC012B69D63000018937 /* BeatLookupController.h */,
 				0C21BC022B69D63000018937 /* BeatLookupController.m */,
 				0C21BC032B69D63000018937 /* BeatLookupController.xib */,
@@ -628,6 +633,7 @@
 				EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */,
 				EBDA9A492740A9E500836273 /* SamplerController.m in Sources */,
 				0C21BC042B69D63000018937 /* BeatLookupController.m in Sources */,
+				EB38846E2B8256B700D8735B /* JugglingTouchView.m in Sources */,
 				EB37911D2771CD8800AC37D0 /* RateConverter.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
 				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
