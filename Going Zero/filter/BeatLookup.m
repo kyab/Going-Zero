@@ -13,6 +13,7 @@
 #define BL_STATE_FREERUNNING 0
 #define BL_STATE_STORING 1
 #define BL_STATE_INLIVE 2
+#define BL_STATE_BEATJUGGLING 3
 
 -(id)init{
     self = [super init];
@@ -36,6 +37,30 @@
     }
     _state = BL_STATE_STORING;
     
+}
+
+-(void)startBeatJuggling:(UInt32)beatRegionDivide8{
+    _beatRegionDivide8 = beatRegionDivide8;
+    _state = BL_STATE_BEATJUGGLING;
+    UInt32 framesPerRegion = (UInt32)(2*_barFrameNum / 8.0);
+    SInt32 playFrameBase = _barFrameStart - 2*_barFrameNum + _beatRegionDivide8*framesPerRegion;
+    
+    UInt32 recordRegionDivide8 = [_ring offsetToRecordFrameFrom:_barFrameStart] /framesPerRegion;
+    
+    UInt32 offsetFrameInRegion = [_ring offsetToRecordFrameFrom:recordRegionDivide8*framesPerRegion];
+    
+    SInt32 playFrameTemp = playFrameBase + offsetFrameInRegion;
+    UInt32 playFrame = 0;
+    if (playFrameTemp > 0){
+        playFrame = playFrameTemp;
+    }else{
+        playFrame = [_ring frames] + playFrameTemp;
+    }
+    [_ring setPlayFrame:playFrame];
+}
+
+-(void)stopBeatJuggling{
+    _state = BL_STATE_STORING;
 }
 
 -(UInt32)barFrameStart{

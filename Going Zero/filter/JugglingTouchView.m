@@ -22,16 +22,13 @@
 }
 
 - (void)mouseDown:(NSEvent *)event{
-//    //get location on this view
-//    NSPoint l = [event locationInWindow];
-//    NSPoint location = [self convertPoint:l fromView:nil];
-//    double ratio = location.x / self.frame.size.width;
-//    NSLog(@"ratio = %f", ratio);
-//    
-//    [_delegate touchViewMouseDown: ratio];
+    //get location on this view
+    NSPoint l = [event locationInWindow];
+    NSPoint location = [self convertPoint:l fromView:nil];
+    UInt32 pixelsPerRegion = (UInt8)(self.bounds.size.width / 8);
+    UInt32 beatRegionDivide8 = location.x / pixelsPerRegion;
     
-    
-     // mod 8
+    [_delegate jugglingTouchViewMouseDown:beatRegionDivide8];
 }
 
 -(void)mouseUp:(NSEvent *)event{

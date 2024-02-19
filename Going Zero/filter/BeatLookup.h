@@ -18,10 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
     UInt32 _barFrameNum;
     UInt32 _barFrameStart;
     UInt32 _state;
+    UInt32 _beatRegionDivide8;
 }
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)setBarStart;
+-(void)startBeatJuggling:(UInt32)beatRegionDivide8;
+-(void)stopBeatJuggling;
 -(UInt32)barFrameStart;
 -(UInt32)barFrameNum;
 -(RingBuffer *)ring;

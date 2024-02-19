@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol JugglingTouchViewDelegate <NSObject>
 @optional
--(void)jugglingTouchtouchViewMouseDown:(UInt32) beatNumDivide8 offsetRatio:(double) offsetRatio;
+-(void)jugglingTouchViewMouseDown:(UInt32) beatRegionDivide8;
 -(void)touchViewMouseUp;
 @end
 
