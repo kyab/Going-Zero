@@ -40,10 +40,8 @@
 }
 
 -(void)startBeatJuggling:(UInt32)beatRegionDivide8{
-    _beatRegionDivide8 = beatRegionDivide8;
-    _state = BL_STATE_BEATJUGGLING;
     UInt32 framesPerRegion = (UInt32)(2*_barFrameNum / 8.0);
-    SInt32 playFrameBase = _barFrameStart - 2*_barFrameNum + _beatRegionDivide8*framesPerRegion;
+    SInt32 playFrameBase = _barFrameStart - 2*_barFrameNum + beatRegionDivide8*framesPerRegion;
     
     UInt32 recordRegionDivide8 = [_ring offsetToRecordFrameFrom:_barFrameStart] /framesPerRegion;
     
@@ -51,12 +49,26 @@
     
     SInt32 playFrameTemp = playFrameBase + offsetFrameInRegion;
     UInt32 playFrame = 0;
-    if (playFrameTemp > 0){
+    if (playFrameTemp >= 0){
         playFrame = playFrameTemp;
     }else{
         playFrame = [_ring frames] + playFrameTemp;
     }
     [_ring setPlayFrame:playFrame];
+    
+    if (playFrameBase >= 0){
+        _beatJugglingContext.startFrame = playFrameBase;
+    }else{
+        _beatJugglingContext.startFrame = [_ring frames] + playFrameBase;
+    }
+    SInt32 endFrame = _beatJugglingContext.startFrame + framesPerRegion;
+    if (endFrame >= 0){
+        _beatJugglingContext.endFrame = endFrame;
+    }else{
+        _beatJugglingContext.endFrame = [_ring frames] + endFrame;
+    }
+    
+    _state = BL_STATE_BEATJUGGLING;
 }
 
 -(void)stopBeatJuggling{

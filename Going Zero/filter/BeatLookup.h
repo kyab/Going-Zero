@@ -12,13 +12,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef struct {
+    UInt32 startFrame;
+    UInt32 endFrame;
+}BeatJugglingContext;
+
 @interface BeatLookup : NSObject {
     RingBuffer *_ring;
     BeatTracker *_beatTracker;
     UInt32 _barFrameNum;
     UInt32 _barFrameStart;
     UInt32 _state;
-    UInt32 _beatRegionDivide8;
+    BeatJugglingContext _beatJugglingContext;
+
 }
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker;
