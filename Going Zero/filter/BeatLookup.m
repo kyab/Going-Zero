@@ -56,17 +56,15 @@
     }
     [_ring setPlayFrame:playFrame];
     
+    
     if (playFrameBase >= 0){
         _beatJugglingContext.startFrame = playFrameBase;
     }else{
         _beatJugglingContext.startFrame = [_ring frames] + playFrameBase;
     }
-    SInt32 endFrame = _beatJugglingContext.startFrame + framesPerRegion;
-    if (endFrame >= 0){
-        _beatJugglingContext.endFrame = endFrame;
-    }else{
-        _beatJugglingContext.endFrame = [_ring frames] + endFrame;
-    }
+
+    _beatJugglingContext.currentFrameInRegion = offsetFrameInRegion;
+    _beatJugglingContext.framesInRegion = framesPerRegion;
     
     _state = BL_STATE_BEATJUGGLING;
 }
@@ -111,6 +109,41 @@
                     if (_barFrameStart > [_ring frames]){
                         _barFrameStart -= [_ring frames];
                     }
+                }
+            }
+            break;
+        
+        case BL_STATE_BEATJUGGLING:
+            {
+                float *dstL = [_ring writePtrLeft];
+                float *dstR = [_ring writePtrRight];
+                memcpy(dstL, leftBuf, numSamples * sizeof(float));
+                memcpy(dstR, rightBuf, numSamples * sizeof(float));
+                [_ring advanceWritePtrSample:numSamples];
+                
+                if (_beatJugglingContext.currentFrameInRegion + numSamples < _beatJugglingContext.framesInRegion){
+                    float *srcL = [_ring readPtrLeft];
+                    float *srcR = [_ring readPtrRight];
+                    memcpy(leftBuf, srcL, numSamples * sizeof(float));
+                    memcpy(rightBuf, srcR, numSamples * sizeof(float));
+                    [_ring advanceReadPtrSample:numSamples];
+                    _beatJugglingContext.currentFrameInRegion += numSamples;
+                }else{
+                    UInt32 samples = _beatJugglingContext.framesInRegion - _beatJugglingContext.currentFrameInRegion;
+                    float *srcL = [_ring readPtrLeft];
+                    float *srcR = [_ring readPtrRight];
+                    memcpy(leftBuf, srcL, samples * sizeof(float));
+                    memcpy(rightBuf, srcR, samples * sizeof(float));
+                    [_ring setPlayFrame:_beatJugglingContext.startFrame];
+                    _beatJugglingContext.currentFrameInRegion = 0;
+        
+                    UInt32 samples2 = numSamples - samples;
+                    srcL = [_ring readPtrLeft];
+                    srcR = [_ring readPtrRight];
+                    memcpy(leftBuf + samples, srcL, samples2 * sizeof(float));
+                    memcpy(rightBuf + samples, srcR, samples2 * sizeof(float));
+                    [_ring advanceReadPtrSample:samples2];
+                    _beatJugglingContext.currentFrameInRegion = samples2;
                 }
             }
             break;

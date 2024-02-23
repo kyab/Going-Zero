@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef struct {
     UInt32 startFrame;
-    UInt32 endFrame;
+    UInt32 currentFrameInRegion;
+    UInt32 framesInRegion;
 }BeatJugglingContext;
 
 @interface BeatLookup : NSObject {
