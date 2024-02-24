@@ -41,11 +41,12 @@
 
 -(void)startBeatJuggling:(UInt32)beatRegionDivide8{
     UInt32 framesPerRegion = (UInt32)(2*_barFrameNum / 8.0);
-    SInt32 playFrameBase = _barFrameStart - 2*_barFrameNum + beatRegionDivide8*framesPerRegion;
+    SInt32 playFrameBase = (SInt32)_barFrameStart - 2*(SInt32)_barFrameNum + beatRegionDivide8*framesPerRegion;
     
     UInt32 recordRegionDivide8 = [_ring offsetToRecordFrameFrom:_barFrameStart] /framesPerRegion;
     
-    UInt32 offsetFrameInRegion = [_ring offsetToRecordFrameFrom:recordRegionDivide8*framesPerRegion];
+    
+    UInt32 offsetFrameInRegion = [_ring offsetToRecordFrameFrom:_barFrameStart + recordRegionDivide8*framesPerRegion];
     
     SInt32 playFrameTemp = playFrameBase + offsetFrameInRegion;
     UInt32 playFrame = 0;

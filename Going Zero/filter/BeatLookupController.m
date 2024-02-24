@@ -33,7 +33,7 @@
 }
 
 -(void)touchViewMouseUp{
-    // Stop some stuff
+    [_beatLookup stopBeatJuggling];
 }
 
 @end
