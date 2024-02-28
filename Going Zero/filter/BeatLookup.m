@@ -40,13 +40,10 @@
 }
 
 -(void)startBeatJuggling:(UInt32)beatRegionDivide8{
-    UInt32 framesPerRegion = (UInt32)(2*_barFrameNum / 8.0);
-    SInt32 playFrameBase = (SInt32)_barFrameStart - 2*(SInt32)_barFrameNum + beatRegionDivide8*framesPerRegion;
+    UInt32 framesPerRegion = (UInt32)(1*_barFrameNum / 8.0);
+    SInt32 playFrameBase = (SInt32)_barFrameStart - 1*(SInt32)_barFrameNum + beatRegionDivide8*framesPerRegion;
     
-    UInt32 recordRegionDivide8 = [_ring offsetToRecordFrameFrom:_barFrameStart] /framesPerRegion;
-    
-    
-    UInt32 offsetFrameInRegion = [_ring offsetToRecordFrameFrom:_barFrameStart + recordRegionDivide8*framesPerRegion];
+    UInt32 offsetFrameInRegion = [_ring offsetToRecordFrameFrom:_barFrameStart] % framesPerRegion;
     
     SInt32 playFrameTemp = playFrameBase + offsetFrameInRegion;
     UInt32 playFrame = 0;
@@ -56,6 +53,8 @@
         playFrame = [_ring frames] + playFrameTemp;
     }
     [_ring setPlayFrame:playFrame];
+    
+    NSLog(@"playFrameBase=%d, offsetFrameInRegion=%u", playFrameBase, offsetFrameInRegion);
     
     
     if (playFrameBase >= 0){
@@ -105,8 +104,8 @@
                 memcpy(dstL, leftBuf, numSamples * sizeof(float));
                 memcpy(dstR, rightBuf, numSamples * sizeof(float));
                 [_ring advanceWritePtrSample:numSamples];
-                if ([_ring offsetToRecordFrameFrom:_barFrameStart] > 2*_barFrameNum){
-                    _barFrameStart += _barFrameNum * 2;
+                if ([_ring offsetToRecordFrameFrom:_barFrameStart] > 1*_barFrameNum){
+                    _barFrameStart += _barFrameNum * 1;
                     if (_barFrameStart > [_ring frames]){
                         _barFrameStart -= [_ring frames];
                     }

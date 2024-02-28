@@ -44,7 +44,7 @@
         
     UInt32 barFrameStart = [_beatLookup barFrameStart];
     RingBuffer *ring = [_beatLookup ring];
-    CGFloat framesPer01Pixel = (2 * [_beatLookup barFrameNum]) / w / 10.0;
+    CGFloat framesPer01Pixel = (1 * [_beatLookup barFrameNum]) / w / 10.0;
     NSBezierPath *line = [NSBezierPath bezierPath];
     [line setLineWidth:0.1];
     [[NSColor orangeColor] set];

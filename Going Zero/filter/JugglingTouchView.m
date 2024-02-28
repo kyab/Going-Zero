@@ -14,7 +14,6 @@
     [super drawRect:dirtyRect];
     [NSColor.blackColor set];
     NSRectFill(self.bounds);
-    // Drawing code here.
 }
 
 -(void)setDelegate:(id<JugglingTouchViewDelegate>)delegate{
@@ -32,10 +31,7 @@
 }
 
 -(void)mouseUp:(NSEvent *)event{
-    NSLog(@"mouse up");
-    
     [_delegate touchViewMouseUp];
-
 }
 
 
