@@ -53,6 +53,8 @@ using namespace essentia;
         essentia::init();
     }
     
+    _audioFragment.reserve(44100*20);
+    
     streaming::AlgorithmFactory &factory = streaming::AlgorithmFactory::instance();
     _intBeatTracker = factory.create("BeatTrackerMultiFeature");
     _vecInput.setVector(&_audioFragment);
@@ -183,8 +185,9 @@ using namespace essentia;
                 
         if (_processedSample == 0){
             if (_audioFragment.size() >= 3 * 44100){
-                
+                NSLog(@"earlyBird dispatching..");
                 dispatch_async(_beatTrackerQueue, ^{
+                    NSLog(@"earlyBird dispatched");
                     while(_network->runStep()){
                         ;
                     }

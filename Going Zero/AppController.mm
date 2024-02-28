@@ -160,10 +160,8 @@
     [_ae setRenderDelegate:(id<AudioEngineDelegate>)self];
     
     [_ae changeSystemOutputDeviceToBGM];
-    usleep(1000*500);
     [_ae startOutput];
-    usleep(1000*500);
-    [_ae startInput];
+//    [_ae startInput];
     
     //wake up
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(didWakenUp:) name:NSWorkspaceDidWakeNotification object:nil];
@@ -245,6 +243,7 @@
         float *pRight = (float *)ioData->mBuffers[1].mData;
         bzero(pLeft,sizeof(float)*sampleNum );
         bzero(pRight,sizeof(float)*sampleNum );
+        NSLog(@"Not playing");
         return noErr;
     }
     
@@ -258,6 +257,7 @@
         return noErr;
     }
 
+        
     
     if (![_ring dryPtrLeft] || ![_ring dryPtrRight]){
          //not enough buffer
@@ -269,6 +269,8 @@
         bzero(pRight, sizeof(float)*sampleNum );
         return noErr;
      }
+    
+    NSLog(@"outCallback");
     
     //beat tracker
     [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
