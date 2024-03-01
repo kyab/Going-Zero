@@ -28,8 +28,8 @@
     [_beatLookup setBarStart];
 }
 
--(void)jugglingTouchViewMouseDown:(UInt32)beatRegionDivide8{
-    [_beatLookup startBeatJuggling:beatRegionDivide8];
+-(void)jugglingTouchViewMouseDown:(UInt32)beatRegionDivide16{
+    [_beatLookup startBeatJuggling:beatRegionDivide16];
 }
 
 -(void)touchViewMouseUp{

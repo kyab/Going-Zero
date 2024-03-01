@@ -39,8 +39,9 @@
     
 }
 
--(void)startBeatJuggling:(UInt32)beatRegionDivide8{
-    UInt32 framesPerRegion = (UInt32)(1*_barFrameNum / 8.0);
+-(void)startBeatJuggling:(UInt32)beatRegionDivide16{
+    UInt32 beatRegionDivide8 = beatRegionDivide16 / 2;
+    UInt32 framesPerRegion = _barFrameNum / 8;
     SInt32 playFrameBase = (SInt32)_barFrameStart - 1*(SInt32)_barFrameNum + beatRegionDivide8*framesPerRegion;
     
     UInt32 offsetFrameInRegion = [_ring offsetToRecordFrameFrom:_barFrameStart] % framesPerRegion;
@@ -54,8 +55,7 @@
     }
     [_ring setPlayFrame:playFrame];
     
-    NSLog(@"playFrameBase=%d, offsetFrameInRegion=%u", playFrameBase, offsetFrameInRegion);
-    
+    NSLog(@"regionDivide16=%u, regionDivide8=%u, playFrameBase=%d, offsetFrameInRegion=%u",beatRegionDivide16, beatRegionDivide8, playFrameBase, offsetFrameInRegion);
     
     if (playFrameBase >= 0){
         _beatJugglingContext.startFrame = playFrameBase;

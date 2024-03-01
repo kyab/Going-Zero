@@ -24,10 +24,10 @@
     //get location on this view
     NSPoint l = [event locationInWindow];
     NSPoint location = [self convertPoint:l fromView:nil];
-    UInt32 pixelsPerRegion = (UInt8)(self.bounds.size.width / 8);
-    UInt32 beatRegionDivide8 = location.x / pixelsPerRegion;
-    
-    [_delegate jugglingTouchViewMouseDown:beatRegionDivide8];
+    CGFloat pixelsPerRegion = self.bounds.size.width / 16.0;
+    UInt32 beatRegionDivide16 = (UInt32)(location.x / pixelsPerRegion);
+        
+    [_delegate jugglingTouchViewMouseDown:beatRegionDivide16];
 }
 
 -(void)mouseUp:(NSEvent *)event{

@@ -30,7 +30,7 @@ typedef struct {
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)setBarStart;
--(void)startBeatJuggling:(UInt32)beatRegionDivide8;
+-(void)startBeatJuggling:(UInt32)beatRegionDivide16;
 -(void)stopBeatJuggling;
 -(UInt32)barFrameStart;
 -(UInt32)barFrameNum;

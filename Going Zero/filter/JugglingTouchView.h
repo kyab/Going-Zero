@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol JugglingTouchViewDelegate <NSObject>
 @optional
--(void)jugglingTouchViewMouseDown:(UInt32) beatRegionDivide8;
+-(void)jugglingTouchViewMouseDown:(UInt32) beatRegionDivide16;
 -(void)touchViewMouseUp;
 @end
 

@@ -161,7 +161,7 @@
     
     [_ae changeSystemOutputDeviceToBGM];
     [_ae startOutput];
-//    [_ae startInput];
+    [_ae startInput];
     
     //wake up
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(didWakenUp:) name:NSWorkspaceDidWakeNotification object:nil];
@@ -256,8 +256,6 @@
         NSLog(@"shortage in out thread");
         return noErr;
     }
-
-        
     
     if (![_ring dryPtrLeft] || ![_ring dryPtrRight]){
          //not enough buffer
@@ -269,8 +267,6 @@
         bzero(pRight, sizeof(float)*sampleNum );
         return noErr;
      }
-    
-    NSLog(@"outCallback");
     
     //beat tracker
     [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
