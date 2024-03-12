@@ -10,11 +10,6 @@
 
 @implementation BeatLookup
 
-#define BL_STATE_FREERUNNING 0
-#define BL_STATE_STORING 1
-#define BL_STATE_INLIVE 2
-#define BL_STATE_BEATJUGGLING 3
-
 -(id)init{
     self = [super init];
     _ring = [[RingBuffer alloc] init];
@@ -151,7 +146,14 @@
         default:
             break;
     }
-    
+}
+
+-(UInt32)state{
+    return _state;
+}
+
+-(BeatJugglingContext)beatJugglingContext{
+    return _beatJugglingContext;
 }
 
 @end

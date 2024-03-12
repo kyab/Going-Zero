@@ -12,6 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define BL_STATE_FREERUNNING 0
+#define BL_STATE_STORING 1
+#define BL_STATE_INLIVE 2
+#define BL_STATE_BEATJUGGLING 3
+
 typedef struct {
     UInt32 startFrame;
     UInt32 currentFrameInRegion;
@@ -36,6 +41,8 @@ typedef struct {
 -(UInt32)barFrameNum;
 -(RingBuffer *)ring;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
+-(UInt32)state;
+-(BeatJugglingContext)beatJugglingContext;
 
 @end
 
