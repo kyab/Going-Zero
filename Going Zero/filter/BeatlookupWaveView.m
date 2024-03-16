@@ -89,31 +89,36 @@
             [line setLineWidth:0.1];
             [[NSColor orangeColor] set];
             
-            SInt32 drawStartFrame = barFrameStart;
+            SInt32 startFrame = barFrameStart;
+            SInt32 endFrame = (SInt32)beatJugglingContext.startFrame + [_beatLookup barFrameNum];
+            if (endFrame < startFrame){
+                endFrame += RING_SIZE_SAMPLE;
+            }
+//            if (endFrame > [ring recordFrame] ){
+//                endFrame = [ring recordFrame];
+//            }
             
-            SInt32 f = drawStartFrame;
+            SInt32 f = startFrame;
             for ( ; i < w*10; i++){
                 float max = 0.0f;
                 SInt32 fs = f;
                 Boolean shouldBreak = false;
-                SInt32 to = (SInt32)beatJugglingContext.startFrame + [_beatLookup barFrameNum];
-                if (f > to){
-                    to += RING_SIZE_SAMPLE;
-                }
                 
                 while((f - fs) < (SInt32)framesPer01Pixel){
                     float val = [ring startPtrLeft][f++];
                     if (fabs(val) > max){
                         max = fabs(val);
                     }
-                    if (f >= to ){
+                    if (f >= endFrame ){
                         shouldBreak = true;
                         break;
                     }
                 }
                 max *= 0.95f;
-                [line moveToPoint:NSMakePoint(i/10.0, h/2 - max*h/2)];
-                [line lineToPoint:NSMakePoint(i/10.0, h/2 + max*h/2)];
+                if (f < [ring recordFrame]){
+                    [line moveToPoint:NSMakePoint(i/10.0, h/2 - max*h/2)];
+                    [line lineToPoint:NSMakePoint(i/10.0, h/2 + max*h/2)];
+                }
                 if (shouldBreak){
                     break;
                 }
@@ -123,26 +128,25 @@
         
         {
             //during
-            // startFrame -> (currentFrameInRegion + startFrame)
             NSBezierPath *line = [NSBezierPath bezierPath];
             [line setLineWidth:0.1];
-            [[NSColor greenColor] set];
+            [[NSColor cyanColor] set];
             
-            SInt32 drawStartFrame = (SInt32)beatJugglingContext.startFrame;
+            SInt32 startFrame = (SInt32)beatJugglingContext.startFrame;
+            SInt32 endFrame = (SInt32)beatJugglingContext.startFrame + (SInt32)beatJugglingContext.currentFrameInRegion;
             
-            SInt32 f = drawStartFrame;
+            SInt32 f = startFrame;
             for (; i < w*10; i++){
                 float max = 0.0f;
                 SInt32 fs = f;
                 Boolean shouldBreak = false;
-                SInt32 to = (SInt32)beatJugglingContext.startFrame + (SInt32)beatJugglingContext.currentFrameInRegion;
                 
                 while((f - fs) < (SInt32)framesPer01Pixel){
                     float val = [ring startPtrLeft][f++];
                     if (fabs(val) > max){
                         max = fabs(val);
                     }
-                    if (f >= to ){
+                    if (f >= endFrame ){
                         shouldBreak = true;
                         break;
                     }
@@ -160,26 +164,23 @@
         {
             NSBezierPath *line = [NSBezierPath bezierPath];
             [line setLineWidth:0.1];
-            [[NSColor cyanColor] set];
+            [[NSColor orangeColor] set];
             
-            SInt32 drawStartFrame = (SInt32)beatJugglingContext.startFrame + (SInt32)beatJugglingContext.currentFrameInRegion + [_beatLookup barFrameNum];
+            SInt32 startFrame = (SInt32)beatJugglingContext.startFrame + (SInt32)beatJugglingContext.currentFrameInRegion + [_beatLookup barFrameNum];
+            SInt32 endFrame = [ring recordFrame];
             
-            SInt32 f = drawStartFrame;
+            SInt32 f = startFrame;
             for ( ; i < w*10; i++){
                 float max = 0.0f;
                 SInt32 fs = f;
                 Boolean shouldBreak = false;
-                SInt32 to = [ring recordFrame];
-                if (f > to){
-                    to += RING_SIZE_SAMPLE;
-                }
                 
                 while((f - fs) < (SInt32)framesPer01Pixel){
                     float val = [ring startPtrLeft][f++];
                     if (fabs(val) > max){
                         max = fabs(val);
                     }
-                    if (f >= to ){
+                    if (f >= endFrame ){
                         shouldBreak = true;
                         break;
                     }

@@ -50,7 +50,7 @@
     }
     [_ring setPlayFrame:playFrame];
     
-    NSLog(@"regionDivide16=%u, regionDivide8=%u, playFrameBase=%d, offsetFrameInRegion=%u",beatRegionDivide16, beatRegionDivide8, playFrameBase, offsetFrameInRegion);
+//    NSLog(@"regionDivide16=%u, regionDivide8=%u, playFrameBase=%d, offsetFrameInRegion=%u",beatRegionDivide16, beatRegionDivide8, playFrameBase, offsetFrameInRegion);
     
     if (playFrameBase >= 0){
         _beatJugglingContext.startFrame = playFrameBase;

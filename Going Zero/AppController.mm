@@ -231,6 +231,7 @@
 - (OSStatus) outCallback:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
     
     static BOOL printedNumFrames = NO;
+    static BOOL followRequired = YES;
     if (!printedNumFrames){
         NSLog(@"outCallback NumFrames = %d", inNumberFrames);
         printedNumFrames = YES;
@@ -244,6 +245,7 @@
         bzero(pLeft,sizeof(float)*sampleNum );
         bzero(pRight,sizeof(float)*sampleNum );
         NSLog(@"Not playing");
+        followRequired = YES;
         return noErr;
     }
     
@@ -253,20 +255,28 @@
         float *pRight = (float *)ioData->mBuffers[1].mData;
         bzero(pLeft,sizeof(float)*sampleNum );
         bzero(pRight,sizeof(float)*sampleNum );
-//        NSLog(@"shortage in out thread");
+        followRequired = YES;
+        NSLog(@"shortage in out thread");
         return noErr;
     }
     
     if (![_ring dryPtrLeft] || ![_ring dryPtrRight]){
          //not enough buffer
-        NSLog(@"no enogh buffer on dry");
+        NSLog(@"no enough buffer on dry");
         UInt32 sampleNum = inNumberFrames;
         float *pLeft = (float *)ioData->mBuffers[0].mData;
         float *pRight = (float *)ioData->mBuffers[1].mData;
         bzero(pLeft, sizeof(float)*sampleNum );
         bzero(pRight, sizeof(float)*sampleNum );
+        followRequired = YES;
         return noErr;
      }
+    
+    if (followRequired){
+        [_ring follow];
+        NSLog(@"Follow");
+        followRequired = NO;
+    }
     
     //beat tracker
     [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
