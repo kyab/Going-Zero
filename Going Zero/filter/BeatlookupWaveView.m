@@ -94,9 +94,6 @@
             if (endFrame < startFrame){
                 endFrame += RING_SIZE_SAMPLE;
             }
-//            if (endFrame > [ring recordFrame] ){
-//                endFrame = [ring recordFrame];
-//            }
             
             SInt32 f = startFrame;
             for ( ; i < w*10; i++){
@@ -167,6 +164,9 @@
             [[NSColor orangeColor] set];
             
             SInt32 startFrame = (SInt32)beatJugglingContext.startFrame + (SInt32)beatJugglingContext.currentFrameInRegion + [_beatLookup barFrameNum];
+            if (startFrame > RING_SIZE_SAMPLE){
+                startFrame -= RING_SIZE_SAMPLE;
+            }
             SInt32 endFrame = [ring recordFrame];
             
             SInt32 f = startFrame;
