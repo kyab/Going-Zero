@@ -79,6 +79,7 @@
 		EBDA9A4D2740AA8600836273 /* Sampler.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A4C2740AA8600836273 /* Sampler.m */; };
 		EBDA9A7127488DA400836273 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDA9A7027488DA400836273 /* CFNetwork.framework */; };
 		EBDA9A7327488DC600836273 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDA9A7227488DC600836273 /* Security.framework */; };
+		EBE0EC012BAE31D90061FCC3 /* MIDI.m in Sources */ = {isa = PBXBuildFile; fileRef = EBE0EC002BAE31D90061FCC3 /* MIDI.m */; };
 		EBEC8C72266313C400257694 /* Bender.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEC8C71266313C400257694 /* Bender.m */; };
 		EBF93D0E266AA076001B13F3 /* DJFilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF93D0D266AA076001B13F3 /* DJFilterController.xib */; };
 		EBF93D11266AA184001B13F3 /* DJFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF93D10266AA184001B13F3 /* DJFilterController.m */; };
@@ -226,6 +227,8 @@
 		EBDA9A4C2740AA8600836273 /* Sampler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sampler.m; sourceTree = "<group>"; };
 		EBDA9A7027488DA400836273 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		EBDA9A7227488DC600836273 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EBE0EBFF2BAE31D90061FCC3 /* MIDI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MIDI.h; path = "Going Zero/MIDI.h"; sourceTree = SOURCE_ROOT; };
+		EBE0EC002BAE31D90061FCC3 /* MIDI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MIDI.m; path = "Going Zero/MIDI.m"; sourceTree = SOURCE_ROOT; };
 		EBEC8C70266313C400257694 /* Bender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bender.h; sourceTree = "<group>"; };
 		EBEC8C71266313C400257694 /* Bender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bender.m; sourceTree = "<group>"; };
 		EBF93D0D266AA076001B13F3 /* DJFilterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJFilterController.xib; sourceTree = "<group>"; };
@@ -422,6 +425,8 @@
 				EB19287A266B9C1D00980F39 /* filter */,
 				EB6E387226623F2F002AADCA /* AppController.h */,
 				EB6E387326623F2F002AADCA /* AppController.mm */,
+				EBE0EBFF2BAE31D90061FCC3 /* MIDI.h */,
+				EBE0EC002BAE31D90061FCC3 /* MIDI.m */,
 				EB6E386126623E4A002AADCA /* AppDelegate.h */,
 				EB6E386226623E4A002AADCA /* AppDelegate.m */,
 				EB6E386426623E4B002AADCA /* Assets.xcassets */,
@@ -620,6 +625,7 @@
 				EB18F7712666535A00EB0E73 /* MiniFader.m in Sources */,
 				0CD1AAB12B578CCF00321B2B /* MiscController.m in Sources */,
 				EB6E387426623F2F002AADCA /* AppController.mm in Sources */,
+				EBE0EC012BAE31D90061FCC3 /* MIDI.m in Sources */,
 				EB6E387A26624089002AADCA /* RingBuffer.m in Sources */,
 				EBDA9A3C273D4BA700836273 /* MainViewController.m in Sources */,
 				EB6E388326627C90002AADCA /* TrillReverse.m in Sources */,

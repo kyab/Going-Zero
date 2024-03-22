@@ -256,7 +256,7 @@
         bzero(pLeft,sizeof(float)*sampleNum );
         bzero(pRight,sizeof(float)*sampleNum );
         followRequired = YES;
-        NSLog(@"shortage in out thread");
+//        NSLog(@"shortage in out thread");
         return noErr;
     }
     

@@ -11,6 +11,8 @@
 #import "AudioEngine.h"
 #import "RingBuffer.h"
 #import "RingView.h"
+#import "MIDI.h"
+
 #import "TurnTableView.h"
 #import "MiniFader.h"
 
@@ -59,6 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     AudioEngine *_ae;
     RingBuffer *_ring;
+    MIDI *_midi;
     __weak IBOutlet TurnTableView *_turnTable;
     __weak IBOutlet RingView *_ringView;
     __weak IBOutlet NSTextField *_lblBPM;
