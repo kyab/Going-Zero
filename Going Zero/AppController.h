@@ -54,7 +54,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AppController : NSObject{
+@interface AppController : NSObject <MIDIDelegate>{
     
     
     __weak IBOutlet MainViewController *_mainViewController;
@@ -166,7 +166,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)terminate;
 -(void)startBonjour;
 -(void)didWakenUp:(NSNotification *)notification;
-
+-(void)MIDIDelegateCC:(Byte)cc data:(Byte)data chan:(Byte)chan;
 
 @end
 

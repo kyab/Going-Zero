@@ -153,6 +153,10 @@
     
     [self startBonjour];
     
+    _midi = [[MIDI alloc] init];
+    [_midi setup];
+    [_midi setDelegate:self];
+    
     _ae = [[AudioEngine alloc] init];
     if ([_ae initialize]){
         NSLog(@"AudioEngine all OK");
@@ -167,6 +171,10 @@
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(didWakenUp:) name:NSWorkspaceDidWakeNotification object:nil];
     
     
+}
+
+-(void)MIDIDelegateCC:(Byte)cc data:(Byte)data chan:(Byte)chan{
+    NSLog(@"MIDI : cc:%d data:%d chan:%d", cc, data, chan+1);
 }
 
 -(void)terminate{
