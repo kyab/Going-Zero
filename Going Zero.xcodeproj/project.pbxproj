@@ -57,6 +57,7 @@
 		EB822D572A1D657E00FAA9B5 /* Lookup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB822D562A1D657E00FAA9B5 /* Lookup.m */; };
 		EB83BD432B5427FC007690A5 /* LooperController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB83BD412B5427FC007690A5 /* LooperController.m */; };
 		EB83BD442B5427FC007690A5 /* LooperController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB83BD422B5427FC007690A5 /* LooperController.xib */; };
+		EB8B3A2A2BB862EB00930577 /* esp32_s3_midi2.ino.cpp in Resources */ = {isa = PBXBuildFile; fileRef = EB8B3A292BB862EB00930577 /* esp32_s3_midi2.ino.cpp */; };
 		EBAA80942678DF3000809C1D /* QuickCueController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80922678DF3000809C1D /* QuickCueController.m */; };
 		EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBAA80932678DF3000809C1D /* QuickCueController.xib */; };
 		EBAA80982678E00D00809C1D /* QuickCue.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAA80972678E00D00809C1D /* QuickCue.m */; };
@@ -181,6 +182,7 @@
 		EB83BD402B5427FC007690A5 /* LooperController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LooperController.h; sourceTree = "<group>"; };
 		EB83BD412B5427FC007690A5 /* LooperController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LooperController.m; sourceTree = "<group>"; };
 		EB83BD422B5427FC007690A5 /* LooperController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LooperController.xib; sourceTree = "<group>"; };
+		EB8B3A292BB862EB00930577 /* esp32_s3_midi2.ino.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = esp32_s3_midi2.ino.cpp; sourceTree = "<group>"; };
 		EBAA80912678DF3000809C1D /* QuickCueController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickCueController.h; sourceTree = "<group>"; };
 		EBAA80922678DF3000809C1D /* QuickCueController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickCueController.m; sourceTree = "<group>"; };
 		EBAA80932678DF3000809C1D /* QuickCueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuickCueController.xib; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 		EB6E386026623E4A002AADCA /* Going Zero */ = {
 			isa = PBXGroup;
 			children = (
+				EB8B3A282BB862AB00930577 /* DeviceFirmware */,
 				EB19287B266B9CAB00980F39 /* ui */,
 				EB19287A266B9C1D00980F39 /* filter */,
 				EB6E387226623F2F002AADCA /* AppController.h */,
@@ -447,6 +450,14 @@
 				EBDA9A3B273D4BA700836273 /* MainViewController.m */,
 			);
 			path = "Going Zero";
+			sourceTree = "<group>";
+		};
+		EB8B3A282BB862AB00930577 /* DeviceFirmware */ = {
+			isa = PBXGroup;
+			children = (
+				EB8B3A292BB862EB00930577 /* esp32_s3_midi2.ino.cpp */,
+			);
+			path = DeviceFirmware;
 			sourceTree = "<group>";
 		};
 		EBBF46B82674F2B100785BF6 /* Frameworks */ = {
@@ -536,6 +547,7 @@
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
 				EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */,
 				EBFE0A4D2A7FD5B300F88A78 /* BeatTrackerController.xib in Resources */,
+				EB8B3A2A2BB862EB00930577 /* esp32_s3_midi2.ino.cpp in Resources */,
 				0CB34AD72B60B0F300E5C57F /* TurnTableController.xib in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */,

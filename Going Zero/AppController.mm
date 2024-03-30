@@ -173,6 +173,21 @@
     
 }
 
+-(void)MIDIDelegateNoteOn:(Byte)note vel:(Byte)vel chan:(Byte)chan{
+    if (note == 77){
+        UInt32 beatRegionDivide16 = (UInt32)((float)vel / (127.0f/16.0));
+        [_beatLookup startBeatJuggling:beatRegionDivide16];
+    }
+    NSLog(@"MIDI : note on:%d data:%d chan:%d", note, vel, chan+1);
+}
+
+-(void)MIDIDelegateNoteOff:(Byte)note vel:(Byte)vel chan:(Byte)chan{
+    if (note == 77){
+        [_beatLookup stopBeatJuggling];
+    }
+    NSLog(@"MIDI : note off:%d data:%d chan:%d", note, vel, chan+1);
+}
+
 -(void)MIDIDelegateCC:(Byte)cc data:(Byte)data chan:(Byte)chan{
     NSLog(@"MIDI : cc:%d data:%d chan:%d", cc, data, chan+1);
 }

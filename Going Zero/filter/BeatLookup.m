@@ -35,6 +35,9 @@
 }
 
 -(void)startBeatJuggling:(UInt32)beatRegionDivide16{
+    
+    NSLog(@"startBeatJuggling %d", beatRegionDivide16);
+    
     UInt32 beatRegionDivide8 = beatRegionDivide16 / 2;
     UInt32 framesPerRegion = _barFrameNum / 8;
     SInt32 playFrameBase = (SInt32)_barFrameStart - 1*(SInt32)_barFrameNum + beatRegionDivide8*framesPerRegion;
