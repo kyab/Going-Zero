@@ -30,6 +30,7 @@ typedef struct {
     UInt32 _barFrameStart;
     UInt32 _state;
     BeatJugglingContext _beatJugglingContext;
+    Boolean _fineGrained;   //true for Divide16. Otherwise divide8
 
 }
 
@@ -43,6 +44,7 @@ typedef struct {
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 -(UInt32)state;
 -(BeatJugglingContext)beatJugglingContext;
+-(void)setFineGrained:(Boolean)fineGrained;
 
 @end
 
