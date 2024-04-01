@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="BeatLookupController">
             <connections>
                 <outlet property="_beatLookupWaveView" destination="snQ-gr-e01" id="psl-ql-fPM"/>
+                <outlet property="_chkFinely" destination="Gub-y9-G4T" id="wKS-XK-J1o"/>
                 <outlet property="_jugglingTouchView" destination="jRo-hG-ol3" id="JvX-eJ-mzS"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -38,12 +39,15 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gub-y9-G4T">
-                    <rect key="frame" x="-2" y="19" width="62" height="18"/>
+                    <rect key="frame" x="-2" y="20" width="62" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Finely" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uxO-JA-l6r">
+                    <buttonCell key="cell" type="check" title="Finely" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uxO-JA-l6r">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="finelyChanged:" target="-2" id="cd7-l7-gTh"/>
+                    </connections>
                 </button>
             </subviews>
             <point key="canvasLocation" x="48" y="71"/>

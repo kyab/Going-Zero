@@ -36,4 +36,13 @@
     [_beatLookup stopBeatJuggling];
 }
 
+- (IBAction)finelyChanged:(id)sender {
+    if ([_chkFinely state] == NSControlStateValueOn){
+        [_beatLookup setFineGrained:true];
+    }else{
+        [_beatLookup setFineGrained:false];
+    }
+}
+
+
 @end
