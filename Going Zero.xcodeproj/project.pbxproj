@@ -23,6 +23,7 @@
 		EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C0F266B9D7A004485FC /* BitCrasher.m */; };
 		EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C12266B9F69004485FC /* BitCrasherController.m */; };
 		EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB274C13266B9F69004485FC /* BitCrasherController.xib */; };
+		EB2B97552BBDBF730032BC85 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2B97542BBDBF730032BC85 /* MainWindow.m */; };
 		EB36739F2A7BFD73006A2955 /* libessentia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB36739E2A7BF7F1006A2955 /* libessentia.a */; };
 		EB3673A32A7C062C006A2955 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3673A22A7C062C006A2955 /* CoreMedia.framework */; };
 		EB3673A52A7C063B006A2955 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3673A42A7C063B006A2955 /* VideoToolbox.framework */; };
@@ -71,7 +72,6 @@
 		EBD7C6FE275E54D8009A61DA /* RandomController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD7C6FC275E54D8009A61DA /* RandomController.m */; };
 		EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBD7C6FD275E54D8009A61DA /* RandomController.xib */; };
 		EBD7C702275E54F2009A61DA /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD7C701275E54F2009A61DA /* Random.m */; };
-		EBDA9A3C273D4BA700836273 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A3B273D4BA700836273 /* MainViewController.m */; };
 		EBDA9A43273F867E00836273 /* LPF_IIR.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A3E273F867A00836273 /* LPF_IIR.m */; };
 		EBDA9A44273F867E00836273 /* DJFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A40273F867C00836273 /* DJFilter.m */; };
 		EBDA9A45273F867E00836273 /* HPF_IIR.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A42273F867E00836273 /* HPF_IIR.m */; };
@@ -123,6 +123,8 @@
 		EB274C11266B9F69004485FC /* BitCrasherController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrasherController.h; sourceTree = "<group>"; };
 		EB274C12266B9F69004485FC /* BitCrasherController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BitCrasherController.m; sourceTree = "<group>"; };
 		EB274C13266B9F69004485FC /* BitCrasherController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BitCrasherController.xib; sourceTree = "<group>"; };
+		EB2B97532BBDBF730032BC85 /* MainWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
+		EB2B97542BBDBF730032BC85 /* MainWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		EB36739E2A7BF7F1006A2955 /* libessentia.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libessentia.a; path = ../../../../usr/local/lib/libessentia.a; sourceTree = "<group>"; };
 		EB3673A02A7BFD97006A2955 /* libfftw3f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3f.a; path = ../../../../opt/homebrew/lib/libfftw3f.a; sourceTree = "<group>"; };
 		EB3673A22A7C062C006A2955 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -214,8 +216,6 @@
 		EBD7C6FD275E54D8009A61DA /* RandomController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RandomController.xib; sourceTree = "<group>"; };
 		EBD7C700275E54F2009A61DA /* Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		EBD7C701275E54F2009A61DA /* Random.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Random.m; sourceTree = "<group>"; };
-		EBDA9A3A273D4BA700836273 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		EBDA9A3B273D4BA700836273 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		EBDA9A3D273F867A00836273 /* LPF_IIR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPF_IIR.h; sourceTree = "<group>"; };
 		EBDA9A3E273F867A00836273 /* LPF_IIR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPF_IIR.m; sourceTree = "<group>"; };
 		EBDA9A3F273F867B00836273 /* DJFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJFilter.h; sourceTree = "<group>"; };
@@ -446,8 +446,8 @@
 				EB37911C2771CD8800AC37D0 /* RateConverter.m */,
 				EB6E387E266240C1002AADCA /* RingView.h */,
 				EB6E387C266240BF002AADCA /* RingView.m */,
-				EBDA9A3A273D4BA700836273 /* MainViewController.h */,
-				EBDA9A3B273D4BA700836273 /* MainViewController.m */,
+				EB2B97532BBDBF730032BC85 /* MainWindow.h */,
+				EB2B97542BBDBF730032BC85 /* MainWindow.m */,
 			);
 			path = "Going Zero";
 			sourceTree = "<group>";
@@ -513,7 +513,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = kyab;
 				TargetAttributes = {
 					EB6E385D26623E4A002AADCA = {
@@ -639,8 +639,8 @@
 				EB6E387426623F2F002AADCA /* AppController.mm in Sources */,
 				EBE0EC012BAE31D90061FCC3 /* MIDI.m in Sources */,
 				EB6E387A26624089002AADCA /* RingBuffer.m in Sources */,
-				EBDA9A3C273D4BA700836273 /* MainViewController.m in Sources */,
 				EB6E388326627C90002AADCA /* TrillReverse.m in Sources */,
+				EB2B97552BBDBF730032BC85 /* MainWindow.m in Sources */,
 				EBF93D11266AA184001B13F3 /* DJFilterController.m in Sources */,
 				EB6E387F266240C1002AADCA /* TurnTableView.m in Sources */,
 				EB3673A82A7D3CA0006A2955 /* BeatTracker.mm in Sources */,

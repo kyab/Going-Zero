@@ -17,7 +17,6 @@
 #import "MiniFader.h"
 
 #import "MyButton.h"
-#import "MainViewController.h"
 
 #import "TurnTableController.h"
 #import "Looper.h"
@@ -55,10 +54,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AppController : NSObject <MIDIDelegate>{
-    
-    
-    __weak IBOutlet MainViewController *_mainViewController;
-    
+        
     AudioEngine *_ae;
     RingBuffer *_ring;
     MIDI *_midi;
