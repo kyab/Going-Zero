@@ -49,6 +49,8 @@
     [_beatLookupController setBeatLookup:_beatLookup];
     [_beatLookup setBeatTracker:_beatTracker];
     
+    _volumeGate = [[VolumeGate alloc] init];
+    
     _looper = [[Looper alloc] init];
     _looperController = [[LooperController alloc] initWithNibName:@"LooperController" bundle:nil];
     [_looperContentView addSubview:[_looperController view]];
@@ -156,6 +158,8 @@
     _midi = [[MIDI alloc] init];
     [_midi setup];
     [_midi setDelegate:self];
+    
+    [_mainWindow setKeyDelegate:self];
     
     _ae = [[AudioEngine alloc] init];
     if ([_ae initialize]){
@@ -357,6 +361,10 @@
             [_faderIn processLeft:pDstLeft right:pDstRight samples:inNumberFrames];
         }
     }
+    
+    //Volume Gate
+    [_volumeGate processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //Beat Lookup
     [_beatLookup processLeft:(float*)ioData->mBuffers[0].mData
@@ -573,6 +581,23 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 -(void)didWakenUp:(NSNotification *)notification{
     NSLog(@"didWakenUp");
 //    [_ring follow];
+}
+
+-(Boolean)mainWindowKeyDown:(NSEvent *)event{
+    if (event.keyCode == 5 /*g*/){
+        // can happen multiple times
+        [_volumeGate activate];
+        return YES;
+    }
+    return NO;
+}
+
+-(Boolean)mainWindowKeyUp:(NSEvent *)event{
+    if (event.keyCode == 5 /*g*/){
+        [_volumeGate deactivate];
+        return YES;
+    }
+    return NO;
 }
 
 

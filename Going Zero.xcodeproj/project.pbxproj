@@ -13,6 +13,7 @@
 		0C21BC0B2B69D69000018937 /* BeatlookupWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C21BC0A2B69D69000018937 /* BeatlookupWaveView.m */; };
 		0CB34AD62B60B0F300E5C57F /* TurnTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB34AD42B60B0F300E5C57F /* TurnTableController.m */; };
 		0CB34AD72B60B0F300E5C57F /* TurnTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB34AD52B60B0F300E5C57F /* TurnTableController.xib */; };
+		0CBB51CE2BBEC63E00B02C51 /* VolumeGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB51CD2BBEC63E00B02C51 /* VolumeGate.m */; };
 		0CD1AAB12B578CCF00321B2B /* MiscController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1AAAF2B578CCF00321B2B /* MiscController.m */; };
 		0CD1AAB22B578CCF00321B2B /* MiscController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD1AAB02B578CCF00321B2B /* MiscController.xib */; };
 		30D150BBE4D286CC7E0FB130 /* Pods_Going_Zero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8F06F4F560999564F14CDB /* Pods_Going_Zero.framework */; };
@@ -104,6 +105,8 @@
 		0CB34AD32B60B0F300E5C57F /* TurnTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurnTableController.h; sourceTree = "<group>"; };
 		0CB34AD42B60B0F300E5C57F /* TurnTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurnTableController.m; sourceTree = "<group>"; };
 		0CB34AD52B60B0F300E5C57F /* TurnTableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TurnTableController.xib; sourceTree = "<group>"; };
+		0CBB51CC2BBEC63E00B02C51 /* VolumeGate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolumeGate.h; sourceTree = "<group>"; };
+		0CBB51CD2BBEC63E00B02C51 /* VolumeGate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolumeGate.m; sourceTree = "<group>"; };
 		0CD1AAAE2B578CCF00321B2B /* MiscController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiscController.h; sourceTree = "<group>"; };
 		0CD1AAAF2B578CCF00321B2B /* MiscController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiscController.m; sourceTree = "<group>"; };
 		0CD1AAB02B578CCF00321B2B /* MiscController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiscController.xib; sourceTree = "<group>"; };
@@ -389,6 +392,8 @@
 				0C21BC012B69D63000018937 /* BeatLookupController.h */,
 				0C21BC022B69D63000018937 /* BeatLookupController.m */,
 				0C21BC032B69D63000018937 /* BeatLookupController.xib */,
+				0CBB51CC2BBEC63E00B02C51 /* VolumeGate.h */,
+				0CBB51CD2BBEC63E00B02C51 /* VolumeGate.m */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -644,6 +649,7 @@
 				EBF93D11266AA184001B13F3 /* DJFilterController.m in Sources */,
 				EB6E387F266240C1002AADCA /* TurnTableView.m in Sources */,
 				EB3673A82A7D3CA0006A2955 /* BeatTracker.mm in Sources */,
+				0CBB51CE2BBEC63E00B02C51 /* VolumeGate.m in Sources */,
 				EB652EE2266E00E300089E3E /* TapeReverse.m in Sources */,
 				0C21BC082B69D65B00018937 /* BeatLookup.m in Sources */,
 				EB70011C2691D022007F88EE /* FlangerController.m in Sources */,

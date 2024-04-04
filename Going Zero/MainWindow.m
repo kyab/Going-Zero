@@ -16,7 +16,25 @@
 
 -(void)keyDown:(NSEvent *)event{
     NSLog(@"MainWindow keyDown code = %d, %@", event.keyCode, event.characters);
+    if (_keyDelegate){
+        if ([_keyDelegate mainWindowKeyDown:event]){
+            return;
+        }
+    }
     [super keyDown:event];
 }
 
+-(void)keyUp:(NSEvent *)event{
+    NSLog(@"MainWindow keyUp code = %d, %@", event.keyCode, event.characters);
+    if (_keyDelegate){
+        if ([_keyDelegate mainWindowKeyUp:event]){
+            return;
+        }
+    }
+    [super keyUp:event];
+}
+
+-(void)setKeyDelegate:(id<MainWindowKeyDelegate>)keyDelegate{
+    _keyDelegate = keyDelegate;
+}
 @end

@@ -10,7 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MainWindow : NSWindow{}
+@protocol MainWindowKeyDelegate <NSObject>
+@optional
+- (Boolean)mainWindowKeyDown:(NSEvent *)event;
+- (Boolean)mainWindowKeyUp:(NSEvent *)event;
+@end
+
+@interface MainWindow : NSWindow{
+    id<MainWindowKeyDelegate> _keyDelegate;
+}
+
+-(void)setKeyDelegate:(id<MainWindowKeyDelegate>)keyDelegate;
 
 @end
 

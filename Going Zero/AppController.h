@@ -13,11 +13,14 @@
 #import "RingView.h"
 #import "MIDI.h"
 
+#import "MainWindow.h"
+
 #import "TurnTableView.h"
 #import "MiniFader.h"
 
 #import "MyButton.h"
 
+#import "VolumeGate.h"
 #import "TurnTableController.h"
 #import "Looper.h"
 #import "LooperController.h"
@@ -53,7 +56,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AppController : NSObject <MIDIDelegate>{
+@interface AppController : NSObject <MIDIDelegate, MainWindowKeyDelegate>{
         
     AudioEngine *_ae;
     RingBuffer *_ring;
@@ -62,6 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet RingView *_ringView;
     __weak IBOutlet NSTextField *_lblBPM;
     __weak IBOutlet MyButton *_btnTap;
+    
+    __weak IBOutlet MainWindow *_mainWindow;
     
     NSMutableArray *_tapHistory;
     float _bpm;
@@ -73,6 +78,8 @@ NS_ASSUME_NONNULL_BEGIN
     
     TurnTableController *_turnTableController;
     __weak IBOutlet NSView *_turnTableContentView;
+    
+    VolumeGate *_volumeGate;
     
     Looper *_looper;
     __weak IBOutlet NSView *_looperContentView;
