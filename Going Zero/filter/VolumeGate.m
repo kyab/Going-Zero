@@ -18,16 +18,16 @@
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
-//    if (!_is_active){
-//        return;
-//    }
-//    
-//    for (int i = 0; i < numSamples; i++){
-//        if (_is_gate_open){
-//            leftBuf[i] = 0;
-//            rightBuf[i] = 0;
-//        }
-//    }
+    if (!_is_active){
+        return;
+    }
+
+    if (!_is_gate_open){
+        for (int i = 0; i < numSamples; i++){
+            leftBuf[i] = 0;
+            rightBuf[i] = 0;
+        }
+    }
 }
 
 -(void)activate{
@@ -41,15 +41,11 @@
 }
 
 -(void)openGate{
-    if (_is_active){
-        _is_gate_open = YES;
-    }
+    _is_gate_open = YES;
 }
 
 -(void)closeGate{
-    if (_is_active){
-        _is_gate_open = NO;
-    }
+    _is_gate_open = NO;
 }
 
 

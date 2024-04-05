@@ -15,7 +15,6 @@
 }
 
 -(void)keyDown:(NSEvent *)event{
-    NSLog(@"MainWindow keyDown code = %d, %@", event.keyCode, event.characters);
     if (_keyDelegate){
         if ([_keyDelegate mainWindowKeyDown:event]){
             return;
@@ -25,7 +24,6 @@
 }
 
 -(void)keyUp:(NSEvent *)event{
-    NSLog(@"MainWindow keyUp code = %d, %@", event.keyCode, event.characters);
     if (_keyDelegate){
         if ([_keyDelegate mainWindowKeyUp:event]){
             return;
