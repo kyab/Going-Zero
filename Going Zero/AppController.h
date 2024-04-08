@@ -50,6 +50,7 @@
 #import "BeatLookupController.h"
 #import "SimpleReverbController.h"
 #import "ConvolutionReverbController.h"
+#import "PitchShifterController.h"
 
 //OSC
 #import "F53OSC.h"
@@ -156,10 +157,9 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSView *_simpleReverbContentView;
     SimpleReverbController *_simpleReverbController;
     
-//    ConvolutionReverb *_convolutionReverb;
-//    __weak IBOutlet NSView *_convolutionReverbContentView;
-//    ConvolutionReverbController *_convolutionReverbController;
-
+    PitchShifter *_pitchShifter;
+    __weak IBOutlet NSView *_pitchShifterContentView;
+    PitchShifterController *_pitchShifterController;
     
     NSNetService *_netService;
     F53OSCServer *_oscServer;

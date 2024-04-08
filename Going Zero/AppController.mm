@@ -118,7 +118,6 @@
     _randomController = [[RandomController alloc]
                          initWithNibName:@"RandomController" bundle:nil];
     [_randomContentView addSubview:[_randomController view]];
-//    [self centerize:[_randomController view]];
     [self fitView:[_randomController view]];
     [_random setBeatTracker:_beatTracker];
     [_randomController setRandom:_random];
@@ -136,15 +135,13 @@
     [_simpleReverbContentView addSubview:[_simpleReverbController view]];
     [self centerize:[_simpleReverbController view]];
     [_simpleReverbController setSimpleReverb:_simpleReverb];
-
     
-//    _convolutionReverb = [[ConvolutionReverb alloc] init];
-//    _convolutionReverbController = [[ConvolutionReverbController alloc]
-//                         initWithNibName:@"ConvolutionReverbController" bundle:nil];
-//    [_convolutionReverbContentView addSubview:[_convolutionReverbController view]];
-//    [self centerize:[_convolutionReverbController view]];
-//    [_convolutionReverbController setConvolutionReverb:_convolutionReverb];
-    
+    _pitchShifter = [[PitchShifter alloc] init];
+    _pitchShifterController = [[PitchShifterController alloc]
+                         initWithNibName:@"PitchShifterController" bundle:nil];
+    [_pitchShifterContentView addSubview:[_pitchShifterController view]];
+    [self centerize:[_pitchShifterController view]];
+    [_pitchShifterController setPitchShifter:_pitchShifter];
 
     _djFilter = [[DJFilter alloc] init];
     _djFilterController = [[DJFilterController alloc]
@@ -428,6 +425,10 @@
     
     //Simple Reverb
     [_simpleReverb processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Pitch Shifter
+    [_pitchShifter processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //viewer
