@@ -17,8 +17,6 @@
 		0CBEC5912BC42C5F00EB884E /* PitchShifter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0CBEC5902BC42C5F00EB884E /* PitchShifter.mm */; };
 		0CBEC5952BC42C8D00EB884E /* PitchShifterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CBEC5942BC42C8D00EB884E /* PitchShifterController.xib */; };
 		0CBEC5962BC42C8D00EB884E /* PitchShifterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBEC5932BC42C8D00EB884E /* PitchShifterController.m */; };
-		0CBEC5AA2BC435DF00EB884E /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0CBEC59E2BC435DF00EB884E /* LICENSE.txt */; };
-		0CBEC5AB2BC435DF00EB884E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0CBEC5A22BC435DF00EB884E /* README.md */; };
 		0CD1AAB12B578CCF00321B2B /* MiscController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1AAAF2B578CCF00321B2B /* MiscController.m */; };
 		0CD1AAB22B578CCF00321B2B /* MiscController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD1AAB02B578CCF00321B2B /* MiscController.xib */; };
 		30D150BBE4D286CC7E0FB130 /* Pods_Going_Zero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8F06F4F560999564F14CDB /* Pods_Going_Zero.framework */; };
@@ -78,6 +76,7 @@
 		EBD7C6FE275E54D8009A61DA /* RandomController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD7C6FC275E54D8009A61DA /* RandomController.m */; };
 		EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBD7C6FD275E54D8009A61DA /* RandomController.xib */; };
 		EBD7C702275E54F2009A61DA /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD7C701275E54F2009A61DA /* Random.m */; };
+		EBD85BF02BC58BDA002E2886 /* signalsmith-stretch in Resources */ = {isa = PBXBuildFile; fileRef = EBD85BEF2BC58BDA002E2886 /* signalsmith-stretch */; };
 		EBDA9A43273F867E00836273 /* LPF_IIR.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A3E273F867A00836273 /* LPF_IIR.m */; };
 		EBDA9A44273F867E00836273 /* DJFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A40273F867C00836273 /* DJFilter.m */; };
 		EBDA9A45273F867E00836273 /* HPF_IIR.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9A42273F867E00836273 /* HPF_IIR.m */; };
@@ -117,20 +116,6 @@
 		0CBEC5922BC42C8D00EB884E /* PitchShifterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PitchShifterController.h; sourceTree = "<group>"; };
 		0CBEC5932BC42C8D00EB884E /* PitchShifterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PitchShifterController.m; sourceTree = "<group>"; };
 		0CBEC5942BC42C8D00EB884E /* PitchShifterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PitchShifterController.xib; sourceTree = "<group>"; };
-		0CBEC5982BC435DF00EB884E /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		0CBEC5992BC435DF00EB884E /* curves.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curves.h; sourceTree = "<group>"; };
-		0CBEC59A2BC435DF00EB884E /* delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delay.h; sourceTree = "<group>"; };
-		0CBEC59B2BC435DF00EB884E /* envelopes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = envelopes.h; sourceTree = "<group>"; };
-		0CBEC59C2BC435DF00EB884E /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
-		0CBEC59D2BC435DF00EB884E /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
-		0CBEC59E2BC435DF00EB884E /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		0CBEC59F2BC435DF00EB884E /* mix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mix.h; sourceTree = "<group>"; };
-		0CBEC5A02BC435DF00EB884E /* perf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = perf.h; sourceTree = "<group>"; };
-		0CBEC5A12BC435DF00EB884E /* rates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rates.h; sourceTree = "<group>"; };
-		0CBEC5A22BC435DF00EB884E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0CBEC5A32BC435DF00EB884E /* spectral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spectral.h; sourceTree = "<group>"; };
-		0CBEC5A42BC435DF00EB884E /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = "<group>"; };
-		0CBEC5AE2BC436DC00EB884E /* signalsmith-stretch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "signalsmith-stretch.h"; sourceTree = "<group>"; };
 		0CD1AAAE2B578CCF00321B2B /* MiscController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiscController.h; sourceTree = "<group>"; };
 		0CD1AAAF2B578CCF00321B2B /* MiscController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiscController.m; sourceTree = "<group>"; };
 		0CD1AAB02B578CCF00321B2B /* MiscController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiscController.xib; sourceTree = "<group>"; };
@@ -243,6 +228,7 @@
 		EBD7C6FD275E54D8009A61DA /* RandomController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RandomController.xib; sourceTree = "<group>"; };
 		EBD7C700275E54F2009A61DA /* Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		EBD7C701275E54F2009A61DA /* Random.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Random.m; sourceTree = "<group>"; };
+		EBD85BEF2BC58BDA002E2886 /* signalsmith-stretch */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "signalsmith-stretch"; sourceTree = "<group>"; };
 		EBDA9A3D273F867A00836273 /* LPF_IIR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPF_IIR.h; sourceTree = "<group>"; };
 		EBDA9A3E273F867A00836273 /* LPF_IIR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPF_IIR.m; sourceTree = "<group>"; };
 		EBDA9A3F273F867B00836273 /* DJFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJFilter.h; sourceTree = "<group>"; };
@@ -295,43 +281,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0CBEC5972BC4355E00EB884E /* signalsmith */ = {
-			isa = PBXGroup;
-			children = (
-				0CBEC5A92BC435DF00EB884E /* signalsmith-stretch */,
-			);
-			path = signalsmith;
-			sourceTree = "<group>";
-		};
-		0CBEC5A52BC435DF00EB884E /* dsp */ = {
-			isa = PBXGroup;
-			children = (
-				0CBEC5982BC435DF00EB884E /* common.h */,
-				0CBEC5992BC435DF00EB884E /* curves.h */,
-				0CBEC59A2BC435DF00EB884E /* delay.h */,
-				0CBEC59B2BC435DF00EB884E /* envelopes.h */,
-				0CBEC59C2BC435DF00EB884E /* fft.h */,
-				0CBEC59D2BC435DF00EB884E /* filters.h */,
-				0CBEC59E2BC435DF00EB884E /* LICENSE.txt */,
-				0CBEC59F2BC435DF00EB884E /* mix.h */,
-				0CBEC5A02BC435DF00EB884E /* perf.h */,
-				0CBEC5A12BC435DF00EB884E /* rates.h */,
-				0CBEC5A22BC435DF00EB884E /* README.md */,
-				0CBEC5A32BC435DF00EB884E /* spectral.h */,
-				0CBEC5A42BC435DF00EB884E /* windows.h */,
-			);
-			path = dsp;
-			sourceTree = "<group>";
-		};
-		0CBEC5A92BC435DF00EB884E /* signalsmith-stretch */ = {
-			isa = PBXGroup;
-			children = (
-				0CBEC5AE2BC436DC00EB884E /* signalsmith-stretch.h */,
-				0CBEC5A52BC435DF00EB884E /* dsp */,
-			);
-			path = "signalsmith-stretch";
-			sourceTree = "<group>";
-		};
 		16E25C5BEBF500F1E6A171C4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,7 +443,7 @@
 		EB6E386026623E4A002AADCA /* Going Zero */ = {
 			isa = PBXGroup;
 			children = (
-				0CBEC5972BC4355E00EB884E /* signalsmith */,
+				EBD85BEF2BC58BDA002E2886 /* signalsmith-stretch */,
 				EB8B3A282BB862AB00930577 /* DeviceFirmware */,
 				EB19287B266B9CAB00980F39 /* ui */,
 				EB19287A266B9C1D00980F39 /* filter */,
@@ -622,18 +571,17 @@
 				EB8B3A2A2BB862EB00930577 /* esp32_s3_midi2.ino.cpp in Resources */,
 				0CBEC5952BC42C8D00EB884E /* PitchShifterController.xib in Resources */,
 				0CB34AD72B60B0F300E5C57F /* TurnTableController.xib in Resources */,
-				0CBEC5AB2BC435DF00EB884E /* README.md in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */,
 				EBDA9A4A2740A9E500836273 /* SamplerController.xib in Resources */,
 				EB83BD442B5427FC007690A5 /* LooperController.xib in Resources */,
 				EBC1916C2A21AC3700E13D95 /* LookUpController.xib in Resources */,
+				EBD85BF02BC58BDA002E2886 /* signalsmith-stretch in Resources */,
 				EBF93D1C266B164F001B13F3 /* RefrainView.xib in Resources */,
 				0CD1AAB22B578CCF00321B2B /* MiscController.xib in Resources */,
 				EBBF46D72675D45100785BF6 /* ReverseController.xib in Resources */,
 				EB70011D2691D022007F88EE /* FlangerController.xib in Resources */,
 				EB7DDCC22B4955AD00D72E9A /* MainMenu2.xib in Resources */,
-				0CBEC5AA2BC435DF00EB884E /* LICENSE.txt in Resources */,
 				EBF93D0E266AA076001B13F3 /* DJFilterController.xib in Resources */,
 				0C21BC052B69D63000018937 /* BeatLookupController.xib in Resources */,
 				EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */,
@@ -810,7 +758,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -821,6 +769,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"./Going Zero/signalsmith-stretch\"";
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -876,6 +825,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"./Going Zero/signalsmith-stretch\"";
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

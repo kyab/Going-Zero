@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "signalsmith-stretch.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
