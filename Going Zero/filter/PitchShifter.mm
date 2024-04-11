@@ -24,7 +24,8 @@
     
     _stretch.presetDefault(2, 44100);
 //    _stretch.configure(2, 256, 256);
-    _stretch.setTransposeSemitones(3.0);
+//    _stretch.configure(2, 4096, 4096);
+//    _stretch.setTransposeSemitones(3.0);
     int block = _stretch.blockSamples();
     int interval = _stretch.intervalSamples();
     int inputLatency = _stretch.inputLatency();
@@ -35,14 +36,15 @@
 
 -(void)setPitchShift:(float)pitchShift{
     _pitchShift = pitchShift;
-    _stretch.setTransposeSemitones(pitchShift/3.0);
+    _stretch.setTransposeSemitones(pitchShift);
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     
-    if (_pitchShift == 0.0f){
-        return;
-    }
+//    if (_pitchShift == 0.0f){
+//        return;
+//    }
+    return;
     
     float *input[2];
     input[0] = leftBuf;
