@@ -44,7 +44,7 @@
 //    if (_pitchShift == 0.0f){
 //        return;
 //    }
-    return;
+//    return;
     
     float *input[2];
     input[0] = leftBuf;

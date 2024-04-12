@@ -44,5 +44,15 @@
     }
 }
 
+- (IBAction)pitchChanged:(id)sender {
+    if ([[NSApplication sharedApplication] currentEvent].type == NSEventTypeLeftMouseUp){
+        [_sliderPitch setFloatValue:0.0];
+        [_beatLookup setPitch:0.0];
+        return;
+    }
+    
+    [_beatLookup setPitch:[_pitchSlider floatValue]];
+}
+
 
 @end
