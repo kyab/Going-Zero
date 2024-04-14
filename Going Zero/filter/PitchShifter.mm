@@ -41,11 +41,11 @@
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     
-//    if (_pitchShift == 0.0f){
-//        return;
-//    }
+    if (_pitchShift == 0.0f){
+        return;
+    }
 //    return;
-    
+        
     float *input[2];
     input[0] = leftBuf;
     input[1] = rightBuf;

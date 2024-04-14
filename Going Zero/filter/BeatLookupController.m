@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_jugglingTouchView setDelegate:self];
+    _isPitchShifting = NO;
 }
 
 -(void)setBeatLookup:(BeatLookup *)beatLookup{
@@ -48,10 +49,16 @@
     if ([[NSApplication sharedApplication] currentEvent].type == NSEventTypeLeftMouseUp){
         [_sliderPitch setFloatValue:0.0];
         [_beatLookup setPitch:0.0];
+        [_beatLookup stopPitchShifting];
+        _isPitchShifting = NO;
         return;
     }
     
-    [_beatLookup setPitch:[_pitchSlider floatValue]];
+    [_beatLookup setPitch:[_sliderPitch floatValue]];
+    if (_isPitchShifting == NO){
+        [_beatLookup startPitchShifting];
+        _isPitchShifting = YES;
+    }
 }
 
 

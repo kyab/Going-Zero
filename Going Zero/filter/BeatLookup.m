@@ -83,6 +83,14 @@
     _state = BL_STATE_STORING;
 }
 
+-(void)startPitchShifting{
+    _state = BL_STATE_PITCHSHIFTING;
+}
+
+-(void)stopPitchShifting{
+    _state = BL_STATE_STORING;
+}
+
 -(UInt32)barFrameStart{
     return _barFrameStart;
 }
@@ -173,6 +181,10 @@
 
 -(void)setFineGrained:(Boolean)fineGrained{
     _fineGrained = fineGrained;
+}
+
+-(void)setPitch:(float)pitch{
+    [_pitchShifter setPitchShift:pitch];
 }
 
 @end

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet JugglingTouchView *_jugglingTouchView;
     __weak IBOutlet NSButton *_chkFinely;
     __weak IBOutlet NSSlider *_sliderPitch;
+    Boolean _isPitchShifting;
 }
 
 -(void)setBeatLookup:(BeatLookup *)beatLookup;
