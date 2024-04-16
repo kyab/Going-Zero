@@ -13,6 +13,7 @@
 -(id)init{
     self = [super init];
     _ring = [[RingBuffer alloc] init];
+    _pitchShifter = [[PitchShifter alloc] init];
     _state = BL_STATE_FREERUNNING;
     _fineGrained = false;
     return self;
@@ -163,6 +164,11 @@
                     [_ring advanceReadPtrSample:samples2];
                     _beatJugglingContext.currentFrameInRegion = samples2;
                 }
+            }
+            break;
+        case BL_STATE_PITCHSHIFTING:
+            {
+                [_pitchShifter processLeft:leftBuf right:rightBuf samples:numSamples];
             }
             break;
             
