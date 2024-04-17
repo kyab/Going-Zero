@@ -58,6 +58,29 @@
     
     memcpy(leftBuf, output[0], sizeof(float) * numSamples);
     memcpy(rightBuf, output[1], sizeof(float) * numSamples);
+    
+    free(output[0]);
+    free(output[1]);
+}
+
+-(void)processNonInplaceLeftIn:(float *)leftBufIn rightIn:(float *)rightBufIn leftOut:(float *)leftBufOut rightOut:(float *)rightBufOut samples:(UInt32)numSamples{
+    
+    if (_pitchShift == 0.0f){
+        memcpy(leftBufOut, leftBufIn, sizeof(float) * numSamples);
+        memcpy(rightBufOut, rightBufIn, sizeof(float) * numSamples);
+        return;
+    }
+    
+    float *input[2];
+    input[0] = leftBufIn;
+    input[1] = rightBufIn;
+    
+    float *output[2];
+    output[0] = leftBufOut;
+    output[1] = rightBufOut;
+    
+    _stretch.process(input, numSamples, output, numSamples);
+    
 }
 
 @end

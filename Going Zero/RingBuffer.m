@@ -379,6 +379,32 @@
     return _dryFrame;
 }
 
+-(float *)customPtr0Left{
+    return &_leftBuf[_custom0Frame];
+}
+
+-(float *)customPtr0Right{
+    return &_rightBuf[_custom0Frame];
+}
+
+-(UInt32)advanceCustomPtr0Sample:(SInt32)sample{
+    UInt32 frames = [self frames];
+    if (_custom0Frame + sample > frames){
+        _custom0Frame = sample - (frames - _custom0Frame);
+    }else if ((SInt32)_custom0Frame + sample < 0){
+        _custom0Frame = frames - (sample*(-1) - _custom0Frame);
+    }else{
+        _custom0Frame += sample;
+    }
+    
+    return _custom0Frame;
+}
+
+-(void)setCustomPtr0Sample:(UInt32)sample{
+    _custom0Frame = sample;
+}
+
+
 
 -(void)follow{
     

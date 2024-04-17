@@ -25,10 +25,10 @@ typedef struct {
     UInt32 framesInRegion;
 }BeatJugglingContext;
 
-typedef struct {
-    UInt32 startFrame;
-    UInt32 currentFrame;
-}PitchShiftingContext;
+//typedef struct {
+//    UInt32 startFrame;
+//    UInt32 currentFrame;
+//}PitchShiftingContext;
 
 @interface BeatLookup : NSObject {
     RingBuffer *_ring;
@@ -39,7 +39,7 @@ typedef struct {
     BeatJugglingContext _beatJugglingContext;
     Boolean _fineGrained;   //true for Divide16. Otherwise divide8
     PitchShifter *_pitchShifter;
-    PitchShiftingContext _pitchShiftingContext;
+//    PitchShiftingContext _pitchShiftingContext;
 }
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker;

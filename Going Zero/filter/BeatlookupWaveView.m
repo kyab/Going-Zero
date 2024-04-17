@@ -46,7 +46,7 @@
     RingBuffer *ring = [_beatLookup ring];
     CGFloat framesPer01Pixel = (1 * [_beatLookup barFrameNum]) / w / 10.0;
     
-    if ([_beatLookup state] == BL_STATE_STORING || [_beatLookup state] == BL_STATE_INLIVE){
+    if ([_beatLookup state] == BL_STATE_STORING || [_beatLookup state] == BL_STATE_INLIVE || [_beatLookup state] == BL_STATE_PITCHSHIFTING){
         NSBezierPath *line = [NSBezierPath bezierPath];
         [line setLineWidth:0.1];
         [[NSColor orangeColor] set];

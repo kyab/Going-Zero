@@ -85,6 +85,15 @@
 }
 
 -(void)startPitchShifting{
+    _barFrameNum = (UInt32)(44100*[_beatTracker beatDurationSec]*4);
+    SInt32 start = (SInt32)[_ring playFrame] - 2*_barFrameNum;
+    UInt32 uStart = 0;
+    if (start >= 0){
+        uStart = start;
+    }else{
+        uStart = [_ring frames] + start;
+    }
+    [_ring setCustomPtr0Sample:uStart];
     _state = BL_STATE_PITCHSHIFTING;
 }
 
@@ -168,7 +177,18 @@
             break;
         case BL_STATE_PITCHSHIFTING:
             {
-                [_pitchShifter processLeft:leftBuf right:rightBuf samples:numSamples];
+                float *dstL = [_ring writePtrLeft];
+                float *dstR = [_ring writePtrRight];
+                memcpy(dstL, leftBuf, numSamples * sizeof(float));
+                memcpy(dstR, rightBuf, numSamples * sizeof(float));
+                [_ring advanceWritePtrSample:numSamples];
+                [_ring advanceReadPtrSample:numSamples];
+                
+                float *srcL = [_ring customPtr0Left];
+                float *srcR = [_ring customPtr0Right];
+                dstL = leftBuf;
+                dstR = rightBuf;
+                [_pitchShifter processNonInplaceLeftIn:srcL rightIn:srcR leftOut:dstL rightOut:dstR samples:numSamples];
             }
             break;
             

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
+-(void)processNonInplaceLeftIn:(float *)leftBufIn rightIn:(float *)rightBufIn leftOut:(float *)leftBufOut rightOut:(float *)rightBufOut samples:(UInt32)numSamples;
 -(void)setPitchShift:(float)pitchShift;
 
 @end

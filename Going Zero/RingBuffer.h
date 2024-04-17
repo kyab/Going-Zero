@@ -19,6 +19,7 @@
     UInt32 _recordFrame;
     UInt32 _playFrame;
     UInt32 _dryFrame;
+    UInt32 _custom0Frame;
     
     UInt32 _minOffsetFrame;
 }
@@ -33,6 +34,10 @@
 -(float *)dryPtrLeft;
 -(float *)dryPtrRight;
 -(UInt32)advanceDryPtrSample:(SInt32)sample;
+-(float *)customPtr0Left;
+-(float *)customPtr0Right;
+-(UInt32)advanceCustomPtr0Sample:(SInt32)sample;
+-(void)setCustomPtr0Sample:(UInt32)sample;
 
 -(float *)startPtrLeft;
 -(float *)startPtrRight;
