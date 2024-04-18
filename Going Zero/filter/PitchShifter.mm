@@ -39,6 +39,10 @@
     _stretch.setTransposeSemitones(pitchShift);
 }
 
+-(UInt32)latencyFrames{
+    return _stretch.inputLatency() + _stretch.outputLatency();
+}
+
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     
     if (_pitchShift == 0.0f){
@@ -64,12 +68,6 @@
 }
 
 -(void)processNonInplaceLeftIn:(float *)leftBufIn rightIn:(float *)rightBufIn leftOut:(float *)leftBufOut rightOut:(float *)rightBufOut samples:(UInt32)numSamples{
-    
-    if (_pitchShift == 0.0f){
-        memcpy(leftBufOut, leftBufIn, sizeof(float) * numSamples);
-        memcpy(rightBufOut, rightBufIn, sizeof(float) * numSamples);
-        return;
-    }
     
     float *input[2];
     input[0] = leftBufIn;
