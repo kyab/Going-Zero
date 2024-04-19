@@ -23,9 +23,6 @@
     _pitchShift = 0.0f;
     
     _stretch.presetDefault(2, 44100);
-//    _stretch.configure(2, 256, 256);
-//    _stretch.configure(2, 4096, 4096);
-//    _stretch.setTransposeSemitones(3.0);
     int block = _stretch.blockSamples();
     int interval = _stretch.intervalSamples();
     int inputLatency = _stretch.inputLatency();
@@ -43,12 +40,24 @@
     return _stretch.inputLatency() + _stretch.outputLatency();
 }
 
--(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+
+-(void)feedLeft:(const float *)leftBufIn right:(float *)rightBufIn samples:(UInt32)numSamples{
+    const float *input[2];
+    input[0] = leftBufIn;
+    input[1] = rightBufIn;
     
-    if (_pitchShift == 0.0f){
-        return;
-    }
-//    return;
+    float *output[2];
+    output[0] = (float *)malloc(sizeof(float) * numSamples);
+    output[1] = (float *)malloc(sizeof(float) * numSamples);
+    
+    _stretch.process(input, numSamples, output, numSamples);
+    
+    free(output[0]);
+    free(output[1]);
+}
+
+
+-(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
         
     float *input[2];
     input[0] = leftBuf;
@@ -67,9 +76,9 @@
     free(output[1]);
 }
 
--(void)processNonInplaceLeftIn:(float *)leftBufIn rightIn:(float *)rightBufIn leftOut:(float *)leftBufOut rightOut:(float *)rightBufOut samples:(UInt32)numSamples{
+-(void)processNonInplaceLeftIn:(const float *)leftBufIn rightIn:(const float *)rightBufIn leftOut:(float *)leftBufOut rightOut:(float *)rightBufOut samples:(UInt32)numSamples{
     
-    float *input[2];
+    const float *input[2];
     input[0] = leftBufIn;
     input[1] = rightBufIn;
     

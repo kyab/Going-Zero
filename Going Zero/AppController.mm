@@ -136,13 +136,6 @@
     [self centerize:[_simpleReverbController view]];
     [_simpleReverbController setSimpleReverb:_simpleReverb];
     
-    _pitchShifter = [[PitchShifter alloc] init];
-    _pitchShifterController = [[PitchShifterController alloc]
-                         initWithNibName:@"PitchShifterController" bundle:nil];
-    [_pitchShifterContentView addSubview:[_pitchShifterController view]];
-    [self centerize:[_pitchShifterController view]];
-    [_pitchShifterController setPitchShifter:_pitchShifter];
-
     _djFilter = [[DJFilter alloc] init];
     _djFilterController = [[DJFilterController alloc]
                            initWithNibName:@"DJFilterController" bundle:nil];
@@ -425,10 +418,6 @@
     
     //Simple Reverb
     [_simpleReverb processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Pitch Shifter
-    [_pitchShifter processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //viewer

@@ -86,7 +86,7 @@
 
 -(void)startPitchShifting{
     _barFrameNum = (UInt32)(44100*[_beatTracker beatDurationSec]*4);
-    SInt32 start = (SInt32)[_ring recordFrame] - 2*_barFrameNum + [_pitchShifter latencyFrames];
+    SInt32 start = (SInt32)[_ring recordFrame] - _barFrameNum + [_pitchShifter latencyFrames];
     UInt32 uStart = 0;
     if (start >= 0){
         uStart = start;
@@ -115,6 +115,11 @@
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    
+    if (_state != BL_STATE_PITCHSHIFTING){
+        //Make pitch shifter smooth
+        [_pitchShifter feedLeft:leftBuf right:rightBuf samples:numSamples];
+    }
     
     switch (_state) {
         case BL_STATE_FREERUNNING:
