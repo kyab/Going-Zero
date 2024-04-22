@@ -86,7 +86,7 @@
 
 -(void)startPitchShifting{
     _barFrameNum = (UInt32)(44100*[_beatTracker beatDurationSec]*4);
-    SInt32 start = (SInt32)[_ring recordFrame] - _barFrameNum + [_pitchShifter latencyFrames];
+    SInt32 start = (SInt32)[_ring recordFrame] - 2* _barFrameNum + [_pitchShifter latencyFrames];
     UInt32 uStart = 0;
     if (start >= 0){
         uStart = start;

@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet BeatlookupWaveView *_beatLookupWaveView;
     __weak IBOutlet JugglingTouchView *_jugglingTouchView;
     __weak IBOutlet NSButton *_chkFinely;
+    __weak IBOutlet NSSlider *_sliderTime;
+    Boolean _isTimeShifting;
     __weak IBOutlet NSSlider *_sliderPitch;
     Boolean _isPitchShifting;
 }

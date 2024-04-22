@@ -814,10 +814,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-pn-UVv">
-                                    <rect key="frame" x="74" y="8" width="180" height="16"/>
+                                    <rect key="frame" x="124" y="8" width="81" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Use [space] with pressing [g]" id="wB6-p4-ACv">
-                                        <font key="font" usesAppearanceFont="YES"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="[A] + [space]" id="wB6-p4-ACv">
+                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>

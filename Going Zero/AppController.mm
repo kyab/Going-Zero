@@ -574,7 +574,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 }
 
 -(Boolean)mainWindowKeyDown:(NSEvent *)event{
-    if (event.keyCode == 5 /*g*/){
+    if (event.keyCode == 0 /*a*/){
         // can happen multiple times
         [_volumeGate activate];
         return YES;
@@ -586,7 +586,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 }
 
 -(Boolean)mainWindowKeyUp:(NSEvent *)event{
-    if (event.keyCode == 5 /*g*/){
+    if (event.keyCode == 0 /*a*/){
         [_volumeGate deactivate];
         return YES;
     }else if (event.keyCode == 49){

@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_jugglingTouchView setDelegate:self];
+    _isTimeShifting = NO;
     _isPitchShifting = NO;
 }
 
@@ -58,6 +59,18 @@
     if (_isPitchShifting == NO){
         [_beatLookup startPitchShifting];
         _isPitchShifting = YES;
+    }
+}
+
+- (IBAction)timeChanged:(id)sender {
+    if ([[NSApplication sharedApplication] currentEvent].type == NSEventTypeLeftMouseUp){
+        [_sliderTime setFloatValue:0.0];
+        _isTimeShifting = NO;
+        return;
+    }
+    
+    if (_isTimeShifting == NO){
+        _isTimeShifting = YES;
     }
 }
 
