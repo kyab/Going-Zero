@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 #define BL_STATE_INLIVE 2
 #define BL_STATE_BEATJUGGLING 3
 #define BL_STATE_PITCHSHIFTING 4
+#define BL_STATE_TIMESTRETCHING 5
 
 typedef struct {
     UInt32 startFrame;
@@ -46,9 +47,12 @@ typedef struct {
 -(void)setBarStart;
 -(void)startBeatJuggling:(UInt32)beatRegionDivide16;
 -(void)stopBeatJuggling;
--(void)setPitch:(float)pitch;
+-(void)setPitchShift:(float)pitchShift;
 -(void)startPitchShifting;
 -(void)stopPitchShifting;
+-(void)setTimeStretch:(float)timeStretch;
+-(void)startTimeStretching;
+-(void)stopTimeStretching;
 
 -(UInt32)barFrameStart;
 -(UInt32)barFrameNum;

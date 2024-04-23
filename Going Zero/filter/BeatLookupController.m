@@ -49,13 +49,13 @@
 - (IBAction)pitchChanged:(id)sender {
     if ([[NSApplication sharedApplication] currentEvent].type == NSEventTypeLeftMouseUp){
         [_sliderPitch setFloatValue:0.0];
-        [_beatLookup setPitch:0.0];
+        [_beatLookup setPitchShift:0.0];
         [_beatLookup stopPitchShifting];
         _isPitchShifting = NO;
         return;
     }
     
-    [_beatLookup setPitch:[_sliderPitch floatValue]];
+    [_beatLookup setPitchShift:[_sliderPitch floatValue]];
     if (_isPitchShifting == NO){
         [_beatLookup startPitchShifting];
         _isPitchShifting = YES;
@@ -65,11 +65,16 @@
 - (IBAction)timeChanged:(id)sender {
     if ([[NSApplication sharedApplication] currentEvent].type == NSEventTypeLeftMouseUp){
         [_sliderTime setFloatValue:0.0];
+        [_beatLookup setTimeStretch:1.0];
+        [_beatLookup stopTimeStretching];
         _isTimeShifting = NO;
         return;
     }
     
+    // -50 to +50
+    [_beatLookup setTimeStretch:(100.0 + _sliderTime.floatValue)/100.0];
     if (_isTimeShifting == NO){
+        [_beatLookup startTimeStretching];
         _isTimeShifting = YES;
     }
 }

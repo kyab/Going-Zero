@@ -21,6 +21,7 @@
 -(id)init{
     self = [super init];
     _pitchShift = 0.0f;
+    _timeStretch = 1.0f;
     
     _stretch.presetDefault(2, 44100);
     int block = _stretch.blockSamples();
@@ -34,6 +35,10 @@
 -(void)setPitchShift:(float)pitchShift{
     _pitchShift = pitchShift;
     _stretch.setTransposeSemitones(pitchShift);
+}
+
+-(void)setTimeStretch:(float)timeStretch{
+    _timeStretch = timeStretch;
 }
 
 -(UInt32)latencyFrames{
