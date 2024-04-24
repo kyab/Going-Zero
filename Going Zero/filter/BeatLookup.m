@@ -216,6 +216,22 @@
                 [_ring advanceCustomPtr0Sample:numSamples];
             }
             break;
+        case BL_STATE_TIMESTRETCHING:
+            {
+                float *dstL = [_ring writePtrLeft];
+                float *dstR = [_ring writePtrRight];
+                memcpy(dstL, leftBuf, numSamples * sizeof(float));
+                memcpy(dstR, rightBuf, numSamples * sizeof(float));
+                [_ring advanceWritePtrSample:numSamples];
+                
+                float *srcL = [_ring customPtr0Left];
+                float *srcR = [_ring customPtr0Right];
+                dstL = leftBuf;
+                dstR = rightBuf;
+                UInt32 consumedInSamples = [_pitchShifter processNonInplaceWithStretchLeftIn:srcL rightIn:srcR leftOut:dstL rightOut:dstR outNumSamples:numSamples];
+                [_ring advanceCustomPtr0Sample:consumedInSamples];
+            }
+            break;
             
         default:
             break;

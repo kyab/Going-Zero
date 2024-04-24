@@ -24,6 +24,7 @@
     _timeStretch = 1.0f;
     
     _stretch.presetDefault(2, 44100);
+//    _stretch.configure(2, 256, 256);
     int block = _stretch.blockSamples();
     int interval = _stretch.intervalSamples();
     int inputLatency = _stretch.inputLatency();
@@ -94,5 +95,26 @@
     _stretch.process(input, numSamples, output, numSamples);
     
 }
+
+-(UInt32)processNonInplaceWithStretchLeftIn:(const float *)leftBufIn rightIn:(const float *)rightBufIn leftOut:(float *)leftBufOut rightOut:(float *)rightBufOut outNumSamples:(UInt32)outNumSamples{
+        
+    const float *input[2];
+    input[0] = leftBufIn;
+    input[1] = rightBufIn;
+    
+    float *output[2];
+    output[0] = leftBufOut;
+    output[1] = rightBufOut;
+
+    UInt32 consumedInSamples = _timeStretch * outNumSamples;
+    
+    
+    _stretch.process(input, consumedInSamples, output, outNumSamples);
+    
+    return consumedInSamples;
+}
+
+
+
 
 @end
