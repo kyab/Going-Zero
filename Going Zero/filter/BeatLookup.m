@@ -112,7 +112,7 @@
         uStart = [_ring frames] + start;
     }
     [_ring setCustomPtr0Sample:uStart];
-    NSLog(@"startPitchShifting recordFrame = %u, start = %u", [_ring recordFrame], uStart);
+    NSLog(@"startTimeStretching recordFrame = %u, start = %u", [_ring recordFrame], uStart);
     _state = BL_STATE_TIMESTRETCHING;
 }
 
@@ -135,7 +135,7 @@
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     
-    if (_state != BL_STATE_PITCHSHIFTING){
+    if (_state != BL_STATE_PITCHSHIFTING && _state != BL_STATE_TIMESTRETCHING){
         //Make pitch shifter smooth
         [_pitchShifter feedLeft:leftBuf right:rightBuf samples:numSamples];
     }

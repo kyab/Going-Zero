@@ -93,7 +93,6 @@
     output[1] = rightBufOut;
     
     _stretch.process(input, numSamples, output, numSamples);
-    
 }
 
 -(UInt32)processNonInplaceWithStretchLeftIn:(const float *)leftBufIn rightIn:(const float *)rightBufIn leftOut:(float *)leftBufOut rightOut:(float *)rightBufOut outNumSamples:(UInt32)outNumSamples{
@@ -107,8 +106,6 @@
     output[1] = rightBufOut;
 
     UInt32 consumedInSamples = _timeStretch * outNumSamples;
-    
-    
     _stretch.process(input, consumedInSamples, output, outNumSamples);
     
     return consumedInSamples;
