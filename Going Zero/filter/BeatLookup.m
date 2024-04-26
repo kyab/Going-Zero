@@ -85,16 +85,7 @@
 }
 
 -(void)startPitchShifting{
-    _barFrameNum = (UInt32)(44100*[_beatTracker beatDurationSec]*4);
-    SInt32 start = (SInt32)[_ring recordFrame] - 2* _barFrameNum + [_pitchShifter latencyFrames];
-    UInt32 uStart = 0;
-    if (start >= 0){
-        uStart = start;
-    }else{
-        uStart = [_ring frames] + start;
-    }
-    [_ring setCustomPtr0Sample:uStart];
-    NSLog(@"startPitchShifting recordFrame = %u, start = %u", [_ring recordFrame], uStart);
+    [_ring setCustomPtr0Sample:[_ring recordFrame]];
     _state = BL_STATE_PITCHSHIFTING;
 }
 
@@ -103,16 +94,7 @@
 }
 
 -(void)startTimeStretching{
-    _barFrameNum = (UInt32)(44100*[_beatTracker beatDurationSec]*4);
-    SInt32 start = (SInt32)[_ring recordFrame] - 2* _barFrameNum + [_pitchShifter latencyFrames];
-    UInt32 uStart = 0;
-    if (start >= 0){
-        uStart = start;
-    }else{
-        uStart = [_ring frames] + start;
-    }
-    [_ring setCustomPtr0Sample:uStart];
-    NSLog(@"startTimeStretching recordFrame = %u, start = %u", [_ring recordFrame], uStart);
+    [_ring setCustomPtr0Sample:[_ring recordFrame]];
     _state = BL_STATE_TIMESTRETCHING;
 }
 

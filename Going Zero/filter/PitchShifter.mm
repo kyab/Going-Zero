@@ -24,12 +24,23 @@
     _timeStretch = 1.0f;
     
     _stretch.presetDefault(2, 44100);
-//    _stretch.configure(2, 256, 256);
-    int block = _stretch.blockSamples();
-    int interval = _stretch.intervalSamples();
-    int inputLatency = _stretch.inputLatency();
-    int outputLatency = _stretch.outputLatency();
-    NSLog(@"Signalsmith-Stretch : block size = %d, interval = %d, inputLatency=%d, outputLatency=%d", block, interval, inputLatency, outputLatency);
+    
+    {
+        int block = _stretch.blockSamples();
+        int interval = _stretch.intervalSamples();
+        int inputLatency = _stretch.inputLatency();
+        int outputLatency = _stretch.outputLatency();
+        NSLog(@"Signalsmith-Stretch(Default) : block size = %d, interval = %d, inputLatency=%d, outputLatency=%d", block, interval, inputLatency, outputLatency);
+    }
+    
+    _stretch.configure(2, 5292/2, 1323);    //Not bad quality with acceptable latency.
+    {
+        int block = _stretch.blockSamples();
+        int interval = _stretch.intervalSamples();
+        int inputLatency = _stretch.inputLatency();
+        int outputLatency = _stretch.outputLatency();
+        NSLog(@"Signalsmith-Stretch : block size = %d, interval = %d, inputLatency=%d, outputLatency=%d", block, interval, inputLatency, outputLatency);
+    }
     return self;
 }
 

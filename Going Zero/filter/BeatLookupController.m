@@ -71,8 +71,12 @@
         return;
     }
     
-    // -50 to +50
-    [_beatLookup setTimeStretch:(100.0 + _sliderTime.floatValue)/100.0];
+    // scale delta from [-50 to 50] to [-50 to 75] so final stretch range will be [50% to 175%]
+    float percentDelta = _sliderTime.floatValue;
+    if (percentDelta > 0.0f){
+        percentDelta *= 75.0/50.0;
+    }
+    [_beatLookup setTimeStretch:(100.0 + percentDelta)/100.0];
     if (_isTimeShifting == NO){
         [_beatLookup startTimeStretching];
         _isTimeShifting = YES;
