@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PitchShifter : NSObject{
+@interface TimePitch : NSObject{
     float _pitchShift;
     float _timeStretch; //rate (1 for normal speed) positive = faster
 }

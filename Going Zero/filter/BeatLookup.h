@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RingBuffer.h"
 #import "BeatTracker.h"
-#import "PitchShifter.h"
+#import "TimePitch.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,8 +39,7 @@ typedef struct {
     UInt32 _state;
     BeatJugglingContext _beatJugglingContext;
     Boolean _fineGrained;   //true for Divide16. Otherwise divide8
-    PitchShifter *_pitchShifter;
-//    PitchShiftingContext _pitchShiftingContext;
+    TimePitch *_timePitch;
 }
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker;

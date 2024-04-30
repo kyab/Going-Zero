@@ -14,7 +14,7 @@
 		0CB34AD62B60B0F300E5C57F /* TurnTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB34AD42B60B0F300E5C57F /* TurnTableController.m */; };
 		0CB34AD72B60B0F300E5C57F /* TurnTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB34AD52B60B0F300E5C57F /* TurnTableController.xib */; };
 		0CBB51CE2BBEC63E00B02C51 /* VolumeGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB51CD2BBEC63E00B02C51 /* VolumeGate.m */; };
-		0CBEC5912BC42C5F00EB884E /* PitchShifter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0CBEC5902BC42C5F00EB884E /* PitchShifter.mm */; };
+		0CBEC5912BC42C5F00EB884E /* TimePitch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0CBEC5902BC42C5F00EB884E /* TimePitch.mm */; };
 		0CD1AAB12B578CCF00321B2B /* MiscController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1AAAF2B578CCF00321B2B /* MiscController.m */; };
 		0CD1AAB22B578CCF00321B2B /* MiscController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD1AAB02B578CCF00321B2B /* MiscController.xib */; };
 		30D150BBE4D286CC7E0FB130 /* Pods_Going_Zero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8F06F4F560999564F14CDB /* Pods_Going_Zero.framework */; };
@@ -109,8 +109,8 @@
 		0CB34AD52B60B0F300E5C57F /* TurnTableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TurnTableController.xib; sourceTree = "<group>"; };
 		0CBB51CC2BBEC63E00B02C51 /* VolumeGate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolumeGate.h; sourceTree = "<group>"; };
 		0CBB51CD2BBEC63E00B02C51 /* VolumeGate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolumeGate.m; sourceTree = "<group>"; };
-		0CBEC58F2BC42C5F00EB884E /* PitchShifter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PitchShifter.h; sourceTree = "<group>"; };
-		0CBEC5902BC42C5F00EB884E /* PitchShifter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PitchShifter.mm; sourceTree = "<group>"; };
+		0CBEC58F2BC42C5F00EB884E /* TimePitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimePitch.h; sourceTree = "<group>"; };
+		0CBEC5902BC42C5F00EB884E /* TimePitch.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TimePitch.mm; sourceTree = "<group>"; };
 		0CD1AAAE2B578CCF00321B2B /* MiscController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiscController.h; sourceTree = "<group>"; };
 		0CD1AAAF2B578CCF00321B2B /* MiscController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiscController.m; sourceTree = "<group>"; };
 		0CD1AAB02B578CCF00321B2B /* MiscController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiscController.xib; sourceTree = "<group>"; };
@@ -390,8 +390,8 @@
 				EB6E387B266240BF002AADCA /* TurnTableView.m */,
 				0C21BC062B69D65B00018937 /* BeatLookup.h */,
 				0C21BC072B69D65B00018937 /* BeatLookup.m */,
-				0CBEC58F2BC42C5F00EB884E /* PitchShifter.h */,
-				0CBEC5902BC42C5F00EB884E /* PitchShifter.mm */,
+				0CBEC58F2BC42C5F00EB884E /* TimePitch.h */,
+				0CBEC5902BC42C5F00EB884E /* TimePitch.mm */,
 				0C21BC092B69D69000018937 /* BeatlookupWaveView.h */,
 				0C21BC0A2B69D69000018937 /* BeatlookupWaveView.m */,
 				EB38846C2B8256B700D8735B /* JugglingTouchView.h */,
@@ -643,7 +643,7 @@
 				EB37910B2768D66100AC37D0 /* SimpleReverb.m in Sources */,
 				EB18F777266907B400EB0E73 /* Viewer.m in Sources */,
 				EBAA80982678E00D00809C1D /* QuickCue.m in Sources */,
-				0CBEC5912BC42C5F00EB884E /* PitchShifter.mm in Sources */,
+				0CBEC5912BC42C5F00EB884E /* TimePitch.mm in Sources */,
 				EB37910F2768D68100AC37D0 /* SimpleReverbController.m in Sources */,
 				EBDA9A4D2740AA8600836273 /* Sampler.m in Sources */,
 				EBDA9A43273F867E00836273 /* LPF_IIR.m in Sources */,

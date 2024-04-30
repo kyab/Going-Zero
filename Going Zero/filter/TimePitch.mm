@@ -6,7 +6,7 @@
 //  Copyright © 2024 kyab. All rights reserved.
 //
 
-#import "PitchShifter.h"
+#import "TimePitch.h"
 
 // Including external header with supressing warnings.
 #pragma clang diagnostic push
@@ -14,7 +14,7 @@
 #include "signalsmith-stretch.h"
 #pragma clang diagnostic pop
 
-@implementation PitchShifter{
+@implementation TimePitch{
     signalsmith::stretch::SignalsmithStretch<float> _stretch;
 }
 

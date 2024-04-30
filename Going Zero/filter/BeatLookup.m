@@ -13,7 +13,7 @@
 -(id)init{
     self = [super init];
     _ring = [[RingBuffer alloc] init];
-    _pitchShifter = [[PitchShifter alloc] init];
+    _timePitch = [[TimePitch alloc] init];
     _state = BL_STATE_FREERUNNING;
     _fineGrained = false;
     return self;
@@ -119,7 +119,7 @@
     
     if (_state != BL_STATE_PITCHSHIFTING && _state != BL_STATE_TIMESTRETCHING){
         //Make pitch shifter smooth
-        [_pitchShifter feedLeft:leftBuf right:rightBuf samples:numSamples];
+        [_timePitch feedLeft:leftBuf right:rightBuf samples:numSamples];
     }
     
     switch (_state) {
@@ -194,7 +194,7 @@
                 float *srcR = [_ring customPtr0Right];
                 dstL = leftBuf;
                 dstR = rightBuf;
-                [_pitchShifter processNonInplaceLeftIn:srcL rightIn:srcR leftOut:dstL rightOut:dstR samples:numSamples];
+                [_timePitch processNonInplaceLeftIn:srcL rightIn:srcR leftOut:dstL rightOut:dstR samples:numSamples];
                 [_ring advanceCustomPtr0Sample:numSamples];
             }
             break;
@@ -210,7 +210,7 @@
                 float *srcR = [_ring customPtr0Right];
                 dstL = leftBuf;
                 dstR = rightBuf;
-                UInt32 consumedInSamples = [_pitchShifter processNonInplaceWithStretchLeftIn:srcL rightIn:srcR leftOut:dstL rightOut:dstR outNumSamples:numSamples];
+                UInt32 consumedInSamples = [_timePitch processNonInplaceWithStretchLeftIn:srcL rightIn:srcR leftOut:dstL rightOut:dstR outNumSamples:numSamples];
                 [_ring advanceCustomPtr0Sample:consumedInSamples];
             }
             break;
@@ -233,11 +233,11 @@
 }
 
 -(void)setPitchShift:(float)pitchShift{
-    [_pitchShifter setPitchShift:pitchShift];
+    [_timePitch setPitchShift:pitchShift];
 }
 
 -(void)setTimeStretch:(float)timeStretch{
-    [_pitchShifter setTimeStretch:timeStretch];
+    [_timePitch setTimeStretch:timeStretch];
 }
 
 @end
