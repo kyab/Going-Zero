@@ -11,6 +11,9 @@
 		0C21BC052B69D63000018937 /* BeatLookupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C21BC032B69D63000018937 /* BeatLookupController.xib */; };
 		0C21BC082B69D65B00018937 /* BeatLookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C21BC072B69D65B00018937 /* BeatLookup.m */; };
 		0C21BC0B2B69D69000018937 /* BeatlookupWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C21BC0A2B69D69000018937 /* BeatlookupWaveView.m */; };
+		0C5EE3302BE1C67B002E9452 /* AutoLooperController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5EE32E2BE1C67B002E9452 /* AutoLooperController.m */; };
+		0C5EE3312BE1C67B002E9452 /* AutoLooperController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5EE32F2BE1C67B002E9452 /* AutoLooperController.xib */; };
+		0C5EE3352BE1C695002E9452 /* AutoLooper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5EE3332BE1C695002E9452 /* AutoLooper.m */; };
 		0CB34AD62B60B0F300E5C57F /* TurnTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB34AD42B60B0F300E5C57F /* TurnTableController.m */; };
 		0CB34AD72B60B0F300E5C57F /* TurnTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB34AD52B60B0F300E5C57F /* TurnTableController.xib */; };
 		0CBB51CE2BBEC63E00B02C51 /* VolumeGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB51CD2BBEC63E00B02C51 /* VolumeGate.m */; };
@@ -104,6 +107,11 @@
 		0C21BC072B69D65B00018937 /* BeatLookup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeatLookup.m; sourceTree = "<group>"; };
 		0C21BC092B69D69000018937 /* BeatlookupWaveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeatlookupWaveView.h; sourceTree = "<group>"; };
 		0C21BC0A2B69D69000018937 /* BeatlookupWaveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeatlookupWaveView.m; sourceTree = "<group>"; };
+		0C5EE32D2BE1C67B002E9452 /* AutoLooperController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoLooperController.h; sourceTree = "<group>"; };
+		0C5EE32E2BE1C67B002E9452 /* AutoLooperController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoLooperController.m; sourceTree = "<group>"; };
+		0C5EE32F2BE1C67B002E9452 /* AutoLooperController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutoLooperController.xib; sourceTree = "<group>"; };
+		0C5EE3322BE1C695002E9452 /* AutoLooper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoLooper.h; sourceTree = "<group>"; };
+		0C5EE3332BE1C695002E9452 /* AutoLooper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoLooper.m; sourceTree = "<group>"; };
 		0CB34AD32B60B0F300E5C57F /* TurnTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurnTableController.h; sourceTree = "<group>"; };
 		0CB34AD42B60B0F300E5C57F /* TurnTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurnTableController.m; sourceTree = "<group>"; };
 		0CB34AD52B60B0F300E5C57F /* TurnTableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TurnTableController.xib; sourceTree = "<group>"; };
@@ -293,6 +301,11 @@
 				EB83BD402B5427FC007690A5 /* LooperController.h */,
 				EB83BD412B5427FC007690A5 /* LooperController.m */,
 				EB83BD422B5427FC007690A5 /* LooperController.xib */,
+				0C5EE3322BE1C695002E9452 /* AutoLooper.h */,
+				0C5EE3332BE1C695002E9452 /* AutoLooper.m */,
+				0C5EE32D2BE1C67B002E9452 /* AutoLooperController.h */,
+				0C5EE32E2BE1C67B002E9452 /* AutoLooperController.m */,
+				0C5EE32F2BE1C67B002E9452 /* AutoLooperController.xib */,
 				EB6E388126627C90002AADCA /* TrillReverse.h */,
 				EB6E388226627C90002AADCA /* TrillReverse.m */,
 				EBEC8C70266313C400257694 /* Bender.h */,
@@ -558,6 +571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB6E386526623E4B002AADCA /* Assets.xcassets in Resources */,
+				0C5EE3312BE1C67B002E9452 /* AutoLooperController.xib in Resources */,
 				EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */,
 				EBFE0A4D2A7FD5B300F88A78 /* BeatTrackerController.xib in Resources */,
 				EB8B3A2A2BB862EB00930577 /* esp32_s3_midi2.ino.cpp in Resources */,
@@ -668,6 +682,7 @@
 				EBDA9A492740A9E500836273 /* SamplerController.m in Sources */,
 				0C21BC042B69D63000018937 /* BeatLookupController.m in Sources */,
 				EB38846E2B8256B700D8735B /* JugglingTouchView.m in Sources */,
+				0C5EE3352BE1C695002E9452 /* AutoLooper.m in Sources */,
 				EB37911D2771CD8800AC37D0 /* RateConverter.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
 				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
@@ -686,6 +701,7 @@
 				EB379113276F491400AC37D0 /* ConvolutionReverb.mm in Sources */,
 				EB822D572A1D657E00FAA9B5 /* Lookup.m in Sources */,
 				EBD7C702275E54F2009A61DA /* Random.m in Sources */,
+				0C5EE3302BE1C67B002E9452 /* AutoLooperController.m in Sources */,
 				EB7001202691D038007F88EE /* Flanger.m in Sources */,
 				EB18F7742669077E00EB0E73 /* WaveView.m in Sources */,
 				EBC1916B2A21AC3700E13D95 /* LookUpController.m in Sources */,
