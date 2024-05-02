@@ -1,5 +1,5 @@
 //
-//  BitCrasherController.h
+//  BitCrusherController.h
 //  Going Zero
 //
 //  Created by kyab on 2021/06/05.
@@ -7,16 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BitCrasher.h"
+#import "BitCrusher.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BitCrasherController : NSViewController{
-    BitCrasher *_crasher;
+@interface BitCrusherController : NSViewController{
+    BitCrusher *_crusher;
     __weak IBOutlet NSButton *_chkActive;
 }
 
--(void)setBitCrasher:(BitCrasher *)crasher;
+-(void)setBitCrusher:(BitCrusher *)crusher;
 
 @end
 

@@ -21,9 +21,10 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="Cna-gC-1o3" customClass="AppController">
             <connections>
+                <outlet property="_autoLooperContentView" destination="Cmn-DN-DX1" id="6uC-Hh-Dnp"/>
                 <outlet property="_beatLookupContentView" destination="24M-Ua-fhd" id="Uir-XU-jPs"/>
                 <outlet property="_beatTrackerContentView" destination="bLL-Sz-3R4" id="2eP-Wn-8ox"/>
-                <outlet property="_crasherContentView" destination="T4s-1S-H1g" id="gfk-aY-7yN"/>
+                <outlet property="_crusherContentView" destination="T4s-1S-H1g" id="gfk-aY-7yN"/>
                 <outlet property="_djFilterContentView" destination="SNs-4h-V0S" id="ru5-Dz-CaJ"/>
                 <outlet property="_flangerContentView" destination="KFA-a1-9oi" id="skb-Kh-SkD"/>
                 <outlet property="_looperContentView" destination="Ezh-7q-75L" id="vvU-cY-YJu"/>
@@ -734,7 +735,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
-                    <box fixedFrame="YES" title="Bit Crasher" translatesAutoresizingMaskIntoConstraints="NO" id="d15-N8-WSd">
+                    <box fixedFrame="YES" title="Bit Crusher" translatesAutoresizingMaskIntoConstraints="NO" id="d15-N8-WSd">
                         <rect key="frame" x="434" y="257" width="312" height="49"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="T4s-1S-H1g">
@@ -814,10 +815,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-pn-UVv">
-                                    <rect key="frame" x="124" y="8" width="81" height="16"/>
+                                    <rect key="frame" x="122" y="8" width="85" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="[A] + [space]" id="wB6-p4-ACv">
-                                        <font key="font" metaFont="system"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="[S] + [space]" id="wB6-p4-ACv">
+                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>

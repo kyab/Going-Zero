@@ -1,14 +1,14 @@
 //
-//  BitCrasher.m
+//  BitCrusher.m
 //  Going Zero
 //
 //  Created by kyab on 2021/06/05.
 //  Copyright © 2021 kyab. All rights reserved.
 //
 
-#import "BitCrasher.h"
+#import "BitCrusher.h"
 
-@implementation BitCrasher
+@implementation BitCrusher
 
 -(id)init{
     self = [super init];
@@ -31,7 +31,7 @@
     int factor = 16;
     
     for(int i = 0; i < numSamples; i=i+8){
-        float before = leftBuf[i];//(leftBuf[i] + leftBuf[i+1])/2;
+        float before = leftBuf[i];
         float pre = before * factor;
         pre += rand() / (RAND_MAX+1) * factor;
         pre = (SInt32)round(pre);
@@ -41,7 +41,7 @@
             leftBuf[i + j] = pre;
         }
         
-        before = rightBuf[i];//(rightBuf[i] + rightBuf[i+1])/2;;
+        before = rightBuf[i];
         pre = before * factor;
         pre += rand() / (RAND_MAX+1) * factor;
         pre = (SInt32)round(pre);

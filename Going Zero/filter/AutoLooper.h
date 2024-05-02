@@ -15,11 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AutoLooper : NSObject{
     RingBuffer *_ring;
     BeatTracker *_beatTracker;
+    Boolean _isLooping;
 }
 -(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
--(void)start1BarLoop;
+-(void)startQuantizedLoop;
 -(void)exitLoop;
+-(void)toggleQuantizedLoop;
 
 @end
 

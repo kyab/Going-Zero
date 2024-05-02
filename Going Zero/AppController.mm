@@ -51,6 +51,13 @@
     
     _volumeGate = [[VolumeGate alloc] init];
     
+    _autoLooper = [[AutoLooper alloc] init];
+    _autoLooperController = [[AutoLooperController alloc] initWithNibName:@"AutoLooperController" bundle:nil];
+    [_autoLooperContentView addSubview:[_autoLooperController view]];
+    [self centerize:[_autoLooperController view]];
+    [_autoLooperController setAutoLooper:_autoLooper];
+    [_autoLooper setBeatTracker:_beatTracker];
+    
     _looper = [[Looper alloc] init];
     _looperController = [[LooperController alloc] initWithNibName:@"LooperController" bundle:nil];
     [_looperContentView addSubview:[_looperController view]];
@@ -83,11 +90,11 @@
     [self centerize:[_refrainController view]];
     [_refrainController setRefrain:_refrain];
     
-    _crasher = [[BitCrasher alloc] init];
-    _crasherController = [[BitCrasherController alloc] initWithNibName:@"BitCrasherController" bundle:nil];
-    [_crasherContentView addSubview:[_crasherController view]];
-    [self fitView:[_crasherController view]];
-    [_crasherController setBitCrasher:_crasher];
+    _crusher = [[BitCrusher alloc] init];
+    _crusherController = [[BitCrusherController alloc] initWithNibName:@"BitCrusherController" bundle:nil];
+    [_crusherContentView addSubview:[_crusherController view]];
+    [self fitView:[_crusherController view]];
+    [_crusherController setBitCrusher:_crusher];
     
     _tapeReverse = [[TapeReverse alloc] init];
     _tapeReverseController = [[TapeReverseController alloc] initWithNibName:@"TapeReverseController" bundle: nil];
@@ -376,19 +383,23 @@
     [_lookUp processLeft:(float*)ioData->mBuffers[0].mData
                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    //looper
+    //Auto Looper
+    [_autoLooper processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Looper
     [_looper processLeft:(float*)ioData->mBuffers[0].mData
                          right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
 
-    //quick cue
+    //Quick Cue
     [_quickCue processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    //bender
+    //Bender
     [_bender processLeft:(float*)ioData->mBuffers[0].mData
                          right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    //trill reverse
+    //Trill reverse
     [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
                          right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
 
@@ -396,23 +407,23 @@
     [_freezer processLeft:(float*)ioData->mBuffers[0].mData
                     right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
   
-    //reverse
+    //Reverse
     [_reverse processLeft:(float*)ioData->mBuffers[0].mData
                          right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    //refrain
+    //Refrain
     [_refrain processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    //bit crasher
-    [_crasher processLeft:(float*)ioData->mBuffers[0].mData
+    //Bit crusher
+    [_crusher processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
   
-    //tape reverse
+    //Tape reverse
     [_tapeReverse processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    //flanger
+    //Flanger
     [_flanger processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
@@ -420,7 +431,7 @@
     [_simpleReverb processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
-    //viewer
+    //Viewer
     [_viewer processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
@@ -575,6 +586,9 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 
 -(Boolean)mainWindowKeyDown:(NSEvent *)event{
     if (event.keyCode == 0 /*a*/){
+        [_autoLooper toggleQuantizedLoop];
+        return YES;
+    }else if (event.keyCode == 1 /*s*/){
         // can happen multiple times
         [_volumeGate activate];
         return YES;
@@ -587,6 +601,8 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 
 -(Boolean)mainWindowKeyUp:(NSEvent *)event{
     if (event.keyCode == 0 /*a*/){
+        return YES;
+    }else if (event.keyCode == 1 /*s*/){
         [_volumeGate deactivate];
         return YES;
     }else if (event.keyCode == 49){

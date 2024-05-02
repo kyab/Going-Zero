@@ -25,9 +25,9 @@
 		EB18F7742669077E00EB0E73 /* WaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F7732669077E00EB0E73 /* WaveView.m */; };
 		EB18F777266907B400EB0E73 /* Viewer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F776266907B400EB0E73 /* Viewer.m */; };
 		EB18F77D266A6E7100EB0E73 /* Looper.m in Sources */ = {isa = PBXBuildFile; fileRef = EB18F77C266A6E7100EB0E73 /* Looper.m */; };
-		EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C0F266B9D7A004485FC /* BitCrasher.m */; };
-		EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C12266B9F69004485FC /* BitCrasherController.m */; };
-		EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB274C13266B9F69004485FC /* BitCrasherController.xib */; };
+		EB274C10266B9D7A004485FC /* BitCrusher.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C0F266B9D7A004485FC /* BitCrusher.m */; };
+		EB274C14266B9F69004485FC /* BitCrusherController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB274C12266B9F69004485FC /* BitCrusherController.m */; };
+		EB274C15266B9F69004485FC /* BitCrusherController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB274C13266B9F69004485FC /* BitCrusherController.xib */; };
 		EB2B97552BBDBF730032BC85 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2B97542BBDBF730032BC85 /* MainWindow.m */; };
 		EB36739F2A7BFD73006A2955 /* libessentia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB36739E2A7BF7F1006A2955 /* libessentia.a */; };
 		EB3673A32A7C062C006A2955 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3673A22A7C062C006A2955 /* CoreMedia.framework */; };
@@ -133,11 +133,11 @@
 		EB18F776266907B400EB0E73 /* Viewer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Viewer.m; sourceTree = "<group>"; };
 		EB18F77B266A6E7100EB0E73 /* Looper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Looper.h; sourceTree = "<group>"; };
 		EB18F77C266A6E7100EB0E73 /* Looper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Looper.m; sourceTree = "<group>"; };
-		EB274C0E266B9D7A004485FC /* BitCrasher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrasher.h; sourceTree = "<group>"; };
-		EB274C0F266B9D7A004485FC /* BitCrasher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BitCrasher.m; sourceTree = "<group>"; };
-		EB274C11266B9F69004485FC /* BitCrasherController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrasherController.h; sourceTree = "<group>"; };
-		EB274C12266B9F69004485FC /* BitCrasherController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BitCrasherController.m; sourceTree = "<group>"; };
-		EB274C13266B9F69004485FC /* BitCrasherController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BitCrasherController.xib; sourceTree = "<group>"; };
+		EB274C0E266B9D7A004485FC /* BitCrusher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrusher.h; sourceTree = "<group>"; };
+		EB274C0F266B9D7A004485FC /* BitCrusher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BitCrusher.m; sourceTree = "<group>"; };
+		EB274C11266B9F69004485FC /* BitCrusherController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitCrusherController.h; sourceTree = "<group>"; };
+		EB274C12266B9F69004485FC /* BitCrusherController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BitCrusherController.m; sourceTree = "<group>"; };
+		EB274C13266B9F69004485FC /* BitCrusherController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BitCrusherController.xib; sourceTree = "<group>"; };
 		EB2B97532BBDBF730032BC85 /* MainWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
 		EB2B97542BBDBF730032BC85 /* MainWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		EB36739E2A7BF7F1006A2955 /* libessentia.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libessentia.a; path = ../../../../usr/local/lib/libessentia.a; sourceTree = "<group>"; };
@@ -342,11 +342,11 @@
 				EBF93D20266B215E001B13F3 /* Refrain.h */,
 				EBF93D21266B215E001B13F3 /* Refrain.m */,
 				EBF93D1B266B164F001B13F3 /* RefrainView.xib */,
-				EB274C0E266B9D7A004485FC /* BitCrasher.h */,
-				EB274C0F266B9D7A004485FC /* BitCrasher.m */,
-				EB274C11266B9F69004485FC /* BitCrasherController.h */,
-				EB274C12266B9F69004485FC /* BitCrasherController.m */,
-				EB274C13266B9F69004485FC /* BitCrasherController.xib */,
+				EB274C0E266B9D7A004485FC /* BitCrusher.h */,
+				EB274C0F266B9D7A004485FC /* BitCrusher.m */,
+				EB274C11266B9F69004485FC /* BitCrusherController.h */,
+				EB274C12266B9F69004485FC /* BitCrusherController.m */,
+				EB274C13266B9F69004485FC /* BitCrusherController.xib */,
 				EB652EDB266E00D000089E3E /* TapeReverseController.h */,
 				EB652EDC266E00D000089E3E /* TapeReverseController.m */,
 				EB652EDD266E00D000089E3E /* TapeReverseController.xib */,
@@ -591,7 +591,7 @@
 				0C21BC052B69D63000018937 /* BeatLookupController.xib in Resources */,
 				EBAA80952678DF3000809C1D /* QuickCueController.xib in Resources */,
 				EB37911A276F5A8B00AC37D0 /* ConvolutionReverbController.xib in Resources */,
-				EB274C15266B9F69004485FC /* BitCrasherController.xib in Resources */,
+				EB274C15266B9F69004485FC /* BitCrusherController.xib in Resources */,
 				EB652EDF266E00D000089E3E /* TapeReverseController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,7 +653,7 @@
 				EBDA9A45273F867E00836273 /* HPF_IIR.m in Sources */,
 				EB7372B6266530F600393D58 /* Freezer.m in Sources */,
 				EBBF46DD2676171D00785BF6 /* ReverseTurntableView.m in Sources */,
-				EB274C14266B9F69004485FC /* BitCrasherController.m in Sources */,
+				EB274C14266B9F69004485FC /* BitCrusherController.m in Sources */,
 				EB37910B2768D66100AC37D0 /* SimpleReverb.m in Sources */,
 				EB18F777266907B400EB0E73 /* Viewer.m in Sources */,
 				EBAA80982678E00D00809C1D /* QuickCue.m in Sources */,
@@ -685,7 +685,7 @@
 				0C5EE3352BE1C695002E9452 /* AutoLooper.m in Sources */,
 				EB37911D2771CD8800AC37D0 /* RateConverter.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
-				EB274C10266B9D7A004485FC /* BitCrasher.m in Sources */,
+				EB274C10266B9D7A004485FC /* BitCrusher.m in Sources */,
 				EBFE0A4C2A7FD5B300F88A78 /* BeatTrackerController.m in Sources */,
 				EBEC8C72266313C400257694 /* Bender.m in Sources */,
 				EBC22F542A2CDD3D001CB3DA /* TouchView.m in Sources */,

@@ -16,6 +16,7 @@
     _ring = [[RingBuffer alloc] init];
     [_ring setMinOffset:0];
 
+    _isLooping = NO;
     return self;
 }
 
@@ -31,12 +32,27 @@
     [_ring advanceWritePtrSample:numSamples];
 }
 
--(void)start1BarLoop{
+-(void)startQuantizedLoop{
+    /*TODO
+     直前のビートまでの時間と次のビートまでの時間を比較して、より現在に近い方をループの開始点にする。
+     ループの長さもこの時点でのbeatTrackerから取得した値を使う。
+     */
     
+    NSLog(@"startQuantizedLoop");
 }
 
 -(void)exitLoop{
-    
+    NSLog(@"exitLoop");
+}
+
+-(void)toggleQuantizedLoop{
+    if (!_isLooping){
+        [self startQuantizedLoop];
+        _isLooping = YES;
+    }else{
+        [self exitLoop];
+        _isLooping = NO;
+    }
 }
 
 @end

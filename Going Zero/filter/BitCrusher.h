@@ -1,5 +1,5 @@
 //
-//  BitCrasher.h
+//  BitCrusher.h
 //  Going Zero
 //
 //  Created by kyab on 2021/06/05.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BitCrasher : NSObject{
+@interface BitCrusher : NSObject{
     Boolean _bypass;
 }
 

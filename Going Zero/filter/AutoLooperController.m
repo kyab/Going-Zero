@@ -25,7 +25,7 @@
 
 - (IBAction)oneBarClicked:(id)sender {
     if (!_isLooping){
-        [_autoLooper start1BarLoop];
+        [_autoLooper startQuantizedLoop];
         _isLooping = YES;
     }else{
         [_autoLooper exitLoop];

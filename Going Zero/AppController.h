@@ -22,6 +22,8 @@
 
 #import "VolumeGate.h"
 #import "TurnTableController.h"
+#import "AutoLooper.h"
+#import "AutoLooperController.h"
 #import "Looper.h"
 #import "LooperController.h"
 #import "MiscController.h"
@@ -33,8 +35,8 @@
 #import "Viewer.h"
 #import "WaveView.h"
 #import "Refrain.h"
-#import "BitCrasher.h"
-#import "BitCrasherController.h"
+#import "BitCrusher.h"
+#import "BitCrusherController.h"
 #import "TapeReverse.h"
 #import "TapeReverseController.h"
 #import "QuickCue.h"
@@ -81,6 +83,10 @@ NS_ASSUME_NONNULL_BEGIN
     
     VolumeGate *_volumeGate;
     
+    AutoLooper *_autoLooper;
+    AutoLooperController *_autoLooperController;
+    __weak IBOutlet NSView *_autoLooperContentView;
+    
     Looper *_looper;
     __weak IBOutlet NSView *_looperContentView;
     LooperController *_looperController;
@@ -104,17 +110,13 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet WaveView *_waveView;
     __weak IBOutlet NSButton *_chkWaveViewEnabled;
     
-//    
-//    __weak IBOutlet NSView *_djContentView;
-//    DJViewController *_djViewController;
-    
     Refrain *_refrain;
     __weak IBOutlet NSView *_refrainContentView;
     RefrainController *_refrainController;
     
-    BitCrasher *_crasher;
-    __weak IBOutlet NSView *_crasherContentView;
-    BitCrasherController *_crasherController;
+    BitCrusher *_crusher;
+    __weak IBOutlet NSView *_crusherContentView;
+    BitCrusherController *_crusherController;
     
     TapeReverse *_tapeReverse;
     __weak IBOutlet NSView *_tapeReverseContentView;
