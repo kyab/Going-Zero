@@ -818,7 +818,7 @@
                                     <rect key="frame" x="122" y="8" width="85" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="[S] + [space]" id="wB6-p4-ACv">
-                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                        <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>

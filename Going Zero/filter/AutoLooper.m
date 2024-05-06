@@ -37,8 +37,17 @@
      直前のビートまでの時間と次のビートまでの時間を比較して、より現在に近い方をループの開始点にする。
      ループの長さもこの時点でのbeatTrackerから取得した値を使う。
      */
+    float pastBeatSec = [_beatTracker pastBeatRelativeSec];
+    float nextBeatSec = [_beatTracker estimatedNextBeatRelativeSec];
+    float beatDurationSec = [_beatTracker beatDurationSec];
     
-    NSLog(@"startQuantizedLoop");
+    NSLog(@"startQuantizedLoop, pastBeatSec=%f, nextBeatSec=%f, beatDurationSec=%f", pastBeatSec, nextBeatSec, beatDurationSec);
+    if (fabs(pastBeatSec) < fabs(nextBeatSec)){
+        _currentFrameInLoop = -(pastBeatSec) * 44100;
+    }else{
+        _currentFrameInLoop = - (beatDurationSec - nextBeatSec) * 44100;
+    }
+    _loopLength = beatDurationSec * 44100;
 }
 
 -(void)exitLoop{

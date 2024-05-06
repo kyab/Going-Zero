@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BeatTracker : NSObject{
 }
 
--(float)pastBeatRelativeSec;
+-(float)pastBeatRelativeSec;    //nagative
 -(float)estimatedNextBeatRelativeSec;
 -(float)beatDurationSec;
 -(Boolean)offBeat;

@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
     RingBuffer *_ring;
     BeatTracker *_beatTracker;
     Boolean _isLooping;
+    
+    SInt32 _currentFrameInLoop;
+    UInt32 _loopLength;
 }
 -(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
