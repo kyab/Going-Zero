@@ -8,6 +8,8 @@
 
 #import "AutoLooper.h"
 
+#define AUTOLOOPER_STATE_NONE       0
+#define AUTOLOOPER_STATE_LOOPING    1
 
 @implementation AutoLooper
 
@@ -15,6 +17,7 @@
     self = [super init];
     _ring = [[RingBuffer alloc] init];
     [_ring setMinOffset:0];
+    _state = AUTOLOOPER_STATE_NONE;
 
     _isLooping = NO;
     return self;
@@ -25,18 +28,58 @@
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
-    float *dstL = [_ring writePtrLeft];
-    float *dstR = [_ring writePtrRight];
-    memcpy(dstL, leftBuf, numSamples * sizeof(float));
-    memcpy(dstR, rightBuf, numSamples * sizeof(float));
-    [_ring advanceWritePtrSample:numSamples];
+    
+    switch (_state){
+        case AUTOLOOPER_STATE_NONE:
+        {
+            float *dstL = [_ring writePtrLeft];
+            float *dstR = [_ring writePtrRight];
+            memcpy(dstL, leftBuf, numSamples * sizeof(float));
+            memcpy(dstR, rightBuf, numSamples * sizeof(float));
+            [_ring advanceWritePtrSample:numSamples];
+        }
+            break;
+        case AUTOLOOPER_STATE_LOOPING:
+        {
+            float *dstL = [_ring writePtrLeft];
+            float *dstR = [_ring writePtrRight];
+            memcpy(dstL, leftBuf, numSamples * sizeof(float));
+            memcpy(dstR, rightBuf, numSamples * sizeof(float));
+            [_ring advanceWritePtrSample:numSamples];
+            
+            if (_currentFrameInLoop + (SInt32)numSamples <= _loopLength){
+                float *srcL = [_ring readPtrLeft];
+                float *srcR = [_ring readPtrRight];
+                memcpy(leftBuf, srcL, numSamples * sizeof(float));
+                memcpy(rightBuf, srcR, numSamples * sizeof(float));
+                [_ring advanceReadPtrSample:numSamples];
+                _currentFrameInLoop += numSamples;
+            }else{
+                SInt32 samplesToCopy = _loopLength - _currentFrameInLoop;
+                float *srcL = [_ring readPtrLeft];
+                float *srcR = [_ring readPtrRight];
+                memcpy(leftBuf, srcL, samplesToCopy * sizeof(float));
+                memcpy(rightBuf, srcR, samplesToCopy * sizeof(float));
+                [_ring advanceReadPtrSample:samplesToCopy];
+                [_ring advanceReadPtrSample:-_loopLength];
+                _currentFrameInLoop = 0;
+                samplesToCopy = numSamples - samplesToCopy;
+                srcL = [_ring readPtrLeft];
+                srcR = [_ring readPtrRight];
+                memcpy(leftBuf + samplesToCopy, srcL, samplesToCopy * sizeof(float));
+                memcpy(rightBuf + samplesToCopy, srcR, samplesToCopy * sizeof(float));
+                [_ring advanceReadPtrSample:samplesToCopy];
+                _currentFrameInLoop += samplesToCopy;
+            }
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 -(void)startQuantizedLoop{
-    /*TODO
-     直前のビートまでの時間と次のビートまでの時間を比較して、より現在に近い方をループの開始点にする。
-     ループの長さもこの時点でのbeatTrackerから取得した値を使う。
-     */
+
     float pastBeatSec = [_beatTracker pastBeatRelativeSec];
     float nextBeatSec = [_beatTracker estimatedNextBeatRelativeSec];
     float beatDurationSec = [_beatTracker beatDurationSec];
@@ -48,10 +91,12 @@
         _currentFrameInLoop = - (beatDurationSec - nextBeatSec) * 44100;
     }
     _loopLength = beatDurationSec * 44100;
+    [_ring follow];
+    _state = AUTOLOOPER_STATE_LOOPING;
 }
 
 -(void)exitLoop{
-    NSLog(@"exitLoop");
+    _state = AUTOLOOPER_STATE_NONE;
 }
 
 -(void)toggleQuantizedLoop{

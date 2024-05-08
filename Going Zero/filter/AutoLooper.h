@@ -18,7 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
     Boolean _isLooping;
     
     SInt32 _currentFrameInLoop;
-    UInt32 _loopLength;
+    SInt32 _loopLength;
+    
+    UInt32 _state;
 }
 -(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
