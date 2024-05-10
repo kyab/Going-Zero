@@ -302,10 +302,7 @@
         followRequired = NO;
     }
     
-    //beat tracker
-    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
+    //TurnTable
     double speedRate = [_turnTableController speedRate];
     if(speedRate == 1.0){
 
@@ -359,6 +356,14 @@
         }
     }
     
+    //beat tracker
+    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Auto Looper
+    [_autoLooper processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     //Volume Gate
     [_volumeGate processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
@@ -382,10 +387,6 @@
     //LookUp
     [_lookUp processLeft:(float*)ioData->mBuffers[0].mData
                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Auto Looper
-    [_autoLooper processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //Looper
     [_looper processLeft:(float*)ioData->mBuffers[0].mData
