@@ -20,6 +20,7 @@
     _state = AUTOLOOPER_STATE_NONE;
 
     _isLooping = NO;
+    _divider = 1;
     return self;
 }
 
@@ -47,7 +48,7 @@
             memcpy(dstR, rightBuf, numSamples * sizeof(float));
             [_ring advanceWritePtrSample:numSamples];
             
-            if (_currentFrameInLoop + (SInt32)numSamples <= _loopLength){
+            if (_currentFrameInLoop + (SInt32)numSamples <= _loopLengthFrame){
                 float *srcL = [_ring readPtrLeft];
                 float *srcR = [_ring readPtrRight];
                 memcpy(leftBuf, srcL, numSamples * sizeof(float));
@@ -55,13 +56,13 @@
                 [_ring advanceReadPtrSample:numSamples];
                 _currentFrameInLoop += numSamples;
             }else{
-                SInt32 samplesToCopy = _loopLength - _currentFrameInLoop;
+                SInt32 samplesToCopy = _loopLengthFrame - _currentFrameInLoop;
                 float *srcL = [_ring readPtrLeft];
                 float *srcR = [_ring readPtrRight];
                 memcpy(leftBuf, srcL, samplesToCopy * sizeof(float));
                 memcpy(rightBuf, srcR, samplesToCopy * sizeof(float));
                 [_ring advanceReadPtrSample:samplesToCopy];
-                [_ring advanceReadPtrSample:-_loopLength];
+                [_ring advanceReadPtrSample:-_loopLengthFrame];
                 _currentFrameInLoop = 0;
                 samplesToCopy = numSamples - samplesToCopy;
                 srcL = [_ring readPtrLeft];
@@ -89,7 +90,7 @@
     }else{
         _currentFrameInLoop = - (beatDurationSec - nextBeatSec) * 44100;
     }
-    _loopLength = beatDurationSec * 44100;
+    _loopLengthFrame = beatDurationSec * 44100;
     [_ring follow];
     _state = AUTOLOOPER_STATE_LOOPING;
 }
@@ -114,7 +115,40 @@
         _currentFrameInLoop = framesInRegionDiv4 - offsetFrameInRegionDiv4;
     }
     
-    _loopLength = beatDurationSec * 44100 / 2;
+    _loopLengthFrame = beatDurationSec * 44100 / 2;
+    [_ring follow];
+    _state = AUTOLOOPER_STATE_LOOPING;
+}
+
+-(void)startQuantizedQuarterLoop{
+    float pastBeatSec = [_beatTracker pastBeatRelativeSec];
+    float beatDurationSec = [_beatTracker beatDurationSec];
+    
+    UInt8 regionDiv8 = 0;
+    float posSec = fabs(pastBeatSec);
+    regionDiv8= (UInt32)(posSec*44100) / (UInt32)(beatDurationSec*44100 / 8);
+    UInt32 offsetFrameInRegionDiv8 = (UInt32)(posSec*44100) % (UInt32)(beatDurationSec*44100 / 8);
+    UInt32 framesInRegionDiv8 = (UInt32)(beatDurationSec*44100 / 8);
+    
+    if (regionDiv8 == 0){
+        _currentFrameInLoop = offsetFrameInRegionDiv8;
+    }else if (regionDiv8 == 1){
+        _currentFrameInLoop = framesInRegionDiv8 - offsetFrameInRegionDiv8;
+    }else if (regionDiv8 == 2){
+        _currentFrameInLoop = framesInRegionDiv8;
+    }else if (regionDiv8 == 3){
+        _currentFrameInLoop = framesInRegionDiv8 - offsetFrameInRegionDiv8;
+    }else if (regionDiv8 == 4){
+        _currentFrameInLoop = framesInRegionDiv8;
+    }else if (regionDiv8 == 5){
+        _currentFrameInLoop = framesInRegionDiv8 - offsetFrameInRegionDiv8;
+    }else if (regionDiv8 == 6){
+        _currentFrameInLoop = framesInRegionDiv8;
+    }else{
+        _currentFrameInLoop = framesInRegionDiv8 - offsetFrameInRegionDiv8;
+    }
+    
+    _loopLengthFrame = beatDurationSec * 44100 / 4;
     [_ring follow];
     _state = AUTOLOOPER_STATE_LOOPING;
 }
@@ -127,7 +161,8 @@
 -(void)toggleQuantizedLoop{
     if (!_isLooping){
 //        [self startQuantizedLoop];
-        [self startQuantizedHalfLoop];
+//        [self startQuantizedHalfLoop];
+        [self startQuantizedQuarterLoop];
         _isLooping = YES;
     }else{
         [self exitLoop];

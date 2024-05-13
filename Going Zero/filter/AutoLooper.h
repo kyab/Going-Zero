@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
     Boolean _isLooping;
     
     SInt32 _currentFrameInLoop;
-    SInt32 _loopLength;
+    SInt32 _loopLengthFrame;
+    UInt32 _divider;
     
     UInt32 _state;
 }
