@@ -23,6 +23,16 @@
     _autoLooper = autoLooper;
 }
 
+-(void)refreshLoopLengthLabel{
+    UInt32 divider = [_autoLooper divider];
+    
+    if (divider == 1){
+        [_lblLoopLength setStringValue:@"1"];
+    }else{
+        [_lblLoopLength setStringValue:[NSString stringWithFormat:@"1/%u", divider]];
+    }
+}
+
 - (IBAction)oneBarClicked:(id)sender {
     if (!_isLooping){
         [_autoLooper startQuantizedLoop];

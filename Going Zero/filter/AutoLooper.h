@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)startQuantizedLoop;
 -(void)exitLoop;
 -(void)toggleQuantizedLoop;
+-(void)doubleLoopLength;
+-(void)halveLoopLength;
+-(UInt32)divider;
 
 @end
 

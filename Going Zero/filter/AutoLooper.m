@@ -79,7 +79,7 @@
     }
 }
 
--(void)startQuantizedLoop{
+-(void)startQuantizedFullLoop{
     float pastBeatSec = [_beatTracker pastBeatRelativeSec];
     float nextBeatSec = [_beatTracker estimatedNextBeatRelativeSec];
     float beatDurationSec = [_beatTracker beatDurationSec];
@@ -153,16 +153,64 @@
     _state = AUTOLOOPER_STATE_LOOPING;
 }
 
+-(void)startQuantizedLoop{
+    float pastBeatSec = [_beatTracker pastBeatRelativeSec];
+    float beatDurationSec = [_beatTracker beatDurationSec];
+    
+    UInt8 region = 0;
+    float posSec = fabs(pastBeatSec);
+    region= (UInt32)(posSec*44100) / (UInt32)(beatDurationSec*44100 / (_divider * 2));
+    UInt32 offsetFrameInRegion = (UInt32)(posSec*44100) % (UInt32)(beatDurationSec*44100 / (_divider * 2));
+    UInt32 framesInRegion = (UInt32)(beatDurationSec*44100 / (_divider * 2));
+    
+    if (region % 2 == 0){
+        _currentFrameInLoop = offsetFrameInRegion;
+    }else{
+        _currentFrameInLoop = framesInRegion - offsetFrameInRegion;
+    }
+    
+    _loopLengthFrame = beatDurationSec * 44100 / _divider;
+    [_ring follow];
+    _state = AUTOLOOPER_STATE_LOOPING;
+}
+
 
 -(void)exitLoop{
     _state = AUTOLOOPER_STATE_NONE;
+}
+
+-(void)doubleLoopLength{
+    if (_divider == 1){
+        return;
+    }
+    _divider /= 2;
+    
+    if (_state == AUTOLOOPER_STATE_LOOPING){
+        //restart quantized loop
+    }
+}
+
+-(void)halveLoopLength{
+    if (_divider == 16){
+        return;
+    }
+    _divider *= 2;
+    
+    if (_state == AUTOLOOPER_STATE_LOOPING){
+        //restart quantized loop
+    }
+}
+
+-(UInt32)divider{
+    return _divider;
 }
 
 -(void)toggleQuantizedLoop{
     if (!_isLooping){
 //        [self startQuantizedLoop];
 //        [self startQuantizedHalfLoop];
-        [self startQuantizedQuarterLoop];
+//        [self startQuantizedQuarterLoop];
+        [self startQuantizedLoop];
         _isLooping = YES;
     }else{
         [self exitLoop];

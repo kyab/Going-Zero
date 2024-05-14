@@ -14,10 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AutoLooperController : NSViewController {
     AutoLooper *_autoLooper;
     Boolean _isLooping;
+    __weak IBOutlet NSTextField *_lblLoopLength;
 }
 
 -(void)setAutoLooper:(AutoLooper *)autoLooper;
-
+-(void)refreshLoopLengthLabel;
 @end
 
 NS_ASSUME_NONNULL_END

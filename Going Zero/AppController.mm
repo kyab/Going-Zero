@@ -586,29 +586,42 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 }
 
 -(Boolean)mainWindowKeyDown:(NSEvent *)event{
-    if (event.keyCode == 0 /*a*/){
-        [_autoLooper toggleQuantizedLoop];
-        return YES;
-    }else if (event.keyCode == 1 /*s*/){
-        // can happen multiple times
-        [_volumeGate activate];
-        return YES;
-    }else if (event.keyCode == 49){
-        [_volumeGate openGate];
-        return YES;
+    switch(event.keyCode){
+        case 0: // a
+            [_autoLooper toggleQuantizedLoop];
+            return YES;
+        case 12: // q
+            [_autoLooper halveLoopLength];
+            [_autoLooperController refreshLoopLengthLabel];
+            return YES;
+        case 13: // w
+            [_autoLooper doubleLoopLength];
+            [_autoLooperController refreshLoopLengthLabel];
+            return YES;
+        case 1: // s
+            [_volumeGate activate];
+            return YES;
+        case 49: // space
+            [_volumeGate openGate];
+            return YES;
+        default:
+            break;
     }
     return NO;
 }
 
 -(Boolean)mainWindowKeyUp:(NSEvent *)event{
-    if (event.keyCode == 0 /*a*/){
-        return YES;
-    }else if (event.keyCode == 1 /*s*/){
-        [_volumeGate deactivate];
-        return YES;
-    }else if (event.keyCode == 49){
-        [_volumeGate closeGate];
-        return YES;
+    switch(event.keyCode){
+        case 0: // a
+            return YES;
+        case 1: // s
+            [_volumeGate deactivate];
+            return YES;
+        case 49: // space
+            [_volumeGate closeGate];
+            return YES;
+        default:
+            break;
     }
     return NO;
 }
