@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
     SInt32 _currentFrameInLoop;
     SInt32 _loopLengthFrame;
     UInt32 _divider;
+    float _beatDurationSecForCurrentLoopSession;
     
     UInt32 _state;
 }

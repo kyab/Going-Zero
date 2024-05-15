@@ -64,6 +64,7 @@
                 [_ring advanceReadPtrSample:samplesToCopy];
                 [_ring advanceReadPtrSample:-_loopLengthFrame];
                 _currentFrameInLoop = 0;
+                _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 / _divider;
                 samplesToCopy = numSamples - samplesToCopy;
                 srcL = [_ring readPtrLeft];
                 srcR = [_ring readPtrRight];
@@ -169,7 +170,8 @@
         _currentFrameInLoop = framesInRegion - offsetFrameInRegion;
     }
     
-    _loopLengthFrame = beatDurationSec * 44100 / _divider;
+    _beatDurationSecForCurrentLoopSession = beatDurationSec;
+    _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 / _divider;
     [_ring follow];
     _state = AUTOLOOPER_STATE_LOOPING;
 }
@@ -186,7 +188,7 @@
     _divider /= 2;
     
     if (_state == AUTOLOOPER_STATE_LOOPING){
-        //restart quantized loop
+        _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 / _divider;
     }
 }
 
@@ -197,7 +199,11 @@
     _divider *= 2;
     
     if (_state == AUTOLOOPER_STATE_LOOPING){
-        //restart quantized loop
+        if (_currentFrameInLoop <= _loopLengthFrame/2){
+            _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 / _divider;
+        }else{
+            //update _loopLengthFrame on next rewind.
+        }
     }
 }
 
