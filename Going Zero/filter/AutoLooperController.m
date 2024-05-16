@@ -16,11 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _isLooping = NO;
 }
 
 -(void)setAutoLooper:(AutoLooper *)autoLooper{
     _autoLooper = autoLooper;
+    [self refreshLoopLengthLabel];
 }
 
 -(void)refreshLoopLengthLabel{
@@ -32,16 +32,5 @@
         [_lblLoopLength setStringValue:[NSString stringWithFormat:@"1/%u", divider]];
     }
 }
-
-- (IBAction)oneBarClicked:(id)sender {
-    if (!_isLooping){
-        [_autoLooper startQuantizedLoop];
-        _isLooping = YES;
-    }else{
-        [_autoLooper exitLoop];
-        _isLooping = NO;
-    }
-}
-
 
 @end

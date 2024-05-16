@@ -95,7 +95,7 @@ using namespace essentia;
     }
     _beatDuration = sum/8.0f;
     
-    NSLog(@"updated. %lu beats. BPM = %.2f, duration = %f[sec]", _finalTicks.size(), 60.0f/_beatDuration, _beatDuration);
+//    NSLog(@"updated. %lu beats. BPM = %.2f, duration = %f[sec]", _finalTicks.size(), 60.0f/_beatDuration, _beatDuration);
     
     // off-beat detection
     if (_prevBeatDuration >= 0.1){
@@ -111,7 +111,7 @@ using namespace essentia;
                 NSLog(@"Flipped");
                 _offBeat = !_offBeat;
             }else{
-                NSLog(@"Just Fixed");
+//                NSLog(@"Just Fixed");
                 _offBeat = false;
             }
         }else{
