@@ -590,61 +590,97 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     Boolean processed = NO;
     switch(event.keyCode){
         case 0: // a
-            if (!_keyPressing[event.keyCode]){
+            if (!event.isARepeat){
                 [_autoLooper toggleQuantizedLoop];
             }
             processed = YES;
             break;
         case 1: // s
-            if (!_keyPressing[event.keyCode]){
+            if (!event.isARepeat){
                 [_autoLooper halveLoopLength];
                 [_autoLooperController refreshLoopLengthLabel];
             }
             processed = YES;
             break;
         case 2: // d
-            if (!_keyPressing[event.keyCode]){
+            if (!event.isARepeat){
                 [_autoLooper doubleLoopLength];
                 [_autoLooperController refreshLoopLengthLabel];
             }
             processed = YES;
             break;
-        case 18: //1
-            if (!_keyPressing[event.keyCode]){
+        case 23: //5
+            if (!event.isARepeat){
                 if (event.modifierFlags & NSEventModifierFlagControl){
-                    NSLog(@"Bounce loop");
+                    [_autoLooper startQuantizedBouneLoop];
+                }
+            }
+            processed = YES;
+            break;
+        case 21: //4
+            if (!event.isARepeat){
+                if (event.modifierFlags & NSEventModifierFlagControl){
+                    [_autoLooper startQuantizedBouneLoopHalf];
+                }
+            }
+            processed = YES;
+            break;
+        case 20: //3
+            if (!event.isARepeat){
+                if (event.modifierFlags & NSEventModifierFlagControl){
+                    [_autoLooper startQuantizedBouneLoopQuarter];
+                }
+            }
+            processed = YES;
+            break;
+        case 19: //2
+            if (!event.isARepeat){
+                if (event.modifierFlags & NSEventModifierFlagControl){
+                    [_autoLooper startQuantizedBouneLoopEighth];
+                }
+            }
+            processed = YES;
+            break;
+        case 18: //1
+            if (!event.isARepeat){
+                if (event.modifierFlags & NSEventModifierFlagControl){
+                    [_autoLooper startQuantizedBouneLoopSixteenth];
                 }
             }
             processed = YES;
             break;
         case 46: // m
-            [_volumeGate activate];
+            if (!event.isARepeat){
+                [_volumeGate activate];
+            }
             processed = YES;
             break;
         case 49: // space
-            [_volumeGate openGate];
+            if (!event.isARepeat){
+                [_volumeGate openGate];
+            }
             processed = YES;
             break;
         default:
             break;
     }
     
-    if (!_keyPressing[event.keyCode]){
-        _keyPressing[event.keyCode] = YES;
-    }
-    
-    return NO;
+    return processed;
 }
 
 -(Boolean)mainWindowKeyUp:(NSEvent *)event{
-    _keyPressing[event.keyCode] = NO;
     switch(event.keyCode){
         case 0: // a
         case 1: // s
         case 2: // d
             return YES;
-        case 18: //1
+        case 23:
+        case 21:
+        case 20:
+        case 19:
+        case 18:
             NSLog(@"Exit bouce loop");
+            [_autoLooper exitLoop];
             return YES;
         case 46: // m
             [_volumeGate deactivate];

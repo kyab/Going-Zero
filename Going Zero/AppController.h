@@ -160,9 +160,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     NSNetService *_netService;
     F53OSCServer *_oscServer;
-    
-    Boolean _keyPressing[256];
-    
+        
 }
 
 -(void)terminate;

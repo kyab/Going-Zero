@@ -24,7 +24,7 @@
 }
 
 -(void)refreshLoopLengthLabel{
-    UInt32 divider = [_autoLooper divider];
+    UInt32 divider = [_autoLooper baseDivider];
     
     if (divider == 1){
         [_lblLoopLength setStringValue:@"1"];

@@ -20,7 +20,8 @@
     _state = AUTOLOOPER_STATE_NONE;
 
     _isLooping = NO;
-    _divider = 1;
+    _baseDivider = 1;
+    _divider = _baseDivider;
     return self;
 }
 
@@ -108,10 +109,11 @@
 }
 
 -(void)doubleLoopLength{
-    if (_divider == 1){
+    if (_baseDivider == 1){
         return;
     }
-    _divider /= 2;
+    _baseDivider /= 2;
+    _divider = _baseDivider;
     
     if (_state == AUTOLOOPER_STATE_LOOPING){
         _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 / _divider;
@@ -119,10 +121,11 @@
 }
 
 -(void)halveLoopLength{
-    if (_divider == 16){
+    if (_baseDivider == 16){
         return;
     }
-    _divider *= 2;
+    _baseDivider *= 2;
+    _divider = _baseDivider;
     
     if (_state == AUTOLOOPER_STATE_LOOPING){
         if (_currentFrameInLoop <= _loopLengthFrame/2){
@@ -133,12 +136,13 @@
     }
 }
 
--(UInt32)divider{
-    return _divider;
+-(UInt32)baseDivider{
+    return _baseDivider;
 }
 
 -(void)toggleQuantizedLoop{
     if (!_isLooping){
+        _divider = _baseDivider;
         [self startQuantizedLoop];
         _isLooping = YES;
     }else{
@@ -146,5 +150,31 @@
         _isLooping = NO;
     }
 }
+
+-(void)startQuantizedBouneLoop{
+    _divider = 1;
+    [self startQuantizedLoop];
+}
+
+-(void)startQuantizedBouneLoopHalf{
+    _divider = 2;
+    [self startQuantizedLoop];
+}
+
+-(void)startQuantizedBouneLoopQuarter{
+    _divider = 4;
+    [self startQuantizedLoop];
+}
+
+-(void)startQuantizedBouneLoopEighth{
+    _divider = 8;
+    [self startQuantizedLoop];
+}
+
+-(void)startQuantizedBouneLoopSixteenth{
+    _divider = 16;
+    [self startQuantizedLoop];
+}
+
 
 @end

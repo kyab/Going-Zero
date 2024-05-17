@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     SInt32 _currentFrameInLoop;
     SInt32 _loopLengthFrame;
+    UInt32 _baseDivider;
     UInt32 _divider;
     float _beatDurationSecForCurrentLoopSession;
     
@@ -29,9 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)startQuantizedLoop;
 -(void)exitLoop;
 -(void)toggleQuantizedLoop;
+-(void)startQuantizedBouneLoop;
+-(void)startQuantizedBouneLoopHalf;
+-(void)startQuantizedBouneLoopQuarter;
+-(void)startQuantizedBouneLoopEighth;
+-(void)startQuantizedBouneLoopSixteenth;
 -(void)doubleLoopLength;
 -(void)halveLoopLength;
--(UInt32)divider;
+-(UInt32)baseDivider;
 
 @end
 
