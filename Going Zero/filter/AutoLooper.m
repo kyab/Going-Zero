@@ -140,38 +140,43 @@
     return _baseDivider;
 }
 
--(void)toggleQuantizedLoop{
-    if (!_isLooping){
-        _divider = _baseDivider;
-        [self startQuantizedLoop];
-        _isLooping = YES;
-    }else{
-        [self exitLoop];
-        _isLooping = NO;
-    }
+//-(void)toggleQuantizedLoop{
+//    if (!_isLooping){
+//        _divider = _baseDivider;
+//        [self startQuantizedLoop];
+//        _isLooping = YES;
+//    }else{
+//        [self exitLoop];
+//        _isLooping = NO;
+//    }
+//}
+
+-(void)startQuantizedNormalLoop{
+    _divider = _baseDivider;
+    [self startQuantizedLoop];
 }
 
--(void)startQuantizedBouneLoop{
+-(void)startQuantizedBounceLoop{
     _divider = 1;
     [self startQuantizedLoop];
 }
 
--(void)startQuantizedBouneLoopHalf{
+-(void)startQuantizedBounceLoopHalf{
     _divider = 2;
     [self startQuantizedLoop];
 }
 
--(void)startQuantizedBouneLoopQuarter{
+-(void)startQuantizedBounceLoopQuarter{
     _divider = 4;
     [self startQuantizedLoop];
 }
 
--(void)startQuantizedBouneLoopEighth{
+-(void)startQuantizedBounceLoopEighth{
     _divider = 8;
     [self startQuantizedLoop];
 }
 
--(void)startQuantizedBouneLoopSixteenth{
+-(void)startQuantizedBounceLoopSixteenth{
     _divider = 16;
     [self startQuantizedLoop];
 }

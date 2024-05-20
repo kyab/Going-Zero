@@ -591,28 +591,28 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     switch(event.keyCode){
         case 0: // a
             if (!event.isARepeat){
-                [_autoLooper toggleQuantizedLoop];
+                [_autoLooperController toggleQuantizedLoop];
             }
             processed = YES;
             break;
         case 1: // s
             if (!event.isARepeat){
                 [_autoLooper halveLoopLength];
-                [_autoLooperController refreshLoopLengthLabel];
+                [_autoLooperController refreshLoopLabel];
             }
             processed = YES;
             break;
         case 2: // d
             if (!event.isARepeat){
                 [_autoLooper doubleLoopLength];
-                [_autoLooperController refreshLoopLengthLabel];
+                [_autoLooperController refreshLoopLabel];
             }
             processed = YES;
             break;
         case 23: //5
             if (!event.isARepeat){
                 if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooper startQuantizedBouneLoop];
+                    [_autoLooperController startQuantizedBounceLoop];
                 }
             }
             processed = YES;
@@ -620,7 +620,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         case 21: //4
             if (!event.isARepeat){
                 if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooper startQuantizedBouneLoopHalf];
+                    [_autoLooperController startQuantizedBounceLoopHalf];
                 }
             }
             processed = YES;
@@ -628,7 +628,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         case 20: //3
             if (!event.isARepeat){
                 if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooper startQuantizedBouneLoopQuarter];
+                    [_autoLooperController startQuantizedBounceLoopQuarter];
                 }
             }
             processed = YES;
@@ -636,7 +636,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         case 19: //2
             if (!event.isARepeat){
                 if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooper startQuantizedBouneLoopEighth];
+                    [_autoLooperController startQuantizedBounceLoopEighth];
                 }
             }
             processed = YES;
@@ -644,7 +644,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         case 18: //1
             if (!event.isARepeat){
                 if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooper startQuantizedBouneLoopSixteenth];
+                    [_autoLooperController startQuantizedBounceLoopSixteenth];
                 }
             }
             processed = YES;
@@ -680,7 +680,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         case 19:
         case 18:
             NSLog(@"Exit bouce loop");
-            [_autoLooper exitLoop];
+            [_autoLooperController exitLoop];
             return YES;
         case 46: // m
             [_volumeGate deactivate];

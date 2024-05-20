@@ -13,11 +13,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AutoLooperController : NSViewController {
     AutoLooper *_autoLooper;
-    __weak IBOutlet NSTextField *_lblLoopLength;
+    __weak IBOutlet NSTextField *_lblLoop;
+    __weak IBOutlet NSTextField *_lblBounceLoop;
+    Boolean _isLooping;
+    
 }
 
 -(void)setAutoLooper:(AutoLooper *)autoLooper;
--(void)refreshLoopLengthLabel;
+-(void)refreshLoopLabel;
+-(void)toggleQuantizedLoop;
+-(void)exitLoop;
+-(void)startQuantizedBounceLoop;
+-(void)startQuantizedBounceLoopHalf;
+-(void)startQuantizedBounceLoopQuarter;
+-(void)startQuantizedBounceLoopEighth;
+-(void)startQuantizedBounceLoopSixteenth;
 @end
 
 NS_ASSUME_NONNULL_END
