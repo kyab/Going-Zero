@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AutoLooperController">
             <connections>
+                <outlet property="_lblAutoLoop" destination="cBg-9H-vnh" id="Jgr-hz-uVn"/>
                 <outlet property="_lblBounceLoop" destination="iLx-wm-oeS" id="AzI-z3-wym"/>
                 <outlet property="_lblLoop" destination="od0-uz-6BT" id="n3m-RJ-KyD"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -19,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iLx-wm-oeS">
-                    <rect key="frame" x="59" y="9" width="89" height="16"/>
+                    <rect key="frame" x="111" y="33" width="89" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Bounce " id="5Fu-GC-NN9">
                         <font key="font" metaFont="system"/>
@@ -28,9 +29,18 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="od0-uz-6BT">
-                    <rect key="frame" x="59" y="33" width="89" height="16"/>
+                    <rect key="frame" x="18" y="33" width="89" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Length 1" id="fF5-WM-qKA">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-9H-vnh">
+                    <rect key="frame" x="74" y="9" width="63" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="AutoLoop" id="nay-Zr-IAV">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

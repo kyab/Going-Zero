@@ -19,7 +19,7 @@
     [_ring setMinOffset:0];
     _state = AUTOLOOPER_STATE_NONE;
 
-    _isLooping = NO;
+    _isAutoLoop = NO;
     _baseDivider = 1;
     _divider = _baseDivider;
     return self;
@@ -65,6 +65,20 @@
                 [_ring advanceReadPtrSample:samplesToCopy];
                 [_ring advanceReadPtrSample:-_loopLengthFrame];
                 _currentFrameInLoop = 0;
+                if (_isAutoLoop){
+                    switch(_autoLoopPhase){
+                        case 2:
+                            _divider = 2;
+                            break;
+                        case 4:
+                            _divider = 4;
+                            break;
+                        case 8:
+                            _state = AUTOLOOPER_STATE_NONE;
+                            return;
+                    }
+                    ++_autoLoopPhase;
+                }
                 _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 / _divider;
                 samplesToCopy = numSamples - samplesToCopy;
                 srcL = [_ring readPtrLeft];
@@ -106,6 +120,7 @@
 
 -(void)exitLoop{
     _state = AUTOLOOPER_STATE_NONE;
+    _isAutoLoop = NO;
 }
 
 -(void)doubleLoopLength{
@@ -140,16 +155,12 @@
     return _baseDivider;
 }
 
-//-(void)toggleQuantizedLoop{
-//    if (!_isLooping){
-//        _divider = _baseDivider;
-//        [self startQuantizedLoop];
-//        _isLooping = YES;
-//    }else{
-//        [self exitLoop];
-//        _isLooping = NO;
-//    }
-//}
+-(void)startQuantizedAutoLoop{
+    _divider = 1;
+    _isAutoLoop = YES;
+    _autoLoopPhase = 1;
+    [self startQuantizedLoop];
+}
 
 -(void)startQuantizedNormalLoop{
     _divider = _baseDivider;
@@ -181,5 +192,12 @@
     [self startQuantizedLoop];
 }
 
+-(Boolean)isLooping{
+    if (_state == AUTOLOOPER_STATE_NONE){
+        return NO;
+    }else{
+        return YES;
+    }
+}
 
 @end

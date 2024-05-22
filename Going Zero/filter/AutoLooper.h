@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AutoLooper : NSObject{
     RingBuffer *_ring;
     BeatTracker *_beatTracker;
-    Boolean _isLooping;
+    Boolean _isAutoLoop;
+    UInt32 _autoLoopPhase;
     
     SInt32 _currentFrameInLoop;
     SInt32 _loopLengthFrame;
@@ -27,9 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 -(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
--(void)startQuantizedLoop;
+-(void)startQuantizedLoop;  //internal
 -(void)exitLoop;
-//-(void)toggleQuantizedLoop;
+-(void)startQuantizedAutoLoop;
 -(void)startQuantizedNormalLoop;
 -(void)startQuantizedBounceLoop;
 -(void)startQuantizedBounceLoopHalf;
@@ -39,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)doubleLoopLength;
 -(void)halveLoopLength;
 -(UInt32)baseDivider;
+-(Boolean)isLooping;
 
 @end
 

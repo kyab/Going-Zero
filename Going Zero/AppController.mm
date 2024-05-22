@@ -591,7 +591,11 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     switch(event.keyCode){
         case 0: // a
             if (!event.isARepeat){
-                [_autoLooperController toggleQuantizedLoop];
+                if (event.modifierFlags & NSEventModifierFlagShift){
+                    [_autoLooperController startQuantizedAutoLoop];
+                }else{
+                    [_autoLooperController toggleQuantizedLoop];
+                }
             }
             processed = YES;
             break;
@@ -679,7 +683,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         case 20:
         case 19:
         case 18:
-            NSLog(@"Exit bouce loop");
             [_autoLooperController exitLoop];
             return YES;
         case 46: // m

@@ -15,14 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
     AutoLooper *_autoLooper;
     __weak IBOutlet NSTextField *_lblLoop;
     __weak IBOutlet NSTextField *_lblBounceLoop;
-    Boolean _isLooping;
-    
+    __weak IBOutlet NSTextField *_lblAutoLoop;    
 }
 
 -(void)setAutoLooper:(AutoLooper *)autoLooper;
 -(void)refreshLoopLabel;
 -(void)toggleQuantizedLoop;
 -(void)exitLoop;
+-(void)startQuantizedAutoLoop;
 -(void)startQuantizedBounceLoop;
 -(void)startQuantizedBounceLoopHalf;
 -(void)startQuantizedBounceLoopQuarter;
