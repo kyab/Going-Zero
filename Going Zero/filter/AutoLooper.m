@@ -68,12 +68,15 @@
                 if (_isAutoLoop){
                     switch(_autoLoopPhase){
                         case 2:
-                            _divider = 2;
+                            _divider = 1;
                             break;
                         case 4:
-                            _divider = 4;
+                            _divider = 2;
                             break;
-                        case 8:
+                        case 6:
+                            _divider = 8;
+                            break;
+                        case 14:
                             _state = AUTOLOOPER_STATE_NONE;
                             return;
                     }
@@ -96,23 +99,52 @@
 }
 
 -(void)startQuantizedLoop{
-    float pastBeatSec = [_beatTracker pastBeatRelativeSec];
-    float beatDurationSec = [_beatTracker beatDurationSec];
     
-    UInt8 region = 0;
-    float posSec = fabs(pastBeatSec);
-    region= (UInt32)(posSec*44100) / (UInt32)(beatDurationSec*44100 / (_divider * 2));
-    UInt32 offsetFrameInRegion = (UInt32)(posSec*44100) % (UInt32)(beatDurationSec*44100 / (_divider * 2));
-    UInt32 framesInRegion = (UInt32)(beatDurationSec*44100 / (_divider * 2));
-    
-    if (region % 2 == 0){
-        _currentFrameInLoop = offsetFrameInRegion;
+    if (_divider >= 1.0){
+        
+        float pastBeatSec = [_beatTracker pastBeatRelativeSec];
+        float beatDurationSec = [_beatTracker beatDurationSec];
+        
+        UInt8 region = 0;
+        float posSec = fabs(pastBeatSec);
+        region = (UInt32)(posSec*44100) / (UInt32)(beatDurationSec*44100 / (_divider * 2));
+        UInt32 offsetFrameInRegion = (UInt32)(posSec*44100) % (UInt32)(beatDurationSec*44100 / (_divider * 2));
+        UInt32 framesInRegion = (UInt32)(beatDurationSec*44100 / (_divider * 2));
+        
+        if (region % 2 == 0){
+            _currentFrameInLoop = offsetFrameInRegion;
+            NSLog(@"A currentFrameInLoop = %d", _currentFrameInLoop);
+        }else{
+            _currentFrameInLoop = framesInRegion - offsetFrameInRegion;
+            NSLog(@"B currentFrameInLoop = %d", _currentFrameInLoop);
+        }
+        
+        _beatDurationSecForCurrentLoopSession = beatDurationSec;
+        _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 / _divider;
     }else{
-        _currentFrameInLoop = framesInRegion - offsetFrameInRegion;
+        float pastBeatSec = [_beatTracker pastBeatRelativeSec];
+        float beatDurationSec = [_beatTracker beatDurationSec];
+        pastBeatSec -= beatDurationSec;
+        
+        UInt8 region = 0;
+        float posSec = fabs(pastBeatSec);
+        region = (UInt32)(posSec*44100) / (UInt32)(beatDurationSec*2*44100 / (_divider * 2));
+        UInt32 offsetFrameInRegion = (UInt32)(posSec*44100) % (UInt32)(beatDurationSec*2*44100 / (_divider * 2));
+        UInt32 framesInRegion = (UInt32)(beatDurationSec*2*44100 / (_divider * 2));
+        
+        if (region % 2 == 0){
+            _currentFrameInLoop = offsetFrameInRegion;
+            NSLog(@"AA currentFrameInLoop = %d", _currentFrameInLoop);
+        }else{
+            _currentFrameInLoop = framesInRegion - offsetFrameInRegion;
+            NSLog(@"BB currentFrameInLoop = %d", _currentFrameInLoop);
+        }
+        
+        _beatDurationSecForCurrentLoopSession = beatDurationSec;
+        _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 / _divider;
+        
+        
     }
-    
-    _beatDurationSecForCurrentLoopSession = beatDurationSec;
-    _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 / _divider;
     [_ring follow];
     _state = AUTOLOOPER_STATE_LOOPING;
 }
@@ -156,7 +188,7 @@
 }
 
 -(void)startQuantizedAutoLoop{
-    _divider = 1;
+    _divider = 1/2.0;
     _isAutoLoop = YES;
     _autoLoopPhase = 1;
     [self startQuantizedLoop];
