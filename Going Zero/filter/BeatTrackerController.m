@@ -23,7 +23,6 @@
 - (void)onTimer:(NSTimer *)timer{
     if (_beatTracker){
         float ratio = [_beatTracker estimatedNextBeatRelativeSec] / [_beatTracker beatDurationSec];
-//        float ratio = fabs([_beatTracker pastBeatRelativeSec]) / [_beatTracker beatDurationSec];
         
         [_beatView setRatio:ratio offBeat:[_beatTracker offBeat]];
         [_beatView setNeedsDisplay:YES];

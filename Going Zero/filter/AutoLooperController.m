@@ -49,6 +49,7 @@
     if ([_autoLooper isLooping]){
         [self exitLoop];
     }else{
+        [self exitLoop];
         [_lblLoop setBackgroundColor:NSColor.systemCyanColor];
         [_lblLoop setDrawsBackground:YES];
         [_autoLooper startQuantizedNormalLoop];

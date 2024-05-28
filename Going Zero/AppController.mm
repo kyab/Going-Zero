@@ -653,6 +653,12 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
             }
             processed = YES;
             break;
+        case 3:  //f
+            if (!event.isARepeat){
+                [_beatTracker flipOffBeat];
+            }
+            processed = YES;
+            break;
         case 46: // m
             if (!event.isARepeat){
                 [_volumeGate activate];
