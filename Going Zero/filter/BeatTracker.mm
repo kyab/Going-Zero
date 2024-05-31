@@ -43,7 +43,7 @@ using namespace essentia;
     float _beatDuration;
     float _prevBeatDuration;
     float _prevLastTick;    // [sec]
-    Boolean _offBeat;    //拍子がひっくり返っているか
+    Boolean _flipped;    //拍子がひっくり返っているか
 }
 
 -(id)init{
@@ -76,7 +76,7 @@ using namespace essentia;
     _prevBeatDuration = 0.0f;
     _prevLastTick = 0.0f;
      
-    _offBeat = false;
+    _flipped = false;
     
     return self;
 }
@@ -109,14 +109,14 @@ using namespace essentia;
             float delta = nextBeatCandidate - lastTick;
             if (0.4 <= delta/_beatDuration && delta/_beatDuration <= 0.6 ){
                 NSLog(@"Flipped");
-                _offBeat = !_offBeat;
+                _flipped = !_flipped;
             }else{
 //                NSLog(@"Just Fixed");
-                _offBeat = false;
+//                _flipped = false;
             }
         }else{
             NSLog(@"Jumped");
-            _offBeat = false;
+            _flipped = false;
         }
     }
     
@@ -133,11 +133,11 @@ using namespace essentia;
 }
 
 -(Boolean)offBeat{
-    return _offBeat;
+    return _flipped;
 }
 
 -(void)flipOffBeat{
-    _offBeat = !_offBeat;
+    _flipped = !_flipped;
 }
 
 -(float)pastBeatRelativeSec{
@@ -146,7 +146,7 @@ using namespace essentia;
     }
 
     Real lastBeatSec = _finalTicks[_finalTicks.size()-1];
-    if (_offBeat){
+    if (_flipped){
         lastBeatSec -= _beatDuration/2.0f;
     }
     Real previousBeatSec = lastBeatSec;
@@ -163,7 +163,7 @@ using namespace essentia;
     }
     
     Real lastBeatSec = _finalTicks[_finalTicks.size()-1];
-    if (_offBeat){
+    if (_flipped){
         lastBeatSec -= _beatDuration/2.0f;
     }
     Real nextBeatSec = lastBeatSec;
