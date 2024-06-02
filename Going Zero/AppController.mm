@@ -279,7 +279,7 @@
         float *pRight = (float *)ioData->mBuffers[1].mData;
         bzero(pLeft,sizeof(float)*sampleNum );
         bzero(pRight,sizeof(float)*sampleNum );
-        followRequired = YES;
+//        followRequired = YES;
 //        NSLog(@"shortage in out thread");
         return noErr;
     }
