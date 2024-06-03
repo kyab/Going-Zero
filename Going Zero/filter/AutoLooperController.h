@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSTextField *_lblLoop;
     __weak IBOutlet NSTextField *_lblBounceLoop;
     __weak IBOutlet NSTextField *_lblAutoLoop;    
+    NSTimer *_timer;
 }
 
 -(void)setAutoLooper:(AutoLooper *)autoLooper;

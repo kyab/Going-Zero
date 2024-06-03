@@ -21,6 +21,14 @@
 -(void)setAutoLooper:(AutoLooper *)autoLooper{
     _autoLooper = autoLooper;
     [self refreshLoopLabel];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+-(void)onTimer:(NSTimer *)timer{
+    if (![_autoLooper isLooping]){
+        [self exitLoopUI];
+    }
 }
 
 -(void)refreshLoopLabel{
@@ -35,6 +43,10 @@
 
 -(void)exitLoop{
     [_autoLooper exitLoop];
+    [self exitLoopUI];
+}
+
+-(void)exitLoopUI{
     [_lblLoop setBackgroundColor:NSColor.textBackgroundColor];
     [_lblLoop setDrawsBackground:NO];
     [_lblBounceLoop setStringValue:[NSString stringWithFormat:@"Bounce"]];
@@ -42,7 +54,6 @@
     [_lblBounceLoop setDrawsBackground:NO];
     [_lblAutoLoop setBackgroundColor:NSColor.textBackgroundColor];
     [_lblAutoLoop setDrawsBackground:NO];
-    [_lblAutoLoop setStringValue:[NSString stringWithFormat:@"Auto"]];
 }
 
 -(void)toggleQuantizedLoop{
@@ -57,13 +68,14 @@
 }
 
 -(void)startQuantizedAutoLoop{
-    [_lblAutoLoop setStringValue:[NSString stringWithFormat:@"Auto"]];
+    [self exitLoop];
     [_autoLooper startQuantizedAutoLoop];
     [_lblAutoLoop setBackgroundColor:NSColor.systemIndigoColor];
     [_lblAutoLoop setDrawsBackground:YES];
 }
 
 -(void)startQuantizedBounceLoop{
+    [self exitLoop];
     [_lblBounceLoop setStringValue:[NSString stringWithFormat:@"Bounce 1"]];
     [_autoLooper startQuantizedBounceLoop];
     [_lblBounceLoop setBackgroundColor:NSColor.systemIndigoColor];
@@ -71,6 +83,7 @@
 }
 
 -(void)startQuantizedBounceLoopHalf{
+    [self exitLoop];
     [_lblBounceLoop setStringValue:[NSString stringWithFormat:@"Bounce 1/2"]];
     [_autoLooper startQuantizedBounceLoopHalf];
     [_lblBounceLoop setBackgroundColor:NSColor.systemIndigoColor];
@@ -78,6 +91,7 @@
 }
 
 -(void)startQuantizedBounceLoopQuarter{
+    [self exitLoop];
     [_lblBounceLoop setStringValue:[NSString stringWithFormat:@"Bounce 1/4"]];
     [_autoLooper startQuantizedBounceLoopQuarter];
     [_lblBounceLoop setBackgroundColor:NSColor.systemIndigoColor];
@@ -85,6 +99,7 @@
 }
 
 -(void)startQuantizedBounceLoopEighth{
+    [self exitLoop];
     [_lblBounceLoop setStringValue:[NSString stringWithFormat:@"Bounce 1/8"]];
     [_autoLooper startQuantizedBounceLoopEighth];
     [_lblBounceLoop setBackgroundColor:NSColor.systemIndigoColor];
@@ -92,6 +107,7 @@
 }
 
 -(void)startQuantizedBounceLoopSixteenth{
+    [self exitLoop];
     [_lblBounceLoop setStringValue:[NSString stringWithFormat:@"Bounce 1/16"]];
     [_autoLooper startQuantizedBounceLoopSixteenth];
     [_lblBounceLoop setBackgroundColor:NSColor.systemIndigoColor];

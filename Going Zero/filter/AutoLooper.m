@@ -64,9 +64,6 @@
                 memcpy(rightBuf, srcR, samplesToCopy * sizeof(float));
                 [_ring advanceReadPtrSample:samplesToCopy];
                 [_ring advanceReadPtrSample:-_loopLengthFrame];
-                
-                NSLog(@"autoLoopPhase = %d", _autoLoopPhase);
-                
                 _currentFrameInLoop = 0;
                 if (_isAutoLoop){
                     switch(_autoLoopPhase){
@@ -117,10 +114,8 @@
         
         if (region % 2 == 0){
             _currentFrameInLoop = offsetFrameInRegion;
-            NSLog(@"A currentFrameInLoop = %d", _currentFrameInLoop);
         }else{
             _currentFrameInLoop = framesInRegion - offsetFrameInRegion;
-            NSLog(@"B currentFrameInLoop = %d", _currentFrameInLoop);
         }
         
         _beatDurationSecForCurrentLoopSession = beatDurationSec;
@@ -133,10 +128,8 @@
         
         if (currentSecSinceLastBeat < (beatDurationSec/2.0)){
             _currentFrameInLoop = (SInt32)(currentSecSinceLastBeat*44100);
-            NSLog(@"AA currentFrameInLoop = %d", _currentFrameInLoop);
         }else{
             _currentFrameInLoop = (SInt32)(-1.0*(beatDurationSec - currentSecSinceLastBeat)*44100);
-            NSLog(@"BB currentFrameInLoop = %d", _currentFrameInLoop);
         }
         _beatDurationSecForCurrentLoopSession = beatDurationSec;
         _loopLengthFrame = _beatDurationSecForCurrentLoopSession * 44100 * 2 ;

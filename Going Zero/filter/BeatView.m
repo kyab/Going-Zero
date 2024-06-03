@@ -16,13 +16,9 @@
         
     [[NSColor blueColor] set];
     NSRectFill(self.bounds);
-    
+
+    [[NSColor orangeColor] set];
     NSRect rect = self.bounds;
-    if (_offBeat){
-        [[NSColor cyanColor] set];
-    }else{
-        [[NSColor orangeColor] set];
-    }
     rect.size.width *= _ratio;
     NSRectFill(rect);
 }
