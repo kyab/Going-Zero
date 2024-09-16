@@ -615,41 +615,41 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
             break;
         case 23: //5
             if (!event.isARepeat){
-                if (event.modifierFlags & NSEventModifierFlagControl){
+//                if (event.modifierFlags & NSEventModifierFlagControl){
                     [_autoLooperController startQuantizedBounceLoop];
-                }
+//                }
             }
             processed = YES;
             break;
         case 21: //4
             if (!event.isARepeat){
-                if (event.modifierFlags & NSEventModifierFlagControl){
+//                if (event.modifierFlags & NSEventModifierFlagControl){
                     [_autoLooperController startQuantizedBounceLoopHalf];
-                }
+//                }
             }
             processed = YES;
             break;
         case 20: //3
             if (!event.isARepeat){
-                if (event.modifierFlags & NSEventModifierFlagControl){
+//                if (event.modifierFlags & NSEventModifierFlagControl){
                     [_autoLooperController startQuantizedBounceLoopQuarter];
-                }
+//                }
             }
             processed = YES;
             break;
         case 19: //2
             if (!event.isARepeat){
-                if (event.modifierFlags & NSEventModifierFlagControl){
+//                if (event.modifierFlags & NSEventModifierFlagControl){
                     [_autoLooperController startQuantizedBounceLoopEighth];
-                }
+//                }
             }
             processed = YES;
             break;
         case 18: //1
             if (!event.isARepeat){
-                if (event.modifierFlags & NSEventModifierFlagControl){
+//                if (event.modifierFlags & NSEventModifierFlagControl){
                     [_autoLooperController startQuantizedBounceLoopSixteenth];
-                }
+//                }
             }
             processed = YES;
             break;
