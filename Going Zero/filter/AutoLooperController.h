@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
     AutoLooper *_autoLooper;
     __weak IBOutlet NSTextField *_lblLoop;
     __weak IBOutlet NSTextField *_lblBounceLoop;
-    __weak IBOutlet NSTextField *_lblAutoLoop;    
+    __weak IBOutlet NSTextField *_lblAutoLoop;
     NSTimer *_timer;
 }
 
@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)toggleQuantizedLoop;
 -(void)exitLoop;
 -(void)startQuantizedAutoLoop;
+-(void)startQuantizedBounceLoopDouble;
 -(void)startQuantizedBounceLoop;
 -(void)startQuantizedBounceLoopHalf;
 -(void)startQuantizedBounceLoopQuarter;

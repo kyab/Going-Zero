@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)exitLoop;
 -(void)startQuantizedAutoLoop;
 -(void)startQuantizedNormalLoop;
+-(void)startQuantizedBounceLoopDouble;
 -(void)startQuantizedBounceLoop;
 -(void)startQuantizedBounceLoopHalf;
 -(void)startQuantizedBounceLoopQuarter;

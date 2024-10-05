@@ -189,6 +189,11 @@
     [self startQuantizedLoop];
 }
 
+-(void)startQuantizedBounceLoopDouble{
+    _divider = 1/2.0;
+    [self startQuantizedLoop];
+}
+
 -(void)startQuantizedBounceLoop{
     _divider = 1;
     [self startQuantizedLoop];

@@ -613,43 +613,39 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
             }
             processed = YES;
             break;
+        case 22: //6
+            if (!event.isARepeat){
+                [_autoLooperController startQuantizedBounceLoopDouble];
+            }
+            processed = YES;
+            break;
         case 23: //5
             if (!event.isARepeat){
-//                if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooperController startQuantizedBounceLoop];
-//                }
+                [_autoLooperController startQuantizedBounceLoop];
             }
             processed = YES;
             break;
         case 21: //4
             if (!event.isARepeat){
-//                if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooperController startQuantizedBounceLoopHalf];
-//                }
+                [_autoLooperController startQuantizedBounceLoopHalf];
             }
             processed = YES;
             break;
         case 20: //3
             if (!event.isARepeat){
-//                if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooperController startQuantizedBounceLoopQuarter];
-//                }
+                [_autoLooperController startQuantizedBounceLoopQuarter];
             }
             processed = YES;
             break;
         case 19: //2
             if (!event.isARepeat){
-//                if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooperController startQuantizedBounceLoopEighth];
-//                }
+                [_autoLooperController startQuantizedBounceLoopEighth];
             }
             processed = YES;
             break;
         case 18: //1
             if (!event.isARepeat){
-//                if (event.modifierFlags & NSEventModifierFlagControl){
-                    [_autoLooperController startQuantizedBounceLoopSixteenth];
-//                }
+                [_autoLooperController startQuantizedBounceLoopSixteenth];
             }
             processed = YES;
             break;
@@ -684,6 +680,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         case 1: // s
         case 2: // d
             return YES;
+        case 22:
         case 23:
         case 21:
         case 20:
