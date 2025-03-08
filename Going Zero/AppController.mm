@@ -83,6 +83,7 @@
         
     _viewer = [[Viewer alloc] init];
     [_waveView setViewer: _viewer];
+    [_viewer setEnabled:YES];
     
     _refrain = [[Refrain alloc] init];
     _refrainController = [[RefrainController alloc] initWithNibName:@"RefrainView" bundle:nil];
@@ -164,13 +165,23 @@
     }
     [_ae setRenderDelegate:(id<AudioEngineDelegate>)self];
     
+    
+    NSLog(@"[[start]]");
+    
+    NSLog(@"Changing System output to virtual...");
     [_ae changeSystemOutputDeviceToBGM];
+    NSLog(@"Changing System output to virtual...done");
+
+    NSLog(@"Starting output...");
     [_ae startOutput];
+    NSLog(@"Starting output...done");
+    
+    NSLog(@"Starting input...");
     [_ae startInput];
+    NSLog(@"Starting input...done");
     
     //wake up
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(didWakenUp:) name:NSWorkspaceDidWakeNotification object:nil];
-    
     
 }
 
@@ -219,10 +230,11 @@
 
 - (OSStatus) inCallback:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
     
-
+    static int count = 0;
+    
     static BOOL printNumFrames = NO;
     if (!printNumFrames){
-        NSLog(@"inCallback NumFrames = %d", inNumberFrames);
+        NSLog(@"First inCallback NumFrames = %d", inNumberFrames);
         printNumFrames = YES;
     }
     
@@ -246,6 +258,11 @@
     
     if ([_ae isRecording]){
         [_ring advanceWritePtrSample:inNumberFrames];
+        count += inNumberFrames;
+        if (count >= 44100){
+            NSLog(@"I");
+            count = 0;
+        }
     }
     
     return ret;
@@ -254,10 +271,11 @@
 
 - (OSStatus) outCallback:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
     
+    static int count = 0;
     static BOOL printedNumFrames = NO;
     static BOOL followRequired = YES;
     if (!printedNumFrames){
-        NSLog(@"outCallback NumFrames = %d", inNumberFrames);
+        NSLog(@"First outCallback. NumFrames = %d", inNumberFrames);
         printedNumFrames = YES;
     }
     
@@ -285,7 +303,7 @@
     }
     
     if (![_ring dryPtrLeft] || ![_ring dryPtrRight]){
-         //not enough buffer
+        // not enough buffer
         NSLog(@"no enough buffer on dry");
         UInt32 sampleNum = inNumberFrames;
         float *pLeft = (float *)ioData->mBuffers[0].mData;
@@ -300,6 +318,12 @@
         [_ring follow];
         NSLog(@"Follow");
         followRequired = NO;
+    }
+    
+    count += inNumberFrames;
+    if (count >= 44100){
+        NSLog(@"O");
+        count = 0;
     }
     
     //TurnTable
@@ -355,87 +379,87 @@
             [_faderIn processLeft:pDstLeft right:pDstRight samples:inNumberFrames];
         }
     }
-    
-    //beat tracker
-    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Auto Looper
-    [_autoLooper processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Volume Gate
-    [_volumeGate processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Beat Lookup
-    [_beatLookup processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Sampler
-    [_sampler processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-
-    //DJ filter
-    [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Random
-    [_random processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //LookUp
-    [_lookUp processLeft:(float*)ioData->mBuffers[0].mData
-                   right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Looper
-    [_looper processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-
-    //Quick Cue
-    [_quickCue processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Bender
-    [_bender processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Trill reverse
-    [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-
-    //Freezer
-    [_freezer processLeft:(float*)ioData->mBuffers[0].mData
-                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-  
-    //Reverse
-    [_reverse processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Refrain
-    [_refrain processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Bit crusher
-    [_crusher processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-  
-    //Tape reverse
-    [_tapeReverse processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Flanger
-    [_flanger processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Simple Reverb
-    [_simpleReverb processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Viewer
-    [_viewer processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
+//    
+//    //beat tracker
+//    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Auto Looper
+//    [_autoLooper processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Volume Gate
+//    [_volumeGate processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Beat Lookup
+//    [_beatLookup processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Sampler
+//    [_sampler processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//
+//    //DJ filter
+//    [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Random
+//    [_random processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //LookUp
+//    [_lookUp processLeft:(float*)ioData->mBuffers[0].mData
+//                   right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Looper
+//    [_looper processLeft:(float*)ioData->mBuffers[0].mData
+//                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//
+//    //Quick Cue
+//    [_quickCue processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Bender
+//    [_bender processLeft:(float*)ioData->mBuffers[0].mData
+//                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Trill reverse
+//    [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
+//                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//
+//    //Freezer
+//    [_freezer processLeft:(float*)ioData->mBuffers[0].mData
+//                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//  
+//    //Reverse
+//    [_reverse processLeft:(float*)ioData->mBuffers[0].mData
+//                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Refrain
+//    [_refrain processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Bit crusher
+//    [_crusher processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//  
+//    //Tape reverse
+//    [_tapeReverse processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Flanger
+//    [_flanger processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Simple Reverb
+//    [_simpleReverb processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
+//    //Viewer
+//    [_viewer processLeft:(float*)ioData->mBuffers[0].mData
+//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+//    
     return noErr;
 }
 
@@ -479,13 +503,13 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     }
 }
 
-- (IBAction)monitorEnableChanged:(id)sender {
-    if ([_chkWaveViewEnabled state] == NSControlStateValueOn){
-        [_viewer setEnabled:YES];
-    }else{
-        [_viewer setEnabled:NO];
-    }
-}
+//- (IBAction)monitorEnableChanged:(id)sender {
+//    if ([_chkWaveViewEnabled state] == NSControlStateValueOn){
+//        [_viewer setEnabled:YES];
+//    }else{
+//        [_viewer setEnabled:NO];
+//    }
+//}
 
 -(void)startBonjour{
     

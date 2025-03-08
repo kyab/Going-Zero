@@ -108,7 +108,6 @@ NS_ASSUME_NONNULL_BEGIN
     
     Viewer *_viewer;
     __weak IBOutlet WaveView *_waveView;
-    __weak IBOutlet NSButton *_chkWaveViewEnabled;
     
     Refrain *_refrain;
     __weak IBOutlet NSView *_refrainContentView;
