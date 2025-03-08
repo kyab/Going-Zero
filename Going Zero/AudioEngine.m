@@ -12,7 +12,7 @@
 #define OUTPUT_DEVICE @"Built-in Output"
 //#define OUTPUT_DEVICE @"Soundflower (2ch)"
 #define LOOPBACK_DEVICE @"Going Zero Device"
-
+//#define LOOPBACK_DEVICE @"Background Music"
 
 @implementation AudioEngine
 - (id)init
@@ -494,7 +494,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     
     if(FAILED(ret)){
         NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
-        NSLog(@"Failed to set Device for Input = %d(%@)", ret, [err description]);
+        NSLog(@"Failed to get CoreAudio devices = %d(%@)", ret, [err description]);
         return -1;
     }
     num = propertySize / sizeof(AudioObjectID);
@@ -503,7 +503,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     ret = AudioObjectGetPropertyData(kAudioObjectSystemObject, &propAddress, 0, NULL, &propertySize, objects);
     if(FAILED(ret)){
         NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
-        NSLog(@"Failed to set Device for Input = %d(%@)", ret, [err description]);
+        NSLog(@"Failed to get CoreAudio devices = %d(%@)", ret, [err description]);
         free(objects);
         return -1;
     }
@@ -521,19 +521,20 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
             return -1;
         }
         
-        NSLog(@"dev : %@", name);
+        NSLog(@"getDeviceForName(%@) dev : %@",devName, name);
         
         if (name != NULL){
             if (CFStringCompare(name, (CFStringRef)devName,kCFCompareCaseInsensitive) == kCFCompareEqualTo){
+                NSLog(@"Found device for %@",devName);
                 result = objects[i];
-                break;
+//                break;
             }
             CFRelease(name);
         }
         
     }
     if (-1 == result){
-        NSLog(@"No BGM Device found on system");
+        NSLog(@"getDeviceForName(%@) failed.",devName);
     }
     
     free(objects);

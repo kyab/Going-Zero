@@ -22,17 +22,29 @@
 }
 
 -(void)onTimer:(NSTimer *)timer{
-//    NSLog(@"WaveView onTimer");
     [self setNeedsDisplay:YES];
 }
 
+-(void)viewDidMoveToSuperview {
+    [super viewDidMoveToSuperview];
+    
+    self.wantsLayer = YES;
+    self.layer.backgroundColor = [NSColor blackColor].CGColor;
+}
+
+-(void)viewDidMoveToWindow{
+    [super viewDidMoveToWindow];
+    
+    self.wantsLayer = YES;
+    self.layer.backgroundColor = [NSColor blackColor].CGColor;
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
+
     [super drawRect:dirtyRect];
 
     [[NSGraphicsContext currentContext] setShouldAntialias:NO];
-    [[NSColor blackColor] set];
-    NSRectFill(dirtyRect);
-    
+
     if (!_viewer) {
         return;
     }
@@ -52,13 +64,13 @@
     
     RingBuffer *ring = [_viewer ring];
     
-    float *bufL = [ring writePtrLeft] - 4410 - (ptrdiff_t)(ceil(4410/w));
-    float *bufR = [ring writePtrRight] - 4410 - (ptrdiff_t)(ceil(4410/w));
+    float *bufL = [ring writePtrLeft] - 44100 - (ptrdiff_t)(ceil(44100/w));
+    float *bufR = [ring writePtrRight] - 44100 - (ptrdiff_t)(ceil(44100/w));
     
     
     for(int i = 0; i < w; i++){
         float max = 0;
-        for (int j = (int)i*floor(4410/w); j < (int)i*floor(4410/w) + (int)floor(4410/w); j++){
+        for (int j = (int)i*floor(44100/w); j < (int)i*floor(44100/w) + (int)floor(44100/w); j++){
             
             float val = fabs(bufL[j]);
             if (val < fabs(bufR[j])){

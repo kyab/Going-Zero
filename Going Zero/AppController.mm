@@ -81,6 +81,11 @@
     [self centerize:[_reverseController view]];
     [_reverseController setReverse:_reverse];
         
+    _inViewer = [[Viewer alloc] init];
+    [_inViewer setExternalRing:_ring];
+    [_inWaveView setViewer:_inViewer];
+    [_inViewer setEnabled:YES];
+    
     _viewer = [[Viewer alloc] init];
     [_waveView setViewer: _viewer];
     [_viewer setEnabled:YES];
@@ -168,14 +173,14 @@
     
     NSLog(@"[[start]]");
     
-    NSLog(@"Changing System output to virtual...");
-    [_ae changeSystemOutputDeviceToBGM];
-    NSLog(@"Changing System output to virtual...done");
+//    NSLog(@"Changing System output to virtual...");
+//    [_ae changeSystemOutputDeviceToBGM];
+//    NSLog(@"Changing System output to virtual...done");
 
-    NSLog(@"Starting output...");
-    [_ae startOutput];
-    NSLog(@"Starting output...done");
-    
+//    NSLog(@"Starting output...");
+//    [_ae startOutput];
+//    NSLog(@"Starting output...done");
+//    
     NSLog(@"Starting input...");
     [_ae startInput];
     NSLog(@"Starting input...done");
@@ -298,7 +303,7 @@
         bzero(pLeft,sizeof(float)*sampleNum );
         bzero(pRight,sizeof(float)*sampleNum );
 //        followRequired = YES;
-//        NSLog(@"shortage in out thread");
+        NSLog(@"shortage in out thread");
         return noErr;
     }
     
@@ -379,87 +384,88 @@
             [_faderIn processLeft:pDstLeft right:pDstRight samples:inNumberFrames];
         }
     }
-//    
-//    //beat tracker
-//    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Auto Looper
-//    [_autoLooper processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Volume Gate
-//    [_volumeGate processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Beat Lookup
-//    [_beatLookup processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Sampler
-//    [_sampler processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//
-//    //DJ filter
-//    [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Random
-//    [_random processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //LookUp
-//    [_lookUp processLeft:(float*)ioData->mBuffers[0].mData
-//                   right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Looper
-//    [_looper processLeft:(float*)ioData->mBuffers[0].mData
-//                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//
-//    //Quick Cue
-//    [_quickCue processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Bender
-//    [_bender processLeft:(float*)ioData->mBuffers[0].mData
-//                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Trill reverse
-//    [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
-//                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//
-//    //Freezer
-//    [_freezer processLeft:(float*)ioData->mBuffers[0].mData
-//                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//  
-//    //Reverse
-//    [_reverse processLeft:(float*)ioData->mBuffers[0].mData
-//                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Refrain
-//    [_refrain processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Bit crusher
-//    [_crusher processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//  
-//    //Tape reverse
-//    [_tapeReverse processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Flanger
-//    [_flanger processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Simple Reverb
-//    [_simpleReverb processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
-//    //Viewer
-//    [_viewer processLeft:(float*)ioData->mBuffers[0].mData
-//                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-//    
+    
+    //beat tracker
+    [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Auto Looper
+    [_autoLooper processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Volume Gate
+    [_volumeGate processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Beat Lookup
+    [_beatLookup processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Sampler
+    [_sampler processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
+    //DJ filter
+    [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Random
+    [_random processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //LookUp
+    [_lookUp processLeft:(float*)ioData->mBuffers[0].mData
+                   right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Looper
+    [_looper processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
+    //Quick Cue
+    [_quickCue processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Bender
+    [_bender processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Trill reverse
+    [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
+    //Freezer
+    [_freezer processLeft:(float*)ioData->mBuffers[0].mData
+                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+  
+    //Reverse
+    [_reverse processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Refrain
+    [_refrain processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Bit crusher
+    [_crusher processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+  
+    //Tape reverse
+    [_tapeReverse processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Flanger
+    [_flanger processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Simple Reverb
+    [_simpleReverb processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //Viewer
+    [_viewer processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
+    
     return noErr;
 }
 

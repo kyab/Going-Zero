@@ -109,6 +109,9 @@ NS_ASSUME_NONNULL_BEGIN
     Viewer *_viewer;
     __weak IBOutlet WaveView *_waveView;
     
+    Viewer *_inViewer;
+    __weak IBOutlet WaveView *_inWaveView;
+    
     Refrain *_refrain;
     __weak IBOutlet NSView *_refrainContentView;
     RefrainController *_refrainController;

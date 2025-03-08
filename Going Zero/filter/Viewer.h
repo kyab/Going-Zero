@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(RingBuffer *)ring;
+-(void)setExternalRing:(RingBuffer *)ring;
 -(void)setEnabled:(Boolean)enabled;
 -(Boolean)isEnabled;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;

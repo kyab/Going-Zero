@@ -17,6 +17,10 @@
     return self;
 }
 
+-(void)setExternalRing:(RingBuffer *)ring{
+    _ring = ring;
+}
+
 -(void)setEnabled:(Boolean)enabled{
     _enabled = enabled;
 }
