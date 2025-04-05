@@ -170,20 +170,12 @@
     }
     [_ae setRenderDelegate:(id<AudioEngineDelegate>)self];
     
+    NSLog(@"!!!!!!!!!!Changing system output device to BGM...");
+    [_ae changeSystemOutputDeviceToBGM];
+    NSLog(@"!!!!!!!!!!!!Changing system output device to BGM...done");
     
-    NSLog(@"[[start]]");
-    
-//    NSLog(@"Changing System output to virtual...");
-//    [_ae changeSystemOutputDeviceToBGM];
-//    NSLog(@"Changing System output to virtual...done");
-
-//    NSLog(@"Starting output...");
-//    [_ae startOutput];
-//    NSLog(@"Starting output...done");
-//    
-    NSLog(@"Starting input...");
+    [_ae startOutput];
     [_ae startInput];
-    NSLog(@"Starting input...done");
     
     //wake up
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(didWakenUp:) name:NSWorkspaceDidWakeNotification object:nil];
