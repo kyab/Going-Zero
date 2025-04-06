@@ -635,6 +635,12 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
             }
             processed = YES;
             break;
+        case 26: //7
+            if (!event.isARepeat){
+                [_autoLooperController startQuantizedBounceLoopQuad];
+            }
+            processed = YES;
+            break;
         case 22: //6
             if (!event.isARepeat){
                 [_autoLooperController startQuantizedBounceLoopDouble];
@@ -702,6 +708,7 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         case 1: // s
         case 2: // d
             return YES;
+        case 26:
         case 22:
         case 23:
         case 21:

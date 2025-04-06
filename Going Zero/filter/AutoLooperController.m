@@ -74,6 +74,14 @@
     [_lblAutoLoop setDrawsBackground:YES];
 }
 
+-(void)startQuantizedBounceLoopQuad{
+    [self exitLoop];
+    [_lblBounceLoop setStringValue:[NSString stringWithFormat:@"Bounce 4"]];
+    [_autoLooper startQuantizedBounceLoopQuad];
+    [_lblBounceLoop setBackgroundColor:NSColor.systemIndigoColor];
+    [_lblBounceLoop setDrawsBackground:YES];
+}
+
 -(void)startQuantizedBounceLoopDouble{
     [self exitLoop];
     [_lblBounceLoop setStringValue:[NSString stringWithFormat:@"Bounce 2"]];
