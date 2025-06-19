@@ -26,6 +26,8 @@
 #import "AutoLooperController.h"
 #import "Looper.h"
 #import "LooperController.h"
+#import "Pitch.h"
+#import "PitchController.h"
 #import "MiscController.h"
 #import "TrillReverse.h"
 #import "Reverse.h"
@@ -95,6 +97,11 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSButton *_btnLooperExit;
     __weak IBOutlet NSButton *_btnLoopHalf;
     __weak IBOutlet NSButton *_btnLoopQuarter;
+    
+    Pitch *_pitch;
+    PitchController *_pitchController;
+    __weak IBOutlet NSView *_pitchContentView;
+    
     
     TrillReverse *_trillReverse;
     Bender *_bender;

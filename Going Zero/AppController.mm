@@ -64,6 +64,12 @@
     [self centerize:[_looperController view]];
     [_looperController setLooper:_looper];
     
+    _pitch = [[Pitch alloc] init];
+    _pitchController = [[PitchController alloc] initWithNibName:@"PitchController" bundle:nil];
+    [_pitchContentView addSubview:[_pitchController view]];
+    [self centerize:[_pitchController view]];
+    [_pitchController setPitch:_pitch];
+    
     _trillReverse = [[TrillReverse alloc] init];
     _bender = [[Bender alloc] init];
     _freezer = [[Freezer alloc] init];
@@ -376,6 +382,10 @@
             [_faderIn processLeft:pDstLeft right:pDstRight samples:inNumberFrames];
         }
     }
+    
+    // Pitch
+    [_pitch processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //beat tracker
     [_beatTracker processLeft:(float*)ioData->mBuffers[0].mData

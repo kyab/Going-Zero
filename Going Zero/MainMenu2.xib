@@ -32,6 +32,7 @@
                 <outlet property="_looperContentView" destination="Ezh-7q-75L" id="vvU-cY-YJu"/>
                 <outlet property="_mainWindow" destination="HeE-NS-OR5" id="MmW-Hu-ImG"/>
                 <outlet property="_miscContentView" destination="iip-qQ-u5X" id="ck6-oW-gA6"/>
+                <outlet property="_pitchContentView" destination="spf-n4-0uh" id="xMd-la-Vyg"/>
                 <outlet property="_quickCueContentView" destination="iFt-d5-XQ7" id="fd4-eI-hlA"/>
                 <outlet property="_randomContentView" destination="bVd-RS-55F" id="yDZ-mn-fpp"/>
                 <outlet property="_refrainContentView" destination="vDD-eW-Hsa" id="ds1-xs-2dg"/>
@@ -770,14 +771,6 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
-                    <box fixedFrame="YES" title="Looper" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-dZ-uxX">
-                        <rect key="frame" x="434" y="753" width="312" height="87"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <view key="contentView" id="Ezh-7q-75L">
-                            <rect key="frame" x="4" y="5" width="304" height="67"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        </view>
-                    </box>
                     <box fixedFrame="YES" title="Misc." translatesAutoresizingMaskIntoConstraints="NO" id="Dhb-3h-zTh">
                         <rect key="frame" x="434" y="542" width="312" height="114"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -817,7 +810,7 @@
                             <rect key="frame" x="4" y="5" width="329" height="32"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-pn-UVv">
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-pn-UVv">
                                     <rect key="frame" x="121" y="8" width="88" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="[M] + [space]" id="wB6-p4-ACv">
@@ -854,10 +847,10 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="Auto Looper" translatesAutoresizingMaskIntoConstraints="NO" id="Xfi-Fj-9nd">
-                        <rect key="frame" x="434" y="844" width="312" height="129"/>
+                        <rect key="frame" x="434" y="896" width="312" height="77"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="Cmn-DN-DX1">
-                            <rect key="frame" x="4" y="5" width="304" height="109"/>
+                            <rect key="frame" x="4" y="5" width="304" height="57"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
@@ -869,6 +862,22 @@
                         <rect key="frame" x="20" y="20" width="274" height="76"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
+                    <box fixedFrame="YES" title="Pitch" translatesAutoresizingMaskIntoConstraints="NO" id="Cnh-9C-XzE">
+                        <rect key="frame" x="434" y="753" width="312" height="56"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="spf-n4-0uh">
+                            <rect key="frame" x="4" y="5" width="304" height="36"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
+                    <box fixedFrame="YES" title="Looper" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-dZ-uxX">
+                        <rect key="frame" x="434" y="813" width="312" height="79"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="Ezh-7q-75L">
+                            <rect key="frame" x="4" y="5" width="304" height="59"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
                 </subviews>
             </view>
             <point key="canvasLocation" x="54.5" y="-13.5"/>

@@ -59,6 +59,9 @@
 		EB70011D2691D022007F88EE /* FlangerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB70011B2691D022007F88EE /* FlangerController.xib */; };
 		EB7001202691D038007F88EE /* Flanger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB70011F2691D038007F88EE /* Flanger.m */; };
 		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
+		EB7A68A52E03072D00018A81 /* Pitch.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB7A68A42E03072D00018A81 /* Pitch.mm */; };
+		EB7A68AE2E030AD100018A81 /* PitchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7A68AC2E030AD100018A81 /* PitchController.m */; };
+		EB7A68AF2E030AD100018A81 /* PitchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB7A68AD2E030AD100018A81 /* PitchController.xib */; };
 		EB7DDCC22B4955AD00D72E9A /* MainMenu2.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */; };
 		EB822D572A1D657E00FAA9B5 /* Lookup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB822D562A1D657E00FAA9B5 /* Lookup.m */; };
 		EB83BD432B5427FC007690A5 /* LooperController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB83BD412B5427FC007690A5 /* LooperController.m */; };
@@ -193,6 +196,11 @@
 		EB70011F2691D038007F88EE /* Flanger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flanger.m; sourceTree = "<group>"; };
 		EB7372B4266530F600393D58 /* Freezer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Freezer.h; sourceTree = "<group>"; };
 		EB7372B5266530F600393D58 /* Freezer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freezer.m; sourceTree = "<group>"; };
+		EB7A68A32E03072D00018A81 /* Pitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pitch.h; sourceTree = "<group>"; };
+		EB7A68A42E03072D00018A81 /* Pitch.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Pitch.mm; sourceTree = "<group>"; };
+		EB7A68AB2E030AD100018A81 /* PitchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PitchController.h; sourceTree = "<group>"; };
+		EB7A68AC2E030AD100018A81 /* PitchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PitchController.m; sourceTree = "<group>"; };
+		EB7A68AD2E030AD100018A81 /* PitchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PitchController.xib; sourceTree = "<group>"; };
 		EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu2.xib; sourceTree = "<group>"; };
 		EB822D552A1D657E00FAA9B5 /* Lookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lookup.h; sourceTree = "<group>"; };
 		EB822D562A1D657E00FAA9B5 /* Lookup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lookup.m; sourceTree = "<group>"; };
@@ -414,6 +422,11 @@
 				0C21BC032B69D63000018937 /* BeatLookupController.xib */,
 				0CBB51CC2BBEC63E00B02C51 /* VolumeGate.h */,
 				0CBB51CD2BBEC63E00B02C51 /* VolumeGate.m */,
+				EB7A68A32E03072D00018A81 /* Pitch.h */,
+				EB7A68A42E03072D00018A81 /* Pitch.mm */,
+				EB7A68AB2E030AD100018A81 /* PitchController.h */,
+				EB7A68AC2E030AD100018A81 /* PitchController.m */,
+				EB7A68AD2E030AD100018A81 /* PitchController.xib */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -578,6 +591,7 @@
 				0CB34AD72B60B0F300E5C57F /* TurnTableController.xib in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */,
+				EB7A68AF2E030AD100018A81 /* PitchController.xib in Resources */,
 				EBDA9A4A2740A9E500836273 /* SamplerController.xib in Resources */,
 				EB83BD442B5427FC007690A5 /* LooperController.xib in Resources */,
 				EBC1916C2A21AC3700E13D95 /* LookUpController.xib in Resources */,
@@ -629,9 +643,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Going Zero/Pods-Going Zero-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Going Zero/Pods-Going Zero-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -681,7 +699,9 @@
 				EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */,
 				EBDA9A492740A9E500836273 /* SamplerController.m in Sources */,
 				0C21BC042B69D63000018937 /* BeatLookupController.m in Sources */,
+				EB7A68AE2E030AD100018A81 /* PitchController.m in Sources */,
 				EB38846E2B8256B700D8735B /* JugglingTouchView.m in Sources */,
+				EB7A68A52E03072D00018A81 /* Pitch.mm in Sources */,
 				0C5EE3352BE1C695002E9452 /* AutoLooper.m in Sources */,
 				EB37911D2771CD8800AC37D0 /* RateConverter.m in Sources */,
 				EB6E386326623E4A002AADCA /* AppDelegate.m in Sources */,
