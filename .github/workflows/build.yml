@@ -26,6 +26,10 @@ jobs:
         sudo gem install cocoapods
         pod --version
     
+    - name: Install system dependencies
+      run: |
+        brew install eigen fftw taglib essentia
+    
     - name: Install Pod dependencies
       run: |
         pod install --repo-update
