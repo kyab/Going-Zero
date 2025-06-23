@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PitchController : NSViewController {
     Pitch *_pitch;
     __weak IBOutlet NSSliderCell *_sliderPitch;
+    __weak IBOutlet NSTextField *_textFieldPitchValue;
 }
 
 -(void)setPitch:(Pitch *)pitch;

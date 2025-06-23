@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+    
+    [_textFieldPitchValue setStringValue:@"0.0"];
 }
 
 - (void)setPitch:(Pitch *)pitch {
@@ -29,6 +30,8 @@
     NSLog(@"Pitch shift value: %f", pitchShiftValue);
     
     [_pitch setPitchShift:pitchShiftValue];
+    
+    [_textFieldPitchValue setStringValue:[NSString stringWithFormat:@"%.1f", pitchShiftValue]];
 }
 
 
