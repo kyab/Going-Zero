@@ -21,12 +21,25 @@ jobs:
     - name: Show Xcode version
       run: xcodebuild -version
     
+    - name: Install CocoaPods
+      run: |
+        sudo gem install cocoapods
+        pod --version
+    
+    - name: Install Pod dependencies
+      run: |
+        pod install --repo-update
+    
     - name: Build project
       run: |
-        xcodebuild -project "Going Zero.xcodeproj" \
+        xcodebuild -workspace "Going Zero.xcworkspace" \
                    -scheme "Going Zero" \
                    -configuration Debug \
                    -destination "platform=macOS" \
+                   -allowProvisioningUpdates \
+                   CODE_SIGN_IDENTITY="" \
+                   CODE_SIGNING_REQUIRED=NO \
+                   CODE_SIGNING_ALLOWED=NO \
                    clean build
     
     - name: Archive build artifacts
