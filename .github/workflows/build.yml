@@ -28,7 +28,7 @@ jobs:
     
     - name: Install system dependencies
       run: |
-        brew install eigen fftw taglib
+        brew install eigen fftw taglib git-lfs
         brew tap MTG/essentia
         brew install --HEAD mtg/essentia/essentia
     
