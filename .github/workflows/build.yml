@@ -37,9 +37,10 @@ jobs:
         # Try Homebrew first, fall back to source build if it fails
         if ! brew tap MTG/essentia || ! brew install --HEAD mtg/essentia/essentia; then
           echo "Homebrew installation failed, building from source..."
-          git clone --recursive https://github.com/MTG/essentia.git /tmp/essentia
+          git clone https://github.com/MTG/essentia.git /tmp/essentia
           cd /tmp/essentia
-          python3 waf configure --build-static
+          # Skip test submodules that require git-lfs (not needed for library build)
+          python3 waf configure --build-static --with-examples=no --with-vamp=no
           python3 waf
           sudo python3 waf install
         fi
