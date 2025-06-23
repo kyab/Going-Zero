@@ -30,7 +30,7 @@ jobs:
       run: |
         brew install eigen fftw taglib
         brew tap MTG/essentia
-        brew install essentia
+        brew install --HEAD mtg/essentia/essentia
     
     - name: Install Pod dependencies
       run: |
