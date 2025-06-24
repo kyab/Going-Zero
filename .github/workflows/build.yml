@@ -21,6 +21,12 @@ jobs:
     - name: Show Xcode version
       run: xcodebuild -version
     
+    - name: Install Git LFS
+      run: |
+        brew install git-lfs
+        git lfs install --system
+        git lfs version
+    
     - name: Install CocoaPods
       run: |
         sudo gem install cocoapods
