@@ -28,19 +28,19 @@ jobs:
     
     - name: Install system dependencies
       run: |
-        brew install eigen fftw taglib git-lfs
-        git lfs install --system
-        export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-        which git-lfs
-        git-lfs version
+        # Install dependencies as per official documentation
+        brew install pkg-config gcc readline sqlite gdbm freetype libpng
+        brew install eigen libyaml fftw ffmpeg libsamplerate libtag
         
-        # Try Homebrew first, fall back to source build if it fails
-        if ! brew tap MTG/essentia || ! brew install --HEAD mtg/essentia/essentia; then
+        # Try official Homebrew formula first
+        if brew tap MTG/essentia && brew install --HEAD mtg/essentia/essentia; then
+          echo "Essentia installed via Homebrew successfully"
+        else
           echo "Homebrew installation failed, building from source..."
           git clone https://github.com/MTG/essentia.git /tmp/essentia
           cd /tmp/essentia
-          # Skip test submodules that require git-lfs (not needed for library build)
-          python3 waf configure --build-static --with-examples=no --with-vamp=no
+          # Use official configuration as per documentation
+          python3 waf configure --build-static
           python3 waf
           sudo python3 waf install
         fi
