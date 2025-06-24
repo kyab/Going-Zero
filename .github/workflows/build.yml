@@ -39,7 +39,7 @@ jobs:
           git clone https://github.com/MTG/essentia.git /tmp/essentia
           cd /tmp/essentia
           # Minimal C++ build without Python bindings
-          python3 waf configure --build-static --lightweight
+          python3 waf configure --build-static
           python3 waf
           sudo python3 waf install
         fi
