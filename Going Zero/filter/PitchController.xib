@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PitchController">
             <connections>
                 <outlet property="_sliderPitch" destination="3h5-Mz-5Zj" id="61w-o2-tuU"/>
+                <outlet property="_textFieldPitchValue" destination="pitch-value-display" id="pitch-value-outlet"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -18,8 +19,17 @@
             <rect key="frame" x="0.0" y="0.0" width="239" height="39"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pitch-value-display">
+                    <rect key="frame" x="2" y="12" width="40" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="0.0" id="pitch-value-cell">
+                        <font key="font" metaFont="system" size="11"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXQ-f8-h1q">
-                    <rect key="frame" x="18" y="4" width="203" height="28"/>
+                    <rect key="frame" x="48" y="4" width="173" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="6" doubleValue="3" tickMarkPosition="above" numberOfTickMarks="31" allowsTickMarkValuesOnly="YES" sliderType="linear" id="3h5-Mz-5Zj">
                         <font key="font" metaFont="system" size="12"/>

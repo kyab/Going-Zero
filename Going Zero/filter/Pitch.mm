@@ -44,6 +44,10 @@
     _stretch.setTransposeSemitones(_pitchShift);
 }
 
+-(float)getPitchShift{
+    return _pitchShift;
+}
+
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     
     if (fabs(_pitchShift) < 0.0001f) {
