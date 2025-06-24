@@ -24,7 +24,7 @@ jobs:
     - name: Install Git LFS
       run: |
         brew install git-lfs
-        git lfs install --system
+        git lfs install
         git lfs version
     
     - name: Install CocoaPods
