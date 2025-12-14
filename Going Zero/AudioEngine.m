@@ -196,6 +196,111 @@ OSStatus MyRenderIn(void *inRefCon,
 }
 
 
+- (NSArray<NSNumber *> *)listSupportedSampleRatesForDevice:(AudioDeviceID)deviceID
+{
+    NSLog(@"Listing supported sample rates for device ID: %u", deviceID);
+    OSStatus ret;
+    UInt32 size = 0;
+
+    AudioObjectPropertyAddress addr = {
+        kAudioDevicePropertyAvailableNominalSampleRates,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMain
+    };
+
+    // サイズ取得
+    ret = AudioObjectGetPropertyDataSize(deviceID,
+                                         &addr,
+                                         0,
+                                         NULL,
+                                         &size);
+    if (ret != noErr || size == 0) {
+        NSLog(@"Failed to get sample rate list size (%d)", ret);
+        return nil;
+    }
+
+    UInt32 count = size / sizeof(AudioValueRange);
+    AudioValueRange *ranges = malloc(size);
+
+    ret = AudioObjectGetPropertyData(deviceID,
+                                     &addr,
+                                     0,
+                                     NULL,
+                                     &size,
+                                     ranges);
+    if (ret != noErr) {
+        NSLog(@"Failed to get sample rate list (%d)", ret);
+        free(ranges);
+        return nil;
+    }
+    
+    NSLog(@"Found %u sample rate ranges", count);
+
+    NSMutableArray<NSNumber *> *rates = [NSMutableArray array];
+
+    for (UInt32 i = 0; i < count; i++) {
+        AudioValueRange r = ranges[i];
+
+        if (r.mMinimum == r.mMaximum) {
+            // 離散値
+            [rates addObject:@(r.mMinimum)];
+        } else {
+            // レンジ（代表的な値を追加）
+            double min = r.mMinimum;
+            double max = r.mMaximum;
+
+            double commonRates[] = {
+                8000, 16000, 22050,
+                32000, 44100, 48000,
+                88200, 96000, 192000
+            };
+
+            for (int j = 0; j < sizeof(commonRates)/sizeof(double); j++) {
+                double sr = commonRates[j];
+                if (sr >= min && sr <= max) {
+                    [rates addObject:@(sr)];
+                }
+            }
+        }
+    }
+
+    free(ranges);
+
+    // 重複削除 & ソート
+    NSOrderedSet *unique = [NSOrderedSet orderedSetWithArray:rates];
+    return [[unique array] sortedArrayUsingSelector:@selector(compare:)];
+}
+
+- (Float64)getCurrentSampleRateForDevice:(AudioDeviceID)deviceID
+{
+    Float64 sampleRate = 0;
+    UInt32 size = sizeof(sampleRate);
+
+    AudioObjectPropertyAddress addr = {
+        kAudioDevicePropertyNominalSampleRate,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMain
+    };
+
+    OSStatus ret = AudioObjectGetPropertyData(deviceID,
+                                              &addr,
+                                              0,
+                                              NULL,
+                                              &size,
+                                              &sampleRate);
+    if (ret != noErr) {
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain
+                                           code:ret
+                                       userInfo:nil];
+        NSLog(@"Failed to get current sample rate for device %u: %@",
+              deviceID, err);
+        return 0;
+    }
+
+    return sampleRate;
+}
+
+
 -(BOOL)initializeInput{
     OSStatus ret = noErr;
     
@@ -401,6 +506,10 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     }
     
     AudioDeviceID inDevID = [self getDeviceForName:LOOPBACK_DEVICE];
+    NSArray *rates =  [self listSupportedSampleRatesForDevice:inDevID];
+    NSLog(@"supported rates: %@", rates);
+    NSLog(@"current rate: %.1f", [self getCurrentSampleRateForDevice:inDevID]);
+    
 
     ret = AudioUnitSetProperty(_inputUnit,
                                kAudioOutputUnitProperty_CurrentDevice,
