@@ -37,8 +37,7 @@ jobs:
       - name: Install system dependencies
         run: |
           # Install minimal C++ dependencies for Essentia
-          # Include ffmpeg for audio I/O support
-          brew install pkg-config eigen fftw libtag libsamplerate ffmpeg
+          brew install pkg-config eigen fftw libtag libsamplerate
 
           # Try official Homebrew formula first
           if brew tap MTG/essentia && brew install --HEAD mtg/essentia/essentia; then
