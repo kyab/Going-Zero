@@ -142,9 +142,11 @@ OSStatus MyInputCallback(void *inRefCon,
     
     //do ARC
     if (_srcCtx.inAccumFrames < ACCUM_FRAMES){
-        NSLog(@"Just Accumulating frames: added %u %d/%d",inNumberFrames, _srcCtx.inAccumFrames, ACCUM_FRAMES);
+//        NSLog(@"Just Accumulating frames: added %u %d/%d",inNumberFrames, _srcCtx.inAccumFrames, ACCUM_FRAMES);
         return noErr;
     }
+    
+//    UInt32 preInAccumFrames = _srcCtx.inAccumFrames;
     
     UInt32 outFrames = ACCUM_FRAMES;
     AudioBufferList *outABL = (AudioBufferList *)malloc(sizeof(AudioBufferList) +  sizeof(AudioBuffer)); // for left + right
@@ -169,15 +171,10 @@ OSStatus MyInputCallback(void *inRefCon,
         return ret;
     }
 
-    NSLog(@"Converted frames: %u -> %u", _srcCtx.inAccumFrames, outFrames);
+//    NSLog(@"Converted frames: %u -> %u. Still accumlated = %u", preInAccumFrames, outFrames, _srcCtx.inAccumFrames);
     
     [_delegate audioInCallback: outFrames bufferList: outABL];
     free(outABL);
-    
-    //call delegate
-    
-    
-//    return [_delegate inCallback:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames  /*ioData:ioData*/];
     
     return noErr;
 }

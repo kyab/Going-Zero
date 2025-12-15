@@ -17,6 +17,7 @@
     [self initBuffers];
     
     _minOffsetFrame = 64/*32*/;
+    
     return self;
     
 }
