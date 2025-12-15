@@ -14,24 +14,6 @@
 #define LOOPBACK_DEVICE @"Going Zero Device"
 //#define LOOPBACK_DEVICE @"Background Music"
 
-#define ACCUM_FRAMES 256
-#define CHANNELS 2
-
-typedef struct {
-    AudioUnit remoteIO;
-    AudioConverterRef converter;
-
-    // Non-interleaved input accumulate
-    float inAccumL[ACCUM_FRAMES];
-    float inAccumR[ACCUM_FRAMES];
-    UInt32 inAccumFrames;
-
-    // Non-interleaved output
-    float outL[ACCUM_FRAMES];
-    float outR[ACCUM_FRAMES];
-} SRCContext;
-
-static SRCContext gCtx;
 
 static OSStatus converterInputProc(AudioConverterRef inAudioConverter,
                                    UInt32 *ioNumberDataPackets,
@@ -81,8 +63,9 @@ OSStatus MyRender(void *inRefCon,
     AudioEngine *engine = (__bridge AudioEngine *)inRefCon;
     return [engine renderOutput:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames ioData:ioData];
 }
+
 //notify to read
-OSStatus MyRenderIn(void *inRefCon,
+OSStatus MyInputCallback(void *inRefCon,
                     AudioUnitRenderActionFlags *ioActionFlags,
                     const AudioTimeStamp      *inTimeStamp,
                     UInt32 inBusNumber,
@@ -97,7 +80,7 @@ OSStatus MyRenderIn(void *inRefCon,
     }
     
     AudioEngine *engine = (__bridge AudioEngine *)inRefCon;
-    return [engine renderInput:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames ioData:ioData];
+    return [engine inputCallback:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames /*ioData:ioData*/];
     
 }
 
@@ -118,15 +101,91 @@ OSStatus MyRenderIn(void *inRefCon,
 }
 
 
-- (OSStatus) renderInput:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
+- (OSStatus) inputCallback:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames /*ioData:(AudioBufferList *)ioData*/{
 
-    return [_delegate inCallback:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames ioData:ioData];
+    static UInt32 count = 0;
+    static BOOL numFramesPrinted = NO;
+    if (!numFramesPrinted){
+        NSLog(@"First inCallback NumFrames = %d", inNumberFrames);
+        numFramesPrinted = YES;
+    }
+    
+    //call render to get buffer from audio input (GoingZero Device)
+    AudioBufferList *inABL = (AudioBufferList *)malloc(sizeof(AudioBufferList) +  sizeof(AudioBuffer)); // for left + right
+    
+    inABL->mNumberBuffers = CHANNELS;
+    inABL->mBuffers[0].mNumberChannels = 1;
+    inABL->mBuffers[0].mData = _srcCtx.inAccumL + _srcCtx.inAccumFrames;
+    inABL->mBuffers[0].mDataByteSize = inNumberFrames * sizeof(float);
+    inABL->mBuffers[1].mNumberChannels = 2;
+    inABL->mBuffers[1].mData = _srcCtx.inAccumR + _srcCtx.inAccumFrames;
+    inABL->mBuffers[1].mDataByteSize = inNumberFrames * sizeof(float);
+    
+    OSStatus ret = AudioUnitRender(_inputUnit,
+                                   ioActionFlags,
+                                   inTimeStamp,
+                                   inBusNumber,
+                                   inNumberFrames,
+                                   inABL
+                               );
+    
+    free(inABL);
+    
+    if ( 0!=ret ){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed AudioUnitRender err=%d(%@), in inputCallback()", ret, [err description]);
+        return ret;
+        
+        //https://forum.juce.com/t/missing-kaudiounitproperty-maximumframesperslice/9109
+    }
+    
+    _srcCtx.inAccumFrames += inNumberFrames;
+    
+    //do ARC
+    if (_srcCtx.inAccumFrames < ACCUM_FRAMES){
+        NSLog(@"Just Accumulating frames: added %u %d/%d",inNumberFrames, _srcCtx.inAccumFrames, ACCUM_FRAMES);
+        return noErr;
+    }
+    
+    UInt32 outFrames = ACCUM_FRAMES;
+    AudioBufferList *outABL = (AudioBufferList *)malloc(sizeof(AudioBufferList) +  sizeof(AudioBuffer)); // for left + right
+    outABL->mNumberBuffers = CHANNELS;
+    outABL->mBuffers[0].mNumberChannels = 1;
+    outABL->mBuffers[0].mData = _srcCtx.outL;
+    outABL->mBuffers[0].mDataByteSize = outFrames * sizeof(float);
+    outABL->mBuffers[1].mNumberChannels = 1;
+    outABL->mBuffers[1].mData = _srcCtx.outR;
+    outABL->mBuffers[1].mDataByteSize = outFrames * sizeof(float);
+    
+    ret = AudioConverterFillComplexBuffer(_srcCtx.converter,
+                                          converterInputProc,
+                                          &_srcCtx,
+                                          &outFrames,
+                                          outABL,
+                                          NULL);
+    if ( 0!=ret ){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed AudioConverterFillComplexBuffer err=%d(%@)", ret, [err description]);
+        free(outABL);
+        return ret;
+    }
+
+    NSLog(@"Converted frames: %u -> %u", _srcCtx.inAccumFrames, outFrames);
+    
+    
+    
+    //call delegate
+    
+    
+//    return [_delegate inCallback:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames  /*ioData:ioData*/];
+    
+    return noErr;
 }
 
 
 //actual read from input. should be called from delegate's inCallback
 //called from delegate callback
-- (OSStatus) readFromInput:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
+- (OSStatus) readFromInput:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames /*ioData:(AudioBufferList *)ioData*/{
 
     OSStatus ret = AudioUnitRender(_inputUnit,
                                ioActionFlags,
@@ -149,6 +208,9 @@ OSStatus MyRenderIn(void *inRefCon,
 
 
 -(BOOL)initialize{
+    
+    memset(&gCtx, 0, sizeof(gCtx));
+    
     if (![self obtainPreOutputDevice]){
         return NO;
     }
@@ -625,7 +687,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     asbd_out.mChannelsPerFrame = 2;
     asbd_out.mBitsPerChannel = 32;
     
-    ret = AudioConverterNew(&asbd_in, &asbd_out, &gCtx.converter);
+    ret = AudioConverterNew(&asbd_in, &asbd_out, &_srcCtx.converter);
     if (FAILED(ret)){
         NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
         NSLog(@"Failed to create AudioConverter = %d(%@)", ret, [err description]);
@@ -633,7 +695,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     }
     
     UInt32 quality = kAudioConverterQuality_Medium;
-    ret = AudioConverterSetProperty(gCtx.converter,
+    ret = AudioConverterSetProperty(_srcCtx.converter,
                                     kAudioConverterSampleRateConverterQuality,
                                     sizeof(quality),
                                     &quality);
@@ -644,7 +706,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
     }
     
     UInt32 prime = kConverterPrimeMethod_None;
-    ret = AudioConverterSetProperty(gCtx.converter,
+    ret = AudioConverterSetProperty(_srcCtx.converter,
                                     kAudioConverterPrimeMethod,
                                     sizeof(prime),
                                     &prime);
@@ -664,7 +726,7 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
 
 -(Boolean)setInputCallback{
     AURenderCallbackStruct callback;
-    callback.inputProc = MyRenderIn;
+    callback.inputProc = MyInputCallback;
     callback.inputProcRefCon = (__bridge void * _Nullable)(self);
     
     OSStatus ret = AudioUnitSetProperty(
