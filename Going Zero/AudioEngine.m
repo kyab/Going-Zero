@@ -14,16 +14,61 @@
 #define LOOPBACK_DEVICE @"Going Zero Device"
 //#define LOOPBACK_DEVICE @"Background Music"
 
-@implementation AudioEngine
-- (id)init
+#define ACCUM_FRAMES 256
+#define CHANNELS 2
+
+typedef struct {
+    AudioUnit remoteIO;
+    AudioConverterRef converter;
+
+    // Non-interleaved input accumulate
+    float inAccumL[ACCUM_FRAMES];
+    float inAccumR[ACCUM_FRAMES];
+    UInt32 inAccumFrames;
+
+    // Non-interleaved output
+    float outL[ACCUM_FRAMES];
+    float outR[ACCUM_FRAMES];
+} SRCContext;
+
+static SRCContext gCtx;
+
+static OSStatus converterInputProc(AudioConverterRef inAudioConverter,
+                                   UInt32 *ioNumberDataPackets,
+                                   AudioBufferList *ioData,
+                                   AudioStreamPacketDescription **outPacketDesc,
+                                   void *inUserData)
 {
-    self = [super init];
-    return self;
-}
+    SRCContext *ctx = (SRCContext *)inUserData;
 
+    UInt32 frames = MIN(*ioNumberDataPackets, ctx->inAccumFrames);
+    if (frames == 0) {
+        *ioNumberDataPackets = 0;
+        return noErr;
+    }
 
--(void)setRenderDelegate:(id<AudioEngineDelegate>)delegate{
-    _delegate = delegate;
+    ioData->mNumberBuffers = CHANNELS;
+
+    ioData->mBuffers[0].mNumberChannels = 1;
+    ioData->mBuffers[0].mData = ctx->inAccumL;
+    ioData->mBuffers[0].mDataByteSize = frames * sizeof(float);
+
+    ioData->mBuffers[1].mNumberChannels = 1;
+    ioData->mBuffers[1].mData = ctx->inAccumR;
+    ioData->mBuffers[1].mDataByteSize = frames * sizeof(float);
+
+    // 消費した分を前詰め
+    memmove(ctx->inAccumL,
+            ctx->inAccumL + frames,
+            (ctx->inAccumFrames - frames) * sizeof(float));
+    memmove(ctx->inAccumR,
+            ctx->inAccumR + frames,
+            (ctx->inAccumFrames - frames) * sizeof(float));
+
+    ctx->inAccumFrames -= frames;
+    *ioNumberDataPackets = frames;
+
+    return noErr;
 }
 
 
@@ -36,12 +81,6 @@ OSStatus MyRender(void *inRefCon,
     AudioEngine *engine = (__bridge AudioEngine *)inRefCon;
     return [engine renderOutput:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames ioData:ioData];
 }
-
-- (OSStatus) renderOutput:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
-    
-    return [_delegate outCallback:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames ioData:ioData];
-}
-
 //notify to read
 OSStatus MyRenderIn(void *inRefCon,
                     AudioUnitRenderActionFlags *ioActionFlags,
@@ -62,12 +101,26 @@ OSStatus MyRenderIn(void *inRefCon,
     
 }
 
+@implementation AudioEngine
+- (id)init
+{
+    self = [super init];
+    return self;
+}
+
+-(void)setRenderDelegate:(id<AudioEngineDelegate>)delegate{
+    _delegate = delegate;
+}
+
+- (OSStatus) renderOutput:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
+    
+    return [_delegate outCallback:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames ioData:ioData];
+}
+
 
 - (OSStatus) renderInput:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames ioData:(AudioBufferList *)ioData{
-    
 
     return [_delegate inCallback:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames ioData:ioData];
-    
 }
 
 
@@ -93,7 +146,6 @@ OSStatus MyRenderIn(void *inRefCon,
     
     return ret;
 }
-
 
 
 -(BOOL)initialize{
@@ -544,23 +596,67 @@ OSStatus PropListenerProc( AudioObjectID                       inObjectID,
 
 -(Boolean)setInputFormat {
     
-    AudioStreamBasicDescription asbd = {0};
-    UInt32 size = sizeof(asbd);
-    asbd.mSampleRate = 44100.0;
-    asbd.mFormatID = kAudioFormatLinearPCM;
-    asbd.mFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked | kAudioFormatFlagIsNonInterleaved;
-    asbd.mBytesPerPacket = 4;
-    asbd.mFramesPerPacket = 1;
-    asbd.mBytesPerFrame = 4;
-    asbd.mChannelsPerFrame = 2;
-    asbd.mBitsPerChannel = 32;
+    AudioStreamBasicDescription asbd_in = {0};
+    UInt32 size = sizeof(asbd_in);
+    asbd_in.mSampleRate = 48000.0;     //TODO 44100と両方に対応
+    asbd_in.mFormatID = kAudioFormatLinearPCM;
+    asbd_in.mFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked | kAudioFormatFlagIsNonInterleaved;
+    asbd_in.mBytesPerPacket = 4;
+    asbd_in.mFramesPerPacket = 1;
+    asbd_in.mBytesPerFrame = 4;
+    asbd_in.mChannelsPerFrame = 2;
+    asbd_in.mBitsPerChannel = 32;
     
-    OSStatus ret = AudioUnitSetProperty(_inputUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &asbd, size);
+    OSStatus ret = AudioUnitSetProperty(_inputUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &asbd_in, size);
     if(FAILED(ret)){
         NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
         NSLog(@"Failed to Set Format for Input side = %d(%@)", ret, [err description]);
         return NO;
     }
+    
+    
+    AudioStreamBasicDescription asbd_out = {0};
+    asbd_out.mSampleRate = 44100.0;
+    asbd_out.mFormatID = kAudioFormatLinearPCM;
+    asbd_out.mFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked | kAudioFormatFlagIsNonInterleaved;
+    asbd_out.mBytesPerPacket = 4;
+    asbd_out.mFramesPerPacket = 1;
+    asbd_out.mBytesPerFrame = 4;
+    asbd_out.mChannelsPerFrame = 2;
+    asbd_out.mBitsPerChannel = 32;
+    
+    ret = AudioConverterNew(&asbd_in, &asbd_out, &gCtx.converter);
+    if (FAILED(ret)){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to create AudioConverter = %d(%@)", ret, [err description]);
+        return NO;
+    }
+    
+    UInt32 quality = kAudioConverterQuality_Medium;
+    ret = AudioConverterSetProperty(gCtx.converter,
+                                    kAudioConverterSampleRateConverterQuality,
+                                    sizeof(quality),
+                                    &quality);
+    if (FAILED(ret)){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to set AudioConverter quality = %d(%@)", ret, [err description]);
+        return NO;
+    }
+    
+    UInt32 prime = kConverterPrimeMethod_None;
+    ret = AudioConverterSetProperty(gCtx.converter,
+                                    kAudioConverterPrimeMethod,
+                                    sizeof(prime),
+                                    &prime);
+    
+    if (FAILED(ret)){
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+        NSLog(@"Failed to set AudioConverter prime method = %d(%@)", ret, [err description]);
+        return NO;
+    }
+    
+    
+    NSLog(@"Input side format set successfully.");
     
     return YES;
 }
