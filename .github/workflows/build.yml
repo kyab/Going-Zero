@@ -37,7 +37,8 @@ jobs:
       - name: Install system dependencies
         run: |
           # Install minimal C++ dependencies for Essentia
-          brew install pkg-config eigen fftw libtag libsamplerate
+          # Include ffmpeg for audio I/O support
+          brew install pkg-config eigen fftw libtag libsamplerate ffmpeg
 
           # Try official Homebrew formula first
           if brew tap MTG/essentia && brew install --HEAD mtg/essentia/essentia; then
@@ -47,7 +48,8 @@ jobs:
             git clone https://github.com/MTG/essentia.git /tmp/essentia
             cd /tmp/essentia
             # Minimal C++ build without Python bindings
-            python3 waf configure --build-static
+            # Use C++14 standard to match Eigen 5.0.1 requirements
+            CXXFLAGS="-std=c++14 -stdlib=libc++" python3 waf configure --build-static
             python3 waf
             sudo python3 waf install
           fi
