@@ -103,7 +103,6 @@ OSStatus MyInputCallback(void *inRefCon,
 
 - (OSStatus) inputCallback:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames /*ioData:(AudioBufferList *)ioData*/{
 
-    static UInt32 count = 0;
     static BOOL numFramesPrinted = NO;
     if (!numFramesPrinted){
         NSLog(@"First inCallback NumFrames = %d", inNumberFrames);
@@ -172,7 +171,8 @@ OSStatus MyInputCallback(void *inRefCon,
 
     NSLog(@"Converted frames: %u -> %u", _srcCtx.inAccumFrames, outFrames);
     
-    
+    [_delegate audioInCallback: outFrames bufferList: outABL];
+    free(outABL);
     
     //call delegate
     
@@ -182,34 +182,34 @@ OSStatus MyInputCallback(void *inRefCon,
     return noErr;
 }
 
-
-//actual read from input. should be called from delegate's inCallback
-//called from delegate callback
-- (OSStatus) readFromInput:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames /*ioData:(AudioBufferList *)ioData*/{
-
-    OSStatus ret = AudioUnitRender(_inputUnit,
-                               ioActionFlags,
-                               inTimeStamp,
-                               inBusNumber,
-                               inNumberFrames,
-                               ioData
-                               );
-    if ( 0!=ret ){
-        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
-        NSLog(@"Failed AudioUnitRender err=%d(%@)", ret, [err description]);
-        return ret;
-        
-        //https://forum.juce.com/t/missing-kaudiounitproperty-maximumframesperslice/9109
-        
-    }
-    
-    return ret;
-}
+//
+////actual read from input. should be called from delegate's inCallback
+////called from delegate callback
+//- (OSStatus) readFromInput:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames /*ioData:(AudioBufferList *)ioData*/{
+//
+//    OSStatus ret = AudioUnitRender(_inputUnit,
+//                               ioActionFlags,
+//                               inTimeStamp,
+//                               inBusNumber,
+//                               inNumberFrames,
+//                               ioData
+//                               );
+//    if ( 0!=ret ){
+//        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:ret userInfo:nil];
+//        NSLog(@"Failed AudioUnitRender err=%d(%@)", ret, [err description]);
+//        return ret;
+//        
+//        //https://forum.juce.com/t/missing-kaudiounitproperty-maximumframesperslice/9109
+//        
+//    }
+//    
+//    return ret;
+//}
 
 
 -(BOOL)initialize{
     
-    memset(&gCtx, 0, sizeof(gCtx));
+    memset(&_srcCtx, 0, sizeof(_srcCtx));
     
     if (![self obtainPreOutputDevice]){
         return NO;

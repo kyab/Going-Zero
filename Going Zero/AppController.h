@@ -60,7 +60,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AppController : NSObject <MIDIDelegate, MainWindowKeyDelegate>{
+@interface AppController : NSObject <MIDIDelegate, MainWindowKeyDelegate,AudioEngineDelegate>{
         
     AudioEngine *_ae;
     RingBuffer *_ring;
@@ -176,6 +176,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)startBonjour;
 -(void)didWakenUp:(NSNotification *)notification;
 -(void)MIDIDelegateCC:(Byte)cc data:(Byte)data chan:(Byte)chan;
+
+-(void)audioInCallback:(UInt32)inNumberframes bufferList:(AudioBufferList *)bufferList;
 
 @end
 

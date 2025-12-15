@@ -231,44 +231,57 @@
 }
 
 
-- (OSStatus) inCallback:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames /*ioData:(AudioBufferList *)ioData*/{
-    
-    static int count = 0;
-    
-    static BOOL printNumFrames = NO;
-    if (!printNumFrames){
-        NSLog(@"First inCallback NumFrames = %d", inNumberFrames);
-        printNumFrames = YES;
-    }
-    
-    AudioBufferList *bufferList = (AudioBufferList *)malloc(sizeof(AudioBufferList) +  sizeof(AudioBuffer)); // for 2 buffers for left and right
-    
-    float *leftPrt = [_ring writePtrLeft];
+//- (OSStatus) inCallback:(AudioUnitRenderActionFlags *)ioActionFlags inTimeStamp:(const AudioTimeStamp *) inTimeStamp inBusNumber:(UInt32) inBusNumber inNumberFrames:(UInt32)inNumberFrames /*ioData:(AudioBufferList *)ioData*/{
+//    
+//    static int count = 0;
+//    
+//    static BOOL printNumFrames = NO;
+//    if (!printNumFrames){
+//        NSLog(@"First inCallback NumFrames = %d", inNumberFrames);
+//        printNumFrames = YES;
+//    }
+//    
+//    AudioBufferList *bufferList = (AudioBufferList *)malloc(sizeof(AudioBufferList) +  sizeof(AudioBuffer)); // for 2 buffers for left and right
+//    
+//    float *leftPrt = [_ring writePtrLeft];
+//    float *rightPtr = [_ring writePtrRight];
+//    
+//    bufferList->mNumberBuffers = 2;
+//    bufferList->mBuffers[0].mDataByteSize = 32*inNumberFrames;
+//    bufferList->mBuffers[0].mNumberChannels = 1;
+//    bufferList->mBuffers[0].mData = leftPrt;
+//    bufferList->mBuffers[1].mDataByteSize = 32*inNumberFrames;
+//    bufferList->mBuffers[1].mNumberChannels = 1;
+//    bufferList->mBuffers[1].mData = rightPtr;
+//    
+//    
+//    OSStatus ret = [_ae readFromInput:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames ioData:bufferList];
+//    
+//    free(bufferList);
+//    
+//    if ([_ae isRecording]){
+//        [_ring advanceWritePtrSample:inNumberFrames];
+//        count += inNumberFrames;
+//        if (count >= 44100){
+//            NSLog(@"I");
+//            count = 0;
+//        }
+//    }
+//    
+//    return ret;
+//    
+//}
+
+-(void)audioInCallback:(UInt32)inNumberframes bufferList:(AudioBufferList *)bufferList{
+    float *leftPtr = [_ring writePtrLeft];
     float *rightPtr = [_ring writePtrRight];
     
-    bufferList->mNumberBuffers = 2;
-    bufferList->mBuffers[0].mDataByteSize = 32*inNumberFrames;
-    bufferList->mBuffers[0].mNumberChannels = 1;
-    bufferList->mBuffers[0].mData = leftPrt;
-    bufferList->mBuffers[1].mDataByteSize = 32*inNumberFrames;
-    bufferList->mBuffers[1].mNumberChannels = 1;
-    bufferList->mBuffers[1].mData = rightPtr;
-    
-    
-    OSStatus ret = [_ae readFromInput:ioActionFlags inTimeStamp:inTimeStamp inBusNumber:inBusNumber inNumberFrames:inNumberFrames ioData:bufferList];
-    
-    free(bufferList);
+    memcpy(leftPtr, bufferList->mBuffers[0].mData, sizeof(float)*inNumberframes);
+    memcpy(rightPtr, bufferList->mBuffers[1].mData, sizeof(float)*inNumberframes);
     
     if ([_ae isRecording]){
-        [_ring advanceWritePtrSample:inNumberFrames];
-        count += inNumberFrames;
-        if (count >= 44100){
-            NSLog(@"I");
-            count = 0;
-        }
+        [_ring advanceWritePtrSample:inNumberframes];
     }
-    
-    return ret;
     
 }
 
