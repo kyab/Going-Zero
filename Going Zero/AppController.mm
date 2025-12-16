@@ -336,12 +336,6 @@
         followRequired = NO;
     }
     
-    count += inNumberFrames;
-    if (count >= 44100){
-        NSLog(@"O");
-        count = 0;
-    }
-    
     //TurnTable
     double speedRate = [_turnTableController speedRate];
     if(speedRate == 1.0){
