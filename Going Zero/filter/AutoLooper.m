@@ -22,6 +22,7 @@
     _isAutoLoop = NO;
     _baseDivider = 1;
     _divider = _baseDivider;
+    _miniFaderIn = [[MiniFaderIn alloc] init];
     return self;
 }
 
@@ -39,6 +40,7 @@
             memcpy(dstL, leftBuf, numSamples * sizeof(float));
             memcpy(dstR, rightBuf, numSamples * sizeof(float));
             [_ring advanceWritePtrSample:numSamples];
+            [_miniFaderIn processLeft:leftBuf right:rightBuf samples:numSamples];
         }
             break;
         case AUTOLOOPER_STATE_LOOPING:
@@ -56,15 +58,24 @@
                 memcpy(rightBuf, srcR, numSamples * sizeof(float));
                 [_ring advanceReadPtrSample:numSamples];
                 _currentFrameInLoop += numSamples;
+
+                [_miniFaderIn processLeft:leftBuf right:rightBuf samples:numSamples];
             }else{
                 SInt32 samplesToCopy = _loopLengthFrame - _currentFrameInLoop;
                 float *srcL = [_ring readPtrLeft];
                 float *srcR = [_ring readPtrRight];
                 memcpy(leftBuf, srcL, samplesToCopy * sizeof(float));
                 memcpy(rightBuf, srcR, samplesToCopy * sizeof(float));
+                
+                NSLog(@"Fading out last %d samples", samplesToCopy);
+                [_miniFaderOut startFadeOutWithSampleNum:samplesToCopy];
+                [_miniFaderOut processLeft:leftBuf right:rightBuf samples:samplesToCopy];
+                
+                // Jump back to loop start
                 [_ring advanceReadPtrSample:samplesToCopy];
                 [_ring advanceReadPtrSample:-_loopLengthFrame];
                 _currentFrameInLoop = 0;
+                [_miniFaderIn startFadeIn];
                 if (_isAutoLoop){
                     switch(_autoLoopPhase){
                         case 2:
@@ -90,6 +101,8 @@
                 memcpy(rightBuf + samplesToCopy, srcR, samplesToCopy * sizeof(float));
                 [_ring advanceReadPtrSample:samplesToCopy];
                 _currentFrameInLoop += samplesToCopy;
+
+                [_miniFaderIn processLeft:leftBuf + samplesToCopy right:rightBuf + samplesToCopy samples:samplesToCopy];
             }
         }
             break;
@@ -233,3 +246,4 @@
 }
 
 @end
+

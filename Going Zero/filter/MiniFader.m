@@ -18,7 +18,6 @@
 }
 
 -(void)startFadeIn{
-//    NSLog(@"fade in start");
     _count = 0;
 }
 
@@ -28,13 +27,9 @@
             float rate = _count / (float)FADE_SAMPLE_NUM;
             leftBuf[i] *= rate;
             rightBuf[i] *= rate;
-
-            
-//            NSLog(@"fade in count = %d, left = %f", _count, leftBuf[i]);
             _count++;
         }
     }
-    
 }
 @end
 
@@ -48,8 +43,11 @@
 }
 
 -(void)startFadeOut{
-//    NSLog(@"fade out start");
     _count = FADE_SAMPLE_NUM;
+}
+
+-(void)startFadeOutWithSampleNum:(UInt32)sampleNum{
+    _count = sampleNum;
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
@@ -59,12 +57,9 @@
             leftBuf[i] *= rate;
             rightBuf[i] *= rate;
             
-            //NSLog(@"fade out count = %d, left = %f", _count, leftBuf[i]);
             _count--;
         }
-
     }
-    
 }
 
 @end

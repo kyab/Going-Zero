@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define FADE_SAMPLE_NUM 500
+#define FADE_SAMPLE_NUM 50  //around 1ms fade
 
 @interface MiniFaderIn : NSObject{
     UInt32 _count;
@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)startFadeOut;
+-(void)startFadeOutWithSampleNum:(UInt32)sampleNum;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RingBuffer.h"
 #import "BeatTracker.h"
+#import "MiniFader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
     BeatTracker *_beatTracker;
     Boolean _isAutoLoop;
     UInt32 _autoLoopPhase;
+    MiniFaderIn *_miniFaderIn;
+    MiniFaderOut *_miniFaderOut;
     
     SInt32 _currentFrameInLoop;
     SInt32 _loopLengthFrame;
