@@ -33,6 +33,8 @@
     _fadeIn = [[MiniFaderIn alloc] init];
     _fadeOutCounter = 0;
     _fadeInCounter = 0;
+    _targetGrainSize = DEFAULT_GRAIN_SAMPLE_NUM;
+    _pendingGrainSizeChange = NO;
     
     _grainSize = DEFAULT_GRAIN_SAMPLE_NUM;
     
@@ -52,7 +54,13 @@
 }
 
 -(void)setGrainSize:(unsigned int)grainSize{
-    _grainSize = grainSize;
+    if (grainSize == _grainSize){
+        return;
+    }
+    
+    // Store target grain size - will be applied at next grain loop boundary
+    _targetGrainSize = grainSize;
+    _pendingGrainSizeChange = YES;
 }
 
 // Helper: Process single sample with grain loop
@@ -68,6 +76,12 @@
         [_miniFadeOut processLeft:left right:right samples:1];
     }
     if (_currentL - _startL > _grainSize){
+        // Apply pending grain size change at loop boundary
+        if (_pendingGrainSizeChange){
+            _grainSize = _targetGrainSize;
+            _pendingGrainSizeChange = NO;
+        }
+        
         _currentL = _startL;
         _currentR = _startR;
         [_miniFadeIn startFadeIn];

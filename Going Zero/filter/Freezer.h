@@ -34,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
     MiniFaderIn *_fadeIn;
     UInt32 _fadeOutCounter;
     UInt32 _fadeInCounter;
+    
+    // Grain size change pending
+    unsigned int _targetGrainSize;
+    Boolean _pendingGrainSizeChange;
 }
 
 -(void)setActive:(Boolean)active;
