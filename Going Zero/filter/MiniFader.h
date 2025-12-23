@@ -10,7 +10,28 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define FADE_SAMPLE_NUM 50  //around 1ms fade
+#define FADE_SAMPLE_NUM 50 // around 1ms fade
+
+// Inline functions for single sample processing (low overhead)
+static inline void inlineFadeInSingleSample(float *left, float *right,
+                                            UInt32 *count) {
+    if (*count < FADE_SAMPLE_NUM) {
+        float rate = *count / (float)FADE_SAMPLE_NUM;
+        *left *= rate;
+        *right *= rate;
+        (*count)++;
+    }
+}
+
+static inline void inlineFadeOutSingleSample(float *left, float *right,
+                                             UInt32 *count) {
+    if (0 < *count) {
+        float rate = *count / (float)FADE_SAMPLE_NUM;
+        *left *= rate;
+        *right *= rate;
+        (*count)--;
+    }
+}
 
 @interface MiniFaderIn : NSObject{
     UInt32 _count;

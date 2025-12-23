@@ -1,0 +1,11 @@
+{
+    "[objective-c]": {
+        "editor.formatOnSave": false
+    },
+    "[objective-cpp]": {
+        "editor.formatOnSave": false
+    },
+    "files.associations": {
+        "*.h": "objective-c"
+    }
+}

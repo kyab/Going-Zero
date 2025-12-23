@@ -6,9 +6,9 @@
 //  Copyright © 2021 kyab. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "RingBuffer.h"
 #import "MiniFader.h"
+#import "RingBuffer.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,12 +25,20 @@ NS_ASSUME_NONNULL_BEGIN
     
     MiniFaderIn *_miniFadeIn;
     MiniFaderOut *_miniFadeOut;
+    
+    // Fade transition for bypass switching
+    Boolean _targetBypass;
+    Boolean _isFadingOut;
+    Boolean _isFadingIn;
+    MiniFaderOut *_fadeOut;
+    MiniFaderIn *_fadeIn;
+    UInt32 _fadeOutCounter;
+    UInt32 _fadeInCounter;
 }
 
 -(void)setActive:(Boolean)active;
 -(void)setGrainSize:(unsigned int)grainSize;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
-
 
 @end
 
