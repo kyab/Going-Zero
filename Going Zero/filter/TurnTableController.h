@@ -25,15 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSSlider *_sliderWetVolume;
     __weak IBOutlet NSSlider *_sliderDryVolume;
     
-    
     double _speedRate;
+    
+    // Temporary buffers for rate conversion
+    float _tempLeftPtr[1024];
+    float _tempRightPtr[1024];
 }
 
--(void)setRingBuffer:(RingBuffer *)ring;
--(void)setMiniFaderIn:(MiniFaderIn *)faderIn;
--(float)wetVolume;
--(float)dryVolume;
--(double)speedRate;
+-(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 
 @end
 

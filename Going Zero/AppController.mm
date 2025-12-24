@@ -31,8 +31,6 @@
     _turnTableController = [[TurnTableController alloc] initWithNibName:@"TurnTableController" bundle:nil];
     [_turnTableContentView addSubview:[_turnTableController view]];
     [self centerize:[_turnTableController view]];
-    [_turnTableController setRingBuffer:_ring];
-    [_turnTableController setMiniFaderIn:_faderIn];
     
     _beatTracker = [[BeatTracker alloc] init];
     _beatTrackerController = [[BeatTrackerController alloc]
@@ -336,59 +334,18 @@
         followRequired = NO;
     }
     
+    // Audio input → ioData (pass-through from AppController's ring)
+    memcpy((float *)ioData->mBuffers[0].mData, [_ring dryPtrLeft], sizeof(float) * inNumberFrames);
+    memcpy((float *)ioData->mBuffers[1].mData, [_ring dryPtrRight], sizeof(float) * inNumberFrames);
+    [_ring advanceDryPtrSample:inNumberFrames];
+    [_ring advanceReadPtrSample:inNumberFrames];
+    [_faderIn processLeft:(float *)ioData->mBuffers[0].mData
+                    right:(float *)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     //TurnTable
-    double speedRate = [_turnTableController speedRate];
-    if(speedRate == 1.0){
-
-        float *dstL = (float *)ioData->mBuffers[0].mData;
-        float *dstR = (float *)ioData->mBuffers[1].mData;
-        
-        memcpy(dstL,
-               [_ring dryPtrLeft], sizeof(float) * inNumberFrames);
-        memcpy(dstR,
-               [_ring dryPtrRight], sizeof(float) * inNumberFrames);
-        [_ring advanceDryPtrSample:inNumberFrames];
-        [_ring advanceReadPtrSample:inNumberFrames];
-        
-        [_faderIn processLeft:dstL right:dstR samples:inNumberFrames];
-        
-    }else{
-        
-        //dry
-        {
-            float dryVolume = [_turnTableController dryVolume];
-            float *pSrcLeft = [_ring dryPtrLeft];
-            float *pSrcRight = [_ring dryPtrRight];
-            float *pDstLeft = (float *)ioData->mBuffers[0].mData;
-            float *pDstRight = (float *)ioData->mBuffers[1].mData;
-            
-            for(int i = 0; i < inNumberFrames; i++){
-                pDstLeft[i]  = pSrcLeft[i] * dryVolume;
-                pDstRight[i] = pSrcRight[i] * dryVolume;
-            }
-            [_ring advanceDryPtrSample:inNumberFrames];
-        }
-        
-        //wet
-        {
-            float wetVolume = [_turnTableController wetVolume];
-            SInt32 consumed = 0;
-            [self convertAtRateFromLeft:[_ring readPtrLeft] right:[_ring readPtrRight] ToSamples:inNumberFrames
-                                   rate:speedRate consumedFrames:&consumed];
-
-            float *pDstLeft = (float *)ioData->mBuffers[0].mData;
-            float *pDstRight = (float *)ioData->mBuffers[1].mData;
-            
-            for(int i = 0; i < inNumberFrames; i++){
-                pDstLeft[i] += _tempLeftPtr[i] * wetVolume;
-                pDstRight[i] += _tempRightPtr[i] * wetVolume;
-            }
-
-            [_ring advanceReadPtrSample:consumed];
-            
-            [_faderIn processLeft:pDstLeft right:pDstRight samples:inNumberFrames];
-        }
-    }
+    [_turnTableController processLeft:(float *)ioData->mBuffers[0].mData
+                                right:(float *)ioData->mBuffers[1].mData
+                              samples:inNumberFrames];
     
     // Pitch
     [_pitch processLeft:(float*)ioData->mBuffers[0].mData
