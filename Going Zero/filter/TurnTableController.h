@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TurnTableController : NSViewController <TurnTableDelegate>{
     
     RingBuffer *_ring;
-    MiniFaderIn *_faderIn;
     __weak IBOutlet TurnTableView *_turnTableView;
     
     float _dryVolume;
@@ -26,6 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
     __weak IBOutlet NSSlider *_sliderDryVolume;
     
     double _speedRate;
+    
+    // Fade transition for scratch ending
+    Boolean _isScratchEnding;   // Transition from scratch to normal playback
+    Boolean _isFadingOut;
+    Boolean _isFadingIn;
+    UInt32 _fadeOutCounter;
+    UInt32 _fadeInCounter;
     
     // Temporary buffers for rate conversion
     float _tempLeftPtr[1024];
