@@ -33,6 +33,13 @@ NS_ASSUME_NONNULL_BEGIN
     UInt32 _fadeOutCounter;
     UInt32 _fadeInCounter;
     
+    // Fade transition for scratch starting
+    Boolean _isScratchStarting; // Transition from normal playback to scratch
+    double _pendingSpeedRate;   // Speed rate to apply after fade out
+    
+    // Fade transition for speed rate change (including to/from zero)
+    Boolean _isSpeedChanging;   // Transition between different scratch speeds
+    
     // Temporary buffers for rate conversion
     float _tempLeftPtr[1024];
     float _tempRightPtr[1024];

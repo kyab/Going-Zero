@@ -103,7 +103,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C1FB59F2EF24C9600E702FB /* AutoLooper 2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoLooper 2.h"; sourceTree = "<group>"; };
 		0C21BC012B69D63000018937 /* BeatLookupController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeatLookupController.h; sourceTree = "<group>"; };
 		0C21BC022B69D63000018937 /* BeatLookupController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeatLookupController.m; sourceTree = "<group>"; };
 		0C21BC032B69D63000018937 /* BeatLookupController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeatLookupController.xib; sourceTree = "<group>"; };
@@ -428,7 +427,6 @@
 				EB7A68AB2E030AD100018A81 /* PitchController.h */,
 				EB7A68AC2E030AD100018A81 /* PitchController.m */,
 				EB7A68AD2E030AD100018A81 /* PitchController.xib */,
-				0C1FB59F2EF24C9600E702FB /* AutoLooper 2.h */,
 			);
 			path = filter;
 			sourceTree = "<group>";
