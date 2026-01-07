@@ -41,13 +41,29 @@
     return self;
 }
 
+-(BOOL)active{
+    // During fade transition, return target state; otherwise return current state
+    if (_isFadingOut || _isFadingIn) {
+        return !_targetBypass;
+    }
+    return !_bypass;
+}
+
 -(void)setActive:(Boolean)active{
     Boolean targetBypass = !active;
     
     // Only start fade transition if state is actually changing and not already fading
     if (targetBypass != _bypass && !_isFadingOut){
+        // Set target state and fade flags BEFORE sending KVO notification
+        // so that active property getter returns new state when observers query it
         _targetBypass = targetBypass;
         _isFadingOut = YES;
+        
+        // Send KVO notification - active property will now return new state
+        [self willChangeValueForKey:@"active"];
+        [self didChangeValueForKey:@"active"];
+        
+        // Start fade transition after KVO notification
         _fadeOutCounter = FADE_SAMPLE_NUM;
         [_fadeOut startFadeOut];
     }
