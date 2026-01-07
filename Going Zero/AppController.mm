@@ -203,6 +203,17 @@
 
 -(void)MIDIDelegateCC:(Byte)cc data:(Byte)data chan:(Byte)chan{
     NSLog(@"MIDI : cc:%d data:%d chan:%d", cc, data, chan+1);
+    
+    // Handle CC 64 (Hold/Sustain pedal) for Freezer control
+    if (cc == 64) {
+        if (data != 0) {
+            // Turn Freezer On (UI will be updated via KVO)
+            [_freezer setActive:YES];
+        } else {
+            // Turn Freezer Off (UI will be updated via KVO)
+            [_freezer setActive:NO];
+        }
+    }
 }
 
 -(void)terminate{

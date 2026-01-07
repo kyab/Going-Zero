@@ -22,6 +22,13 @@
     // Do view setup here.
 }
 
+- (void)dealloc {
+    // Remove KVO observer
+    if (_freezer) {
+        [_freezer removeObserver:self forKeyPath:@"active"];
+    }
+}
+
 - (void)setBender:(Bender *)bender{
     _bender = bender;
 }
@@ -31,7 +38,19 @@
 }
 
 - (void)setFreezer:(Freezer *)freezer{
+    // Remove old observer if exists
+    if (_freezer) {
+        [_freezer removeObserver:self forKeyPath:@"active"];
+    }
+    
     _freezer = freezer;
+    
+    // Add KVO observer for active property
+    if (_freezer) {
+        [_freezer addObserver:self forKeyPath:@"active" options:NSKeyValueObservingOptionNew context:NULL];
+        // Initial UI sync
+        [self syncUIWithModel];
+    }
 }
 
 - (IBAction)_benderRateChanged:(id)sender {
@@ -84,11 +103,29 @@
 }
 
 - (IBAction)freezeChanged:(id)sender {
+    // Update model state (UI will be updated via KVO)
     [_freezer setActive:(_chkFreeze.state == NSControlStateValueOn)];
 }
 
 - (IBAction)freezeGrainsizeChanged:(id)sender {
     [_freezer setGrainSize:[_sliderGrainSize intValue]];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"active"] && object == _freezer) {
+        // Update UI on main thread when model state changes
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self syncUIWithModel];
+        });
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void)syncUIWithModel {
+    // Sync UI checkbox with model state
+    BOOL active = [_freezer active];
+    [_chkFreeze setState:active ? NSControlStateValueOn : NSControlStateValueOff];
 }
 
 @end

@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
     Boolean _pendingGrainSizeChange;
 }
 
+@property (nonatomic, readonly) BOOL active;
+
 -(void)setActive:(Boolean)active;
 -(void)setGrainSize:(unsigned int)grainSize;
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
