@@ -378,17 +378,22 @@
     [_beatLookup processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
+    //Trill reverse
+    [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
+                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
+    //Freezer
+    [_freezer processLeft:(float*)ioData->mBuffers[0].mData
+                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     //Sampler
     [_sampler processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
 
-    //DJ filter
-    [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
-                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
     //Random
     [_random processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
     
     //LookUp
     [_lookUp processLeft:(float*)ioData->mBuffers[0].mData
@@ -405,14 +410,6 @@
     //Bender
     [_bender processLeft:(float*)ioData->mBuffers[0].mData
                          right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-    
-    //Trill reverse
-    [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
-                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
-
-    //Freezer
-    [_freezer processLeft:(float*)ioData->mBuffers[0].mData
-                    right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
   
     //Reverse
     [_reverse processLeft:(float*)ioData->mBuffers[0].mData
@@ -432,6 +429,10 @@
     
     //Flanger
     [_flanger processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+    
+    //DJ filter
+    [_djFilter processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
     
     //Simple Reverb
