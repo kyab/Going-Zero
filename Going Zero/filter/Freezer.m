@@ -112,12 +112,12 @@
     if (_active != _targetActive){
         _active = _targetActive;
         if (_active){
-            // Activating: initialize ring buffer
-            [_ring reset];
-            _startL = [_ring writePtrLeft];
-            _startR = [_ring writePtrRight];
-            _currentL = [_ring writePtrLeft];
-            _currentR = [_ring writePtrRight];
+            // Activating: start from grainSize samples before current write position
+            // Ring buffer already contains data from inactive state, so no reset needed
+            _startL = [_ring writePtrLeft] - _grainSize;
+            _startR = [_ring writePtrRight] - _grainSize;
+            _currentL = _startL;
+            _currentR = _startR;
         }
     }
     
@@ -128,15 +128,17 @@
     [_fadeIn startFadeIn];
 }
 
-// Helper: Process samples in active state (with optional active fade)
--(void)processActiveState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
-    // Store input to ring buffer
+// Helper: Store raw input samples to ring buffer
+-(void)storeInputToRing:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     float *dstL = [_ring writePtrLeft];
     float *dstR = [_ring writePtrRight];
     memcpy(dstL, leftBuf, numSamples * sizeof(float));
     memcpy(dstR, rightBuf, numSamples * sizeof(float));
     [_ring advanceWritePtrSample:numSamples];
-    
+}
+
+// Helper: Process samples in active state (with optional active fade)
+-(void)processActiveState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     // Process each sample with grain loop
     for (int i = 0; i < numSamples; i++){
         [self processGrainLoopSample:&leftBuf[i] right:&rightBuf[i]];
@@ -171,12 +173,6 @@
     
     if (_active){
         // Active state: process grain loop with fade out
-        float *dstL = [_ring writePtrLeft];
-        float *dstR = [_ring writePtrRight];
-        memcpy(dstL, leftBuf, numSamples * sizeof(float));
-        memcpy(dstR, rightBuf, numSamples * sizeof(float));
-        [_ring advanceWritePtrSample:numSamples];
-        
         for (int i = 0; i < numSamples; i++){
             [self processGrainLoopSample:&leftBuf[i] right:&rightBuf[i]];
             
@@ -190,7 +186,7 @@
             }
         }
     }else{
-        // Inactive state: just apply fade out to pass-through signal
+        // Inactive state: apply fade out to pass-through signal
         for (int i = 0; i < numSamples; i++){
             inlineFadeOutSingleSample(&leftBuf[i], &rightBuf[i], &_fadeOutCounter);
             processed++;
@@ -206,6 +202,9 @@
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    // Always store raw input samples before any processing
+    [self storeInputToRing:leftBuf right:rightBuf samples:numSamples];
+
     // Phase 1: Fade out (if active)
     if (_isFadingOut){
         UInt32 processed = [self processFadeOutPhase:leftBuf right:rightBuf samples:numSamples];
