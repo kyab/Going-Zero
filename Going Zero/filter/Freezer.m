@@ -16,7 +16,7 @@
     self = [super init];
     _ring = [[RingBuffer alloc] init];
     
-    _bypass = YES;
+    _active = NO;
     _startL = NULL;
     _startR = NULL;
     _currentL = NULL;
@@ -25,8 +25,8 @@
     _miniFadeIn = [[MiniFaderIn alloc] init];
     _miniFadeOut = [[MiniFaderOut alloc] init];
     
-    // Fade transition for bypass switching
-    _targetBypass = YES;
+    // Fade transition for active switching
+    _targetActive = NO;
     _isFadingOut = NO;
     _isFadingIn = NO;
     _fadeOut = [[MiniFaderOut alloc] init];
@@ -44,19 +44,19 @@
 -(BOOL)active{
     // During fade transition, return target state; otherwise return current state
     if (_isFadingOut || _isFadingIn) {
-        return !_targetBypass;
+        return _targetActive;
     }
-    return !_bypass;
+    return _active;
 }
 
 -(void)setActive:(Boolean)active{
-    Boolean targetBypass = !active;
+    Boolean targetActive = active;
     
     // Only start fade transition if state is actually changing and not already fading
-    if (targetBypass != _bypass && !_isFadingOut){
+    if (targetActive != _active && !_isFadingOut){
         // Set target state and fade flags BEFORE sending KVO notification
         // so that active property getter returns new state when observers query it
-        _targetBypass = targetBypass;
+        _targetActive = targetActive;
         _isFadingOut = YES;
         
         // Send KVO notification - active property will now return new state
@@ -109,9 +109,9 @@
 
 // Helper: Change state after fade out completes
 -(void)changeStateAfterFadeOut{
-    if (_bypass != _targetBypass){
-        _bypass = _targetBypass;
-        if (!_bypass){
+    if (_active != _targetActive){
+        _active = _targetActive;
+        if (_active){
             // Activating: initialize ring buffer
             [_ring reset];
             _startL = [_ring writePtrLeft];
@@ -128,7 +128,7 @@
     [_fadeIn startFadeIn];
 }
 
-// Helper: Process samples in active state (with optional bypass fade)
+// Helper: Process samples in active state (with optional active fade)
 -(void)processActiveState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     // Store input to ring buffer
     float *dstL = [_ring writePtrLeft];
@@ -141,7 +141,7 @@
     for (int i = 0; i < numSamples; i++){
         [self processGrainLoopSample:&leftBuf[i] right:&rightBuf[i]];
         
-        // Apply bypass transition fade in if active (inline for performance)
+        // Apply active transition fade in if active (inline for performance)
         if (_isFadingIn){
             inlineFadeInSingleSample(&leftBuf[i], &rightBuf[i], &_fadeInCounter);
             if (_fadeInCounter >= FADE_SAMPLE_NUM){
@@ -151,8 +151,8 @@
     }
 }
 
-// Helper: Process samples in bypass state (with optional bypass fade)
--(void)processBypassState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+// Helper: Process samples in inactive state (with optional active fade)
+-(void)processInactiveState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     // Pass through with fade in if active
     if (_isFadingIn){
         for (int i = 0; i < numSamples; i++){
@@ -169,7 +169,7 @@
 -(UInt32)processFadeOutPhase:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     UInt32 processed = 0;
     
-    if (!_bypass){
+    if (_active){
         // Active state: process grain loop with fade out
         float *dstL = [_ring writePtrLeft];
         float *dstR = [_ring writePtrRight];
@@ -180,7 +180,7 @@
         for (int i = 0; i < numSamples; i++){
             [self processGrainLoopSample:&leftBuf[i] right:&rightBuf[i]];
             
-            // Apply bypass transition fade out (inline for performance)
+            // Apply active transition fade out (inline for performance)
             inlineFadeOutSingleSample(&leftBuf[i], &rightBuf[i], &_fadeOutCounter);
             processed++;
             
@@ -190,7 +190,7 @@
             }
         }
     }else{
-        // Bypass state: just apply fade out to pass-through signal
+        // Inactive state: just apply fade out to pass-through signal
         for (int i = 0; i < numSamples; i++){
             inlineFadeOutSingleSample(&leftBuf[i], &rightBuf[i], &_fadeOutCounter);
             processed++;
@@ -213,20 +213,20 @@
         // If fade out completed mid-buffer, process remaining samples with fade in
         if (processed < numSamples){
             UInt32 remaining = numSamples - processed;
-            if (!_bypass){
+            if (_active){
                 [self processActiveState:&leftBuf[processed] right:&rightBuf[processed] samples:remaining];
             }else{
-                [self processBypassState:&leftBuf[processed] right:&rightBuf[processed] samples:remaining];
+                [self processInactiveState:&leftBuf[processed] right:&rightBuf[processed] samples:remaining];
             }
         }
         return;
     }
     
     // Phase 2: Normal processing
-    if (_bypass){
-        [self processBypassState:leftBuf right:rightBuf samples:numSamples];
-    }else{
+    if (_active){
         [self processActiveState:leftBuf right:rightBuf samples:numSamples];
+    }else{
+        [self processInactiveState:leftBuf right:rightBuf samples:numSamples];
     }
 }
 

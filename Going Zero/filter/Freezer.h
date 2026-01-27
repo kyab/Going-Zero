@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Freezer : NSObject{
     RingBuffer *_ring;
-    Boolean _bypass;
+    Boolean _active;
     
     float *_startL;
     float *_startR;
@@ -26,8 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
     MiniFaderIn *_miniFadeIn;
     MiniFaderOut *_miniFadeOut;
     
-    // Fade transition for bypass switching
-    Boolean _targetBypass;
+    // Fade transition for active switching
+    Boolean _targetActive;
     Boolean _isFadingOut;
     Boolean _isFadingIn;
     MiniFaderOut *_fadeOut;
