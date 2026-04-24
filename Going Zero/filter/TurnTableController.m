@@ -9,74 +9,49 @@
 #import "TurnTableController.h"
 
 // ---------------------------------------------------------------------------
-// Turn-table / scratch processor
+// Turn-table / scratch processor with A/B switch
 //
-// Design notes (see also the accompanying PR description):
+// Two complete scratch implementations coexist in this file:
 //
-// The previous implementation had three sources of audible roughness:
+//   Algorithm A: the original implementation. Linear interpolation,
+//                integer-advance resampling, hard silence when |speed|==0,
+//                and an extra fade-transition state (_isSpeedChangingA)
+//                to hide the click when crossing zero.
 //
-//   1. Linear, integer-advance resampling. `convertAtRatePlusFromLeft` used
-//      floor/ceil on a block-local sample index, and `*consumed` was set to
-//      `ceil(last * rate)`. That discards the sub-sample fraction between
-//      blocks, so any steady pitch produces a small-amplitude saw-tooth at
-//      the block boundary -> "whistle" / "zipper" noise.
+//   Algorithm B: xwax-inspired. Cubic Hermite interpolation, double-precision
+//                sub-sample playhead, per-sample one-pole smoothed speed and
+//                wet gain, pitch-proportional volume (so zero speed is
+//                naturally silent), plus a small DC blocker on the wet.
 //
-//   2. Abrupt speed-rate change at the block boundary. Each UI timer tick
-//      (~100 Hz) replaces `_speedRate` with a new value that is then applied
-//      for the whole next 512-sample block. The pitch has an audible stair.
-//
-//   3. A hard gate at `speedRate == 0.0`: wet signal was zeroed, which is
-//      not how a record behaves (a stopped record is silent because it has
-//      no velocity, not because a gate is closed). The current code even
-//      needed a whole extra fade-transition state (`_isSpeedChanging`) to
-//      hide the resulting clicks when the user crossed zero.
-//
-// The xwax player (player.c) avoids all three by:
-//
-//   - cubic Hermite interpolation on a double-precision read-pointer that is
-//     never rounded between blocks (`sample += step` inside the per-sample
-//     loop),
-//   - linear per-sample ramps of gain across the output block
-//     (`vol += gradient`),
-//   - making the wet volume proportional to |pitch| (`target_volume =
-//     fabs(pitch) * VOLUME`), so a stopped record is naturally silent and
-//     a crossing of zero is click-free.
-//
-// This file ports all three ideas into Going Zero's ring-buffer world,
-// keeping the existing start-of-scratch and end-of-scratch fades (which
-// are still useful for the discontinuity that happens when the user first
-// grabs the record or releases it), but removes the fragile mid-scratch
-// "speed changing" transition, which is now redundant.
-//
+// The UI (checkbox _chkUseNewAlgorithm) picks one. The choice is latched
+// into _activeAlgorithm at the instant a new scratch begins, then held
+// until that scratch has fully ended (including the closing fade-in back
+// to normal playback). Toggling the checkbox mid-scratch is ignored on
+// purpose so that A/B comparisons are stable.
 // ---------------------------------------------------------------------------
 
-// One-pole time constant for the audio-rate speed smoother. The value is in
-// "blend rate per sample at 44.1 kHz" and corresponds to a time constant of
-// roughly 3 ms, which is short enough that the user still feels the scratch
-// tracking the mouse, but long enough to merge successive UI timer ticks
-// into a continuous ramp.
+// --- Algorithm B tuning constants ------------------------------------------
+
+// One-pole time constant for the audio-rate speed smoother (~3 ms @ 44.1 kHz).
+// Long enough to merge 100 Hz UI ticks into a continuous pitch ramp, short
+// enough that the user still feels the scratch tracking the mouse.
 #define SPEED_SMOOTH_ALPHA     (1.0 / 128.0)
 
-// One-pole time constant for the pitch-driven wet-gain smoother. A bit
-// longer than the speed smoother so that micro-oscillations around zero
-// speed don't re-open the gate instantly.
+// One-pole time constant for the pitch-driven wet-gain smoother (~6 ms).
+// Slightly slower than the speed smoother so micro-oscillations around
+// zero speed don't re-open the gate instantly.
 #define GAIN_SMOOTH_ALPHA      (1.0 / 256.0)
 
-// DC blocker pole. 0.995 corresponds to a ~35 Hz high-pass at 44.1 kHz,
-// well below audio but enough to kill any residual DC / rumble produced
-// by the resampler when the record is moved back and forth.
+// DC blocker pole. 0.995 corresponds to a ~35 Hz high-pass at 44.1 kHz.
 #define DC_BLOCKER_R           (0.995f)
 
-// Wet-gain curve: target gain = min(|speed| * GAIN_SLOPE, 1.0).
-// A slope of 4 means the record reaches full wet volume at |speed| = 0.25,
-// and fades to silence linearly below that. This mirrors xwax's
-// target_volume = fabs(pitch) * VOLUME trick (with VOLUME = 7/8) but is
-// shaped to be more forgiving for slow hand motion.
+// target_gain = min(|speed| * GAIN_SLOPE, 1.0). A slope of 4 means full
+// wet volume is reached at |speed| = 0.25, and the record fades to
+// silence linearly below that.
 #define GAIN_SLOPE             (4.0)
 
-// Below this |speed| the record is considered "essentially stopped": the
-// wet gain is clamped to 0 at the *target* so the smoother can coast to
-// true silence. This keeps us click-free as speed crosses zero.
+// |speed| below which the record is considered "essentially stopped":
+// target gain is clamped to 0 so the smoother coasts to true silence.
 #define STOPPED_SPEED_EPSILON  (1.0e-4)
 
 @interface TurnTableController ()
@@ -98,72 +73,65 @@
     _dryVolume = 0.0;
     _speedRate = 1.0;
     
-    _smoothedSpeed = 1.0;
-    _subSamplePos  = 0.0;
-    _wetGain       = 1.0;
+    // Default to B (the new algorithm). The checkbox defaults on; if
+    // the xib initializes the button state to off, -viewDidLoad does
+    // not observe that here, so sync from the outlet after the nib has
+    // loaded.
+    _selectedAlgorithm = TurnTableAlgorithmB;
+    _activeAlgorithm   = TurnTableAlgorithmB;
     
-    _dcInL = _dcOutL = 0.0f;
-    _dcInR = _dcOutR = 0.0f;
-    
-    _isScratching      = NO;
+    // Shared fade state
     _isScratchStarting = NO;
     _isScratchEnding   = NO;
     _isFadingOut       = NO;
     _isFadingIn        = NO;
     _fadeOutCounter    = 0;
     _fadeInCounter     = 0;
+    
+    // Algo A
+    _isSpeedChangingA  = NO;
+    _pendingSpeedRateA = 1.0;
+    
+    // Algo B
+    _smoothedSpeedB    = 1.0;
+    _subSamplePosB     = 0.0;
+    _wetGainB          = 1.0;
+    _dcInLB = _dcOutLB = 0.0f;
+    _dcInRB = _dcOutRB = 0.0f;
+    _isScratchingB     = NO;
+    
+    // Pick up the checkbox's current state from the nib, if any.
+    if (_chkUseNewAlgorithm != nil){
+        _selectedAlgorithm = ([_chkUseNewAlgorithm state] == NSControlStateValueOn)
+                                 ? TurnTableAlgorithmB
+                                 : TurnTableAlgorithmA;
+        _activeAlgorithm = _selectedAlgorithm;
+    }
 }
 
 // ---------------------------------------------------------------------------
-// UI -> audio-thread glue
+// IBAction: A/B checkbox
+//
+// Writes _selectedAlgorithm on the UI thread. The change does NOT take
+// effect while a scratch is in progress -- it is only sampled when a new
+// scratch begins.
 // ---------------------------------------------------------------------------
+- (IBAction)useNewAlgorithmChanged:(id)sender {
+    _selectedAlgorithm = ([_chkUseNewAlgorithm state] == NSControlStateValueOn)
+                             ? TurnTableAlgorithmB
+                             : TurnTableAlgorithmA;
+}
 
--(void)turnTableSpeedRateChanged{
-    double newSpeedRate = [_turnTableView speedRate];
-    _speedRate = newSpeedRate;
-    
-    // Case A: the user grabbed the record while a release-fade was in
-    // progress. Cancel the release-fade and start a grab-fade instead.
-    if (_isScratchEnding && newSpeedRate != 1.0){
-        _isScratchEnding   = NO;
-        _isScratchStarting = YES;
-        _isFadingOut       = YES;
-        _fadeOutCounter    = FADE_SAMPLE_NUM;
-        return;
-    }
-    
-    // Case B: the user released the record while a grab-fade was in
-    // progress. Cancel the grab-fade and start a release-fade instead.
-    if (_isScratchStarting && newSpeedRate == 1.0){
-        _isScratchStarting = NO;
-        _isScratchEnding   = YES;
-        _isFadingOut       = YES;
-        _fadeOutCounter    = FADE_SAMPLE_NUM;
-        return;
-    }
-    
-    // Case C: plain scratch starting (normal -> scratch). Short fade of
-    // the pass-through so the user doesn't hear the ~1-sample
-    // discontinuity as we switch to reading the ring at a different rate.
-    if (!_isScratching && !_isFadingOut && newSpeedRate != 1.0){
-        _isScratchStarting = YES;
-        _isFadingOut       = YES;
-        _fadeOutCounter    = FADE_SAMPLE_NUM;
-        return;
-    }
-    
-    // Case D: plain scratch ending (scratch -> normal).
-    if (_isScratching && !_isFadingOut && newSpeedRate == 1.0){
-        _isScratchEnding = YES;
-        _isFadingOut     = YES;
-        _fadeOutCounter  = FADE_SAMPLE_NUM;
-        return;
-    }
-    
-    // Case E: mid-scratch speed update. Nothing to do -- the audio-thread
-    // smoother picks up the new target next block. Crossing zero is now
-    // handled by the pitch-proportional wet gain, not by muting, so no
-    // click-hiding fade is needed.
+// Helper: are we in pure-normal playback with no scratch or fade in flight?
+// Only in that state is it safe to pick up a new algorithm choice from the
+// checkbox.
+-(BOOL)isFullyIdle{
+    return (_speedRate == 1.0
+            && !_isFadingOut
+            && !_isFadingIn
+            && !_isScratchStarting
+            && !_isScratchEnding
+            && !_isScratchingB);
 }
 
 - (IBAction)wetVolumeChanged:(id)sender {
@@ -175,112 +143,167 @@
 }
 
 // ---------------------------------------------------------------------------
-// Cubic Hermite (Catmull-Rom-ish) interpolation, ported from xwax player.c.
+// UI -> audio-thread glue
 //
-// y[0..3] are 4 consecutive samples; mu in [0,1] is the fractional position
-// between y[1] and y[2]. This gives a C^1 curve which is dramatically
-// smoother than straight-line interpolation, especially at the low pitches
-// you hit during a real scratch.
+// Called from the TurnTableView timer at ~100 Hz whenever the user drags
+// the record. At the first transition out of fully-idle, we latch the
+// current algorithm selection; any algorithm toggles that arrive before
+// this scratch has fully ended are ignored.
 // ---------------------------------------------------------------------------
-static inline float cubicInterpolate(float y0, float y1, float y2, float y3, double mu){
-    double mu2 = mu * mu;
-    double a0 = (double)y3 - (double)y2 - (double)y0 + (double)y1;
-    double a1 = (double)y0 - (double)y1 - a0;
-    double a2 = (double)y2 - (double)y0;
-    double a3 = (double)y1;
-    return (float)((mu * mu2 * a0) + (mu2 * a1) + (mu * a2) + a3);
+-(void)turnTableSpeedRateChanged{
+    double newSpeedRate = [_turnTableView speedRate];
+    
+    // Algorithm latch: only sample _selectedAlgorithm when a brand-new
+    // scratch is starting. Within a scratch (or its closing fade-in),
+    // _activeAlgorithm stays fixed.
+    BOOL startingNewScratch = ([self isFullyIdle] && newSpeedRate != 1.0);
+    if (startingNewScratch){
+        _activeAlgorithm = _selectedAlgorithm;
+    }
+    
+    if (_activeAlgorithm == TurnTableAlgorithmA){
+        [self turnTableSpeedRateChangedA:newSpeedRate];
+    }else{
+        [self turnTableSpeedRateChangedB:newSpeedRate];
+    }
 }
 
-// ---------------------------------------------------------------------------
-// Core resampler. Walks a double-precision read head across the ring buffer,
-// ramping the speed from startSpeed to endSpeed across the output block.
-//
-//   - `baseL` / `baseR` point at the ring buffer's current read pointer.
-//     The ring buffer is mirrored on both sides (see RingBuffer.m
-//     allocMirrorBuf2) so we can safely read `[-1, numSamples*rate + 2]`
-//     around the read pointer without bounds-checking inside the loop.
-//   - `subPos` is the fractional position inside the first input sample
-//     when we start. It is updated in-place so successive blocks continue
-//     seamlessly.
-//   - `*consumed` returns the integer number of input samples the ring
-//     pointer should advance by after the block. The leftover fraction
-//     stays in *subPos.
-// ---------------------------------------------------------------------------
--(void)resampleFromLeft:(float *)baseL right:(float *)baseR
-              toDstLeft:(float *)dstL dstRight:(float *)dstR
-               samples:(UInt32)numSamples
-            startSpeed:(double)startSpeed
-              endSpeed:(double)endSpeed
-                subPos:(double *)subPos
-              consumed:(SInt32 *)consumed{
+// ===========================================================================
+//                           ALGORITHM A  (original)
+// ===========================================================================
+#pragma mark - Algorithm A
+
+-(void)turnTableSpeedRateChangedA:(double)newSpeedRate{
+    // Already in fade-out: queue the value for application after the fade.
+    if (_isFadingOut){
+        _pendingSpeedRateA = newSpeedRate;
+        return;
+    }
     
-    double pos   = *subPos;
-    double speed = startSpeed;
-    double dSpeed = (endSpeed - startSpeed) / (double)numSamples;
+    // Scratch starting (normal -> scratch)
+    if (_speedRate == 1.0 && newSpeedRate != 1.0){
+        _isScratchStarting = YES;
+        _isFadingOut       = YES;
+        _fadeOutCounter    = FADE_SAMPLE_NUM;
+        _pendingSpeedRateA = newSpeedRate;
+        return;
+    }
     
-    // integerBase is the offset into baseL/baseR of the sample that we
-    // treat as "y[1]" in the cubic window. It advances by floor(pos) each
-    // iteration once pos crosses 1.0.
-    SInt32 integerBase = 0;
+    // Scratch ending (scratch -> normal)
+    if (_speedRate != 1.0 && newSpeedRate == 1.0){
+        _isScratchEnding = YES;
+        _isFadingOut     = YES;
+        _fadeOutCounter  = FADE_SAMPLE_NUM;
+        return;
+    }
     
-    for (UInt32 i = 0; i < numSamples; i++){
-        // Integer-part carry: if pos has walked past the current sample
-        // (forward or backward), shift the cubic window.
-        while (pos >= 1.0){
-            pos       -= 1.0;
-            integerBase += 1;
+    // Speed change to/from zero during scratch (would otherwise pop)
+    if (_speedRate != 1.0 && newSpeedRate != 1.0){
+        if ((_speedRate == 0.0 && newSpeedRate != 0.0) ||
+            (_speedRate != 0.0 && newSpeedRate == 0.0)){
+            _isSpeedChangingA  = YES;
+            _isFadingOut       = YES;
+            _fadeOutCounter    = FADE_SAMPLE_NUM;
+            _pendingSpeedRateA = newSpeedRate;
+            return;
         }
-        while (pos < 0.0){
-            pos       += 1.0;
-            integerBase -= 1;
-        }
-        
-        // 4-tap window centred on integerBase. Ring is mirrored on both
-        // sides, so negative indices are valid for reverse scratching.
-        float l0 = baseL[integerBase - 1];
-        float l1 = baseL[integerBase    ];
-        float l2 = baseL[integerBase + 1];
-        float l3 = baseL[integerBase + 2];
-        
-        float r0 = baseR[integerBase - 1];
-        float r1 = baseR[integerBase    ];
-        float r2 = baseR[integerBase + 1];
-        float r3 = baseR[integerBase + 2];
-        
-        dstL[i] = cubicInterpolate(l0, l1, l2, l3, pos);
-        dstR[i] = cubicInterpolate(r0, r1, r2, r3, pos);
-        
-        pos   += speed;
-        speed += dSpeed;
     }
     
-    // Normalise: whatever integer samples we walked past belongs to
-    // *consumed, the remainder stays in *subPos for next block.
-    while (pos >= 1.0){
-        pos       -= 1.0;
-        integerBase += 1;
-    }
-    while (pos < 0.0){
-        pos       += 1.0;
-        integerBase -= 1;
-    }
-    
-    *subPos   = pos;
-    *consumed = integerBase;
+    _speedRate = newSpeedRate;
 }
 
-// ---------------------------------------------------------------------------
-// Normal-playback path (no scratch). Applies optional fade-in on the wet
-// signal, which is just the input pass-through at this point.
-// ---------------------------------------------------------------------------
--(void)processNormalState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
-    [_ring advanceReadPtrSample:numSamples];
+-(void)completeScratchEndingA{
+    _speedRate       = 1.0;
+    [_ring follow];
+    _isFadingOut     = NO;
+    _isFadingIn      = YES;
+    _fadeInCounter   = 0;
+    _isScratchEnding = NO;
+}
+
+-(void)completeScratchStartingA{
+    _speedRate         = _pendingSpeedRateA;
+    _isFadingOut       = NO;
+    _isFadingIn        = YES;
+    _fadeInCounter     = 0;
+    _isScratchStarting = NO;
+}
+
+-(void)completeSpeedChangeA{
+    _speedRate         = _pendingSpeedRateA;
+    _isFadingOut       = NO;
+    _isFadingIn        = YES;
+    _fadeInCounter     = 0;
+    _isSpeedChangingA  = NO;
+}
+
+// --- Algorithm A resampler (linear, integer-advance) ----------------------
+
+static double linearInterporationA(int x0, double y0, int x1, double y1, double x){
+    if (x0 == x1){
+        return y0;
+    }
+    double rate = (x - x0) / (x1 - x0);
+    return (1.0 - rate)*y0 + rate*y1;
+}
+
+-(void)convertAtRateA_FromLeft:(float *)srcL right:(float *)srcR
+                      leftDest:(float *)dstL rightDest:(float *)dstR
+                     ToSamples:(UInt32)inNumberFrames
+                          rate:(double)rate
+                consumedFrames:(SInt32 *)consumed{
+    if (rate == 1.0){
+        memcpy(dstL, srcL, inNumberFrames * sizeof(float));
+        memcpy(dstR, srcR, inNumberFrames * sizeof(float));
+        *consumed = inNumberFrames;
+        return;
+    }
+    *consumed = 0;
+    for (int targetSample = 0; targetSample < (int)inNumberFrames; targetSample++){
+        int x0 = (int)floor(targetSample * rate);
+        int x1 = (int)ceil (targetSample * rate);
+        
+        float y0_l = srcL[x0];
+        float y1_l = srcL[x1];
+        float y_l = (float)linearInterporationA(x0, y0_l, x1, y1_l, targetSample * rate);
+        
+        float y0_r = srcR[x0];
+        float y1_r = srcR[x1];
+        float y_r = (float)linearInterporationA(x0, y0_r, x1, y1_r, targetSample * rate);
+        
+        dstL[targetSample] = y_l;
+        dstR[targetSample] = y_r;
+        *consumed = x1;
+    }
+}
+
+-(void)processScratchStateA:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    if (_speedRate == 0.0){
+        for (UInt32 i = 0; i < numSamples; i++){
+            float dryL = leftBuf[i] * _dryVolume;
+            float dryR = rightBuf[i] * _dryVolume;
+            leftBuf[i]  = dryL;
+            rightBuf[i] = dryR;
+        }
+        if (_isFadingIn){
+            _fadeInCounter = FADE_SAMPLE_NUM;
+            _isFadingIn    = NO;
+        }
+        return;
+    }
+    
+    SInt32 consumed = 0;
+    [self convertAtRateA_FromLeft:[_ring readPtrLeft] right:[_ring readPtrRight]
+                         leftDest:_tempLeftPtr rightDest:_tempRightPtr
+                        ToSamples:numSamples
+                             rate:_speedRate
+                   consumedFrames:&consumed];
     
     for (UInt32 i = 0; i < numSamples; i++){
         float dryL = leftBuf[i] * _dryVolume;
         float dryR = rightBuf[i] * _dryVolume;
-        float wetL = leftBuf[i] * _wetVolume;
-        float wetR = rightBuf[i] * _wetVolume;
+        float wetL = _tempLeftPtr[i] * _wetVolume;
+        float wetR = _tempRightPtr[i] * _wetVolume;
         
         if (_isFadingIn){
             float r = _fadeInCounter / (float)FADE_SAMPLE_NUM;
@@ -295,16 +318,11 @@ static inline float cubicInterpolate(float y0, float y1, float y2, float y3, dou
         leftBuf[i]  = dryL + wetL;
         rightBuf[i] = dryR + wetR;
     }
+    [_ring advanceReadPtrSample:consumed];
 }
 
-// ---------------------------------------------------------------------------
-// Fade-out phase for scratch start: we are still passing audio through,
-// fading it out; when the counter hits zero we flip into the scratch state
-// and hand the remaining samples to processScratchState.
-// ---------------------------------------------------------------------------
--(UInt32)processFadeOutForScratchStart:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+-(UInt32)processFadeOutForScratchStartA:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     UInt32 n = (numSamples < _fadeOutCounter) ? numSamples : _fadeOutCounter;
-    
     [_ring advanceReadPtrSample:n];
     
     for (UInt32 i = 0; i < n; i++){
@@ -322,90 +340,248 @@ static inline float cubicInterpolate(float y0, float y1, float y2, float y3, dou
         rightBuf[i] = dryR + wetR;
         
         if (_fadeOutCounter == 0){
-            // Enter the scratch state. Align the ring read head to now,
-            // reset the sub-sample fraction, and let the smoother take
-            // over from 1.0 to the new target speed.
-            [_ring follow];
-            _subSamplePos      = 0.0;
-            _smoothedSpeed     = 1.0;
-            _wetGain           = 1.0;
-            _isScratching      = YES;
-            _isFadingOut       = NO;
-            _isFadingIn        = YES;
-            _fadeInCounter     = 0;
-            _isScratchStarting = NO;
+            [self completeScratchStartingA];
             return i + 1;
         }
     }
     return n;
 }
 
-// ---------------------------------------------------------------------------
-// Fade-out phase for scratch end: we are still scratching, fading the
-// scratched wet out; when the counter hits zero we switch to normal
-// playback (which starts its own fade-in).
-// ---------------------------------------------------------------------------
--(UInt32)processFadeOutForScratchEnd:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+-(UInt32)processFadeOutForSpeedChangeA:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     UInt32 n = (numSamples < _fadeOutCounter) ? numSamples : _fadeOutCounter;
     
-    // Resample the block using the smoother exactly like processScratchState,
-    // but with an extra linear fade-out on top of the wet.
-    [self processScratchBlock:leftBuf right:rightBuf samples:n applyExtraFade:YES];
-    
-    // Walk the fade counter and apply the fade to the already-mixed output
-    // above. processScratchBlock already applied the fade via applyExtraFade,
-    // so here we just check if we've reached the end.
-    if (_fadeOutCounter == 0){
-        [_ring follow];
-        _subSamplePos    = 0.0;
-        _smoothedSpeed   = 1.0;
-        _wetGain         = 0.0;
-        _isScratching    = NO;
-        _isFadingOut     = NO;
-        _isFadingIn      = YES;
-        _fadeInCounter   = 0;
-        _isScratchEnding = NO;
-        return n;
+    if (_speedRate == 0.0){
+        for (UInt32 i = 0; i < n; i++){
+            leftBuf[i]  = leftBuf[i]  * _dryVolume;
+            rightBuf[i] = rightBuf[i] * _dryVolume;
+            _fadeOutCounter--;
+            if (_fadeOutCounter == 0){
+                [self completeSpeedChangeA];
+                return i + 1;
+            }
+        }
+    }else{
+        SInt32 consumed = 0;
+        [self convertAtRateA_FromLeft:[_ring readPtrLeft] right:[_ring readPtrRight]
+                             leftDest:_tempLeftPtr rightDest:_tempRightPtr
+                            ToSamples:n
+                                 rate:_speedRate
+                       consumedFrames:&consumed];
+        [_ring advanceReadPtrSample:consumed];
+        
+        for (UInt32 i = 0; i < n; i++){
+            float dryL = leftBuf[i] * _dryVolume;
+            float dryR = rightBuf[i] * _dryVolume;
+            float wetL = _tempLeftPtr[i] * _wetVolume;
+            float wetR = _tempRightPtr[i] * _wetVolume;
+            
+            float r = _fadeOutCounter / (float)FADE_SAMPLE_NUM;
+            wetL *= r;
+            wetR *= r;
+            _fadeOutCounter--;
+            
+            leftBuf[i]  = dryL + wetL;
+            rightBuf[i] = dryR + wetR;
+            
+            if (_fadeOutCounter == 0){
+                [self completeSpeedChangeA];
+                return i + 1;
+            }
+        }
     }
     return n;
 }
 
-// ---------------------------------------------------------------------------
-// Main scratch processing block.
-//
-// This is where the xwax-inspired smoothing happens:
-//
-//   1. The *target* speed is _speedRate (written by the UI thread).
-//   2. Each sample, _smoothedSpeed takes a small step toward that target
-//      (one-pole). That gives us a click-free pitch curve even when the
-//      mouse is jittering.
-//   3. The target wet gain is |_smoothedSpeed| * GAIN_SLOPE clamped to 1.
-//      That is xwax's "target_volume = fabs(pitch) * VOLUME" trick. The
-//      wet gain also coasts toward the target with another one-pole.
-//   4. Resampling happens in a single batch at the start/end of the
-//      block with a linear speed ramp, so the per-sample cost stays low
-//      and we still get sub-block smoothing of the pitch.
-//   5. A tiny high-pass removes any DC the resampler might produce when
-//      the user rapidly reverses direction across a loud sample.
-// ---------------------------------------------------------------------------
--(void)processScratchBlock:(float *)leftBuf right:(float *)rightBuf
-                   samples:(UInt32)numSamples
-            applyExtraFade:(BOOL)applyExtraFade{
+-(UInt32)processFadeOutForScratchEndA:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    UInt32 n = (numSamples < _fadeOutCounter) ? numSamples : _fadeOutCounter;
+    
+    if (_speedRate == 0.0){
+        for (UInt32 i = 0; i < n; i++){
+            leftBuf[i]  = leftBuf[i]  * _dryVolume;
+            rightBuf[i] = rightBuf[i] * _dryVolume;
+            _fadeOutCounter--;
+            if (_fadeOutCounter == 0){
+                [self completeScratchEndingA];
+                return i + 1;
+            }
+        }
+        return n;
+    }
+    
+    SInt32 consumed = 0;
+    [self convertAtRateA_FromLeft:[_ring readPtrLeft] right:[_ring readPtrRight]
+                         leftDest:_tempLeftPtr rightDest:_tempRightPtr
+                        ToSamples:n
+                             rate:_speedRate
+                   consumedFrames:&consumed];
+    [_ring advanceReadPtrSample:consumed];
+    
+    for (UInt32 i = 0; i < n; i++){
+        float dryL = leftBuf[i] * _dryVolume;
+        float dryR = rightBuf[i] * _dryVolume;
+        float wetL = _tempLeftPtr[i] * _wetVolume;
+        float wetR = _tempRightPtr[i] * _wetVolume;
+        
+        float r = _fadeOutCounter / (float)FADE_SAMPLE_NUM;
+        wetL *= r;
+        wetR *= r;
+        _fadeOutCounter--;
+        
+        leftBuf[i]  = dryL + wetL;
+        rightBuf[i] = dryR + wetR;
+        
+        if (_fadeOutCounter == 0){
+            [self completeScratchEndingA];
+            return i + 1;
+        }
+    }
+    return n;
+}
+
+-(void)processLeftA:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    if (_isFadingOut){
+        UInt32 processed = 0;
+        if (_isScratchStarting){
+            processed = [self processFadeOutForScratchStartA:leftBuf right:rightBuf samples:numSamples];
+            if (processed < numSamples){
+                [self processScratchStateA:&leftBuf[processed]
+                                     right:&rightBuf[processed]
+                                   samples:numSamples - processed];
+            }
+        }else if (_isScratchEnding){
+            processed = [self processFadeOutForScratchEndA:leftBuf right:rightBuf samples:numSamples];
+            if (processed < numSamples){
+                [self processNormalState:&leftBuf[processed]
+                                   right:&rightBuf[processed]
+                                 samples:numSamples - processed];
+            }
+        }else if (_isSpeedChangingA){
+            processed = [self processFadeOutForSpeedChangeA:leftBuf right:rightBuf samples:numSamples];
+            if (processed < numSamples){
+                [self processScratchStateA:&leftBuf[processed]
+                                     right:&rightBuf[processed]
+                                   samples:numSamples - processed];
+            }
+        }
+        return;
+    }
+    
+    if (_speedRate == 1.0){
+        [self processNormalState:leftBuf right:rightBuf samples:numSamples];
+    }else{
+        [self processScratchStateA:leftBuf right:rightBuf samples:numSamples];
+    }
+}
+
+// ===========================================================================
+//                   ALGORITHM B  (xwax-inspired, smoothed)
+// ===========================================================================
+#pragma mark - Algorithm B
+
+-(void)turnTableSpeedRateChangedB:(double)newSpeedRate{
+    _speedRate = newSpeedRate;
+    
+    // Case A: user grabbed the record mid-release-fade. Reverse the fade.
+    if (_isScratchEnding && newSpeedRate != 1.0){
+        _isScratchEnding   = NO;
+        _isScratchStarting = YES;
+        _isFadingOut       = YES;
+        _fadeOutCounter    = FADE_SAMPLE_NUM;
+        return;
+    }
+    
+    // Case B: user released the record mid-grab-fade. Reverse the fade.
+    if (_isScratchStarting && newSpeedRate == 1.0){
+        _isScratchStarting = NO;
+        _isScratchEnding   = YES;
+        _isFadingOut       = YES;
+        _fadeOutCounter    = FADE_SAMPLE_NUM;
+        return;
+    }
+    
+    // Case C: plain scratch starting.
+    if (!_isScratchingB && !_isFadingOut && newSpeedRate != 1.0){
+        _isScratchStarting = YES;
+        _isFadingOut       = YES;
+        _fadeOutCounter    = FADE_SAMPLE_NUM;
+        return;
+    }
+    
+    // Case D: plain scratch ending.
+    if (_isScratchingB && !_isFadingOut && newSpeedRate == 1.0){
+        _isScratchEnding = YES;
+        _isFadingOut     = YES;
+        _fadeOutCounter  = FADE_SAMPLE_NUM;
+        return;
+    }
+    
+    // Case E: mid-scratch speed update. The audio-thread smoother picks
+    // up the new target next block. No click-hiding fade needed because
+    // crossing zero is handled by the pitch-proportional wet gain.
+}
+
+// Cubic Hermite (Catmull-Rom-style) interpolation, ported from xwax player.c.
+static inline float cubicInterpolateB(float y0, float y1, float y2, float y3, double mu){
+    double mu2 = mu * mu;
+    double a0 = (double)y3 - (double)y2 - (double)y0 + (double)y1;
+    double a1 = (double)y0 - (double)y1 - a0;
+    double a2 = (double)y2 - (double)y0;
+    double a3 = (double)y1;
+    return (float)((mu * mu2 * a0) + (mu2 * a1) + (mu * a2) + a3);
+}
+
+// Walks a double-precision read head across the ring buffer, linearly
+// ramping the speed from startSpeed to endSpeed across the output block.
+-(void)resampleB_FromLeft:(float *)baseL right:(float *)baseR
+                toDstLeft:(float *)dstL dstRight:(float *)dstR
+                  samples:(UInt32)numSamples
+               startSpeed:(double)startSpeed
+                 endSpeed:(double)endSpeed
+                   subPos:(double *)subPos
+                 consumed:(SInt32 *)consumed{
+    double pos    = *subPos;
+    double speed  = startSpeed;
+    double dSpeed = (endSpeed - startSpeed) / (double)numSamples;
+    SInt32 integerBase = 0;
+    
+    for (UInt32 i = 0; i < numSamples; i++){
+        while (pos >= 1.0){ pos -= 1.0; integerBase += 1; }
+        while (pos <  0.0){ pos += 1.0; integerBase -= 1; }
+        
+        float l0 = baseL[integerBase - 1];
+        float l1 = baseL[integerBase    ];
+        float l2 = baseL[integerBase + 1];
+        float l3 = baseL[integerBase + 2];
+        
+        float r0 = baseR[integerBase - 1];
+        float r1 = baseR[integerBase    ];
+        float r2 = baseR[integerBase + 1];
+        float r3 = baseR[integerBase + 2];
+        
+        dstL[i] = cubicInterpolateB(l0, l1, l2, l3, pos);
+        dstR[i] = cubicInterpolateB(r0, r1, r2, r3, pos);
+        
+        pos   += speed;
+        speed += dSpeed;
+    }
+    
+    while (pos >= 1.0){ pos -= 1.0; integerBase += 1; }
+    while (pos <  0.0){ pos += 1.0; integerBase -= 1; }
+    
+    *subPos   = pos;
+    *consumed = integerBase;
+}
+
+-(void)processScratchBlockB:(float *)leftBuf right:(float *)rightBuf
+                    samples:(UInt32)numSamples
+             applyExtraFade:(BOOL)applyExtraFade{
     if (numSamples == 0) return;
     
-    // --- (a) compute per-sample smoother trajectories for this block ---
-    //
-    // We unroll the one-pole smoothers into:
-    //    start value (= current smoother state)
-    //    end   value (= state after n samples of smoothing toward target)
-    //
-    // The resampler interpolates speed linearly between start and end, and
-    // we apply the gain ramp linearly over the block. This is a very good
-    // approximation of a true per-sample one-pole over ~50 sample blocks
-    // and is dramatically cheaper than running the smoother inside the
-    // resampler loop.
+    // Unroll the one-pole smoothers into (start, end) values across the
+    // block. The resampler interpolates speed linearly, and we ramp the
+    // gain linearly inside the mix loop.
     double targetSpeed = _speedRate;
-    double speedStart  = _smoothedSpeed;
+    double speedStart  = _smoothedSpeedB;
     double speedEnd    = speedStart;
     for (UInt32 i = 0; i < numSamples; i++){
         speedEnd += (targetSpeed - speedEnd) * SPEED_SMOOTH_ALPHA;
@@ -413,50 +589,41 @@ static inline float cubicInterpolate(float y0, float y1, float y2, float y3, dou
     
     double absMean    = 0.5 * (fabs(speedStart) + fabs(speedEnd));
     double targetGain = absMean * GAIN_SLOPE;
-    if (targetGain > 1.0)    targetGain = 1.0;
-    if (absMean < STOPPED_SPEED_EPSILON) targetGain = 0.0;
+    if (targetGain > 1.0)                 targetGain = 1.0;
+    if (absMean < STOPPED_SPEED_EPSILON)  targetGain = 0.0;
     
-    double gainStart = _wetGain;
+    double gainStart = _wetGainB;
     double gainEnd   = gainStart;
     for (UInt32 i = 0; i < numSamples; i++){
         gainEnd += (targetGain - gainEnd) * GAIN_SMOOTH_ALPHA;
     }
     
-    // --- (b) resample the wet block (cubic, sub-sample accurate) -------
-    
     float *baseL = [_ring readPtrLeft];
     float *baseR = [_ring readPtrRight];
     
     SInt32 consumed = 0;
-    
     if (baseL != NULL && baseR != NULL){
-        [self resampleFromLeft:baseL right:baseR
-                     toDstLeft:_tempLeftPtr dstRight:_tempRightPtr
-                      samples:numSamples
-                   startSpeed:speedStart
-                     endSpeed:speedEnd
-                       subPos:&_subSamplePos
-                     consumed:&consumed];
+        [self resampleB_FromLeft:baseL right:baseR
+                       toDstLeft:_tempLeftPtr dstRight:_tempRightPtr
+                         samples:numSamples
+                      startSpeed:speedStart
+                        endSpeed:speedEnd
+                          subPos:&_subSamplePosB
+                        consumed:&consumed];
     }else{
-        // Ring not ready: output silence for the wet branch.
         memset(_tempLeftPtr,  0, sizeof(float) * numSamples);
         memset(_tempRightPtr, 0, sizeof(float) * numSamples);
     }
     
-    // --- (c) DC blocker + wet/dry mix with linear ramps ---------------
-    
-    double gain = gainStart;
+    double gain  = gainStart;
     double dGain = (gainEnd - gainStart) / (double)numSamples;
     
-    float dcInL  = _dcInL;
-    float dcOutL = _dcOutL;
-    float dcInR  = _dcInR;
-    float dcOutR = _dcOutR;
+    float dcInL  = _dcInLB;
+    float dcOutL = _dcOutLB;
+    float dcInR  = _dcInRB;
+    float dcOutR = _dcOutRB;
     
-    // Extra linear fade-out on top of the per-sample gain when asked
-    // (used during scratch-end fade-out). Start and end are derived
-    // from _fadeOutCounter and the current block size.
-    double extraFade  = applyExtraFade ? (_fadeOutCounter / (double)FADE_SAMPLE_NUM) : 1.0;
+    double extraFade = applyExtraFade ? (_fadeOutCounter / (double)FADE_SAMPLE_NUM) : 1.0;
     double extraFadeEnd;
     if (applyExtraFade){
         SInt32 counterEnd = (SInt32)_fadeOutCounter - (SInt32)numSamples;
@@ -500,13 +667,11 @@ static inline float cubicInterpolate(float y0, float y1, float y2, float y3, dou
         extraFade += dExtraFade;
     }
     
-    _dcInL = dcInL;  _dcOutL = dcOutL;
-    _dcInR = dcInR;  _dcOutR = dcOutR;
+    _dcInLB = dcInL;  _dcOutLB = dcOutL;
+    _dcInRB = dcInR;  _dcOutRB = dcOutR;
     
-    // --- (d) commit smoother state and ring advance -------------------
-    
-    _smoothedSpeed = speedEnd;
-    _wetGain       = gainEnd;
+    _smoothedSpeedB = speedEnd;
+    _wetGainB       = gainEnd;
     [_ring advanceReadPtrSample:consumed];
     
     if (applyExtraFade){
@@ -518,42 +683,76 @@ static inline float cubicInterpolate(float y0, float y1, float y2, float y3, dou
     }
 }
 
-// Convenience wrapper used by the top-level dispatcher.
--(void)processScratchState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
-    [self processScratchBlock:leftBuf right:rightBuf samples:numSamples applyExtraFade:NO];
+-(void)processScratchStateB:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    [self processScratchBlockB:leftBuf right:rightBuf samples:numSamples applyExtraFade:NO];
 }
 
-// ---------------------------------------------------------------------------
-// Top-level dispatcher. Exactly one of four states is active:
-//   - scratch starting (fading out pass-through, then scratch)
-//   - scratch ending   (fading out scratched wet, then pass-through)
-//   - scratching       (smoothed resampler)
-//   - normal           (pass-through)
-// ---------------------------------------------------------------------------
--(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+-(UInt32)processFadeOutForScratchStartB:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    UInt32 n = (numSamples < _fadeOutCounter) ? numSamples : _fadeOutCounter;
     
-    // 1. Always write the current input to the ring -- the scratch state
-    //    needs a recent history to read from.
-    {
-        float *dstL = [_ring writePtrLeft];
-        float *dstR = [_ring writePtrRight];
-        memcpy(dstL, leftBuf,  numSamples * sizeof(float));
-        memcpy(dstR, rightBuf, numSamples * sizeof(float));
-        [_ring advanceWritePtrSample:numSamples];
+    [_ring advanceReadPtrSample:n];
+    
+    for (UInt32 i = 0; i < n; i++){
+        float dryL = leftBuf[i] * _dryVolume;
+        float dryR = rightBuf[i] * _dryVolume;
+        float wetL = leftBuf[i] * _wetVolume;
+        float wetR = rightBuf[i] * _wetVolume;
+        
+        float r = _fadeOutCounter / (float)FADE_SAMPLE_NUM;
+        wetL *= r;
+        wetR *= r;
+        _fadeOutCounter--;
+        
+        leftBuf[i]  = dryL + wetL;
+        rightBuf[i] = dryR + wetR;
+        
+        if (_fadeOutCounter == 0){
+            [_ring follow];
+            _subSamplePosB     = 0.0;
+            _smoothedSpeedB    = 1.0;
+            _wetGainB          = 1.0;
+            _isScratchingB     = YES;
+            _isFadingOut       = NO;
+            _isFadingIn        = YES;
+            _fadeInCounter     = 0;
+            _isScratchStarting = NO;
+            return i + 1;
+        }
     }
+    return n;
+}
+
+-(UInt32)processFadeOutForScratchEndB:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    UInt32 n = (numSamples < _fadeOutCounter) ? numSamples : _fadeOutCounter;
     
-    // 2. Fade-out phase
+    [self processScratchBlockB:leftBuf right:rightBuf samples:n applyExtraFade:YES];
+    
+    if (_fadeOutCounter == 0){
+        [_ring follow];
+        _subSamplePosB     = 0.0;
+        _smoothedSpeedB    = 1.0;
+        _wetGainB          = 0.0;
+        _isScratchingB     = NO;
+        _isFadingOut       = NO;
+        _isFadingIn        = YES;
+        _fadeInCounter     = 0;
+        _isScratchEnding   = NO;
+    }
+    return n;
+}
+
+-(void)processLeftB:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     if (_isFadingOut){
         UInt32 processed = 0;
         if (_isScratchStarting){
-            processed = [self processFadeOutForScratchStart:leftBuf right:rightBuf samples:numSamples];
+            processed = [self processFadeOutForScratchStartB:leftBuf right:rightBuf samples:numSamples];
             if (processed < numSamples){
-                [self processScratchState:&leftBuf[processed]
-                                    right:&rightBuf[processed]
-                                  samples:numSamples - processed];
+                [self processScratchStateB:&leftBuf[processed]
+                                     right:&rightBuf[processed]
+                                   samples:numSamples - processed];
             }
         }else if (_isScratchEnding){
-            processed = [self processFadeOutForScratchEnd:leftBuf right:rightBuf samples:numSamples];
+            processed = [self processFadeOutForScratchEndB:leftBuf right:rightBuf samples:numSamples];
             if (!_isFadingOut && processed < numSamples){
                 [self processNormalState:&leftBuf[processed]
                                    right:&rightBuf[processed]
@@ -563,11 +762,64 @@ static inline float cubicInterpolate(float y0, float y1, float y2, float y3, dou
         return;
     }
     
-    // 3. Steady state
-    if (_isScratching){
-        [self processScratchState:leftBuf right:rightBuf samples:numSamples];
+    if (_isScratchingB){
+        [self processScratchStateB:leftBuf right:rightBuf samples:numSamples];
     }else{
         [self processNormalState:leftBuf right:rightBuf samples:numSamples];
+    }
+}
+
+// ===========================================================================
+//                         Shared  (normal / dispatcher)
+// ===========================================================================
+#pragma mark - Shared
+
+// Normal-playback renderer used by both algorithms. Pass-through with an
+// optional fade-in on the wet branch.
+-(void)processNormalState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    [_ring advanceReadPtrSample:numSamples];
+    
+    for (UInt32 i = 0; i < numSamples; i++){
+        float dryL = leftBuf[i] * _dryVolume;
+        float dryR = rightBuf[i] * _dryVolume;
+        float wetL = leftBuf[i] * _wetVolume;
+        float wetR = rightBuf[i] * _wetVolume;
+        
+        if (_isFadingIn){
+            float r = _fadeInCounter / (float)FADE_SAMPLE_NUM;
+            wetL *= r;
+            wetR *= r;
+            _fadeInCounter++;
+            if (_fadeInCounter >= FADE_SAMPLE_NUM){
+                _isFadingIn = NO;
+            }
+        }
+        
+        leftBuf[i]  = dryL + wetL;
+        rightBuf[i] = dryR + wetR;
+    }
+}
+
+-(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    
+    // 1. Always write the input to the ring -- both algorithms need a
+    //    recent history to read from during scratching.
+    {
+        float *dstL = [_ring writePtrLeft];
+        float *dstR = [_ring writePtrRight];
+        memcpy(dstL, leftBuf,  numSamples * sizeof(float));
+        memcpy(dstR, rightBuf, numSamples * sizeof(float));
+        [_ring advanceWritePtrSample:numSamples];
+    }
+    
+    // 2. Dispatch to the currently-active algorithm. _activeAlgorithm is
+    //    latched at scratch start and held until the scratch has fully
+    //    ended, so A/B comparisons are stable even if the user toggles
+    //    the checkbox mid-scratch.
+    if (_activeAlgorithm == TurnTableAlgorithmA){
+        [self processLeftA:leftBuf right:rightBuf samples:numSamples];
+    }else{
+        [self processLeftB:leftBuf right:rightBuf samples:numSamples];
     }
 }
 
