@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TurnTableController">
             <connections>
+                <outlet property="_chkUseNewAlgorithm" destination="aBb-01-NeW" id="aBb-01-OuT"/>
                 <outlet property="_sliderDryVolume" destination="2WS-oe-FdM" id="75b-YX-Lod"/>
                 <outlet property="_sliderWetVolume" destination="VwS-kd-Wib" id="Chj-kp-DwY"/>
                 <outlet property="_turnTableView" destination="491-Xi-bDD" id="dWe-yv-l68"/>
@@ -60,6 +61,17 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aBb-01-NeW">
+                    <rect key="frame" x="125" y="295" width="105" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Use new (B)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="aBb-01-CeL">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="useNewAlgorithmChanged:" target="-2" id="aBb-01-AcT"/>
+                    </connections>
+                </button>
             </subviews>
             <point key="canvasLocation" x="111.5" y="194.5"/>
         </customView>
