@@ -59,6 +59,11 @@
 
 @implementation TurnTableController
 
+- (void)dealloc{
+    [_tableStopTimer invalidate];
+    _tableStopTimer = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -99,6 +104,9 @@
     _dcInLB = _dcOutLB = 0.0f;
     _dcInRB = _dcOutRB = 0.0f;
     _isScratchingB     = NO;
+    _tableStopTimer    = nil;
+    _isTableStopping   = NO;
+    _isTableStopped    = NO;
     
     // Pick up the checkbox's current state from the nib, if any.
     if (_chkUseNewAlgorithm != nil){
@@ -140,6 +148,74 @@
 
 - (IBAction)dryVolumeChanged:(id)sender {
     _dryVolume = [_sliderDryVolume floatValue];
+}
+
+- (void)invalidateTableStopTimer{
+    if (_tableStopTimer != nil){
+        [_tableStopTimer invalidate];
+        _tableStopTimer = nil;
+    }
+}
+
+- (void)setExternalSpeedRate:(double)newSpeedRate{
+    if (newSpeedRate == 1.0){
+        _isTableStopping = NO;
+    }
+    _isTableStopped = NO;
+    [self turnTableSpeedRateChangedA:newSpeedRate];
+    [self turnTableSpeedRateChangedB:newSpeedRate];
+}
+
+- (void)tableStopTimerTick:(NSTimer *)timer{
+    (void)timer;
+    if (!_isTableStopping){
+        [self invalidateTableStopTimer];
+        return;
+    }
+    if (fabs(_speedRate) < 0.01){
+        [self setExternalSpeedRate:0.0];
+        _isTableStopping = NO;
+        _isTableStopped = YES;
+        [self invalidateTableStopTimer];
+        return;
+    }
+    double nextSpeedRate = _speedRate;
+    if (nextSpeedRate > 0.0){
+        nextSpeedRate -= 0.02;
+        if (nextSpeedRate < 0.0){
+            nextSpeedRate = 0.0;
+        }
+    }else{
+        nextSpeedRate += 0.02;
+        if (nextSpeedRate > 0.0){
+            nextSpeedRate = 0.0;
+        }
+    }
+    [self setExternalSpeedRate:nextSpeedRate];
+}
+
+- (IBAction)tableStopClicked:(id)sender {
+    (void)sender;
+    if (_isTableStopped || _isTableStopping){
+        return;
+    }
+    _isTableStopping = YES;
+    [self invalidateTableStopTimer];
+    _tableStopTimer = [NSTimer scheduledTimerWithTimeInterval:0.01
+                                                        target:self
+                                                      selector:@selector(tableStopTimerTick:)
+                                                      userInfo:nil
+                                                       repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_tableStopTimer forMode:NSRunLoopCommonModes];
+}
+
+- (IBAction)tableStartClicked:(id)sender {
+    (void)sender;
+    [self invalidateTableStopTimer];
+    _isTableStopping = NO;
+    _isTableStopped = NO;
+    [self setExternalSpeedRate:1.0];
+    [_ring follow];
 }
 
 // ---------------------------------------------------------------------------
