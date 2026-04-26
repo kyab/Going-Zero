@@ -63,7 +63,7 @@
 		EB7A68AE2E030AD100018A81 /* PitchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7A68AC2E030AD100018A81 /* PitchController.m */; };
 		EB7A68AF2E030AD100018A81 /* PitchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB7A68AD2E030AD100018A81 /* PitchController.xib */; };
 		EB7DDCC22B4955AD00D72E9A /* MainMenu2.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */; };
-		EB822D572A1D657E00FAA9B5 /* Lookup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB822D562A1D657E00FAA9B5 /* Lookup.m */; };
+		EB822D572A1D657E00FAA9B5 /* LookUp.m in Sources */ = {isa = PBXBuildFile; fileRef = EB822D562A1D657E00FAA9B5 /* LookUp.m */; };
 		EB83BD432B5427FC007690A5 /* LooperController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB83BD412B5427FC007690A5 /* LooperController.m */; };
 		EB83BD442B5427FC007690A5 /* LooperController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB83BD422B5427FC007690A5 /* LooperController.xib */; };
 		EB8B3A2A2BB862EB00930577 /* esp32_s3_midi2.ino.cpp in Resources */ = {isa = PBXBuildFile; fileRef = EB8B3A292BB862EB00930577 /* esp32_s3_midi2.ino.cpp */; };
@@ -202,8 +202,8 @@
 		EB7A68AC2E030AD100018A81 /* PitchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PitchController.m; sourceTree = "<group>"; };
 		EB7A68AD2E030AD100018A81 /* PitchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PitchController.xib; sourceTree = "<group>"; };
 		EB7DDCC12B4955AD00D72E9A /* MainMenu2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu2.xib; sourceTree = "<group>"; };
-		EB822D552A1D657E00FAA9B5 /* Lookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lookup.h; sourceTree = "<group>"; };
-		EB822D562A1D657E00FAA9B5 /* Lookup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lookup.m; sourceTree = "<group>"; };
+		EB822D552A1D657E00FAA9B5 /* LookUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookUp.h; sourceTree = "<group>"; };
+		EB822D562A1D657E00FAA9B5 /* LookUp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookUp.m; sourceTree = "<group>"; };
 		EB83BD402B5427FC007690A5 /* LooperController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LooperController.h; sourceTree = "<group>"; };
 		EB83BD412B5427FC007690A5 /* LooperController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LooperController.m; sourceTree = "<group>"; };
 		EB83BD422B5427FC007690A5 /* LooperController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LooperController.xib; sourceTree = "<group>"; };
@@ -338,8 +338,8 @@
 				EBF93D0F266AA184001B13F3 /* DJFilterController.h */,
 				EBF93D10266AA184001B13F3 /* DJFilterController.m */,
 				EBF93D0D266AA076001B13F3 /* DJFilterController.xib */,
-				EB822D552A1D657E00FAA9B5 /* Lookup.h */,
-				EB822D562A1D657E00FAA9B5 /* Lookup.m */,
+				EB822D552A1D657E00FAA9B5 /* LookUp.h */,
+				EB822D562A1D657E00FAA9B5 /* LookUp.m */,
 				EBC22F522A2CDD3D001CB3DA /* TouchView.h */,
 				EBC22F532A2CDD3D001CB3DA /* TouchView.m */,
 				EBC191682A21AC3700E13D95 /* LookUpController.h */,
@@ -719,7 +719,7 @@
 				EBF93D1F266B168D001B13F3 /* RefrainController.m in Sources */,
 				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
 				EB379113276F491400AC37D0 /* ConvolutionReverb.mm in Sources */,
-				EB822D572A1D657E00FAA9B5 /* Lookup.m in Sources */,
+				EB822D572A1D657E00FAA9B5 /* LookUp.m in Sources */,
 				EBD7C702275E54F2009A61DA /* Random.m in Sources */,
 				0C5EE3302BE1C67B002E9452 /* AutoLooperController.m in Sources */,
 				EB7001202691D038007F88EE /* Flanger.m in Sources */,
