@@ -49,6 +49,7 @@
                             <buttonCell key="cell" type="bevel" title="Stop" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tbS-top-Cel">
                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
+                                <string key="keyEquivalent">q</string>
                             </buttonCell>
                             <connections>
                                 <action selector="tableStopClicked:" target="-2" id="tbS-top-Act"/>

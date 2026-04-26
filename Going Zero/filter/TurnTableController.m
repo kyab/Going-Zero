@@ -115,6 +115,7 @@
                                  : TurnTableAlgorithmA;
         _activeAlgorithm = _selectedAlgorithm;
     }
+    [_btnTableStopStart sendActionOn:NSEventMaskLeftMouseDown];
     [self updateTableStopButtonTitle];
 }
 
@@ -263,6 +264,7 @@
 }
 
 - (IBAction)tableStopClicked:(id)sender {
+        
     // Reject non-UI invocations to avoid accidental transport toggles from
     // unrelated responder-chain or external control events.
     if (sender != _btnTableStopStart){
