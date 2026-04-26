@@ -155,7 +155,7 @@
     if (_btnTableStopStart == nil){
         return;
     }
-    if (_isTableStopped){
+    if (_isTableStopped || _isTableStopping){
         [_btnTableStopStart setTitle:@"Start"];
     }else{
         [_btnTableStopStart setTitle:@"Stop"];
@@ -210,10 +210,7 @@
 
 - (IBAction)tableStopClicked:(id)sender {
     (void)sender;
-    if (_isTableStopping){
-        return;
-    }
-    if (_isTableStopped){
+    if (_isTableStopping || _isTableStopped){
         [self invalidateTableStopTimer];
         _isTableStopping = NO;
         _isTableStopped = NO;
