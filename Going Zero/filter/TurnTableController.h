@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, TurnTableAlgorithm) {
     // ends; this means toggling the checkbox mid-scratch is ignored on
     // purpose.
     __weak IBOutlet NSButton *_chkUseNewAlgorithm;
+    __weak IBOutlet NSButton *_btnTableStopStart;
     TurnTableAlgorithm _selectedAlgorithm;
     TurnTableAlgorithm _activeAlgorithm;
     
@@ -90,11 +91,17 @@ typedef NS_ENUM(NSInteger, TurnTableAlgorithm) {
     // Marks whether the scratch audio path is currently active (B only
     // needs this; A uses _speedRate != 1.0 as an implicit flag).
     Boolean _isScratchingB;
+
+    // Turntable stop/start controls (Anytime-Scratch style).
+    NSTimer *_tableStopTimer;
+    BOOL _isTableStopping;
+    BOOL _isTableStopped;
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples;
 
 - (IBAction)useNewAlgorithmChanged:(id)sender;
+- (IBAction)tableStopClicked:(id)sender;
 
 @end
 

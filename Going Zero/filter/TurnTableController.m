@@ -59,6 +59,11 @@
 
 @implementation TurnTableController
 
+- (void)dealloc{
+    [_tableStopTimer invalidate];
+    _tableStopTimer = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -99,6 +104,9 @@
     _dcInLB = _dcOutLB = 0.0f;
     _dcInRB = _dcOutRB = 0.0f;
     _isScratchingB     = NO;
+    _tableStopTimer    = nil;
+    _isTableStopping   = NO;
+    _isTableStopped    = NO;
     
     // Pick up the checkbox's current state from the nib, if any.
     if (_chkUseNewAlgorithm != nil){
@@ -107,6 +115,7 @@
                                  : TurnTableAlgorithmA;
         _activeAlgorithm = _selectedAlgorithm;
     }
+    [self updateTableStopButtonTitle];
 }
 
 // ---------------------------------------------------------------------------
@@ -142,6 +151,139 @@
     _dryVolume = [_sliderDryVolume floatValue];
 }
 
+- (void)updateTableStopButtonTitle{
+    if (_btnTableStopStart == nil){
+        return;
+    }
+    if (_isTableStopped || _isTableStopping){
+        [_btnTableStopStart setTitle:@"Start"];
+    }else{
+        [_btnTableStopStart setTitle:@"Stop"];
+    }
+}
+
+- (void)invalidateTableStopTimer{
+    if (_tableStopTimer != nil){
+        [_tableStopTimer invalidate];
+        _tableStopTimer = nil;
+    }
+}
+
+- (void)forceStoppedState{
+    [self invalidateTableStopTimer];
+    _isTableStopping = NO;
+    _isTableStopped = YES;
+
+    _speedRate = 0.0;
+    _pendingSpeedRateA = 0.0;
+    _isSpeedChangingA = NO;
+
+    _isScratchStarting = NO;
+    _isScratchEnding = NO;
+    _isFadingOut = NO;
+    _isFadingIn = NO;
+    _fadeOutCounter = 0;
+    _fadeInCounter = 0;
+
+    _isScratchingB = NO;
+    _smoothedSpeedB = 0.0;
+    _subSamplePosB = 0.0;
+    _wetGainB = 0.0;
+
+    [self updateTableStopButtonTitle];
+}
+
+- (void)resumeFromStoppedState{
+    [self invalidateTableStopTimer];
+    _isTableStopping = NO;
+    _isTableStopped = NO;
+
+    [_ring follow];
+    _activeAlgorithm = _selectedAlgorithm;
+    _speedRate = 1.0;
+    _pendingSpeedRateA = 1.0;
+    _isSpeedChangingA = NO;
+
+    _isScratchStarting = NO;
+    _isScratchEnding = NO;
+    _isFadingOut = NO;
+    _isFadingIn = YES;
+    _fadeOutCounter = 0;
+    _fadeInCounter = 0;
+
+    _isScratchingB = NO;
+    _smoothedSpeedB = 1.0;
+    _subSamplePosB = 0.0;
+    _wetGainB = 1.0;
+
+    [self updateTableStopButtonTitle];
+}
+
+- (void)applyExternalSpeedRateToActiveAlgorithm:(double)newSpeedRate{
+    // Keep stop/start control on a single state machine. Calling both A and B
+    // handlers corrupts transition flags after repeated stop/resume cycles.
+    BOOL startingNewScratch = ([self isFullyIdle] && newSpeedRate != 1.0);
+    if (startingNewScratch){
+        _activeAlgorithm = _selectedAlgorithm;
+    }
+    if (_activeAlgorithm == TurnTableAlgorithmA){
+        [self turnTableSpeedRateChangedA:newSpeedRate];
+    }else{
+        [self turnTableSpeedRateChangedB:newSpeedRate];
+    }
+}
+
+- (void)setExternalSpeedRate:(double)newSpeedRate{
+    [self applyExternalSpeedRateToActiveAlgorithm:newSpeedRate];
+}
+
+- (void)tableStopTimerTick:(NSTimer *)timer{
+    (void)timer;
+    if (!_isTableStopping){
+        [self invalidateTableStopTimer];
+        return;
+    }
+    if (fabs(_speedRate) < 0.01){
+        [self forceStoppedState];
+        return;
+    }
+    double nextSpeedRate = _speedRate;
+    if (nextSpeedRate > 0.0){
+        nextSpeedRate -= 0.02;
+        if (nextSpeedRate < 0.0){
+            nextSpeedRate = 0.0;
+        }
+    }else{
+        nextSpeedRate += 0.02;
+        if (nextSpeedRate > 0.0){
+            nextSpeedRate = 0.0;
+        }
+    }
+    [self setExternalSpeedRate:nextSpeedRate];
+}
+
+- (IBAction)tableStopClicked:(id)sender {
+    // Reject non-UI invocations to avoid accidental transport toggles from
+    // unrelated responder-chain or external control events.
+    if (sender != _btnTableStopStart){
+        return;
+    }
+    if (_isTableStopping || _isTableStopped){
+        [self resumeFromStoppedState];
+        return;
+    }
+    _isTableStopping = YES;
+    _isTableStopped = NO;
+    [self updateTableStopButtonTitle];
+    [self invalidateTableStopTimer];
+    _tableStopTimer = [NSTimer scheduledTimerWithTimeInterval:0.01
+                                                        target:self
+                                                      selector:@selector(tableStopTimerTick:)
+                                                      userInfo:nil
+                                                       repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_tableStopTimer forMode:NSRunLoopCommonModes];
+}
+
 // ---------------------------------------------------------------------------
 // UI -> audio-thread glue
 //
@@ -151,6 +293,9 @@
 // this scratch has fully ended are ignored.
 // ---------------------------------------------------------------------------
 -(void)turnTableSpeedRateChanged{
+    if (_isTableStopping || _isTableStopped){
+        return;
+    }
     double newSpeedRate = [_turnTableView speedRate];
     
     // Algorithm latch: only sample _selectedAlgorithm when a brand-new
@@ -800,6 +945,14 @@ static inline float cubicInterpolateB(float y0, float y1, float y2, float y3, do
     }
 }
 
+// Table fully stopped: force wet mute and keep only dry branch.
+-(void)processStoppedState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
+    for (UInt32 i = 0; i < numSamples; i++){
+        leftBuf[i]  = leftBuf[i]  * _dryVolume;
+        rightBuf[i] = rightBuf[i] * _dryVolume;
+    }
+}
+
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     
     // 1. Always write the input to the ring -- both algorithms need a
@@ -810,6 +963,12 @@ static inline float cubicInterpolateB(float y0, float y1, float y2, float y3, do
         memcpy(dstL, leftBuf,  numSamples * sizeof(float));
         memcpy(dstR, rightBuf, numSamples * sizeof(float));
         [_ring advanceWritePtrSample:numSamples];
+    }
+
+    // When table stop is completed, keep output dry-only until restarted.
+    if (_isTableStopped && !_isTableStopping){
+        [self processStoppedState:leftBuf right:rightBuf samples:numSamples];
+        return;
     }
     
     // 2. Dispatch to the currently-active algorithm. _activeAlgorithm is
