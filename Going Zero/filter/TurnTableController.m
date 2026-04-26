@@ -115,6 +115,7 @@
                                  : TurnTableAlgorithmA;
         _activeAlgorithm = _selectedAlgorithm;
     }
+    [self updateTableStopButtonTitle];
 }
 
 // ---------------------------------------------------------------------------
@@ -150,6 +151,17 @@
     _dryVolume = [_sliderDryVolume floatValue];
 }
 
+- (void)updateTableStopButtonTitle{
+    if (_btnTableStopStart == nil){
+        return;
+    }
+    if (_isTableStopped){
+        [_btnTableStopStart setTitle:@"Start"];
+    }else{
+        [_btnTableStopStart setTitle:@"Stop"];
+    }
+}
+
 - (void)invalidateTableStopTimer{
     if (_tableStopTimer != nil){
         [_tableStopTimer invalidate];
@@ -162,6 +174,7 @@
         _isTableStopping = NO;
     }
     _isTableStopped = NO;
+    [self updateTableStopButtonTitle];
     [self turnTableSpeedRateChangedA:newSpeedRate];
     [self turnTableSpeedRateChangedB:newSpeedRate];
 }
@@ -176,6 +189,7 @@
         [self setExternalSpeedRate:0.0];
         _isTableStopping = NO;
         _isTableStopped = YES;
+        [self updateTableStopButtonTitle];
         [self invalidateTableStopTimer];
         return;
     }
@@ -196,10 +210,20 @@
 
 - (IBAction)tableStopClicked:(id)sender {
     (void)sender;
-    if (_isTableStopped || _isTableStopping){
+    if (_isTableStopping){
+        return;
+    }
+    if (_isTableStopped){
+        [self invalidateTableStopTimer];
+        _isTableStopping = NO;
+        _isTableStopped = NO;
+        [self setExternalSpeedRate:1.0];
+        [_ring follow];
+        [self updateTableStopButtonTitle];
         return;
     }
     _isTableStopping = YES;
+    [self updateTableStopButtonTitle];
     [self invalidateTableStopTimer];
     _tableStopTimer = [NSTimer scheduledTimerWithTimeInterval:0.01
                                                         target:self
@@ -207,15 +231,6 @@
                                                       userInfo:nil
                                                        repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_tableStopTimer forMode:NSRunLoopCommonModes];
-}
-
-- (IBAction)tableStartClicked:(id)sender {
-    (void)sender;
-    [self invalidateTableStopTimer];
-    _isTableStopping = NO;
-    _isTableStopped = NO;
-    [self setExternalSpeedRate:1.0];
-    [_ring follow];
 }
 
 // ---------------------------------------------------------------------------

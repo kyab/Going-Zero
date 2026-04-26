@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, TurnTableAlgorithm) {
     // ends; this means toggling the checkbox mid-scratch is ignored on
     // purpose.
     __weak IBOutlet NSButton *_chkUseNewAlgorithm;
+    __weak IBOutlet NSButton *_btnTableStopStart;
     TurnTableAlgorithm _selectedAlgorithm;
     TurnTableAlgorithm _activeAlgorithm;
     
@@ -101,7 +102,6 @@ typedef NS_ENUM(NSInteger, TurnTableAlgorithm) {
 
 - (IBAction)useNewAlgorithmChanged:(id)sender;
 - (IBAction)tableStopClicked:(id)sender;
-- (IBAction)tableStartClicked:(id)sender;
 
 @end
 
