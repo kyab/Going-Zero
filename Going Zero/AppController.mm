@@ -627,7 +627,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
     //Melodizer
     if ([_noteMap objectForKey:[NSNumber numberWithInt:event.keyCode]]){
         if (!event.isARepeat){
-            NSLog(@"Melodizer: key down:%d", event.keyCode);
             _lastNoteKeyCode = event.keyCode;
             float pitchShift = [[_noteMap objectForKey:[NSNumber numberWithInt:event.keyCode]] floatValue];
             [_melodizerController setTranspose:pitchShift];
@@ -635,7 +634,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
         return YES;
     }
 
-    Boolean processed = NO;
     switch(event.keyCode){
         case 12: // q
             if (!event.isARepeat){
@@ -719,7 +717,6 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 
     //Melodizer
     if ([_noteMap objectForKey:[NSNumber numberWithInt:event.keyCode]]){
-        NSLog(@"Melodizer: key up:%d", event.keyCode);
         if (_lastNoteKeyCode == event.keyCode){
             [_melodizerController stopTranspose];
             return YES;

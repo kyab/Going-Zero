@@ -34,56 +34,14 @@
         int outputLatency = _stretch.outputLatency();
         NSLog(@"[Melodizer] Signalsmith-Stretch : block size = %d, interval = %d, inputLatency=%d, outputLatency=%d", block, interval, inputLatency, outputLatency);
     }
-
-    _isPlaying = NO;
-    _pitchShift = 0.0f;
-    _playedSamples = 0;
     _isActive = YES;
     return self;
-}
-
--(void)replayZero{    
-    _isPlaying = YES;
-    _pitchShift = 0.0f;
-    _playedSamples = 0;
-//    _stretch.reset();
-    _stretch.setTransposeSemitones(_pitchShift, 8000/44100.0);
-    [_ring advanceReadPtrSample:-44100*1];
-    NSLog(@"[Melodizer]Replaying 0");
-}
-
--(void)replayPlusOne{
-    _isPlaying = YES;
-    _pitchShift = 1.0f;
-    _playedSamples = 0;
-//    _stretch.reset();
-    _stretch.setTransposeSemitones(_pitchShift, 8000/44100.0);
-    [_ring advanceReadPtrSample:-44100*1];
-    NSLog(@"[Melodizer]Replaying +1 semitone");
-}
-
--(void)replayMinusOne{
-    _isPlaying = YES;
-    _pitchShift = -1.0f;
-    _playedSamples = 0;
-//    _stretch.reset();
-    _stretch.setTransposeSemitones(_pitchShift, 8000/44100.0);
-    [_ring advanceReadPtrSample:-44100*1];
-    NSLog(@"[Melodizer]Replaying -1 semitone");
-
-}
-
--(void)stopReplay{
-    _isPlaying = NO;
-    _pitchShift = 0.0;
-//    _stretch.reset();
-    _stretch.setTransposeSemitones(0.0, 8000/44100.0);
 }
 
 -(void)setTranspose:(float)pitchShift{
     _pitchShift = pitchShift;
     NSLog(@"Melodizer: setTranspose:%f", _pitchShift);
-    _stretch.setTransposeSemitones(_pitchShift, 8000/44100.0);
+    _stretch.setTransposeSemitones(_pitchShift ,8000/44100.0);
 
 }
 -(void)stopTranspose{

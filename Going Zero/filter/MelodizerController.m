@@ -48,15 +48,15 @@
     [_melodizer stopTranspose];
 }
 
-- (IBAction)replayZeroClicked:(id)sender{
+- (IBAction)transposeNoteCClicked:(id)sender{
     [self setTranspose:0.0f];
 }
 
-- (IBAction)replayPlusOneClicked:(id)sender{
-    [self setTranspose:1.0f];
+- (IBAction)transposeNoteDClicked:(id)sender{
+    [self setTranspose:2.0f];
 }
 
-- (IBAction)replayMinusOneClicked:(id)sender{
+- (IBAction)transposeNoteBClicked:(id)sender{
     [self setTranspose:-1.0f];
 }
 

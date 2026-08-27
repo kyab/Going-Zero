@@ -26,7 +26,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="replayZeroClicked:" target="-2" id="5G9-AN-Mz8"/>
+                        <action selector="transposeNoteCClicked:" target="-2" id="qUC-aA-PNE"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbn-GR-FIS" customClass="MyButton">
@@ -37,7 +37,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="replayMinusOneClicked:" target="-2" id="HqL-BP-3Wl"/>
+                        <action selector="transposeNoteBClicked:" target="-2" id="f6f-zH-j9Q"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="leE-Oi-P8o" customClass="MyButton">
@@ -48,7 +48,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="replayPlusOneClicked:" target="-2" id="ik1-oE-vrX"/>
+                        <action selector="transposeNoteDClicked:" target="-2" id="xP1-nJ-S1m"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IiQ-ST-Xa1">

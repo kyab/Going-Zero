@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 // Melodizer
-// Real-time relative pitch shift via recent ring buffer
+// Real-time relative pitch shift
 
 @interface Melodizer : NSObject{
     RingBuffer *_ring;
@@ -23,9 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
     BOOL _isActive;
 }
 
-// -(void)replayZero;
-// -(void)replayPlusOne;
-// -(void)replayMinusOne;
 -(void)setTranspose:(float)pitchShift;
 -(void)stopTranspose;
 -(void)setActive:(BOOL)active;
