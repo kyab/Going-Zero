@@ -59,6 +59,9 @@
 		EB70011D2691D022007F88EE /* FlangerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB70011B2691D022007F88EE /* FlangerController.xib */; };
 		EB7001202691D038007F88EE /* Flanger.m in Sources */ = {isa = PBXBuildFile; fileRef = EB70011F2691D038007F88EE /* Flanger.m */; };
 		EB7372B6266530F600393D58 /* Freezer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7372B5266530F600393D58 /* Freezer.m */; };
+		EB757B97303BEE8500323642 /* MelodizerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB757B95303BEE8500323642 /* MelodizerController.m */; };
+		EB757B98303BEE8500323642 /* MelodizerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB757B96303BEE8500323642 /* MelodizerController.xib */; };
+		EB757B9B303BEEB400323642 /* Melodizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB757B9A303BEEB400323642 /* Melodizer.mm */; };
 		EB7A68A52E03072D00018A81 /* Pitch.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB7A68A42E03072D00018A81 /* Pitch.mm */; };
 		EB7A68AE2E030AD100018A81 /* PitchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7A68AC2E030AD100018A81 /* PitchController.m */; };
 		EB7A68AF2E030AD100018A81 /* PitchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB7A68AD2E030AD100018A81 /* PitchController.xib */; };
@@ -196,6 +199,11 @@
 		EB70011F2691D038007F88EE /* Flanger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flanger.m; sourceTree = "<group>"; };
 		EB7372B4266530F600393D58 /* Freezer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Freezer.h; sourceTree = "<group>"; };
 		EB7372B5266530F600393D58 /* Freezer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freezer.m; sourceTree = "<group>"; };
+		EB757B94303BEE8500323642 /* MelodizerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelodizerController.h; sourceTree = "<group>"; };
+		EB757B95303BEE8500323642 /* MelodizerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MelodizerController.m; sourceTree = "<group>"; };
+		EB757B96303BEE8500323642 /* MelodizerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MelodizerController.xib; sourceTree = "<group>"; };
+		EB757B99303BEEB400323642 /* Melodizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Melodizer.h; sourceTree = "<group>"; };
+		EB757B9A303BEEB400323642 /* Melodizer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Melodizer.mm; sourceTree = "<group>"; };
 		EB7A68A32E03072D00018A81 /* Pitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pitch.h; sourceTree = "<group>"; };
 		EB7A68A42E03072D00018A81 /* Pitch.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Pitch.mm; sourceTree = "<group>"; };
 		EB7A68AB2E030AD100018A81 /* PitchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PitchController.h; sourceTree = "<group>"; };
@@ -427,6 +435,11 @@
 				EB7A68AB2E030AD100018A81 /* PitchController.h */,
 				EB7A68AC2E030AD100018A81 /* PitchController.m */,
 				EB7A68AD2E030AD100018A81 /* PitchController.xib */,
+				EB757B99303BEEB400323642 /* Melodizer.h */,
+				EB757B9A303BEEB400323642 /* Melodizer.mm */,
+				EB757B94303BEE8500323642 /* MelodizerController.h */,
+				EB757B95303BEE8500323642 /* MelodizerController.m */,
+				EB757B96303BEE8500323642 /* MelodizerController.xib */,
 			);
 			path = filter;
 			sourceTree = "<group>";
@@ -552,7 +565,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 2660;
 				ORGANIZATIONNAME = kyab;
 				TargetAttributes = {
 					EB6E385D26623E4A002AADCA = {
@@ -588,6 +601,7 @@
 				EBD7C6FF275E54D8009A61DA /* RandomController.xib in Resources */,
 				EBFE0A4D2A7FD5B300F88A78 /* BeatTrackerController.xib in Resources */,
 				EB8B3A2A2BB862EB00930577 /* esp32_s3_midi2.ino.cpp in Resources */,
+				EB757B98303BEE8500323642 /* MelodizerController.xib in Resources */,
 				0CB34AD72B60B0F300E5C57F /* TurnTableController.xib in Resources */,
 				EB6E386826623E4B002AADCA /* MainMenu.xib in Resources */,
 				EB3791102768D68100AC37D0 /* SimpleReverbController.xib in Resources */,
@@ -696,6 +710,7 @@
 				0C21BC082B69D65B00018937 /* BeatLookup.m in Sources */,
 				EB70011C2691D022007F88EE /* FlangerController.m in Sources */,
 				EB83BD432B5427FC007690A5 /* LooperController.m in Sources */,
+				EB757B97303BEE8500323642 /* MelodizerController.m in Sources */,
 				EBBF46DA2675D4AF00785BF6 /* Reverse.m in Sources */,
 				EBDA9A492740A9E500836273 /* SamplerController.m in Sources */,
 				0C21BC042B69D63000018937 /* BeatLookupController.m in Sources */,
@@ -720,6 +735,7 @@
 				EB6E3880266240C1002AADCA /* RingView.m in Sources */,
 				EB379113276F491400AC37D0 /* ConvolutionReverb.mm in Sources */,
 				EB822D572A1D657E00FAA9B5 /* LookUp.m in Sources */,
+				EB757B9B303BEEB400323642 /* Melodizer.mm in Sources */,
 				EBD7C702275E54F2009A61DA /* Random.m in Sources */,
 				0C5EE3302BE1C67B002E9452 /* AutoLooperController.m in Sources */,
 				EB7001202691D038007F88EE /* Flanger.m in Sources */,
@@ -801,6 +817,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Debug;
 		};
@@ -856,6 +873,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Release;
 		};

@@ -52,6 +52,8 @@
 #import "LookUpController.h"
 #import "BeatTrackerController.h"
 #import "BeatLookupController.h"
+#import "Melodizer.h"
+#import "MelodizerController.h"
 #import "SimpleReverbController.h"
 #import "ConvolutionReverbController.h"
 
@@ -59,6 +61,12 @@
 #import "F53OSC.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+struct TransposeKey{
+    NSString *keyChar;
+    UInt32 keyCode;
+    float pitchShift;
+};
 
 @interface AppController : NSObject <MIDIDelegate, MainWindowKeyDelegate,AudioEngineDelegate>{
         
@@ -162,6 +170,10 @@ NS_ASSUME_NONNULL_BEGIN
     BeatLookup *_beatLookup;
     __weak IBOutlet NSView *_beatLookupContentView;
     BeatLookupController *_beatLookupController;
+
+    Melodizer *_melodizer;
+    __weak IBOutlet NSView *_melodizerContentView;
+    MelodizerController *_melodizerController;
     
     SimpleReverb *_simpleReverb;
     __weak IBOutlet NSView *_simpleReverbContentView;
@@ -169,6 +181,10 @@ NS_ASSUME_NONNULL_BEGIN
     
     NSNetService *_netService;
     F53OSCServer *_oscServer;
+        
+    //Note mapping for keyboard to pitchshift (keyCode -> pitchShift) used with MelodizerS
+    NSMutableDictionary<NSNumber *, NSNumber *> *_noteMap;
+    UInt32 _lastNoteKeyCode;
         
 }
 
