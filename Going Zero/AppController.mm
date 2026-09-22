@@ -26,6 +26,24 @@
     _tapHistory = [[NSMutableArray alloc] init];
     _bpm = 120.0;
     
+    _noteMap = [[NSMutableDictionary alloc] initWithDictionary:@{
+        @1:  @(-7.0f), // s -> F
+        @14: @(-6.0f), // e -> F#
+        @2:  @(-5.0f), // d -> G
+        @15: @(-4.0f), // r -> G#
+        @3:  @(-3.0f), // f -> A  
+        @17: @(-2.0f), // t -> A#
+        @5:  @(-1.0f), // g -> B
+        @4:  @(0.0f),  // h -> C (center)
+        @32: @(1.0f),  // u -> C# 
+        @38: @(2.0f),  // j -> D
+        @34: @(3.0f),  // i -> D#
+        @40: @(4.0f),  // k -> E
+        @37: @(5.0f),  // l -> F
+        @35: @(6.0f),  // p -> F#
+        @41: @(7.0f),  // ; -> G
+    }];
+    
     _faderIn = [[MiniFaderIn alloc] init];
     
     _turnTableController = [[TurnTableController alloc] initWithNibName:@"TurnTableController" bundle:nil];
@@ -46,6 +64,12 @@
     [self centerize:[_beatLookupController view]];
     [_beatLookupController setBeatLookup:_beatLookup];
     [_beatLookup setBeatTracker:_beatTracker];
+
+    _melodizer = [[Melodizer alloc] init];
+    _melodizerController = [[MelodizerController alloc] initWithNibName:@"MelodizerController" bundle:nil];
+    [_melodizerContentView addSubview:[_melodizerController view]];
+    [self centerize:[_melodizerController view]];
+    [_melodizerController setMelodizer:_melodizer];
     
     _volumeGate = [[VolumeGate alloc] init];
     
@@ -353,6 +377,10 @@
     [_faderIn processLeft:(float *)ioData->mBuffers[0].mData
                     right:(float *)ioData->mBuffers[1].mData samples:inNumberFrames];
     
+    //Melodizer (introduce some latency so should be head)
+    [_melodizer processLeft:(float*)ioData->mBuffers[0].mData
+                        right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
     //TurnTable
     [_turnTableController processLeft:(float *)ioData->mBuffers[0].mData
                                 right:(float *)ioData->mBuffers[1].mData
@@ -377,6 +405,7 @@
     //Beat Lookup
     [_beatLookup processLeft:(float*)ioData->mBuffers[0].mData
                         right:(float*)ioData->mBuffers[1].mData samples:inNumberFrames];
+
     
     //Trill reverse
     [_trillReverse processLeft:(float*)ioData->mBuffers[0].mData
@@ -595,9 +624,18 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
 
 -(Boolean)mainWindowKeyDown:(NSEvent *)event{
 
-    Boolean processed = NO;
+    //Melodizer
+    if ([_noteMap objectForKey:[NSNumber numberWithInt:event.keyCode]]){
+        if (!event.isARepeat){
+            _lastNoteKeyCode = event.keyCode;
+            float pitchShift = [[_noteMap objectForKey:[NSNumber numberWithInt:event.keyCode]] floatValue];
+            [_melodizerController setTranspose:pitchShift];
+        }
+        return YES;
+    }
+
     switch(event.keyCode){
-        case 0: // a
+        case 12: // q
             if (!event.isARepeat){
                 if (event.modifierFlags & NSEventModifierFlagShift){
                     [_autoLooperController startQuantizedAutoLoop];
@@ -605,94 +643,90 @@ static double linearInterporation(int x0, double y0, int x1, double y1, double x
                     [_autoLooperController toggleQuantizedLoop];
                 }
             }
-            processed = YES;
-            break;
-        case 1: // s
+            return YES;
+        case 13: // w
             if (!event.isARepeat){
                 [_autoLooper halveLoopLength];
                 [_autoLooperController refreshLoopLabel];
             }
-            processed = YES;
-            break;
-        case 2: // d
+            return YES;
+        case 14: // e
             if (!event.isARepeat){
                 [_autoLooper doubleLoopLength];
                 [_autoLooperController refreshLoopLabel];
             }
-            processed = YES;
-            break;
+            return YES;
+        case 11: //b
+            if (!event.isARepeat){
+                [_random start];
+            }
+            return YES;
         case 26: //7
             if (!event.isARepeat){
                 [_autoLooperController startQuantizedBounceLoopQuad];
             }
-            processed = YES;
-            break;
+            return YES;
         case 22: //6
             if (!event.isARepeat){
                 [_autoLooperController startQuantizedBounceLoopDouble];
             }
-            processed = YES;
-            break;
+            return YES;
         case 23: //5
             if (!event.isARepeat){
                 [_autoLooperController startQuantizedBounceLoop];
             }
-            processed = YES;
-            break;
+            return YES;
         case 21: //4
             if (!event.isARepeat){
                 [_autoLooperController startQuantizedBounceLoopHalf];
             }
-            processed = YES;
-            break;
+            return YES;
         case 20: //3
             if (!event.isARepeat){
                 [_autoLooperController startQuantizedBounceLoopQuarter];
             }
-            processed = YES;
-            break;
+            return YES;
         case 19: //2
             if (!event.isARepeat){
                 [_autoLooperController startQuantizedBounceLoopEighth];
             }
-            processed = YES;
-            break;
+            return YES;
         case 18: //1
             if (!event.isARepeat){
                 [_autoLooperController startQuantizedBounceLoopSixteenth];
             }
-            processed = YES;
-            break;
-        case 3:  //f
-            if (!event.isARepeat){
-                [_beatTracker flipOffBeat];
-            }
-            processed = YES;
-            break;
+            return YES;
         case 46: // m
             if (!event.isARepeat){
                 [_volumeGate activate];
             }
-            processed = YES;
-            break;
+            return YES;
         case 49: // space
             if (!event.isARepeat){
                 [_volumeGate openGate];
             }
-            processed = YES;
-            break;
+            return YES;
         default:
             break;
     }
     
-    return processed;
+    return NO;
 }
 
 -(Boolean)mainWindowKeyUp:(NSEvent *)event{
+
+    //Melodizer
+    if ([_noteMap objectForKey:[NSNumber numberWithInt:event.keyCode]]){
+        if (_lastNoteKeyCode == event.keyCode){
+            [_melodizerController stopTranspose];
+            return YES;
+        }
+    }
+
     switch(event.keyCode){
-        case 0: // a
-        case 1: // s
-        case 2: // d
+        case 12: // q
+        case 13: // w
+        case 14: // e
             return YES;
         case 26:
         case 22:

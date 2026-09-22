@@ -59,11 +59,10 @@
         _targetActive = targetActive;
         _isFadingOut = YES;
         
-        // Send KVO notification - active property will now return new state
+        // KVO notification
         [self willChangeValueForKey:@"active"];
         [self didChangeValueForKey:@"active"];
         
-        // Start fade transition after KVO notification
         _fadeOutCounter = FADE_SAMPLE_NUM;
         [_fadeOut startFadeOut];
     }
@@ -79,20 +78,21 @@
     _pendingGrainSizeChange = YES;
 }
 
-// Helper: Process single sample with grain loop
--(void)processGrainLoopSample:(float *)left right:(float *)right{
+-(void)processSample:(float *)left right:(float *)right{
     *left = *_currentL++;
     *right = *_currentR++;
     
-    // Grain loop fade processing (using existing MiniFader objects)
+    // Fade out
     if (_grainSize - (_currentL - _startL) == FADE_SAMPLE_NUM){
         [_miniFadeOut startFadeOut];
     }
     if (_grainSize - (_currentL - _startL) < FADE_SAMPLE_NUM){
         [_miniFadeOut processLeft:left right:right samples:1];
     }
+
+    // Apply pending grain size change at loop boundary
     if (_currentL - _startL > _grainSize){
-        // Apply pending grain size change at loop boundary
+        
         if (_pendingGrainSizeChange){
             _grainSize = _targetGrainSize;
             _pendingGrainSizeChange = NO;
@@ -102,12 +102,12 @@
         _currentR = _startR;
         [_miniFadeIn startFadeIn];
     }
+
     if (_currentL - _startL < FADE_SAMPLE_NUM){
         [_miniFadeIn processLeft:left right:right samples:1];
     }
 }
 
-// Helper: Change state after fade out completes
 -(void)changeStateAfterFadeOut{
     if (_active != _targetActive){
         _active = _targetActive;
@@ -121,14 +121,12 @@
         }
     }
     
-    // Start fade in
     _isFadingOut = NO;
     _isFadingIn = YES;
     _fadeInCounter = 0;
     [_fadeIn startFadeIn];
 }
 
-// Helper: Store raw input samples to ring buffer
 -(void)storeInputToRing:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     float *dstL = [_ring writePtrLeft];
     float *dstR = [_ring writePtrRight];
@@ -137,11 +135,9 @@
     [_ring advanceWritePtrSample:numSamples];
 }
 
-// Helper: Process samples in active state (with optional active fade)
 -(void)processActiveState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
-    // Process each sample with grain loop
     for (int i = 0; i < numSamples; i++){
-        [self processGrainLoopSample:&leftBuf[i] right:&rightBuf[i]];
+        [self processSample:&leftBuf[i] right:&rightBuf[i]];
         
         // Apply active transition fade in if active (inline for performance)
         if (_isFadingIn){
@@ -153,9 +149,7 @@
     }
 }
 
-// Helper: Process samples in inactive state (with optional active fade)
 -(void)processInactiveState:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
-    // Pass through with fade in if active
     if (_isFadingIn){
         for (int i = 0; i < numSamples; i++){
             inlineFadeInSingleSample(&leftBuf[i], &rightBuf[i], &_fadeInCounter);
@@ -164,17 +158,15 @@
             }
         }
     }
-    // Otherwise, pass through unchanged (do nothing)
 }
 
-// Helper: Process fade out phase - returns remaining samples to process
+//  returns remaining samples to process
 -(UInt32)processFadeOutPhase:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
     UInt32 processed = 0;
     
     if (_active){
-        // Active state: process grain loop with fade out
         for (int i = 0; i < numSamples; i++){
-            [self processGrainLoopSample:&leftBuf[i] right:&rightBuf[i]];
+            [self processSample:&leftBuf[i] right:&rightBuf[i]];
             
             // Apply active transition fade out (inline for performance)
             inlineFadeOutSingleSample(&leftBuf[i], &rightBuf[i], &_fadeOutCounter);
@@ -182,34 +174,31 @@
             
             if (_fadeOutCounter == 0){
                 [self changeStateAfterFadeOut];
-                return processed; // Return number of samples processed
+                return processed;
             }
         }
     }else{
-        // Inactive state: apply fade out to pass-through signal
         for (int i = 0; i < numSamples; i++){
             inlineFadeOutSingleSample(&leftBuf[i], &rightBuf[i], &_fadeOutCounter);
             processed++;
             
             if (_fadeOutCounter == 0){
                 [self changeStateAfterFadeOut];
-                return processed; // Return number of samples processed
+                return processed;
             }
         }
     }
     
-    return processed; // Fade out not complete yet
+    return processed;
 }
 
 -(void)processLeft:(float *)leftBuf right:(float *)rightBuf samples:(UInt32)numSamples{
-    // Always store raw input samples before any processing
     [self storeInputToRing:leftBuf right:rightBuf samples:numSamples];
 
     // Phase 1: Fade out (if active)
     if (_isFadingOut){
         UInt32 processed = [self processFadeOutPhase:leftBuf right:rightBuf samples:numSamples];
         
-        // If fade out completed mid-buffer, process remaining samples with fade in
         if (processed < numSamples){
             UInt32 remaining = numSamples - processed;
             if (_active){

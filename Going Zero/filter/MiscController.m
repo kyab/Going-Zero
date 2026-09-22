@@ -102,7 +102,7 @@
     [_trillReverse setActive:([_chkTrillReverse state] == NSControlStateValueOn)];
 }
 
-- (IBAction)freezeChanged:(id)sender {
+- (IBAction)freezeEnableChanged:(id)sender {
     // Update model state (UI will be updated via KVO)
     [_freezer setActive:(_chkFreeze.state == NSControlStateValueOn)];
 }
