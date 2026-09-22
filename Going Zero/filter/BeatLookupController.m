@@ -31,11 +31,23 @@
 }
 
 -(void)jugglingTouchViewMouseDown:(UInt32)beatRegionDivide16{
-    [_beatLookup startBeatJuggling:beatRegionDivide16];
+    [_beatLookup beginBeatJuggling:beatRegionDivide16];
 }
 
--(void)touchViewMouseUp{
-    [_beatLookup stopBeatJuggling];
+-(void)jugglingTouchViewMouseUp{
+    [_beatLookup endBeatJuggling];
+}
+
+-(void)jugglingTouchViewTouchStart:(UInt32) beatRegionDivide16{
+    [_beatLookup beginBeatJuggling:beatRegionDivide16];
+}
+
+-(void)jugglingTouchViewTouchMove:(UInt32) beatRegionDivide16{
+    [_beatLookup changeBeatJuggling:beatRegionDivide16];
+}
+
+-(void)jugglingTouchViewTouchEnd{
+    [_beatLookup endBeatJuggling];
 }
 
 - (IBAction)finelyChanged:(id)sender {
@@ -50,14 +62,14 @@
     if ([[NSApplication sharedApplication] currentEvent].type == NSEventTypeLeftMouseUp){
         [_sliderPitch setFloatValue:0.0];
         [_beatLookup setPitchShift:0.0];
-        [_beatLookup stopPitchShifting];
+        [_beatLookup endPitchShifting];
         _isPitchShifting = NO;
         return;
     }
     
     [_beatLookup setPitchShift:[_sliderPitch floatValue]];
     if (_isPitchShifting == NO){
-        [_beatLookup startPitchShifting];
+        [_beatLookup beginPitchShifting];
         _isPitchShifting = YES;
     }
 }
@@ -66,7 +78,7 @@
     if ([[NSApplication sharedApplication] currentEvent].type == NSEventTypeLeftMouseUp){
         [_sliderTime setFloatValue:0.0];
         [_beatLookup setTimeStretch:1.0];
-        [_beatLookup stopTimeStretching];
+        [_beatLookup endTimeStretching];
         _isTimeShifting = NO;
         return;
     }
@@ -78,7 +90,7 @@
     }
     [_beatLookup setTimeStretch:(100.0 + percentDelta)/100.0];
     if (_isTimeShifting == NO){
-        [_beatLookup startTimeStretching];
+        [_beatLookup beginTimeStreching];
         _isTimeShifting = YES;
     }
 }

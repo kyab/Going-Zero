@@ -33,55 +33,89 @@
         _barFrameStart = [_ring frames] + temp;
     }
     _state = BL_STATE_STORING;
-    
 }
 
--(void)startBeatJuggling:(UInt32)beatRegionDivide16{
+//Terminology
+// Bar (1 Bar) = Full Gauge.
+// Region, RegionIndex (unit for 16 divided 1 Bar).
+
+// _beatJugglingContext.framesPerRegion : Samples in a region
+// _beatJugglingContext.startFrame
+// _beatJugglingContext.currentFrameInRegion
+
+-(void)beginBeatJuggling:(UInt32)beatRegionDivide16{
     
     if (_barFrameNum == 0){
         return;
     }
     
-    NSLog(@"startBeatJuggling %d", beatRegionDivide16);
-    
-    UInt32 beatRegionIndex = 0;
-    UInt32 framesPerRegion = 0;
+    NSLog(@"beginBeatJuggling %d", beatRegionDivide16);
     
     if (_fineGrained){
-        beatRegionIndex = beatRegionDivide16;
-        framesPerRegion = _barFrameNum / 16;
+        _beatJugglingContext.regionIndex = beatRegionDivide16;
+        _beatJugglingContext.newRegionIndex = beatRegionDivide16;
+        _beatJugglingContext.framesInRegion = _barFrameNum / 16;
     }else{
-        beatRegionIndex = beatRegionDivide16 / 2;
-        framesPerRegion = _barFrameNum / 8;
+        _beatJugglingContext.regionIndex  = beatRegionDivide16 / 2;
+        _beatJugglingContext.newRegionIndex  = beatRegionDivide16 / 2;
+        _beatJugglingContext.framesInRegion = _barFrameNum / 8;
     }
     
-    SInt32 playFrameBase = (SInt32)_barFrameStart - 1*(SInt32)_barFrameNum + beatRegionIndex*framesPerRegion;
+    SInt32 playFrameBase = (SInt32)_barFrameStart - 1*(SInt32)_barFrameNum + _beatJugglingContext.regionIndex * _beatJugglingContext.framesInRegion;
     
-    UInt32 offsetFrameInRegion = [_ring offsetToRecordFrameFrom:_barFrameStart] % framesPerRegion;
+    UInt32 offsetFrameInRegion = [_ring offsetToRecordFrameFrom:_barFrameStart] % _beatJugglingContext.framesInRegion;
     
     SInt32 playFrameTemp = playFrameBase + offsetFrameInRegion;
     UInt32 playFrame = 0;
     if (playFrameTemp >= 0){
         playFrame = playFrameTemp;
     }else{
-        playFrame = [_ring frames] + playFrameTemp;
+        playFrame = playFrameTemp + [_ring frames];
     }
     [_ring setPlayFrame:playFrame];
     
     if (playFrameBase >= 0){
         _beatJugglingContext.startFrame = playFrameBase;
     }else{
-        _beatJugglingContext.startFrame = [_ring frames] + playFrameBase;
+        _beatJugglingContext.startFrame = playFrameBase + [_ring frames];
     }
 
     _beatJugglingContext.currentFrameInRegion = offsetFrameInRegion;
-    _beatJugglingContext.framesInRegion = framesPerRegion;
     
     _state = BL_STATE_BEATJUGGLING;
 }
 
--(void)stopBeatJuggling{
+-(void)changeBeatJuggling:(UInt32)beatRegionDivide16{
+    if (_fineGrained){
+        _beatJugglingContext.newRegionIndex = beatRegionDivide16;
+    }else{
+        _beatJugglingContext.newRegionIndex  = beatRegionDivide16 / 2;
+    }
+}
+
+
+-(void)endBeatJuggling{
     _state = BL_STATE_STORING;
+}
+
+-(void)updataBeatJugglingStateAtRegionEnd{
+    
+    //region index has been changed;
+    if (_beatJugglingContext.regionIndex != _beatJugglingContext.newRegionIndex) {
+        _beatJugglingContext.regionIndex = _beatJugglingContext.newRegionIndex;
+        
+        SInt32 playFrameBase = (SInt32)_barFrameStart - 1*(SInt32)_barFrameNum + _beatJugglingContext.regionIndex * _beatJugglingContext.framesInRegion;
+        
+        if (playFrameBase >= 0){
+            _beatJugglingContext.startFrame = playFrameBase;
+        }else{
+            _beatJugglingContext.startFrame = playFrameBase + [_ring frames];
+        }
+        
+    }
+    [_ring setPlayFrame:_beatJugglingContext.startFrame];
+    _beatJugglingContext.currentFrameInRegion = 0;
+    
 }
 
 -(void)startPitchShifting{
@@ -93,12 +127,12 @@
     _state = BL_STATE_STORING;
 }
 
--(void)startTimeStretching{
+-(void)beginTimeStreching{
     [_ring setCustomPtr0Sample:[_ring recordFrame]];
     _state = BL_STATE_TIMESTRETCHING;
 }
 
--(void)stopTimeStretching{
+-(void)endTimeStretching{
     _state = BL_STATE_STORING;
 }
 
@@ -169,8 +203,8 @@
                     float *srcR = [_ring readPtrRight];
                     memcpy(leftBuf, srcL, samples * sizeof(float));
                     memcpy(rightBuf, srcR, samples * sizeof(float));
-                    [_ring setPlayFrame:_beatJugglingContext.startFrame];
-                    _beatJugglingContext.currentFrameInRegion = 0;
+                    
+                    [self updataBeatJugglingStateAtRegionEnd];
         
                     UInt32 samples2 = numSamples - samples;
                     srcL = [_ring readPtrLeft];

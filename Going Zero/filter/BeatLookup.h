@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 #define BL_STATE_TIMESTRETCHING 5
 
 typedef struct {
+    UInt32 regionIndex;
+    UInt32 newRegionIndex;
     UInt32 startFrame;
     UInt32 currentFrameInRegion;
     UInt32 framesInRegion;
@@ -44,14 +46,15 @@ typedef struct {
 
 -(void)setBeatTracker:(BeatTracker *)beatTracker;
 -(void)setBarStart;
--(void)startBeatJuggling:(UInt32)beatRegionDivide16;
--(void)stopBeatJuggling;
+-(void)beginBeatJuggling:(UInt32)beatRegionDivide16;
+-(void)changeBeatJuggling:(UInt32)beatRegionDivide16;
+-(void)endBeatJuggling;
 -(void)setPitchShift:(float)pitchShift;
--(void)startPitchShifting;
--(void)stopPitchShifting;
+-(void)beginPitchShifting;
+-(void)endPitchShifting;
 -(void)setTimeStretch:(float)timeStretch;
--(void)startTimeStretching;
--(void)stopTimeStretching;
+-(void)beginTimeStreching;
+-(void)endTimeStretching;
 
 -(UInt32)barFrameStart;
 -(UInt32)barFrameNum;

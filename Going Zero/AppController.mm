@@ -213,14 +213,14 @@
 -(void)MIDIDelegateNoteOn:(Byte)note vel:(Byte)vel chan:(Byte)chan{
     if (note == 77){
         UInt32 beatRegionDivide16 = (UInt32)((float)vel / (127.0f/16.0));
-        [_beatLookup startBeatJuggling:beatRegionDivide16];
+        [_beatLookup beginBeatJuggling:beatRegionDivide16];
     }
     NSLog(@"MIDI : note on:%d data:%d chan:%d", note, vel, chan+1);
 }
 
 -(void)MIDIDelegateNoteOff:(Byte)note vel:(Byte)vel chan:(Byte)chan{
     if (note == 77){
-        [_beatLookup stopBeatJuggling];
+        [_beatLookup endBeatJuggling];
     }
     NSLog(@"MIDI : note off:%d data:%d chan:%d", note, vel, chan+1);
 }
